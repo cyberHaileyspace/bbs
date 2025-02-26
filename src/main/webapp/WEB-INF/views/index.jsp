@@ -12,16 +12,12 @@
 <body>
 <div class="header">
     <div>
-        <img src="Diaspora.png">
+        <img src="css/Diaspora.png">
     </div>
-    Diaspora
+    Diaspora - 디아스포라
     <div>
-        <button>
-            로그인
-        </button>
-        <button>
-            회원가입
-        </button>
+        <span onclick="location.href='login'">로그인</span>
+        <span onclick="location.href='user-reg'">회원가입</span>
     </div>
 
 </div>
