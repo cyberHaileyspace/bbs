@@ -5,23 +5,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Diaspora - ディアスポラ</title>
     <link rel="stylesheet" href="/resources/css/sample.css">
     <script src="/resources/js/sample.js"></script>
 </head>
 <body>
 <div class="header">
     <div>
-        <img src="css/Diaspora.png">
+        <img src="D:\sjm97\springworkspace\bbs\src\main\resources\static\css">
     </div>
-    Diaspora - 디아스포라
-    <div>
-        <span onclick="location.href='login'">로그인</span>
-        <span onclick="location.href='user-reg'">회원가입</span>
+    <div onclick="location.href='/'">
+        Diaspora - ディアスポラ
+    </div>
+    <div style="font-size: 20px">
+        <span onclick="location.href='/login'">ログイン</span>
+        &nbsp;|&nbsp;
+        <span onclick="location.href='/register'">会員登録</span>
     </div>
 
 </div>
-<div class="main">메인</div>
+<div class="main" style="height: 1000px"><jsp:include page="${content}"></jsp:include></div>
 <div class="footer">푸터</div>
 </body>
 </html>
