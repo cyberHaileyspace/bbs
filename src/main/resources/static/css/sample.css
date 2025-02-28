@@ -109,8 +109,7 @@ button {
     display: flex;
     width: 100%;
     /*justify-content: space-evenly;*/
-    border: 1px solid lightgrey;
-    text-align: center;
+    align-items: center;
 }
 
 .login-button02 {

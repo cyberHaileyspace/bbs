@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>会員登録ページ</title>
     <link rel="stylesheet" href="/resources/css/product.css">
     <script src="/resources/js/product.js"></script>
 </head>
@@ -24,8 +24,8 @@
             </div>
             <div class="pw">
                 <div>パスワード</div>
-                <div><input name="user_pw" type="text" placeholder="※半角英数字6～16文字。"></div>
-                <div><input name="pw02" type="text" placeholder="パスワード再入力"></div>
+                <div><input name="user_pw" type="password" placeholder="※半角英数字6～16文字。"></div>
+                <div><input name="pw02" type="password" placeholder="パスワード再入力"></div>
             </div>
             <div class="name">
                 <div>名前</div>
@@ -53,36 +53,13 @@
                 プロフィール : <input type="file" name="user_image">
             </div>
 
-            <%--<div class="two_box">
-                <div>Add</div>
-                <div>
-                    <select name="add">
-                        <option value="seoul">Seoul</option>
-                        <option value="kyeonggi">Kyeonggi</option>
-                        <option value="daejeon">Daejeon</option>
-                        <option value="daegu">Daegu</option>
-                        <option value="busan" selected="selected">Busan</option>
-                    </select>
-                </div>
-            </div>
-            <div class="two_box">
-                <div>Interest</div>
-                <div>
-                    <label><input name="interest" type="checkbox" value="food">Food</label>
-                    <label><input name="interest" type="checkbox" value="excer">Excer</label><br>
-                    <label><input name="interest" type="checkbox" value="develop">Develop</label>
-                    <label><input name="interest" type="checkbox" value="travel">Travel</label>
-                </div>
-            </div>
-            <div class="two_box">
-                <div>Introduce</div>
-                <div><textarea name="introduce" rows="6" cols="20"></textarea></div>
-            </div>--%>
             <div style="display: flex; justify-content: space-evenly;">
                 <div class="two_box">
-                    <button class="back">閉じる</button>
+                    <button onclick="location.href='/'" class="back">
+                        閉じる
+                    </button>
                 </div>
-                <form action="register" method="post">
+                <form action="register" method="post" onsubmit="return validateForm()">
                     <div class="two_box">
                         <button class="sign">次に進む</button>
                     </div>

@@ -17,23 +17,25 @@
         <div class="title"><h1>ログインページ</h1></div>
 
         <div class="center">
-            <div class="id">
-                <br>
-                <div>ID</div>
-                <div><input name="user_id" type="text"></div>
-            </div>
-            <div class="pw">
-                <div>パスワード</div>
-                <div><input name="user_pw" type="text"></div>
-            </div>
-            <div class="login-button">
-
-                    ログイン
-
-            </div>
+            <form action="login" method="post">
+                <div class="id">
+                    <div>ID</div>
+                    <div><input name="id" type="text" required></div>
+                </div>
+                <div class="pw">
+                    <div>パスワード</div>
+                    <div><input name="pw" type="password" required></div>
+                </div>
+                <div class="login-button">
+                    <button onclick="location.href='/'" class="back">
+                        閉じる
+                    </button>
+                    <button type="submit">ログイン</button>
+                </div>
+            </form>
             <div class="login-button02">
-                <div onclick="location.href='registerpage'">会員登録</div>
-                <div>パスワードの再設定</div>
+                <div onclick="location.href='register'">会員登録</div>
+                <div onclick="location.href='pwreset'">パスワードの再設定</div>
             </div>
             <%--<div class="two_box">
                 <div>Add</div>

@@ -13,7 +13,7 @@ create table User_DB
 drop table User_DB cascade constraints purge;
 
 insert into User_DB (user_id, user_pw, user_name, user_nickname, user_email, user_gender, user_image)
-values ('user03', 'password03', 'Taro', 'taro_nick03', 'taro03@email.com', 'male', 'profile_image.png');
+values ('user01', 'password01', 'Taro', 'taro_nick01', 'taro01@email.com', 'male', 'profile_image.png');
 
 select * from User_DB;
 

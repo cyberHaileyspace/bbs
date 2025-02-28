@@ -12,7 +12,7 @@
 <body>
 <div class="header">
     <div>
-        <img src="D:\sjm97\springworkspace\bbs\src\main\resources\static\css">
+        <img src="D:\sjm97\springworkspace\bbs\src\main\resources\static\css\Diaspora.png">
     </div>
     <div onclick="location.href='/'">
         Diaspora - ディアスポラ
