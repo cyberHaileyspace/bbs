@@ -9,14 +9,14 @@ import java.util.Map;
 public interface RegisterMapper {
 
     @Insert("insert into User_DB" +
-            "(user_id, user_pw, user_name, user_nickname, user_email, user_gender, user_image, user_date)" +
+            "(user_id, user_pw, user_name, user_nickname, user_email, user_gender, user_image)" +
             "VALUES" +
-            "(#{user_id}, #{user_pw}, #{user_name}, #{user_nickname}, #{user_email}, #{user_gender}, #{user_image}, sysdate)")
-    void regUser(RegisterVO registerVO);
+            "(#{user_id}, #{user_pw}, #{user_name}, #{user_nickname}, #{user_email}, #{user_gender}, #{user_image})")
+    int regUser(RegisterVO registerVO);
 
-    @Select("select * from User_DB where user_id = #{user_id} and user_pw = #{user_pw}")
-    Map<String, Object> login(@Param("user_id") String user_id, @Param("user_pw") String user_pw);
+    @Select("select * from User_DB where user_id = #{user_id}")
+    RegisterVO login(RegisterVO registerVO);
 
     @Update("update User_DB set user_pw = #{user_pw} where user_id = #{user_id}")
-    void pwreset(RegisterVO registerVO);
+    int pwreset(RegisterVO registerVO);
 }

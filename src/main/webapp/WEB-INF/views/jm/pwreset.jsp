@@ -32,61 +32,58 @@
 <body>
 <div class="content">
     <div class="main02">
+        <form action="pwreset" method="post">
+            <div class="title"><h1>パスワードの再設定ページ</h1></div>
 
-        <div class="title"><h1>パスワードの再設定ページ</h1></div>
+            <div class="center">
 
-        <div class="center">
-
-            <div class="id">
-                <div>ID</div>
-                <div><input name="user_id" type="text" required></div>
-            </div>
-            <div class="pw">
-                <div>パスワード</div>
-                <div><input name="user_pw" type="password" required></div>
-            </div>
-            <div class="pw">
-                <div>パスワード再入力</div>
-                <div><input name="pw02" type="password" required></div>
-            </div>
-            <div class="login-button">
-                <button onclick="location.href='/'" class="back">
-                    閉じる
-                </button>
-
-                <form action="pwreset" method="post">
+                <div class="id">
+                    <div>ID</div>
+                    <div><input name="user_id" type="text" required></div>
+                </div>
+                <div class="pw">
+                    <div>パスワード</div>
+                    <div><input name="user_pw" type="password" required></div>
+                </div>
+                <div class="pw">
+                    <div>パスワード再入力</div>
+                    <div><input name="pw02" type="password" required></div>
+                </div>
+                <div class="login-button">
+                    <%--<button onclick="location.href='/'" class="back">
+                        閉じる
+                    </button>--%>
                     <button type="submit">再設定</button>
-                </form>
-
-            </div>
-
-            <%--<div class="two_box">
-                <div>Add</div>
-                <div>
-                    <select name="add">
-                        <option value="seoul">Seoul</option>
-                        <option value="kyeonggi">Kyeonggi</option>
-                        <option value="daejeon">Daejeon</option>
-                        <option value="daegu">Daegu</option>
-                        <option value="busan" selected="selected">Busan</option>
-                    </select>
                 </div>
-            </div>
-            <div class="two_box">
-                <div>Interest</div>
-                <div>
-                    <label><input name="interest" type="checkbox" value="food">Food</label>
-                    <label><input name="interest" type="checkbox" value="excer">Excer</label><br>
-                    <label><input name="interest" type="checkbox" value="develop">Develop</label>
-                    <label><input name="interest" type="checkbox" value="travel">Travel</label>
-                </div>
-            </div>
-            <div class="two_box">
-                <div>Introduce</div>
-                <div><textarea name="introduce" rows="6" cols="20"></textarea></div>
-            </div>--%>
 
-        </div>
+                <%--<div class="two_box">
+                    <div>Add</div>
+                    <div>
+                        <select name="add">
+                            <option value="seoul">Seoul</option>
+                            <option value="kyeonggi">Kyeonggi</option>
+                            <option value="daejeon">Daejeon</option>
+                            <option value="daegu">Daegu</option>
+                            <option value="busan" selected="selected">Busan</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="two_box">
+                    <div>Interest</div>
+                    <div>
+                        <label><input name="interest" type="checkbox" value="food">Food</label>
+                        <label><input name="interest" type="checkbox" value="excer">Excer</label><br>
+                        <label><input name="interest" type="checkbox" value="develop">Develop</label>
+                        <label><input name="interest" type="checkbox" value="travel">Travel</label>
+                    </div>
+                </div>
+                <div class="two_box">
+                    <div>Introduce</div>
+                    <div><textarea name="introduce" rows="6" cols="20"></textarea></div>
+                </div>--%>
+
+            </div>
+        </form>
     </div>
 </div>
 </body>

@@ -1,11 +1,12 @@
 package com.bbs.main.vo;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import java.util.Date;
 
-@Getter
-@Setter
+
+@Data
 public class RegisterVO {
     private String user_id;
     private String user_pw;

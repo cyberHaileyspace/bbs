@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="/resources/css/product.css">
-    <script src="/resources/js/product.js"></script>
+    <script src="/resources/js/sample.js"></script>
 </head>
 
 <body>
@@ -20,11 +20,11 @@
             <form action="login" method="post">
                 <div class="id">
                     <div>ID</div>
-                    <div><input name="id" type="text" required></div>
+                    <div><input name="user_id" type="text" required></div>
                 </div>
                 <div class="pw">
                     <div>パスワード</div>
-                    <div><input name="pw" type="password" required></div>
+                    <div><input name="user_pw" type="password" required></div>
                 </div>
                 <div class="login-button">
                     <button onclick="location.href='/'" class="back">

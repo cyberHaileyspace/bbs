@@ -16,9 +16,16 @@ function validateForm() {
     }
 
     // 비밀번호 유효성 검사
-    const pwPattern = /^[a-zA-Z0-9]{6,16}$/;
+
+    /* const pwPattern = /^[a-zA-Z0-9._%+-]{6,16}$/;
     if (!pwPattern.test(userPw)) {
         alert("パスワードは6～16文字の半角英数字で入力してください。");
+        return false;
+    } */
+
+    const pwPattern = /^[a-zA-Z0-9._%+!@#$^&*()_+[\]{}|;:'",.<>?/]{6,16}$/;
+    if (!pwPattern.test(userPw)) {
+        alert("パスワードは6～16文字の半角英数字または指定された特別な文字を含めてください。");
         return false;
     }
 
@@ -59,5 +66,24 @@ function validateForm() {
     return true; // 모든 검사 통과 시 폼 제출
 }
 
+// panel logic
+let panelFlag = true;
 
+function panel() {
+    const panel = document.querySelector(".panel");
+    const panelBtn = document.querySelector(".panel-btn");
+    console.log(panel)
+    panelBtn.addEventListener("click", () => {
+        if (panelFlag)
+            panel.classList.add("open");
+        else
+            panel.classList.remove("open");
+        panelFlag = !panelFlag;
+    });
+}
 
+// 페이지 로드시 준비해서 실행할 것들
+window.onload = () => {
+    panel();
+    console.log(11)
+}
