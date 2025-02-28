@@ -1,6 +1,6 @@
-package com.bbs.board.free.mapper;
+package com.bbs.main.mapper;
 
-import com.bbs.board.free.vo.PostFreeVO;
+import com.bbs.main.vo.PostFreeVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 

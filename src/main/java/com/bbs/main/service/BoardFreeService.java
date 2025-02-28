@@ -1,7 +1,7 @@
-package com.bbs.board.free.service;
+package com.bbs.main.service;
 
-import com.bbs.board.free.mapper.BoardFreeMapper;
-import com.bbs.board.free.vo.PostFreeVO;
+import com.bbs.main.mapper.BoardFreeMapper;
+import com.bbs.main.vo.PostFreeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

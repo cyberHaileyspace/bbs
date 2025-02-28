@@ -1,4 +1,4 @@
-package com.bbs.board.free.vo;
+package com.bbs.main.vo;
 
 import lombok.Data;
 

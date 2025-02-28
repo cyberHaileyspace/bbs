@@ -1,4 +1,4 @@
-package com.bbs.board.free.controller;
+package com.bbs.main.controller;
 
 import ch.qos.logback.core.model.Model;
 import org.springframework.stereotype.Controller;
@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class BoardC {
-    @GetMapping("/boardfree/all")
+    @GetMapping("/boardfree")
     String all(Model model) {
         System.out.println(11);
-        return "baord_free/board_free";
+        return "board_free/board_free";
     }
 }
