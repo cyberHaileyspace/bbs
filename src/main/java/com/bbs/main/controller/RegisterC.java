@@ -4,12 +4,18 @@ import com.bbs.main.service.RegisterService;
 import com.bbs.main.vo.RegisterVO;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Controller
@@ -35,6 +41,7 @@ public class RegisterC {
     @PostMapping("register")
     public String register(RegisterVO registerVO, Model model) {
         System.out.println(registerVO);
+        /*System.out.println(user_image);*/
         registerService.regUser(registerVO);
         model.addAttribute("content", "main.jsp");
         return "index";
@@ -87,4 +94,32 @@ public class RegisterC {
         model.addAttribute("content", "jm/mypage.jsp");
         return "index";
     }
+
+    @PostMapping("/idcheck")
+    public ResponseEntity<Map<String, Boolean>> idcheck(@RequestBody Map<String, String> request) {
+        String userId = request.get("user_id");
+        boolean exists = registerService.idcheck(userId);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("exists", exists);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/nickcheck")
+    public ResponseEntity<Map<String, Boolean>> nickcheck(@RequestBody Map<String, String> request) {
+        String userId = request.get("user_nick");
+        boolean exists = registerService.nickcheck(userId);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("exists", exists);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/emailcheck")
+    public ResponseEntity<Map<String, Boolean>> emailcheck(@RequestBody Map<String, String> request) {
+        String userEmail = request.get("user_email");
+        boolean exists = registerService.emailcheck(userEmail);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("exists", exists);
+        return ResponseEntity.ok(response);
+    }
+
 }

@@ -23,4 +23,4 @@ SELECT user_date, user_date AT TIME ZONE 'Asia/Seoul' FROM User_DB;
 
 ALTER DATABASE SET TIME_ZONE = 'Asia/Seoul';
 
-delete User_DB where user_id = 'aaaa1234';
+delete User_DB where user_id = 'tjqm12';

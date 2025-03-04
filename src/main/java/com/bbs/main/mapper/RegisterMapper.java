@@ -3,8 +3,6 @@ package com.bbs.main.mapper;
 import com.bbs.main.vo.RegisterVO;
 import org.apache.ibatis.annotations.*;
 
-import java.util.Map;
-
 @Mapper
 public interface RegisterMapper {
 
@@ -19,4 +17,13 @@ public interface RegisterMapper {
 
     @Update("update User_DB set user_pw = #{user_pw} where user_id = #{user_id}")
     int pwreset(RegisterVO registerVO);
+
+    @Select("select count(*) from User_DB where user_id = #{userId}")
+    int idcheck(@Param("userId") String userId);
+
+    @Select("select count(*) from User_DB where user_nickname = #{userNick}")
+    int nickcheck(@Param("userNick") String userNick);
+
+    @Select("select count(*) from User_DB where user_email = #{userEmail}")
+    int emailcheck(@Param("userEmail") String userEmail);
 }
