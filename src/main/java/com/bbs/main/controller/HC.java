@@ -8,10 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HC {
 
     @GetMapping("/")
-    public String main(Model model) {
+    public String home(Model model) {
         model.addAttribute("content", "wh/main.jsp");
-
         return "index";
     }
-
 }
