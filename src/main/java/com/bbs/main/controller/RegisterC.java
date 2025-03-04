@@ -106,8 +106,8 @@ public class RegisterC {
 
     @PostMapping("/nickcheck")
     public ResponseEntity<Map<String, Boolean>> nickcheck(@RequestBody Map<String, String> request) {
-        String userId = request.get("user_nick");
-        boolean exists = registerService.nickcheck(userId);
+        String userNick = request.get("user_nick");
+        boolean exists = registerService.nickcheck(userNick);
         Map<String, Boolean> response = new HashMap<>();
         response.put("exists", exists);
         return ResponseEntity.ok(response);

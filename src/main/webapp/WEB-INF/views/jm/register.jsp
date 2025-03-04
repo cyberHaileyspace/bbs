@@ -188,7 +188,7 @@
                 url: "/emailcheck",  // Spring Boot 컨트롤러와 매핑된 URL
                 type: "POST",
                 contentType: "application/json",
-                data: JSON.stringify({ user_nick: userEmail }),
+                data: JSON.stringify({ user_email: userEmail }),
                 success: function(response) {
                     if (response.exists) {
                         msgBox.text("이미 사용 중인 이메일입니다.");
