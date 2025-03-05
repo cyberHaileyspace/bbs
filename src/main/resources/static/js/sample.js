@@ -66,6 +66,32 @@ function validateForm() {
     return true; // 모든 검사 통과 시 폼 제출
 }
 
+/*$(document).ready(function () {
+    $("#user_id").on("focusout", function () {
+        var user_id = $("#user_id").val();
+        if (user_id == '' || user_id.length == 0) {
+            $("#label01").css("color", "red").text("ID를 입력해 주세요.");
+            return false;
+        }
+        $.ajax({
+            url : './validid',
+            data : {
+                user_id : user_id
+            },
+            type : 'POST',
+            dataType : 'json',
+            success : function (result) {
+                if (result == true) {
+                    $("#label01").css("color", "black").text("사용 가능한 ID입니다.");
+                } else {
+                    $("#label01").css("color", "red").text("사용 불가능한 ID입니다.");
+                    $("#user_id").val('');
+                }
+            }
+        });
+    });
+})*/
+
 // panel logic
 let panelFlag = true;
 
