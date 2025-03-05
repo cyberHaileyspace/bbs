@@ -1,0 +1,27 @@
+.wrapper {
+    display: flex;
+}
+a {
+    text-decoration: none;
+}
+.main_content {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+.main_content_box {
+    width: 42%;
+    background-color: aqua;
+}
+.main_content_box a {
+    text-decoration: none;
+}
+.content_list {
+
+}
+.main_ul_box {
+    padding: 0;
+}
+.main_ul_box li {
+    list-style-type: none;
+}
