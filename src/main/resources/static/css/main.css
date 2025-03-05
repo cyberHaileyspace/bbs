@@ -1,39 +1,6 @@
-a {
-    text-decoration: none;
-    color: black;
-}
-
 .wrapper {
     display: flex;
-    padding: 40px 60px;
-    justify-content: center;
-
 }
-
 .board_container {
-    width: 500px;
-    background-color: aqua;
-    padding: 20px;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
+    width: 400px;
 }
-
-.wrapper img {
-    width: 350px;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-.wrapper a {
-    text-decoration: none;
-    color: black;
-    margin-top: 10px;
-    font-weight: bold;
-}
-
-.news_box a {
-    margin: 0;
-}
-
-

@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="/resources/css/sample.css">
     <link rel="stylesheet" href="/resources/css/tour.css">
     <script src="/resources/js/sample.js"></script>
-    <script src="/resources/js/tour.js"></script>
+
+
 </head>
 <body>
 <div class="header">
@@ -29,7 +30,7 @@
             </div>
         </c:when>
         <c:otherwise>
-            <div style="font-size: 20px">
+            <div style="    font-size: 20px">
                 <span onclick="location.href='/login'" style="cursor: pointer">로그인</span>
                 &nbsp;|&nbsp;
                 <span onclick="location.href='/register'" style="cursor: pointer">회원가입</span>
@@ -41,7 +42,7 @@
 <div class="panel">
     <div><h2>뉴스</h2></div>
     <div><h2>자유게시판</h2></div>
-    <div><h2>관광게시판</h2></div>
+    <div onclick="location.href='/main/tour'"><h2>관광게시판</h2></div>
     <div><h2>생활게시판</h2></div>
     <div onclick="location.href='/login'" style="cursor: pointer"><h2>로그인</h2></div>
     <div onclick="location.href='/register'" style="cursor: pointer"><h2>회원가입</h2></div>
@@ -54,5 +55,6 @@
     </div>
 </div>
 <div class="footer">푸터</div>
+<script src="/resources/js/tour.js"></script>
 </body>
 </html>

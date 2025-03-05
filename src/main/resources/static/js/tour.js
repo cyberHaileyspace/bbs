@@ -1,23 +1,58 @@
-const axios = require('axios');
-const serviceKey = 'bOkfjhsZtYm6mTldXCqmQERqAnoAf86Rz1in%2BTo4oJu5EoNDcWfR0LjGf15Z1Z6bcQS7xtAwecqLEHJhiIDcTw%3D%3D'; // 발급받은 API 키 입력
-
-const url = 'http://apis.data.go.kr/B551011/JpnService1/areaBasedList1'; // 일본어 관광 정보 API
-const params = {
-    serviceKey: serviceKey,
-    numOfRows: 10,      // 한 번에 가져올 데이터 개수
-    pageNo: 1,          // 페이지 번호
-    MobileOS: 'ETC',    // OS 종류 (고정값)
-    MobileApp: 'YourAppName', // 앱 이름 (아무거나 가능)
-    arrange: 'A',       // 정렬 기준 (A: 제목순)
-    contentTypeId: 12,  // 관광지 (12)
-    areaCode: 1,        // 서울특별시 (1)
-    _type: 'json'       // JSON 응답 요청
-};
-
-axios.get(url, { params })
-    .then(response => {
-        console.log(response.data);
-    })
-    .catch(error => {
-        console.error('데이터 요청 중 오류 발생:', error);
+const locWrap = document.querySelector(".location-wrap");
+document.querySelector(".location-input").addEventListener("focus", () => {
+    locWrap.classList.add("show");
+});
+document
+    .querySelector(".location-input")
+    .addEventListener("blur", (event) => {
+        // 클릭한 요소가 location-wrap 내부라면 닫지 않음
+        setTimeout(() => {
+            if (!locWrap.contains(document.activeElement)) {
+                locWrap.classList.remove("show");
+            }
+        }, 100);
     });
+
+document.querySelector(".close-btn").addEventListener("click", () => {
+    locWrap.classList.remove("show");
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    // 메인 카테고리 리스트 (제주도, 울릉도, 강원 등)
+    const mainCategories = document.querySelectorAll(
+        ".panel_2depth .place_items li a"
+    );
+
+    // 모든 하위 지역 패널을 가져옴
+    const allSubPanels = document.querySelectorAll(".sub-panel");
+
+    // 초기 설정: 모든 하위 패널 숨기고 기본 선택된 것만 보이게 함
+    allSubPanels.forEach((tour_panel) => {
+        if (!tour_panel.classList.contains("selected")) {
+            tour_panel.style.display = "none";
+        }
+    });
+
+    // 메인 카테고리를 클릭하면 해당 지역의 하위 패널 표시
+    mainCategories.forEach((category) => {
+        category.addEventListener("click", function (event) {
+            event.preventDefault(); // a 태그의 기본 동작 방지
+
+            // 현재 클릭한 요소의 href 속성값을 가져옴 (ex: #place01)
+            const targetId = this.getAttribute("href").replace("#", "");
+
+            // 모든 하위 패널을 숨김 (대분류는 유지)
+            allSubPanels.forEach((tour_panel) => {
+                tour_panel.style.display = "none";
+                tour_panel.classList.remove("selected");
+            });
+
+            // 해당 ID를 가진 패널을 보이게 설정
+            const targetPanel = document.getElementById(targetId);
+            if (targetPanel) {
+                targetPanel.style.display = "block";
+                targetPanel.classList.add("selected");
+            }
+        });
+    });
+});
