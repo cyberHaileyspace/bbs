@@ -7,6 +7,8 @@
     <meta charset="UTF-8">
     <title>Diaspora - ディアスポラ</title>
     <link rel="stylesheet" href="/resources/css/sample.css">
+    <link rel="stylesheet" href="/resources/css/main.css">
+    <link rel="stylesheet" href="/resources/css/tour.css">
     <script src="/resources/js/sample.js"></script>
 </head>
 <body>
@@ -39,7 +41,7 @@
 <div class="panel">
     <div><h2>뉴스</h2></div>
     <div><h2>자유게시판</h2></div>
-    <div><h2>관광게시판</h2></div>
+    <div onclick="location.href='/main/tour'"><h2>관광게시판</h2></div>
     <div><h2>생활게시판</h2></div>
     <div onclick="location.href='/login'" style="cursor: pointer"><h2>로그인</h2></div>
     <div onclick="location.href='/register'" style="cursor: pointer"><h2>회원가입</h2></div>
@@ -54,5 +56,6 @@
     <div style="font-size: 12px">차이나톡을 통해 중국 생활 및 비즈니스에 유용한 각종 최신 꿀팁 정보를 공유해 보세요</div>
     <div><h4>© 2025 차이나톡(ChinaTalk) 중국 한국인 생활 정보 커뮤니티</h4></div>
 </div>
+<script src="/resources/js/tour.js"></script>
 </body>
 </html>

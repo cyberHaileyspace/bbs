@@ -1,4 +1,4 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
 <!DOCTYPE html>
@@ -7,23 +7,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <style>
-        .location-wrap {
-            display: none;
-            background-color: rgb(190, 190, 224);
-            width: 350px;
-            position: relative;
-        }
-        .location-wrap.show {
-            display: flex;
-        }
-        li {
-            list-style: none;
-        }
-    </style>
+
 </head>
 <body>
-<input type="text" class="location-input" />
+<div style="justify-content: center; display: flex">
+    <input type="text" class="location-input" />
+</div>
 <div class="location-wrap">
     <div class="panels place_scroll panel_2depth">
         <!-- 🟢 항상 고정되는 대분류 -->
@@ -150,6 +139,13 @@
 <br>
 <br>
 <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <div>
     <div>
@@ -168,11 +164,13 @@
             <div class="tour_img_box"><a><img src="https://www.agoda.com/wp-content/uploads/2024/04/Featured-image-Han-River-at-night-in-Seoul-South-Korea-1244x700.jpg"><div>컨텐츠 정보</div> </a></div>
             <div class="tour_img_box"><a><img src="https://www.agoda.com/wp-content/uploads/2024/04/Featured-image-Han-River-at-night-in-Seoul-South-Korea-1244x700.jpg"><div>컨텐츠 정보</div> </a></div>
         </div>
-        <div>
-            <div></div>
-        </div>
-        <div>
-
+        <div class="modal-overlay" id="modalOverlay">
+            <div class="modal">
+                <span class="close-modal" id="closeModal">&times;</span>
+                <div id="modalContent">
+                    <!-- 동적으로 컨텐츠가 채워집니다 -->
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -56,3 +56,28 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+// 모든 tour_img_box에 클릭 이벤트 리스너 등록
+document.querySelectorAll('.tour_img_box').forEach(box => {
+    box.addEventListener('click', function(e) {
+        // 클릭한 요소에서 컨텐츠 정보를 가져옵니다.
+        // 여기서는 a 태그 내부의 div의 텍스트를 사용합니다.
+        const content = this.querySelector('a div').innerHTML;
+        document.getElementById('modalContent').innerHTML = content;
+
+        // 모달창 활성화
+        document.getElementById('modalOverlay').classList.add('active');
+    });
+});
+
+// 모달 닫기 이벤트
+document.getElementById('closeModal').addEventListener('click', function() {
+    document.getElementById('modalOverlay').classList.remove('active');
+});
+
+// 모달 영역 외부 클릭 시 닫기
+document.getElementById('modalOverlay').addEventListener('click', function(e) {
+    if (e.target === this) {
+        document.getElementById('modalOverlay').classList.remove('active');
+    }
+});
