@@ -1,84 +1,97 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <%--script src="/resources/js/sample.js"></script>--%>
     <link rel="stylesheet" href="/resources/css/sample.css">
+    <script src="/resources/js/sample.js"></script>
 </head>
+<script>
+    function validateForm() {
+
+        let pwReset = document.querySelector('[name="user_pw"]').value;
+        let pwreset02 = document.querySelector('[name="pw02"]').value;
+
+        // 비밀번호 유효성 검사
+        const pwPattern = /^[a-zA-Z0-9]{6,16}$/;
+        if (!pwPattern.test(pwReset)) {
+            alert("パスワードは6～16文字の半角英数字で入力してください。");
+            return false;
+        }
+
+        // 비밀번호 확인 검사
+        if (pwReset !== pwreset02) {
+            alert("パスワードが一致しません。");
+            return false;
+        }
+    }
+</script>
 <body>
 <div class="content">
     <div class="main02">
-        <div>
-            <div class="title"><h1>회원가입 페이지</h1></div>
-            <form action="register" method="post" class="center" onsubmit="return validateForm()" enctype="multipart/form-data">
+        <form action="update" method="post">
+            <div class="title"><h1>내 정보 재설정 페이지</h1></div>
+            <div class="center">
                 <div class="id">
-                    <br>
                     <div>ID</div>
-                    <div><input name="user_id" id="user_id" type="text" placeholder="※半角英数字6～16文字。"></div>
-                    <span id="id_check" style="color: red; font-size: 12px"></span>
-                    <button type="button" id="id_check_btn">중복확인</button>
-                </div>
-                <div class="pw">
-                    <div>패스워드</div>
-                    <div><input name="user_pw" type="password" placeholder="※半角英数字6～16文字。"></div>
-                    <div><input name="pw02" type="password" placeholder="パスワード再入力"></div>
+                    <div><input name="user_id" value="${user.user_id}" type="text" placeholder="${user.user_id}" readonly></div>
                 </div>
                 <div class="name">
                     <div>이름</div>
-                    <div><input name="user_name" type="text"></div>
+                    <div><input name="user_name" id="user_name" type="text" placeholder="${user.user_name}"></div>
                 </div>
                 <div class="nickname">
                     <div>닉네임</div>
-                    <div><input name="user_nickname" id="user_nickname" type="text" placeholder="※半角英数字6～16文字。"></div>
+                    <div><input name="user_nickname" id="user_nickname" type="text" placeholder="${user.user_nickname}"></div>
                     <span id="nick_check" style="color: red; font-size: 12px"></span>
                     <button type="button" id="nick_check_btn">중복확인</button>
                 </div>
                 <div class="email">
                     <div>메일 주소</div>
-                    <div><input name="user_email" id="user_email" type="text"></div>
+                    <div><input name="user_email" id="user_email" type="text" placeholder="${user.user_email}"></div>
                     <span id="email_check" style="color: red; font-size: 12px"></span>
                     <button type="button" id="email_check_btn">중복확인</button>
                 </div>
-                <div class="gender" style="display: flex; justify-content: space-evenly;">
-                    <div>성별</div>
-                    &nbsp;|&nbsp;
+                <div class="login-button">
+                    <%--<button onclick="location.href='/'" class="back">
+                        閉じる
+                    </button>--%>
+                    <button type="submit">재설정</button>
+                </div>
+
+                <%--<div class="two_box">
+                    <div>Add</div>
                     <div>
-                        <label>남<input type="radio" name="user_gender" value="male" checked="checked"></label>
-                        <label>여<input type="radio" name="user_gender" value="female"></label>
+                        <select name="add">
+                            <option value="seoul">Seoul</option>
+                            <option value="kyeonggi">Kyeonggi</option>
+                            <option value="daejeon">Daejeon</option>
+                            <option value="daegu">Daegu</option>
+                            <option value="busan" selected="selected">Busan</option>
+                        </select>
                     </div>
                 </div>
-                <div class="file">
-                    프로필 : <input type="file" name="user_file">
+                <div class="two_box">
+                    <div>Interest</div>
+                    <div>
+                        <label><input name="interest" type="checkbox" value="food">Food</label>
+                        <label><input name="interest" type="checkbox" value="excer">Excer</label><br>
+                        <label><input name="interest" type="checkbox" value="develop">Develop</label>
+                        <label><input name="interest" type="checkbox" value="travel">Travel</label>
+                    </div>
                 </div>
+                <div class="two_box">
+                    <div>Introduce</div>
+                    <div><textarea name="introduce" rows="6" cols="20"></textarea></div>
+                </div>--%>
 
-                <%--.login-button {
-                display: flex;
-                width: 100%;
-                /*justify-content: space-evenly;*/
-                align-items: center;
-                }
-
-                .register-button {
-                display: flex;
-                width: 100%;
-                /*justify-content: space-evenly;*/
-                align-items: center;
-                }--%>
-
-                <div class="register-button">
-                    <button type="submit" class="sign">가입하기</button>
-                    <button onclick="location.href='/'" class="back">
-                        뒤로가기
-                    </button>
-                </div>
-        </div>
+            </div>
         </form>
     </div>
-</div>
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
