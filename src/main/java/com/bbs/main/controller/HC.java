@@ -9,7 +9,7 @@ public class HC {
 
     @GetMapping("/")
     public String home(Model model) {
-        model.addAttribute("content", "main.jsp");
+        model.addAttribute("content", "wh/main.jsp");
         return "index";
     }
 }
