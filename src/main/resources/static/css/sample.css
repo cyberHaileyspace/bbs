@@ -158,3 +158,21 @@ button {
 .panel-btn {
     cursor: pointer;
 }
+
+.mypage {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 10%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.mypage-container.mypage-btn.mypage-content {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
