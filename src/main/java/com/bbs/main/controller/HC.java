@@ -12,4 +12,12 @@ public class HC {
         model.addAttribute("content", "main.jsp");
         return "index";
     }
+
+    @GetMapping("/boardFree")
+    String all(Model model) {
+        System.out.println(11);
+        model.addAttribute("content", "board_free/board_free.jsp");
+        return "index";
+    }
+
 }

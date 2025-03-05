@@ -16,6 +16,9 @@
             <div></div>
             <div></div>
             <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
     </div>
     <%--첨부하길 원하는 템블릿--%>
@@ -26,10 +29,11 @@
         <div class="name" id="name">${p.p_name}</div>
         <div class="begin" id="begin">${p.p_begin}</div>
         <div class="title" id="title">${p.p_title}</div>
-        <div class="img" id="img">${p.p_img}</div>
         <div class="text" id="text">${p.p_text}</div>
+        <div class="date" id="date">${p.p_date}</div>
+            <hr>
+            <hr>
         </a>
-        <hr>
     </div>
     <div id="post-list"></div>
 </div>

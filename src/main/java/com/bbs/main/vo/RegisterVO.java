@@ -1,10 +1,8 @@
 package com.bbs.main.vo;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import java.util.Date;
 
+import java.util.Date;
 
 @Data
 public class RegisterVO {

@@ -9,19 +9,19 @@ function loadPosts(){
        const idEL = document.querySelector('.id');
        const nameEL = document.querySelector('.name');
        const beginEL = document.querySelector('.begin');
-       const titleEL = document.querySelector('.img');
-       const imgEL = document.querySelector('.img');
+       const titleEL = document.querySelector('.title');
        const textEL = document.querySelector('.text');
+       const dateEL = document.querySelector('.date');
        const obj = {
            p_no : noEL.value,
            p_id : idEL.value,
            p_name : nameEL.value,
            p_begin : beginEL.value,
            p_title : titleEL.value,
-           p_img : imgEL.value,
            p_text : textEL.value,
+           p_date : dateEL.value
        }
-    fetch("/all")
+    fetch("/boardFree/all")
         .then(response => response.json())
         .then(posts => {
             const postList = document.querySelector("#post-list");
@@ -36,7 +36,6 @@ function loadPosts(){
                 item.querySelector(".no").dataset.name = post.p_name;
                 item.querySelector(".no").dataset.begin = post.p_begin;
                 item.querySelector(".no").dataset.title = post.p_title;
-                item.querySelector(".no").dataset.img = post.p_img;
                 item.querySelector(".no").dataset.text = post.p_text;
                 item.querySelector(".no").dataset.date = post.p_date;
 
@@ -44,10 +43,11 @@ function loadPosts(){
                 item.querySelector(".name").innerText = post.p_name;
                 item.querySelector(".begin").innerText = post.begin;
                 item.querySelector(".title").innerText = post.p_title;
-                item.querySelector(".img").innerText = post.p_img;
+                // item.querySelector(".img").innerText = post.p_img;
                 item.querySelector(".text").innerText = post.p_text;
+                item.querySelector(".date").innerText = post.p_date;
 
-                item.querySelector("a").href=`BoardFreeC/${post.p_no}`;
+                item.querySelector("a").href=`boardFree/detail?p_no=${post.p_no}`;
 
                 item.classList.remove("temp");
                 postList.appendChild(item);

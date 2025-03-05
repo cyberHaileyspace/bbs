@@ -17,4 +17,8 @@ public class BoardFreeService {
     public List<PostFreeVO> getposts(){
         return boardFreeMapper.getposts();
     };
+
+    public PostFreeVO detailPost(PostFreeVO postFreeVO){
+        return boardFreeMapper.detailPost(postFreeVO);
+    }
 }

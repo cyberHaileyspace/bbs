@@ -11,4 +11,7 @@ public interface BoardFreeMapper {
 
     @Select("select * from Free_posts")
     List<PostFreeVO> getposts();
+
+    @Select("select * from Free_posts where p_no = #{p_no}")
+    PostFreeVO detailPost(PostFreeVO postFreeVO);
 }
