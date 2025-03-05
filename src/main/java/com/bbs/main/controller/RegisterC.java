@@ -41,7 +41,6 @@ public class RegisterC {
     @PostMapping("register")
     public String register(RegisterVO registerVO, Model model) {
         System.out.println(registerVO);
-        /*System.out.println(user_image);*/
         registerService.regUser(registerVO);
         model.addAttribute("content", "main.jsp");
         return "index";

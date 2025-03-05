@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <div class="file">
-                    프로필 : <input type="file" name="user_image">
+                    프로필 : <input type="file" name="user_file">
                 </div>
 
                 <%--.login-button {
