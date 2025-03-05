@@ -7,8 +7,12 @@ import com.bbs.main.vo.RegisterVO;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 @Service
 public class RegisterService {
@@ -16,8 +20,25 @@ public class RegisterService {
     @Autowired
     private RegisterMapper registerMapper;
 
-    public void regUser(RegisterVO registerVO) {
-        registerMapper.regUser(registerVO);
+    public void regUser(RegisterVO registerVO, MultipartFile user_file) {
+        /* registerMapper.regUser(registerVO); */
+        String originName = user_file.getOriginalFilename();
+        String fileExtension = originName.substring(originName.lastIndexOf("."), originName.length());
+        System.out.println(fileExtension);
+        String uploadFolder = "C:\\Users\\soldesk\\Desktop\\uploadFolder";
+        UUID uuid = UUID.randomUUID();
+        System.out.println(uuid);
+        String[] uuids = uuid.toString().split("-");
+        System.out.println(uuids[0]);
+        String fileName = uuids[0] + fileExtension;
+        File saveFile = new File(uploadFolder + "\\" + fileName);
+        try {
+            user_file.transferTo(saveFile);
+            registerVO.setUser_image(fileName);
+            registerMapper.regUser(registerVO);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public String loginuser(RegisterVO registerVO, HttpSession httpSession) {
@@ -54,5 +75,14 @@ public class RegisterService {
 
     public boolean emailcheck(String userEmail) {
         return registerMapper.emailcheck(userEmail) > 0;
+    }
+
+    public String updateUser(RegisterVO registerVO) {
+        int result = registerMapper.updateUser(registerVO);
+        if (result == 1) {
+            return "내 정보가 변경되었습니다.";
+        } else {
+            return "변경할 수 없습니다";
+        }
     }
 }

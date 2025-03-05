@@ -26,4 +26,7 @@ public interface RegisterMapper {
 
     @Select("select count(*) from User_DB where user_email = #{userEmail}")
     int emailcheck(@Param("userEmail") String userEmail);
+
+    @Update("update User_DB set user_name = #{user_name}, user_nickname = #{user_nickname}, user_email = #{user_email} where user_id = #{user_id}")
+    int updateUser(RegisterVO registerVO);
 }
