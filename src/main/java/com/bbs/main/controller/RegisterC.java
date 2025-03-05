@@ -38,10 +38,17 @@ public class RegisterC {
         return "index";
     }
 
+    @GetMapping("update")
+    public String updatepage(Model model) {
+        model.addAttribute("content", "jm/update.jsp");
+        return "index";
+    }
+
     @PostMapping("register")
-    public String register(RegisterVO registerVO, Model model) {
+    public String register(RegisterVO registerVO, Model model, MultipartFile user_file) {
         System.out.println(registerVO);
-        registerService.regUser(registerVO);
+        System.out.println(user_file.getOriginalFilename());
+        registerService.regUser(registerVO, user_file);
         model.addAttribute("content", "main.jsp");
         return "index";
     }
@@ -74,7 +81,7 @@ public class RegisterC {
         if (msg.equals("비밀번호가 변경되었습니다.")) {
             /*RegisterVO user = registerMapper.login(registerVO);
             session.setAttribute("user", user);*/
-            model.addAttribute("contentlogin", "index.jsp");
+            model.addAttribute("content", "index.jsp");
             return "redirect:/login";
         } else {
             redirectAttributes.addFlashAttribute("error", "IDを確認してください。");
@@ -119,6 +126,21 @@ public class RegisterC {
         Map<String, Boolean> response = new HashMap<>();
         response.put("exists", exists);
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("update")
+    public String updatepage(RegisterVO registerVO, RedirectAttributes redirectAttributes, Model model) {
+        String msg = registerService.updateUser(registerVO);
+        System.out.println(111);
+        if (msg.equals("내 정보가 변경되었습니다.")) {
+            /*RegisterVO user = registerMapper.login(registerVO);
+            session.setAttribute("user", user);*/
+            model.addAttribute("content", "index.jsp");
+            return "redirect:/update";
+        } else {
+            redirectAttributes.addFlashAttribute("error", "IDを確認してください。");
+            return "redirect:/login";
+        }
     }
 
 }

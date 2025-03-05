@@ -11,15 +11,33 @@
     <script src="/resources/js/sample.js"></script>
 </head>
 <body>
-${user.user_image} 프로필 사진 변경
-<hr>
-${user.user_nickname} (${user.user_id}) 님의 마이페이지입니다.
-<br>
-<div onclick="location.href='/pwreset'" class="pw" style="cursor: pointer">비밀번호 변경</div>
-<hr>
-가입일 : <fmt:formatDate value="${user.user_date}" pattern="yyyy-MM-dd" />
-<br>
-작성 글 목록
-작성 댓글 목록
+<div class="mypage">
+    <div class="mypage-container">
+        <div>
+            <img src="/file/${user.user_image}" style="width: 100px; height: 100px">
+        </div>
+        <div>
+            프로필 사진 변경
+        </div>
+        <div>
+            ${user.user_nickname}
+        </div>
+        <div>
+            아이디 : ${user.user_id}
+        </div>
+        <div>
+            가입일 : <fmt:formatDate value="${user.user_date}" pattern="yyyy-MM-dd"/>
+        </div>
+    </div>
+    <div class="mypage-btn">
+        <div onclick="location.href='/update'" style="cursor: pointer">내 정보 수정</div>
+        <div onclick="location.href='/pwreset'" class="pw" style="cursor: pointer">비밀번호 변경</div>
+        <div onclick="location.href='/logout'" style="cursor: pointer">로그아웃</div>
+    </div>
+    <div class="mypage-content">
+        <div>작성 글 목록</div>
+        <div>작성 댓글 목록</div>
+    </div>
+</div>
 </body>
 </html>
