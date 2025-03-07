@@ -12,4 +12,5 @@ public class HC {
         model.addAttribute("content", "wh/main.jsp");
         return "index";
     }
+
 }
