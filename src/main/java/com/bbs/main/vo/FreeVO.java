@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class PostFreeVO {
+public class FreeVO {
 
     private String p_no;
     private String p_id;

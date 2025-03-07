@@ -21,7 +21,8 @@ SELECT MAX(b_no) FROM Free_posts;
 DROP SEQUENCE Free_posts_seq;
 
 
-insert into Free_posts values (Free_posts_seq.nextval,'dul', '호잇이계속되면', '가입인사','안녕하세요' ,'c.jpg','코난이 참 좋아요', sysdate);
+insert into Free_posts values (Free_posts_seq.nextval,'ad', '둘리', '가입인사','안녕하세요' ,'c.jpg','한국이 참 좋아요', sysdate);
+insert into Free_posts values (Free_posts_seq.nextval,'one', '원호짱', '가입인사','안녕하세요' ,'c.jpg','서울이 참 좋아요', sysdate);
 
 select * from Free_posts;
 

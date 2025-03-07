@@ -25,11 +25,12 @@ public class MainC {
         return "index";
     }
 
-    @GetMapping("/board_free")
-    public String board_free() {
-        return "board_free";
+    @GetMapping("/free")
+    String all(Model model) {
+        System.out.println(11);
+        model.addAttribute("content", "free/free_posts.jsp");
+        return "index";
     }
-
 
 
 

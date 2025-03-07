@@ -47,7 +47,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     </div>
     <div class="panel">
       <div><h2>뉴스</h2></div>
-      <div onclick="location.href='boardFree'"><h2>자유게시판</h2></div>
+      <div onclick="location.href='/free'"><h2>자유게시판</h2></div>
       <div onclick="location.href='/main/tour'"><h2>관광게시판</h2></div>
       <div><h2>생활게시판</h2></div>
       <div onclick="location.href='/login'" style="cursor: pointer">
