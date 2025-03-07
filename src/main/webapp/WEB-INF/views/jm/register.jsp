@@ -202,5 +202,27 @@
             });
         });
     });
+
+     function validateForm() {
+        let userId = $("#user_id").val().trim();
+        let userNick = $("#user_nickname").val().trim();
+        let userEmail = $("#user_email").val().trim();
+
+        let idCheckMsg = $("#id_check").text();
+        let nickCheckMsg = $("#nick_check").text();
+        let emailCheckMsg = $("#email_check").text();
+
+        if (userId === "" || userNick === "" || userEmail === "") {
+            alert("모든 필드를 입력해주세요.");
+            return false;
+        }
+
+        if (idCheckMsg !== "사용 가능한 ID입니다." || nickCheckMsg !== "사용 가능한 닉네임입니다." || emailCheckMsg !== "사용 가능한 이메일입니다.") {
+            alert("ID, 닉네임, 이메일 중복 확인을 완료해주세요.");
+            return false;
+        }
+        return true;
+    }
+
 </script>
 </html>

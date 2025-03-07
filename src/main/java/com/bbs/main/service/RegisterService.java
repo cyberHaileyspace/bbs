@@ -20,6 +20,11 @@ public class RegisterService {
     @Autowired
     private RegisterMapper registerMapper;
 
+    public boolean loginChk(HttpSession session){
+        RegisterVO user = (RegisterVO) session.getAttribute("user");
+        return user != null;
+    }
+
     public void regUser(RegisterVO registerVO, MultipartFile user_file) {
         /* registerMapper.regUser(registerVO); */
         String originName = user_file.getOriginalFilename();

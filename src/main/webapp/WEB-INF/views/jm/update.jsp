@@ -36,7 +36,7 @@
         <form action="update" method="post">
             <div class="title"><h1>내 정보 재설정 페이지</h1></div>
             <div class="center">
-                <div class="id">
+                <div class="id" hidden="hidden">
                     <div>ID</div>
                     <div><input name="user_id" value="${user.user_id}" type="text" placeholder="${user.user_id}" readonly></div>
                 </div>

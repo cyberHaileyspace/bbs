@@ -4,10 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Data
 public class TourVO {
-    private Long spot_id;          // 관광지 ID (기본키, 자동 증가)
+    private int spot_id;          // 관광지 ID (기본키, 자동 증가)
     private String spot_name;      // 관광지 이름 (API: title)
     private String spot_address;   // 주소 (API: addr1)
     private String spot_desc;      // 설명 (API: overview)
@@ -15,5 +16,5 @@ public class TourVO {
     private String spot_closed;    // 쉬는 날 (API: restdate)
     private String spot_hours;     // 이용 시간 (API: usetime)
     private String spot_image;     // 이미지 URL (API: firstimage)
-    private Timestamp created_at;  // 등록 날짜
+    private Date created_at;  // 등록 날짜
 }

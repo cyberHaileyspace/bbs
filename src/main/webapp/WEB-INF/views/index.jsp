@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/resources/css/main.css">
     <link rel="stylesheet" href="/resources/css/tour.css">
     <script src="/resources/js/sample.js"></script>
+
 </head>
 <body>
 <div class="header">
@@ -39,16 +40,16 @@
 
 </div>
 <div class="panel">
-    <div><h2>뉴스</h2></div>
-    <div><h2>자유게시판</h2></div>
-    <div onclick="location.href='/main/tour'"><h2>관광게시판</h2></div>
-    <div><h2>생활게시판</h2></div>
-    <div onclick="location.href='/login'" style="cursor: pointer"><h2>로그인</h2></div>
-    <div onclick="location.href='/register'" style="cursor: pointer"><h2>회원가입</h2></div>
-    <div onclick="location.href='https://www.kr.emb-japan.go.jp/itprtop_ko/index.html'" style="cursor: pointer;"><h2>在大韓民国日本国大使館</h2></div>
+    <div>뉴스</div>
+    <div onclick="location.href='/main/free'" style="cursor: pointer">자유게시판</div>
+    <div onclick="location.href='/main/tour'" style="cursor: pointer">관광게시판</div>
+    <div onclick="location.href='/main/life'" style="cursor: pointer">생활게시판</div>
+    <div onclick="location.href='/login'" style="cursor: pointer">로그인</div>
+    <div onclick="location.href='/register'" style="cursor: pointer">회원가입</div>
+    <div onclick="location.href='https://www.kr.emb-japan.go.jp/itprtop_ko/index.html'" style="cursor: pointer;">在大韓民国日本国大使館</div>
 </div>
 <div class="main">
-    <div class="main-content">
+    <div class="main-cnt">
         <jsp:include page="${content}"></jsp:include>
     </div>
 </div>
