@@ -20,7 +20,7 @@ public class RegisterService {
     @Autowired
     private RegisterMapper registerMapper;
 
-    public boolean loginChk(HttpSession session){
+    public boolean loginChk(HttpSession session) {
         RegisterVO user = (RegisterVO) session.getAttribute("user");
         return user != null;
     }
