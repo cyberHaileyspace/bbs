@@ -1,5 +1,6 @@
 package com.bbs.main.controller;
 
+import com.bbs.main.service.FreeService;
 import com.bbs.main.service.LifeWriteService;
 import com.bbs.main.service.UserService;
 import com.bbs.main.vo.LifeWriteVO;
@@ -22,6 +23,9 @@ public class MainC {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private FreeService freeService;
+
     @GetMapping
     public String main(Model model) {
         model.addAttribute("content", "wh/main.jsp");
@@ -41,9 +45,13 @@ public class MainC {
         return "index";
     }
 
-    @GetMapping("/board_free")
-    public String board_free() {
-        return "board_free";
+    @GetMapping("/free")
+    public String list(Model model) {
+        System.out.println("1111");
+        model.addAttribute("posts", freeService.getposts());
+        model.addAttribute("content", "free/free_posts.jsp");
+        return "index";
     }
+
 
 }
