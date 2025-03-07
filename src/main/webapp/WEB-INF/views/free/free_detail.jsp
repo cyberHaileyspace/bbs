@@ -116,20 +116,20 @@
 <body>
 <div class="container">
     <div class="post-header">
-        <div>작성인 : ${post.p_name}</div>
+        <div>작성인 : ${post.user_nickname}</div>
     </div>
-    <div class="title">[ ${post.p_begin} ]  ${post.p_title}</div>
+    <div class="title">[ ${post.post_category} ] [ ${post.post_menu} ]  ${post.post_title}</div>
     <div class="post-image-container">
-        <img src="/free/free_img/${post.p_img}" alt="Post Image">
+        <img src="/free/free_img/${post.post_image}" alt="Post Image">
     </div>
     <div class="post-content">
-        <div class="text">${post.p_text}</div>
-        <div class="date">작성일 : <c:formatDate value="${post.p_date}" pattern="yyyy-MM-dd HH:mm"/></div>
+        <div class="text">${post.post_context}</div>
+        <div class="date">작성일 : <c:formatDate value="${post.post_date}" pattern="yyyy-MM-dd HH:mm"/></div>
     </div>
     <div class="buttons-container">
-        <button onclick="deletePost(${post.p_no})">삭제</button>
+        <button onclick="deletePost(${post.post_id})">삭제</button>
         <button>수정하기</button>
-        <button onclick="location.href='/free'">목록으로</button>
+        <button onclick="history.back()">목록으로</button>
     </div>
     <div class="comment-section">
         <div class="comment-header">댓글 쓰기</div>

@@ -19,14 +19,14 @@
         <c:choose>
             <c:when test="${not empty posts}">
         <c:forEach items="${posts}" var="p">
-            <div class="post-item" onclick="location.href='free/${p.p_no}'">
+            <div class="post-item" onclick="location.href='free/${p.post_id}'">
                 <div class="post-header">
-                    <span class="post-no">No. ${p.p_no}</span>
-                    <span class="post-name">${p.p_name}</span>
-                    <span class="post-date"><fmt:formatDate value="${p.p_date}" pattern="yyyy-MM-dd HH:mm"/></span>
+                    <span class="post-no">No. ${p.post_id}</span>
+                    <span class="post-name">${p.user_nickname}</span>
+                    <span class="post-date"><fmt:formatDate value="${p.post_date}" pattern="yyyy-MM-dd HH:mm"/></span>
                 </div>
                 <div class="post-content">
-                    <div class="post-title">${p.p_title}</div>
+                    <div class="post-title">${p.post_title}</div>
                 </div>
             </div>
         </c:forEach>

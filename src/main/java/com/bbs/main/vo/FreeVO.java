@@ -6,13 +6,15 @@ import java.util.Date;
 
 @Data
 public class FreeVO {
-
-    private String p_no;
-    private String p_id;
-    private String p_name;
-    private String p_begin;
-    private String p_title;
-    private String p_img;
-    private String p_text;
-    private Date p_date;
+    private String user_nickname;
+    private String post_category;
+    private String post_menu;
+    private int post_id;
+    private String post_title;
+    private String post_context;
+    private String post_image;
+    private String post_view;
+    private int post_like;
+    private Date post_date;
+    private Date post_update;
 }

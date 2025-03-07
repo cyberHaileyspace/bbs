@@ -10,12 +10,12 @@ import java.util.List;
 @Mapper
 public interface FreeMapper {
 
-    @Select("select * from Free_posts")
+    @Select("select * from Free_post_DB order by post_id desc")
     List<FreeVO> getposts();
 
-    @Select("select * from Free_posts where p_no = #{no}")
+    @Select("select * from Free_post_DB where post_id = #{no}")
     FreeVO detailPost(int no);
 
-    @Delete("delete Free_posts where p_no = #{delPk}")
+    @Delete("delete Free_post_DB where post_id = #{delPk}")
     int deletePost(int delPk);
 }
