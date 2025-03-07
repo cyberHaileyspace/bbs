@@ -26,19 +26,19 @@ public class UserC {
 
     @GetMapping("user")
     public String userpage(Model model) {
-        model.addAttribute("content", "jm/user.jsp");
+        model.addAttribute("content", "life/user.jsp");
         return "index";
     }
 
     @GetMapping("login")
     public String loginpage(Model model) {
-        model.addAttribute("content", "jm/login.jsp");
+        model.addAttribute("content", "life/login.jsp");
         return "index";
     }
 
     @GetMapping("update")
     public String updatepage(Model model) {
-        model.addAttribute("content", "jm/update.jsp");
+        model.addAttribute("content", "life/update.jsp");
         return "index";
     }
 
@@ -68,7 +68,7 @@ public class UserC {
 
     @GetMapping("pwreset")
     public String pwresetpage(Model model) {
-        model.addAttribute("content", "jm/pwreset.jsp");
+        model.addAttribute("content", "life/pwreset.jsp");
         return "index";
     }
 
@@ -95,7 +95,7 @@ public class UserC {
 
     @GetMapping("mypage")
     public String mypage(Model model) {
-        model.addAttribute("content", "jm/mypage.jsp");
+        model.addAttribute("content", "life/mypage.jsp");
         return "index";
     }
 

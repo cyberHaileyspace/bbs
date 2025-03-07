@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/resources/css/sample.css">
 </head>
 <body>
-<form id="writereg" action="writereg" method="post" enctype="multipart/form-data">
+<form id="writereg" action="reg" method="post" enctype="multipart/form-data">
     <div>
         <div hidden="hidden">닉네임 : <input name="user_nickname" value="${user.user_nickname}" type="text"
                                           placeholder="${user.user_nickname}" readonly></div>

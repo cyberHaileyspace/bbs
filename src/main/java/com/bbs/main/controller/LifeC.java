@@ -7,12 +7,10 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-@RequestMapping("/main")
+@RequestMapping("/main/life")
 @Controller
 public class LifeC {
 
@@ -24,23 +22,30 @@ public class LifeC {
 
     @GetMapping("/write")
     public String write(Model model) {
-        model.addAttribute("content", "jm/writelife.jsp");
+        model.addAttribute("content", "life/writelife.jsp");
         return "index";
     }
 
-    @PostMapping("/writereg")
+    @PostMapping("/reg")
     public String register(LifeWriteVO lifeWriteVO, Model model, MultipartFile post_file, HttpSession session) {
         if (userService.loginChk(session)) {
             lifeWriteService.regWrite(lifeWriteVO, post_file);
-            return "redirect:life";
+            return "redirect:/main/life";
         }
         return "redirect:/login";
     }
 
-    @GetMapping("/postlife")
-    public String detail(int no, Model model) {
+    @GetMapping("/{no}")
+    public String detail(@PathVariable int no, Model model) {
         model.addAttribute("post", lifeWriteService.getWrite(no));
-        model.addAttribute("content", "jm/lifedetail.jsp");
+        model.addAttribute("content", "life/lifedetail.jsp");
         return "index";
+    }
+
+    @DeleteMapping("/{delPk}")
+    public String delete(@PathVariable int delPk) {
+        /*System.out.println("2222");*/
+        lifeWriteService.deletePost(delPk);
+        return "redirect:/main/life";
     }
 }

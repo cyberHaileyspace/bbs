@@ -297,3 +297,18 @@ hr {
         font-size: 1.2em;
     }
 }
+
+.write-btn {
+    padding: 5px 10px;
+    font-size: 14px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.write-btn:hover {
+    background-color: #45a049;
+}

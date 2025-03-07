@@ -48,6 +48,7 @@
             <button class="cm-del-btn" style="display: ${asd}" onclick="deleteCm('${getPost.cm_no}')">삭제</button>
         </div>--%>
     </div>
+        <button onclick="deletePost(${post.post_id})">삭제</button>
 </div>
 </body>
 <script type="text/javascript" id="smartEditor">
@@ -75,6 +76,26 @@
         oEditors.getById["writearea"].exec("UPDATE_CONTENTS_FIELD", []);
         console.log(oEditors.getById["writearea"].exec("UPDATE_CONTENTS_FILED", []));
     });
-
+</script>
+<script>
+    function deletePost(no) {
+        if (confirm('정말 삭제하시겠습니까?')) {
+            // DELETE 요청으로 데이터를 보냄
+            fetch('/life/' + no, {
+                method: 'DELETE',  // HTTP method를 DELETE로 설정
+                headers: {
+                    'Content-Type': 'application/json',  // JSON 형식으로 데이터 전송
+                }
+            })
+                .then(response => response.json())  // 서버에서 응답을 JSON 형태로 받음
+                .then(data => {
+                    alert('삭제되었습니다.');
+                    location.href = '/main/life';  // 삭제 후 페이지를 리다이렉트
+                })
+                .catch(error => {
+                    console.error('Error:', error);  // 에러 처리
+                });
+        }
+    }
 </script>
 </html>

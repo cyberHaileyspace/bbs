@@ -1,6 +1,7 @@
 package com.bbs.main.mapper;
 
 import com.bbs.main.vo.LifeWriteVO;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -21,4 +22,7 @@ public interface LifeWriteMapper {
 
     @Select("select * from Life_Post_DB where post_id = #{no}")
     LifeWriteVO getWrite(int no);
+
+    @Delete("delete Life_Post_DB where post_id = #{delPk}")
+    int deletePost(int delPk);
 }

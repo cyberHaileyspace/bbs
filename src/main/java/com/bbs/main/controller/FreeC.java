@@ -35,7 +35,7 @@ public class FreeC {
 
     @DeleteMapping("/{delPk}")
     public String delete(@PathVariable int delPk) {
-        System.out.println("2222");
+        /*System.out.println("2222");*/
         freeService.deletePost(delPk);
         return "redirect:/main/free";
     }

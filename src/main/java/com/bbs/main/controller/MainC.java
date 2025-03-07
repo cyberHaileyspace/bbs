@@ -34,7 +34,7 @@ public class MainC {
 
     @GetMapping("/life")
     public String life(Model model) {
-        model.addAttribute("content", "jm/life.jsp");
+        model.addAttribute("content", "life/life.jsp");
         model.addAttribute("lifewrite", lifeWriteService.getLifeWrite());
         return "index";
     }

@@ -46,4 +46,8 @@ public class LifeWriteService {
     public LifeWriteVO getWrite(int no) {
         return lifeWriteMapper.getWrite(no);
     }
+
+    public int deletePost(int delPk) {
+        return lifeWriteMapper.deletePost(delPk);
+    }
 }

@@ -12,14 +12,14 @@
 <body>
 <c:forEach items="${lifewrite}" var="p">
     <div class="item">
-        <%--<div>번호 : ${l.post_id}</div>
-        <div>제목 : ${l.post_title}</div>
-        <div>작성자 : ${l.user_nickname}</div>
-        <div>작성일 : <fmt:formatDate value="${l.post_date}" pattern="yyyy-MM-dd"/></div>--%>
-        <%--<div>
-            <button onclick="location.href='delete?pk=${p.p_no}'">삭제</button>
-        </div>--%>
-        <div class="post-life" onclick="location.href='postlife?no=${p.post_id }'">
+            <%--<div>번호 : ${l.post_id}</div>
+            <div>제목 : ${l.post_title}</div>
+            <div>작성자 : ${l.user_nickname}</div>
+            <div>작성일 : <fmt:formatDate value="${l.post_date}" pattern="yyyy-MM-dd"/></div>--%>
+            <%--<div>
+                <button onclick="location.href='delete?pk=${p.p_no}'">삭제</button>
+            </div>--%>
+        <div class="post-life" onclick="location.href='life/${p.post_id }'">
             <div class="life-kind">
                 <div class="life-no">번호 : ${p.post_id }</div>&nbsp;/&nbsp;
                 <div class="life-cate">카테고리 : ${p.post_category }</div>&nbsp;/&nbsp;
@@ -43,6 +43,6 @@
         </div>
     </div>
 </c:forEach>
-<button onclick="location.href='write'">작성</button>
+<button class="write-btn" onclick="location.href='life/write'">작성</button>
 </body>
 </html>
