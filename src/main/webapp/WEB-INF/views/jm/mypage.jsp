@@ -28,12 +28,13 @@
         <div>
             가입일 : <fmt:formatDate value="${user.user_date}" pattern="yyyy-MM-dd"/>
         </div>
+        <div class="mypage-btn">
+            <div onclick="location.href='/update'" style="cursor: pointer">내 정보 수정</div>
+            <div onclick="location.href='/pwreset'" class="pw" style="cursor: pointer">비밀번호 변경</div>
+            <div onclick="location.href='/logout'" style="cursor: pointer">로그아웃</div>
+        </div>
     </div>
-    <div class="mypage-btn">
-        <div onclick="location.href='/update'" style="cursor: pointer">내 정보 수정</div>
-        <div onclick="location.href='/pwreset'" class="pw" style="cursor: pointer">비밀번호 변경</div>
-        <div onclick="location.href='/logout'" style="cursor: pointer">로그아웃</div>
-    </div>
+
     <div class="mypage-content">
         <div>작성 글 목록</div>
         <div>작성 댓글 목록</div>

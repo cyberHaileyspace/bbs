@@ -4,14 +4,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Document</title>
-
 </head>
 <body>
 <div style="justify-content: center; display: flex">
-    <input type="text" class="location-input" />
+    <input type="text" class="location-input"/>
 </div>
 <div class="location-wrap">
     <div class="panels place_scroll panel_2depth">
@@ -150,19 +149,43 @@
 <div>
     <div>
         <div class="tour_img_container">
-            <div class="tour_img_box"><a><img src="https://www.agoda.com/wp-content/uploads/2024/04/Featured-image-Han-River-at-night-in-Seoul-South-Korea-1244x700.jpg"><div>컨텐츠 정보</div> </a></div>
-            <div class="tour_img_box"><a><img src="https://www.agoda.com/wp-content/uploads/2024/04/Featured-image-Han-River-at-night-in-Seoul-South-Korea-1244x700.jpg"><div>컨텐츠 정보</div> </a></div>
-            <div class="tour_img_box"><a><img src="https://www.agoda.com/wp-content/uploads/2024/04/Featured-image-Han-River-at-night-in-Seoul-South-Korea-1244x700.jpg"><div>컨텐츠 정보</div> </a></div>
-            <div class="tour_img_box"><a><img src="https://www.agoda.com/wp-content/uploads/2024/04/Featured-image-Han-River-at-night-in-Seoul-South-Korea-1244x700.jpg"><div>컨텐츠 정보</div> </a></div>
+            <div class="tour_img_box"><a><img
+                    src="https://www.agoda.com/wp-content/uploads/2024/04/Featured-image-Han-River-at-night-in-Seoul-South-Korea-1244x700.jpg">
+                <div>컨텐츠 정보</div>
+            </a></div>
+            <div class="tour_img_box"><a><img
+                    src="https://www.agoda.com/wp-content/uploads/2024/04/Featured-image-Han-River-at-night-in-Seoul-South-Korea-1244x700.jpg">
+                <div>컨텐츠 정보</div>
+            </a></div>
+            <div class="tour_img_box"><a><img
+                    src="https://www.agoda.com/wp-content/uploads/2024/04/Featured-image-Han-River-at-night-in-Seoul-South-Korea-1244x700.jpg">
+                <div>컨텐츠 정보</div>
+            </a></div>
+            <div class="tour_img_box"><a><img
+                    src="https://www.agoda.com/wp-content/uploads/2024/04/Featured-image-Han-River-at-night-in-Seoul-South-Korea-1244x700.jpg">
+                <div>컨텐츠 정보</div>
+            </a></div>
         </div>
         <br>
         <br>
 
         <div class="tour_img_container">
-            <div class="tour_img_box"><a><img src="https://www.agoda.com/wp-content/uploads/2024/04/Featured-image-Han-River-at-night-in-Seoul-South-Korea-1244x700.jpg"><div>컨텐츠 정보</div> </a></div>
-            <div class="tour_img_box"><a><img src="https://www.agoda.com/wp-content/uploads/2024/04/Featured-image-Han-River-at-night-in-Seoul-South-Korea-1244x700.jpg"><div>컨텐츠 정보</div> </a></div>
-            <div class="tour_img_box"><a><img src="https://www.agoda.com/wp-content/uploads/2024/04/Featured-image-Han-River-at-night-in-Seoul-South-Korea-1244x700.jpg"><div>컨텐츠 정보</div> </a></div>
-            <div class="tour_img_box"><a><img src="https://www.agoda.com/wp-content/uploads/2024/04/Featured-image-Han-River-at-night-in-Seoul-South-Korea-1244x700.jpg"><div>컨텐츠 정보</div> </a></div>
+            <div class="tour_img_box"><a><img
+                    src="https://www.agoda.com/wp-content/uploads/2024/04/Featured-image-Han-River-at-night-in-Seoul-South-Korea-1244x700.jpg">
+                <div>컨텐츠 정보</div>
+            </a></div>
+            <div class="tour_img_box"><a><img
+                    src="https://www.agoda.com/wp-content/uploads/2024/04/Featured-image-Han-River-at-night-in-Seoul-South-Korea-1244x700.jpg">
+                <div>컨텐츠 정보</div>
+            </a></div>
+            <div class="tour_img_box"><a><img
+                    src="https://www.agoda.com/wp-content/uploads/2024/04/Featured-image-Han-River-at-night-in-Seoul-South-Korea-1244x700.jpg">
+                <div>컨텐츠 정보</div>
+            </a></div>
+            <div class="tour_img_box"><a><img
+                    src="https://www.agoda.com/wp-content/uploads/2024/04/Featured-image-Han-River-at-night-in-Seoul-South-Korea-1244x700.jpg">
+                <div>컨텐츠 정보</div>
+            </a></div>
         </div>
         <div class="modal-overlay" id="modalOverlay">
             <div class="modal">
