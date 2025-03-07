@@ -10,13 +10,15 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <link rel="stylesheet" href="/resources/css/main.css" />
     <link rel="stylesheet" href="/resources/css/tour.css" />
     <script src="/resources/js/sample.js"></script>
-  </head>
-  <body>
-    <div class="header">
-      <div style="display: flex; flex-direction: row; align-items: center">
-        <img width="50px" src="/resources/css/Diaspora.png" class="panel-btn" />
-      </div>
-      <div onclick="location.href='/'" style="cursor: pointer">
+
+</head>
+<body>
+<div class="header">
+    <div style="display: flex; flex-direction: row; align-items: center">
+        <img width="50px" src="/resources/css/Diaspora.png" class="panel-btn">
+    </div>
+    <div onclick="location.href='/'" style="cursor: pointer;">
+
         Diaspora - ディアスポラ
       </div>
       <c:choose>
@@ -43,7 +45,23 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             >
           </div>
         </c:otherwise>
-      </c:choose>
+
+    </c:choose>
+
+</div>
+<div class="panel">
+    <div>뉴스</div>
+    <div onclick="location.href='/main/free'" style="cursor: pointer">자유게시판</div>
+    <div onclick="location.href='/main/tour'" style="cursor: pointer">관광게시판</div>
+    <div onclick="location.href='/main/life'" style="cursor: pointer">생활게시판</div>
+    <div onclick="location.href='/login'" style="cursor: pointer">로그인</div>
+    <div onclick="location.href='/register'" style="cursor: pointer">회원가입</div>
+    <div onclick="location.href='https://www.kr.emb-japan.go.jp/itprtop_ko/index.html'" style="cursor: pointer;">在大韓民国日本国大使館</div>
+</div>
+<div class="main">
+    <div class="main-cnt">
+        <jsp:include page="${content}"></jsp:include>
+
     </div>
     <div class="panel">
       <div><h2>뉴스</h2></div>

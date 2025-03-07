@@ -9,6 +9,7 @@ import java.util.List;
 @Mapper
 public interface TourMapper {
 
-    @Select("SELECT * FROM tour_table") // 여기에 실제 테이블명 적어야 함
+    @Select("SELECT * FROM tour_table")
+        // 여기에 실제 테이블명 적어야 함
     List<TourVO> getTourList();
 }
