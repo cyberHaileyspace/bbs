@@ -42,4 +42,8 @@ public class LifeWriteService {
         }
         lifeWriteMapper.regWrite(lifeWriteVO);
     }
+
+    public LifeWriteVO getWrite(int no) {
+        return lifeWriteMapper.getWrite(no);
+    }
 }

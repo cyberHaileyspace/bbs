@@ -16,6 +16,9 @@ public interface LifeWriteMapper {
             "(#{user_nickname}, #{post_category}, #{post_menu}, #{post_title}, #{post_context}, #{post_image, jdbcType=NULL})")
     int regWrite(LifeWriteVO lifeWriteVO);
 
-    @Select("select * from life_Post_DB order by post_id desc")
+    @Select("select * from Life_Post_DB order by post_id desc")
     List<LifeWriteVO> getLifeWrite();
+
+    @Select("select * from Life_Post_DB where post_id = #{no}")
+    LifeWriteVO getWrite(int no);
 }

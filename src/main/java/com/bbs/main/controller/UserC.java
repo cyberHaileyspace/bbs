@@ -1,7 +1,7 @@
 package com.bbs.main.controller;
 
-import com.bbs.main.service.RegisterService;
-import com.bbs.main.vo.RegisterVO;
+import com.bbs.main.service.UserService;
+import com.bbs.main.vo.UserVO;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,16 +17,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-public class RegisterC {
+public class UserC {
 
     @Autowired
-    private RegisterService registerService;
+    private UserService userService;
     @Autowired
     private HttpSession httpSession;
 
-    @GetMapping("register")
+    @GetMapping("user")
     public String userpage(Model model) {
-        model.addAttribute("content", "jm/register.jsp");
+        model.addAttribute("content", "jm/user.jsp");
         return "index";
     }
 
@@ -42,18 +42,18 @@ public class RegisterC {
         return "index";
     }
 
-    @PostMapping("register")
-    public String register(RegisterVO registerVO, Model model, MultipartFile user_file) {
+    @PostMapping("user")
+    public String user(UserVO registerVO, Model model, MultipartFile user_file) {
         System.out.println(registerVO);
         System.out.println(user_file.getOriginalFilename());
-        registerService.regUser(registerVO, user_file);
+        userService.regUser(registerVO, user_file);
         model.addAttribute("content", "main.jsp");
         return "index";
     }
 
     @PostMapping("login")
-    public String login(RegisterVO registerVO, RedirectAttributes redirectAttributes, Model model, HttpSession session) {
-        String msg = registerService.loginuser(registerVO, session);
+    public String login(UserVO registerVO, RedirectAttributes redirectAttributes, Model model, HttpSession session) {
+        String msg = userService.loginuser(registerVO, session);
 
         if (msg.equals("로그인 되었습니다.")) {
             /*RegisterVO user = registerMapper.login(registerVO);
@@ -73,8 +73,8 @@ public class RegisterC {
     }
 
     @PostMapping("pwreset")
-    public String pwresetpage(RegisterVO registerVO, RedirectAttributes redirectAttributes, Model model) {
-        String msg = registerService.pwreset(registerVO);
+    public String pwresetpage(UserVO registerVO, RedirectAttributes redirectAttributes, Model model) {
+        String msg = userService.pwreset(registerVO);
 
         if (msg.equals("비밀번호가 변경되었습니다.")) {
             /*RegisterVO user = registerMapper.login(registerVO);
@@ -102,7 +102,7 @@ public class RegisterC {
     @PostMapping("/idcheck")
     public ResponseEntity<Map<String, Boolean>> idcheck(@RequestBody Map<String, String> request) {
         String userId = request.get("user_id");
-        boolean exists = registerService.idcheck(userId);
+        boolean exists = userService.idcheck(userId);
         Map<String, Boolean> response = new HashMap<>();
         response.put("exists", exists);
         return ResponseEntity.ok(response);
@@ -111,7 +111,7 @@ public class RegisterC {
     @PostMapping("/nickcheck")
     public ResponseEntity<Map<String, Boolean>> nickcheck(@RequestBody Map<String, String> request) {
         String userNick = request.get("user_nick");
-        boolean exists = registerService.nickcheck(userNick);
+        boolean exists = userService.nickcheck(userNick);
         Map<String, Boolean> response = new HashMap<>();
         response.put("exists", exists);
         return ResponseEntity.ok(response);
@@ -120,15 +120,15 @@ public class RegisterC {
     @PostMapping("/emailcheck")
     public ResponseEntity<Map<String, Boolean>> emailcheck(@RequestBody Map<String, String> request) {
         String userEmail = request.get("user_email");
-        boolean exists = registerService.emailcheck(userEmail);
+        boolean exists = userService.emailcheck(userEmail);
         Map<String, Boolean> response = new HashMap<>();
         response.put("exists", exists);
         return ResponseEntity.ok(response);
     }
 
     @PostMapping("update")
-    public String updatepage(RegisterVO registerVO, RedirectAttributes redirectAttributes, Model model) {
-        String msg = registerService.updateUser(registerVO);
+    public String updatepage(UserVO registerVO, RedirectAttributes redirectAttributes, Model model) {
+        String msg = userService.updateUser(registerVO);
         System.out.println(111);
         if (msg.equals("내 정보가 변경되었습니다.")) {
             /*RegisterVO user = registerMapper.login(registerVO);

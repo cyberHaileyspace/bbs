@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RequestMapping("/main")
 @Controller
-public class MainC {
+public class LifeC {
 
     @Autowired
     private LifeWriteService lifeWriteService;
@@ -22,28 +22,25 @@ public class MainC {
     @Autowired
     private UserService userService;
 
-    @GetMapping
-    public String main(Model model) {
-        model.addAttribute("content", "wh/main.jsp");
+    @GetMapping("/write")
+    public String write(Model model) {
+        model.addAttribute("content", "jm/writelife.jsp");
         return "index";
     }
 
-    @GetMapping("/life")
-    public String life(Model model) {
-        model.addAttribute("content", "jm/life.jsp");
-        model.addAttribute("lifewrite", lifeWriteService.getLifeWrite());
+    @PostMapping("/writereg")
+    public String register(LifeWriteVO lifeWriteVO, Model model, MultipartFile post_file, HttpSession session) {
+        if (userService.loginChk(session)) {
+            lifeWriteService.regWrite(lifeWriteVO, post_file);
+            return "redirect:life";
+        }
+        return "redirect:/login";
+    }
+
+    @GetMapping("/postlife")
+    public String detail(int no, Model model) {
+        model.addAttribute("post", lifeWriteService.getWrite(no));
+        model.addAttribute("content", "jm/lifedetail.jsp");
         return "index";
     }
-
-    @GetMapping("/tour")
-    public String tour(Model model) {
-        model.addAttribute("content", "wh/tour.jsp");
-        return "index";
-    }
-
-    @GetMapping("/board_free")
-    public String board_free() {
-        return "board_free";
-    }
-
 }

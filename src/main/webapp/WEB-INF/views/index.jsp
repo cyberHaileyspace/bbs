@@ -33,7 +33,7 @@
             <div style="font-size: 20px">
                 <span onclick="location.href='/login'" style="cursor: pointer">로그인</span>
                 &nbsp;|&nbsp;
-                <span onclick="location.href='/register'" style="cursor: pointer">회원가입</span>
+                <span onclick="location.href='/user'" style="cursor: pointer">회원가입</span>
             </div>
         </c:otherwise>
     </c:choose>

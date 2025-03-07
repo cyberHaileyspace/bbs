@@ -25,10 +25,10 @@
             <input type="radio" name="post_category" &lt;%&ndash;id="life-qna"&ndash;%&gt; value="life-qna">&lt;%&ndash;<label for="life-qna">&ndash;%&gt;질문</label>
             <input type="radio" name="post_category" &lt;%&ndash;id="life-aft"&ndash;%&gt; value="life-aft">&lt;%&ndash;<label for="life-aft">&ndash;%&gt;후기</label>--%>
             <select name="post_category">
-                <option value="life-tip">생활 정보</option>
-                <option value="life-health">건강 정보</option>
-                <option value="life-qna">질문</option>
-                <option value="life-aft">후기</option>
+                <option value="생활 정보">생활 정보</option>
+                <option value="건강 정보">건강 정보</option>
+                <option value="질문">질문</option>
+                <option value="후기">후기</option>
             </select>
         </div>
         <div>
@@ -41,14 +41,14 @@
                 <input type="radio" name="post_menu" &lt;%&ndash;id="life-qna"&ndash;%&gt; value="life-qna">&lt;%&ndash;<label for="life-qna">&ndash;%&gt;질문</label>
             </div>--%>
             <select name="post_menu">
-                <option value="seoul">서울</option>
-                <option value="gyeonggi">경기/인천</option>
-                <option value="daejeon">충청/대전</option>
-                <option value="gwangju">전라/광주</option>
-                <option value="daegu">경북/대구</option>
-                <option value="busan">경남/부산/울산</option>
-                <option value="gangwon">강원</option>
-                <option value="jeju">제주</option>
+                <option value="서울">서울</option>
+                <option value="경기/인천">경기/인천</option>
+                <option value="충청/대전">충청/대전</option>
+                <option value="전라/광주">전라/광주</option>
+                <option value="경북/대구">경북/대구</option>
+                <option value="경남/부산/울산">경남/부산/울산</option>
+                <option value="강원">강원</option>
+                <option value="제주">제주</option>
             </select>
         </div>
     </div>
@@ -104,7 +104,6 @@
     document.querySelector(".reg-post").addEventListener("click", function (e) {
         oEditors.getById["writearea"].exec("UPDATE_CONTENTS_FIELD", []);
         console.log(oEditors.getById["writearea"].exec("UPDATE_CONTENTS_FILED", []));
-        $("#writereg").submit();
     });
 
 </script>

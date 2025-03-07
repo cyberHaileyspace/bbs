@@ -14,7 +14,7 @@
     <div class="main02">
         <div>
             <div class="title"><h1>회원가입 페이지</h1></div>
-            <form action="register" method="post" class="center" onsubmit="return validateForm()" enctype="multipart/form-data">
+            <form action="user" method="post" class="center" onsubmit="return validateForm()" enctype="multipart/form-data">
                 <div class="id">
                     <br>
                     <div>ID</div>
