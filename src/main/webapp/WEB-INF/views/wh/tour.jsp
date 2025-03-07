@@ -10,8 +10,9 @@
 
 </head>
 <body>
-<div style="justify-content: center; display: flex">
-    <input type="text" class="location-input" />
+<div style="display: flex; flex-direction: column; align-items: center">
+    <span>가고싶은 지역을 골라보세요</span>
+    <input type="text" class="location-input"/>
 </div>
 <div class="location-wrap">
     <div class="panels place_scroll panel_2depth">
@@ -164,14 +165,7 @@
             <div class="tour_img_box"><a><img src="https://www.agoda.com/wp-content/uploads/2024/04/Featured-image-Han-River-at-night-in-Seoul-South-Korea-1244x700.jpg"><div>컨텐츠 정보</div> </a></div>
             <div class="tour_img_box"><a><img src="https://www.agoda.com/wp-content/uploads/2024/04/Featured-image-Han-River-at-night-in-Seoul-South-Korea-1244x700.jpg"><div>컨텐츠 정보</div> </a></div>
         </div>
-        <div class="modal-overlay" id="modalOverlay">
-            <div class="modal">
-                <span class="close-modal" id="closeModal">&times;</span>
-                <div id="modalContent">
-                    <!-- 동적으로 컨텐츠가 채워집니다 -->
-                </div>
-            </div>
-        </div>
+
     </div>
 </div>
 </body>
