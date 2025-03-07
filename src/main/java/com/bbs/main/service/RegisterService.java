@@ -1,7 +1,5 @@
 package com.bbs.main.service;
 
-
-import com.bbs.main.controller.RegisterC;
 import com.bbs.main.mapper.RegisterMapper;
 import com.bbs.main.vo.RegisterVO;
 import jakarta.servlet.http.HttpSession;
@@ -11,7 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
 import java.util.UUID;
 
 @Service

@@ -9,7 +9,7 @@ public interface RegisterMapper {
     @Insert("insert into User_DB" +
             "(user_id, user_pw, user_name, user_nickname, user_email, user_gender, user_image)" +
             "VALUES" +
-            "(#{user_id}, #{user_pw}, #{user_name}, #{user_nickname}, #{user_email}, #{user_gender}, #{user_image})")
+            "(#{user_id}, #{user_pw}, #{user_name}, #{user_nickname}, #{user_email}, #{user_gender}, #{user_image, jdbcType=NULL})")
     int regUser(RegisterVO registerVO);
 
     @Select("select * from User_DB where user_id = #{user_id}")

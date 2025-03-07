@@ -10,7 +10,8 @@ create table User_DB
     user_date     timestamp          default SYSTIMESTAMP
 );
 
-drop table Life_Post_DB cascade constraints purge;
+ALTER TABLE User_DB
+    MODIFY user_date TIMESTAMP WITH TIME ZONE DEFAULT SYSTIMESTAMP AT TIME ZONE 'Asia/Seoul';
 
 insert into User_DB (user_id, user_pw, user_name, user_nickname, user_email, user_gender, user_image)
 values ('user03', 'password03', 'Taro', 'taro_nick03', 'taro03@email.com', 'male', 'profile_image.png');
@@ -18,19 +19,8 @@ values ('user03', 'password03', 'Taro', 'taro_nick03', 'taro03@email.com', 'male
 select *
 from User_DB;
 
-ALTER TABLE User_DB
-    MODIFY user_date TIMESTAMP WITH TIME ZONE DEFAULT SYSTIMESTAMP AT TIME ZONE 'Asia/Seoul';
-
 SELECT user_date, user_date AT TIME ZONE 'Asia/Seoul'
 FROM User_DB;
-
-ALTER TABLE FREE_POST_DB
-    MODIFY post_date TIMESTAMP WITH TIME ZONE DEFAULT SYSTIMESTAMP AT TIME ZONE 'Asia/Seoul';
-
-ALTER TABLE FREE_POST_DB
-    MODIFY post_update TIMESTAMP WITH TIME ZONE DEFAULT SYSTIMESTAMP AT TIME ZONE 'Asia/Seoul';
-
-
 
 ALTER DATABASE SET TIME_ZONE = 'Asia/Seoul';
 
@@ -71,18 +61,24 @@ CREATE OR REPLACE TRIGGER update_nickname_trigger
     ON User_DB
     FOR EACH ROW
 BEGIN
-    UPDATE ADMIN.FREE_POST_DB
+    UPDATE ADMIN.LIFE_POST_DB
     SET user_nickname = :NEW.user_nickname
     WHERE user_nickname = :OLD.user_nickname;
 END;
+
+ALTER TABLE Life_Post_DB
+    MODIFY post_date TIMESTAMP WITH TIME ZONE DEFAULT SYSTIMESTAMP AT TIME ZONE 'Asia/Seoul';
 
 insert into FREE_POST_DB (user_nickname, post_category, post_menu, post_title, post_context, post_image)
 VALUES ('456', '111', 'asd', 'asd', 'asdasd', null);
 
 insert into LIFE_POST_DB (user_nickname, post_category, post_menu, post_title, post_context, post_image)
-VALUES ('456', '111', 'asd', 'asd', 'asdasd', null);
+VALUES ('567', '111', 'asd', 'asd', 'asdasd', null);
 
 /*업데이트 시스데이트 다시 넣기*/
+
+select *
+from Free_Post_DB;
 
 select *
 from Life_Post_DB;
@@ -102,3 +98,6 @@ CREATE TABLE Tourist_Spot_DB
 
 select *
 from Tourist_Spot_DB;
+
+drop table Life_Post_DB cascade constraints purge;
+

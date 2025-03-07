@@ -4,14 +4,12 @@ import com.bbs.main.service.RegisterService;
 import com.bbs.main.vo.RegisterVO;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -27,7 +25,7 @@ public class RegisterC {
     private HttpSession httpSession;
 
     @GetMapping("register")
-    public String registerpage(Model model) {
+    public String userpage(Model model) {
         model.addAttribute("content", "jm/register.jsp");
         return "index";
     }
