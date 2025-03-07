@@ -22,23 +22,23 @@ public class LifeWriteService {
     }
 
     public void regWrite(LifeWriteVO lifeWriteVO, MultipartFile post_file) {
-        if (post_file.getOriginalFilename().length() != 0){
-        String originName = post_file.getOriginalFilename();
-        String fileExtension = originName.substring(originName.lastIndexOf("."), originName.length());
-        System.out.println(fileExtension);
-        String uploadFolder = "C:\\Users\\soldesk\\Desktop\\uploadFolder";
-        UUID uuid = UUID.randomUUID();
-        System.out.println(uuid);
-        String[] uuids = uuid.toString().split("-");
-        System.out.println(uuids[0]);
-        String fileName = uuids[0] + fileExtension;
-        File saveFile = new File(uploadFolder + "\\" + fileName);
-        try {
-            post_file.transferTo(saveFile);
-            lifeWriteVO.setPost_image(fileName);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        if (post_file.getOriginalFilename().length() != 0) {
+            String originName = post_file.getOriginalFilename();
+            String fileExtension = originName.substring(originName.lastIndexOf("."), originName.length());
+            System.out.println(fileExtension);
+            String uploadFolder = "C:\\Users\\soldesk\\Desktop\\uploadFolder";
+            UUID uuid = UUID.randomUUID();
+            System.out.println(uuid);
+            String[] uuids = uuid.toString().split("-");
+            System.out.println(uuids[0]);
+            String fileName = uuids[0] + fileExtension;
+            File saveFile = new File(uploadFolder + "\\" + fileName);
+            try {
+                post_file.transferTo(saveFile);
+                lifeWriteVO.setPost_image(fileName);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
         lifeWriteMapper.regWrite(lifeWriteVO);
     }

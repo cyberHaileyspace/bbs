@@ -111,5 +111,4 @@ function panel() {
 // 페이지 로드시 준비해서 실행할 것들
 window.onload = () => {
     panel();
-    console.log(11)
 }
