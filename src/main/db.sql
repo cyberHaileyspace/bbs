@@ -76,18 +76,16 @@ BEGIN
     WHERE user_nickname = :OLD.user_nickname;
 END;
 
-insert into FREE_POST_DB (user_nickname, post_category, post_menu, post_id, post_title, post_context, post_image,
-                          post_date,
-                          post_update)
-VALUES ('456', '33', '33', default, '33', '33', '33', default, default);
+insert into FREE_POST_DB (user_nickname, post_category, post_menu, post_title, post_context, post_image)
+VALUES ('456', '111', 'asd', 'asd', 'asdasd', null);
 
 insert into LIFE_POST_DB (user_nickname, post_category, post_menu, post_title, post_context, post_image)
-VALUES (234, 111, 'asd', 'asd', 'asdasd', null);
+VALUES ('456', '111', 'asd', 'asd', 'asdasd', null);
 
 /*업데이트 시스데이트 다시 넣기*/
 
 select *
-from free_Post_DB;
+from Life_Post_DB;
 
 CREATE TABLE Tourist_Spot_DB
 (
