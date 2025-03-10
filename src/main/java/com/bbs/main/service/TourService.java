@@ -2,10 +2,7 @@ package com.bbs.main.service;
 
 import com.bbs.main.mapper.TourMapper;
 import com.bbs.main.vo.TourVO;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -113,18 +110,50 @@ public class TourService {
                 count++;
             }
             return limitedList;
-//            Gson gson = new Gson();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public TourVO locationDetail(String contentid) {
+        String url = "https://apis.data.go.kr/B551011/KorService1/detailCommon1?";
+        url += "serviceKey=" + serviceKey;
+        url += "&MobileOS=ETC&MobileApp=AppTest&_type=json&contentTypeId=12&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&numOfRows=1&pageNo=1";
+        url += "&contentId=" + contentid;
+
+        try {
+            URL u = new URL(url);
+            HttpsURLConnection huc = (HttpsURLConnection) u.openConnection();
+            InputStream is = huc.getInputStream();
+            InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
+            BufferedReader br = new BufferedReader(isr);
+            StringBuilder jsonBuilder = new StringBuilder();
+            String line;
+            while ((line = br.readLine()) != null) {
+                jsonBuilder.append(line);
+            }
+            String json = jsonBuilder.toString();
+            System.out.printf(json);
+            JsonObject rootObj = JsonParser.parseString(json).getAsJsonObject();
+            JsonObject responseObj = rootObj.getAsJsonObject("response");
+            JsonObject bodyObj = responseObj.getAsJsonObject("body");
+            JsonObject itemObj = bodyObj.getAsJsonObject("items");
+            JsonArray itemElement = itemObj.getAsJsonArray("item");
 
 
-//
-//            Attraction attraction = gson.fromJson(json, Attraction.class);
-//
-//            System.out.println("주소: " + attraction.getAddr1());
-//            System.out.println("콘텐츠ID: " + attraction.getContentid());
-//            System.out.println("대표이미지: " + attraction.getFirstimage());
-//            System.out.println("대표이미지(썸네일): " + attraction.getFirstimage2());
-
-
+            Gson gson = new Gson();
+            TourVO detail;
+            if (itemElement.isJsonArray()) {
+                // 배열인 경우, 첫 번째 요소를 상세 데이터로 사용
+                detail = gson.fromJson(itemElement.getAsJsonArray().get(0), TourVO.class);
+            } else if (itemElement.isJsonObject()) {
+                // 단일 객체인 경우
+                detail = gson.fromJson(itemElement.getAsJsonObject(), TourVO.class);
+            } else {
+                throw new RuntimeException("예상치 못한 item 형식: " + itemElement);
+            }
+            return detail;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

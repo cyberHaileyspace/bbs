@@ -9,6 +9,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <link rel="stylesheet" href="/resources/css/sample.css" />
     <link rel="stylesheet" href="/resources/css/main.css" />
     <link rel="stylesheet" href="/resources/css/tour.css" />
+    <link rel="stylesheet" href="/resources/css/tour_place.css">
     <script src="/resources/js/sample.js"></script>
 
 </head>

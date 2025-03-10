@@ -15,4 +15,6 @@
         private String mapy;
         private String sigungucode;
         private String title;
+        private String overview;
+        private String zipcode;
     }

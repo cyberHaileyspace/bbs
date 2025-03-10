@@ -1,0 +1,29 @@
+.tour_info_wrapper {
+    width: 100%;
+}
+
+.tour_info_container {
+    display: flex;
+    gap: 25px;
+}
+
+.tour_info_content_box {
+    display: flex;
+}
+
+.tour_info_content_box img {
+    width: 100%;
+    height: 230px;
+}
+.tour_info_text_box {
+    width: 70%;
+}
+
+.tour_info_text_box h2 {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.tour_info_text_box span {
+    line-height: 200%;
+}

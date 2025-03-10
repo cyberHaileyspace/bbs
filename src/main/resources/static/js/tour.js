@@ -57,31 +57,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// // 모든 tour_img_box에 클릭 이벤트 리스너 등록
-// document.querySelectorAll('.tour_img_box').forEach(box => {
-//     box.addEventListener('click', function(e) {
-//         // 클릭한 요소에서 컨텐츠 정보를 가져옵니다.
-//         // 여기서는 a 태그 내부의 div의 텍스트를 사용합니다.
-//         const content = this.querySelector('a div').innerHTML;
-//         document.getElementById('modalContent').innerHTML = content;
-//
-//         // 모달창 활성화
-//         document.getElementById('modalOverlay').classList.add('active');
-//     });
-// });
-//
-// // 모달 닫기 이벤트
-// document.getElementById('closeModal').addEventListener('click', function() {
-//     document.getElementById('modalOverlay').classList.remove('active');
-// });
-//
-// // 모달 영역 외부 클릭 시 닫기
-// document.getElementById('modalOverlay').addEventListener('click', function(e) {
-//     if (e.target === this) {
-//         document.getElementById('modalOverlay').classList.remove('active');
-//     }
-// });
-
 document.addEventListener("DOMContentLoaded", function () {
     // 기존: 대분류/소분류 토글 코드
     const locWrap = document.querySelector(".location-wrap");
@@ -155,3 +130,38 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+document.querySelectorAll(".search-area").forEach((atag) => {
+    atag.addEventListener("click", (e) => {
+        const areaCode = e.target.parentElement.dataset.areacode;
+        const sigungu = e.target.parentElement.dataset.sigungu;
+        console.log(areaCode);
+        console.log(sigungu);
+
+
+        const form = document.createElement("form");
+        form.method = "post";
+        form.action = "/tour/loc"; // 실제 엔드포인트 URL로 변경
+
+// areaCode를 담을 hidden input 생성
+        const areaCodeInput = document.createElement("input");
+        areaCodeInput.type = "hidden";
+        areaCodeInput.name = "areaCode";
+        areaCodeInput.value = areaCode;
+        form.appendChild(areaCodeInput);
+
+// sigungu를 담을 hidden input 생성
+
+        const sigunguInput = document.createElement("input");
+        sigunguInput.type = "hidden";
+        sigunguInput.name = "sigungu";
+        if (sigungu != null) {
+            sigunguInput.value = sigungu;
+        }
+        form.appendChild(sigunguInput);
+
+// form을 문서 body에 추가 (필요 시 다른 곳에 추가해도 됨)
+        document.body.appendChild(form);
+        form.submit();
+    });
+})

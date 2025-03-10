@@ -56,7 +56,7 @@ public class MainC {
 
     @GetMapping("/tour")
     public String tour(Model model) {
-        model.addAttribute("content", "wh/tourTest.jsp");
+        model.addAttribute("content", "wh/tour.jsp");
         return "index";
     }
 

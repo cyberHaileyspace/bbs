@@ -19,7 +19,15 @@ public class TourC {
     @PostMapping("/loc")
     public String getAttractionDataByLoc(@RequestParam String areaCode, @RequestParam String sigungu, Model model) {
          model.addAttribute("result", tourService.getAttractionDataByLoc(areaCode,sigungu));
-         model.addAttribute("content", "wh/tourTest.jsp");
+         model.addAttribute("content", "wh/tour.jsp");
          return "index";
     }
+
+    @GetMapping("/getLoc")
+    public String getLoc(Model model, String contentid) {
+        model.addAttribute("result", tourService.locationDetail(contentid));
+        model.addAttribute("content", "wh/tour_place.jsp");
+        return "index";
+    }
+
 }
