@@ -120,7 +120,7 @@
     </div>
     <div class="title">[ ${post.post_category} ] [ ${post.post_menu} ]  ${post.post_title}</div>
     <div class="post-image-container">
-        <img src="/free/free_img/${post.post_image}" alt="Post Image">
+        <img src="/Users/kimsuhyeon/Desktop/final_img/${post.post_image}" alt="Post Image">
     </div>
     <div class="post-content">
         <div class="text">${post.post_context}</div>
@@ -128,13 +128,11 @@
     </div>
     <div class="buttons-container">
         <button onclick="deletePost(${post.post_id})">삭제</button>
-        <button>수정하기</button>
+        <button onclick="location.href='update/${post.post_id}'">수정하기</button>
         <button onclick="history.back()">목록으로</button>
     </div>
-    <div class="comment-section">
-        <div class="comment-header">댓글 쓰기</div>
-        <textarea placeholder="댓글을 입력하세요..."></textarea>
-        <button>댓글 쓰기</button>
+    <div>
+<jsp:include page="${reply}"></jsp:include>
     </div>
 </div>
 </body>

@@ -12,18 +12,16 @@
     <link rel="stylesheet" href="/resources/css/sample.css">
 </head>
 <body>
-<form id="writereg" action="/main/free" method="post" enctype="multipart/form-data">
+<form id="writereg" action="/main/free/update" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="post_id" value="${post.post_id}">  <!-- 여기에 post_id 추가 -->
     <div>
-        <div hidden="hidden">닉네임 : <input name="user_nickname" value="${user.user_nickname}" type="text"
+        <div hidden="hidden">
+            닉네임 : <input name="user_nickname" value="${user.user_nickname}" type="text"
                                           placeholder="${user.user_nickname}" readonly></div>
         <div>카테고리</div>
+        ${post.post_id}
         <div>
-            <%--<input type="radio" name="post_category" &lt;%&ndash;id="life-tip"&ndash;%&gt; value="life-tip">&lt;%&ndash;<label for="life-tip">&ndash;%&gt;생활
-            정보</label>
-            <input type="radio" name="post_category" &lt;%&ndash;id="life-health"&ndash;%&gt; value="life-health">&lt;%&ndash;<label for="life-health">&ndash;%&gt;건강
-            정보</label>
-            <input type="radio" name="post_category" &lt;%&ndash;id="life-qna"&ndash;%&gt; value="life-qna">&lt;%&ndash;<label for="life-qna">&ndash;%&gt;질문</label>
-            <input type="radio" name="post_category" &lt;%&ndash;id="life-aft"&ndash;%&gt; value="life-aft">&lt;%&ndash;<label for="life-aft">&ndash;%&gt;후기</label>--%>
+
             <select name="post_category">
                 <option value="life-tip">생활 정보</option>
                 <option value="life-health">건강 정보</option>
@@ -33,13 +31,7 @@
         </div>
         <div>
             <div>지역</div>
-            <%--<div class="add-size">
-                <input type="radio" name="post_menu" &lt;%&ndash;id="life-tip"&ndash;%&gt; value="life-tip">&lt;%&ndash;<label for="life-tip">&ndash;%&gt;생활
-                정보</label>
-                <input type="radio" name="post_menu" &lt;%&ndash;id="life-health"&ndash;%&gt; value="life-health">&lt;%&ndash;<label for="life-health">&ndash;%&gt;건강
-                정보</label>
-                <input type="radio" name="post_menu" &lt;%&ndash;id="life-qna"&ndash;%&gt; value="life-qna">&lt;%&ndash;<label for="life-qna">&ndash;%&gt;질문</label>
-            </div>--%>
+
             <select name="post_menu">
                 <option value="seoul">서울</option>
                 <option value="gyeonggi">경기/인천</option>
@@ -55,29 +47,28 @@
 
     <div>
         <div>제목</div>
-        <div><textarea name="post_title" rows="5" cols="100" placeholder="제목을 입력하세요." style="resize: none;"></textarea>
+        <div><textarea name="post_title" rows="5" cols="100" style="resize: none;">${post.post_title}
+        </textarea>
         </div>
     </div>
 
     <div>
         <div>내용</div>
         <div>
-            <textarea name="post_context" id="writearea" value="post_context" rows="25" cols="100"
-                      placeholder="내용을 입력하세요"></textarea>
+            <textarea name="post_context" id="writearea" value="post_context" rows="25" cols="100">${post.post_context}
+            </textarea>
         </div>
     </div>
     <div>
 
         <div>
-            <input type='file' name="post_file" id='btnAtt'>
+            <input type='file' name="post_file" id='btnAtt' value="${post.post_image}">
         </div>
-
     </div>
     <div>
         <button class="reg-cancel" type="button" onclick="history.back()">취소</button>
-        <button class="reg-post" type="submit">등록</button>
+        <button class="reg-post" type="submit" name="post_id" value="${post.post_id}">등록</button>
     </div>
-
 </form>
 </body>
 <script type="text/javascript" id="smartEditor">
