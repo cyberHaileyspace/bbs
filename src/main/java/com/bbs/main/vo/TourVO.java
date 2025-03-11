@@ -10,11 +10,14 @@
         private String areacode;
         private String contentid;
         private String firstimage;
-        private String firstimage2;
         private String mapx;
         private String mapy;
         private String sigungucode;
         private String title;
         private String overview;
         private String zipcode;
+        private String originimgurl;
+        private String usetime;
+        private String restdate;
+        private String infocenter;
     }

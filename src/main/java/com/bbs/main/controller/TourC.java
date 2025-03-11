@@ -25,7 +25,9 @@ public class TourC {
 
     @GetMapping("/getLoc")
     public String getLoc(Model model, String contentid) {
-        model.addAttribute("result", tourService.locationDetail(contentid));
+        model.addAttribute("common", tourService.getDetailCommon(contentid));
+        model.addAttribute("intro", tourService.getDetailIntro(contentid));
+
         model.addAttribute("content", "wh/tour_place.jsp");
         return "index";
     }

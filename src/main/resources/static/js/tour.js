@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // 소분류 클릭 시 Ajax 호출
     const subLinks = document.querySelectorAll(".sub-panel .place_items a");
     subLinks.forEach(link => {
-        link.addEventListener("click", function(e) {
+        link.addEventListener("click", function (e) {
             e.preventDefault();
             const region = this.textContent.trim(); // 예: "전라북도"
             // 예시: 지역코드를 사용하는 경우 실제 지역코드 값으로 수정 필요 (예: "39")

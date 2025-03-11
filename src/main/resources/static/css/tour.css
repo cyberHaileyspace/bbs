@@ -1,9 +1,9 @@
 .location-wrap {
     display: none;
-    background-color: rgb(190, 190, 224);
+    background-color: rgb(220, 230, 220);
     width: 350px;
     position: absolute;
-    left: 50%;
+    left: 49%;
     margin-left: -100px;
 }
 
@@ -33,48 +33,29 @@ ul {
 .tour_img_box {
     display: flex;
     justify-content: center;
-}
-
-.tour_img_box img {
-    width: 200px;
+    width: 220px;
+    position: relative;
 }
 
 .tour_img_box div {
     display: flex;
     justify-content: center;
-}
-
-/* 모달 관련 스타일 */
-.modal-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.modal-overlay.active {
-    display: flex;
-}
-
-.modal {
-    background-color: #fff;
-    padding: 20px;
-    max-width: 500px;
-    width: 90%;
-    border-radius: 5px;
-    position: relative;
-}
-
-.modal .close-modal {
+    color: #fff;
     position: absolute;
-    top: 10px;
-    right: 15px;
-    cursor: pointer;
-    font-weight: bold;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;
+}
+
+.tour_img_container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tour_img_box img {
+    width: 100%;
+    height: auto;
+    display: block;
 }

@@ -56,7 +56,7 @@ public class TourService {
         System.out.print(serviceKey);
         String url = "https://apis.data.go.kr/B551011/KorService1/areaBasedList1?";
         url += "serviceKey=" + serviceKey;
-        url += "&numOfRows=1000&pageNo=1&MobileOS=ETC&MobileApp=AppTest&_type=json&listYN=Y&arrange=A&contentTypeId=12";
+        url += "&numOfRows=4000&pageNo=1&MobileOS=ETC&MobileApp=AppTest&_type=json&listYN=Y&arrange=A&contentTypeId=12";
         url += "&areaCode=" + areaCode;
         if (sigungu != null) {
             url += "&sigunguCode=" + sigungu;
@@ -75,20 +75,18 @@ public class TourService {
             }
             String json = jsonBuilder.toString();
             System.out.printf(json);
-            JsonObject rootObj = JsonParser.parseString(json).getAsJsonObject();
+            JsonObject rootObj = JsonParser.parseString(json).getAsJsonObject()
+                    .getAsJsonObject("response")
+                    .getAsJsonObject("body");
             // 이후 rootObj에서 원하는 데이터를 추출
             // "response" -> "body" -> "items" -> "item" 으로 접근
             JsonElement itemsElement;
             if (sigungu != null) {
                 itemsElement = rootObj
-                        .getAsJsonObject("response")
-                        .getAsJsonObject("body")
                         .getAsJsonObject("items")
                         .get("item");
             } else {
                 itemsElement = rootObj
-                        .getAsJsonObject("response")
-                        .getAsJsonObject("body")
                         .get("items");
             }
             // TourVO 리스트로 변환 (VO 클래스는 아래와 같이 정의된 것으로 가정)
@@ -101,13 +99,14 @@ public class TourService {
             int count = 0;
             for (TourVO tour : tourList) {
                 if (tour.getFirstimage() == null || tour.getFirstimage().equals("")) {
+                    count++;
                     continue;
                 }
-                if (count >= 8) {
-                    break;
-                }
+//                if (count >= 12) {
+//                    break;
+//                }
                 limitedList.add(tour);
-                count++;
+//                count++;
             }
             return limitedList;
 
@@ -116,12 +115,11 @@ public class TourService {
         }
     }
 
-    public TourVO locationDetail(String contentid) {
+    public TourVO getDetailCommon(String contentid) {
         String url = "https://apis.data.go.kr/B551011/KorService1/detailCommon1?";
         url += "serviceKey=" + serviceKey;
         url += "&MobileOS=ETC&MobileApp=AppTest&_type=json&contentTypeId=12&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&numOfRows=1&pageNo=1";
         url += "&contentId=" + contentid;
-
         try {
             URL u = new URL(url);
             HttpsURLConnection huc = (HttpsURLConnection) u.openConnection();
@@ -140,8 +138,6 @@ public class TourService {
             JsonObject bodyObj = responseObj.getAsJsonObject("body");
             JsonObject itemObj = bodyObj.getAsJsonObject("items");
             JsonArray itemElement = itemObj.getAsJsonArray("item");
-
-
             Gson gson = new Gson();
             TourVO detail;
             if (itemElement.isJsonArray()) {
@@ -158,6 +154,52 @@ public class TourService {
             throw new RuntimeException(e);
         }
     }
+
+    public TourVO getDetailIntro(String contentid) {
+        String url = "https://apis.data.go.kr/B551011/KorService1/detailIntro1?";
+        url += "serviceKey=" + serviceKey;
+        url += "&MobileOS=ETC&MobileApp=AppTest&_type=json&contentTypeId=12&numOfRows=10&pageNo=1";
+        url += "&contentId=" + contentid;
+        try {
+            URL u = new URL(url);
+            HttpsURLConnection huc = (HttpsURLConnection) u.openConnection();
+            InputStream is = huc.getInputStream();
+            InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
+            BufferedReader br = new BufferedReader(isr);
+            StringBuilder jsonBuilder = new StringBuilder();
+            String line;
+            while ((line = br.readLine()) != null) {
+                jsonBuilder.append(line);
+            }
+            String json = jsonBuilder.toString();
+            System.out.printf(json);
+            JsonObject rootObj = JsonParser.parseString(json).getAsJsonObject();
+            JsonObject responseObj = rootObj.getAsJsonObject("response");
+            JsonObject bodyObj = responseObj.getAsJsonObject("body");
+            JsonObject itemObj = bodyObj.getAsJsonObject("items");
+            JsonArray itemElement = itemObj.getAsJsonArray("item");
+            Gson gson = new Gson();
+            TourVO detail;
+            if (itemElement.isJsonArray()) {
+                // 배열인 경우, 첫 번째 요소를 상세 데이터로 사용
+                detail = gson.fromJson(itemElement.getAsJsonArray().get(0), TourVO.class);
+            } else if (itemElement.isJsonObject()) {
+                // 단일 객체인 경우
+                detail = gson.fromJson(itemElement.getAsJsonObject(), TourVO.class);
+            } else {
+                throw new RuntimeException("예상치 못한 item 형식: " + itemElement);
+            }
+            return detail;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+
+
+
 
     /**
      * 내부 DTO 클래스: 한국관광공사 API 응답 구조 (예시)
@@ -192,6 +234,8 @@ public class TourService {
             public String tel;         // 문의 및 안내
             public String restdate;    // 쉬는 날
             public String usetime;     // 이용 시간
+            public String originimgurl;// 상세이미지
+            public String infocenter;  // 연락처
         }
     }
 }
