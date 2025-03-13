@@ -5,203 +5,143 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Document</title>
+    <title>Tour Page</title>
 </head>
 <body>
-<div style="justify-content: center; display: flex">
-    <input type="text" class="location-input"/>
-</div>
-<div class="location-wrap">
-    <div class="panels place_scroll panel_2depth">
-        <!-- 🟢 항상 고정되는 대분류 -->
-        <div class="tour_panel selected">
-            <ul class="place_items">
-                <li class="on">
-                    <a href="#place01"><span>제주도</span></a>
-                </li>
-                <li class="on">
-                    <a href="#place02"><span>울릉도</span></a>
-                </li>
-                <li class="on">
-                    <a href="#place03"><span>강원</span></a>
-                </li>
-                <li class="on">
-                    <a href="#place04"><span>경상</span></a>
-                </li>
-                <li class="on">
-                    <a href="#place05"><span>전라</span></a>
-                </li>
-                <li class="on">
-                    <a href="#place06"><span>충청</span></a>
-                </li>
-                <li class="selected on">
-                    <a href="#place07"><span>서울/인천/경기</span></a>
-                </li>
-            </ul>
-        </div>
+<div style="width: 100%">
+    <div style="display: flex; flex-direction: column; align-items: center">
+        <h3 style="width: 240px; height: 50px; background-color: #399dc8; text-align: center; display: flex; align-items: center; justify-content: center; border-radius: 15px; margin-bottom: 0">가고싶은 지역을 골라보세요</h3>
+        <input type="text" class="location-input" style="width: 230px"/>
     </div>
-
-    <!-- 🟡 동적으로 변경되는 하위 지역 -->
-    <div class="panels place_scroll">
-        <div id="place01" class="sub-panel selected">
-            <ul class="place_items">
-                <li>
-                    <a href="#"><span>제주시</span></a>
-                </li>
-                <li>
-                    <a href="#"><span>서귀포시</span></a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="panels place_scroll">
-        <div id="place02" class="sub-panel">
-            <ul class="place_items">
-                <li>
-                    <a href="#"><span>울릉군</span></a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="panels place_scroll">
-        <div id="place03" class="sub-panel">
-            <ul class="place_items">
-                <li>
-                    <a href="#"><span>강원도</span></a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="panels place_scroll">
-        <div id="place04" class="sub-panel">
-            <ul class="place_items">
-                <li>
-                    <a href="#"><span>경상북도</span></a>
-                </li>
-                <li>
-                    <a href="#"><span>경상남도</span></a>
-                </li>
-                <li>
-                    <a href="#"><span>부산</span></a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="panels place_scroll">
-        <div id="place05" class="sub-panel">
-            <ul class="place_items">
-                <li>
-                    <a href="#"><span>전라북도</span></a>
-                </li>
-                <li>
-                    <a href="#"><span>전라남도</span></a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="panels place_scroll">
-        <div id="place06" class="sub-panel">
-            <ul class="place_items">
-                <li>
-                    <a href="#"><span>충청북도</span></a>
-                </li>
-                <li>
-                    <a href="#"><span>충청남도</span></a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="panels place_scroll">
-        <div id="place07" class="sub-panel">
-            <ul class="place_items">
-                <li>
-                    <a href="#"><span>서울</span></a>
-                </li>
-                <li>
-                    <a href="#"><span>인천</span></a>
-                </li>
-                <li>
-                    <a href="#"><span>경기도</span></a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div
-            class="close-btn"
-            style="position: absolute; bottom: 10px; right: 15px"
-    >
-        close
-    </div>
-</div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-<div>
-    <div>
-        <div class="tour_img_container">
-            <div class="tour_img_box"><a><img
-                    src="https://www.agoda.com/wp-content/uploads/2024/04/Featured-image-Han-River-at-night-in-Seoul-South-Korea-1244x700.jpg">
-                <div>컨텐츠 정보</div>
-            </a></div>
-            <div class="tour_img_box"><a><img
-                    src="https://www.agoda.com/wp-content/uploads/2024/04/Featured-image-Han-River-at-night-in-Seoul-South-Korea-1244x700.jpg">
-                <div>컨텐츠 정보</div>
-            </a></div>
-            <div class="tour_img_box"><a><img
-                    src="https://www.agoda.com/wp-content/uploads/2024/04/Featured-image-Han-River-at-night-in-Seoul-South-Korea-1244x700.jpg">
-                <div>컨텐츠 정보</div>
-            </a></div>
-            <div class="tour_img_box"><a><img
-                    src="https://www.agoda.com/wp-content/uploads/2024/04/Featured-image-Han-River-at-night-in-Seoul-South-Korea-1244x700.jpg">
-                <div>컨텐츠 정보</div>
-            </a></div>
-        </div>
-        <br>
-        <br>
-
-        <div class="tour_img_container">
-            <div class="tour_img_box"><a><img
-                    src="https://www.agoda.com/wp-content/uploads/2024/04/Featured-image-Han-River-at-night-in-Seoul-South-Korea-1244x700.jpg">
-                <div>컨텐츠 정보</div>
-            </a></div>
-            <div class="tour_img_box"><a><img
-                    src="https://www.agoda.com/wp-content/uploads/2024/04/Featured-image-Han-River-at-night-in-Seoul-South-Korea-1244x700.jpg">
-                <div>컨텐츠 정보</div>
-            </a></div>
-            <div class="tour_img_box"><a><img
-                    src="https://www.agoda.com/wp-content/uploads/2024/04/Featured-image-Han-River-at-night-in-Seoul-South-Korea-1244x700.jpg">
-                <div>컨텐츠 정보</div>
-            </a></div>
-            <div class="tour_img_box"><a><img
-                    src="https://www.agoda.com/wp-content/uploads/2024/04/Featured-image-Han-River-at-night-in-Seoul-South-Korea-1244x700.jpg">
-                <div>컨텐츠 정보</div>
-            </a></div>
-        </div>
-        <div class="modal-overlay" id="modalOverlay">
-            <div class="modal">
-                <span class="close-modal" id="closeModal">&times;</span>
-                <div id="modalContent">
-                    <!-- 동적으로 컨텐츠가 채워집니다 -->
-                </div>
+    <!-- 대분류/소분류 영역 (이전 코드와 동일) -->
+    <div class="location-wrap">
+        <div class="panels place_scroll panel_2depth">
+            <div class="tour_panel selected">
+                <ul class="place_items">
+                    <li class="on"><a href="#place01"><span>제주도</span></a></li>
+                    <li class="on"><a href="#place03"><span>강원</span></a></li>
+                    <li class="on"><a href="#place04"><span>경상</span></a></li>
+                    <li class="on"><a href="#place05"><span>전라</span></a></li>
+                    <li class="on"><a href="#place06"><span>충청</span></a></li>
+                    <li class="selected on"><a href="#place07"><span>서울/인천/경기</span></a></li>
+                    <li class="on"><a href="#place02" class="search-area" data-areaCode="6"><span>부산</span></a></li>
+                    <li class="on"><a href="#place02" class="search-area" data-areaCode="4"><span>대구</span></a></li>
+                </ul>
             </div>
         </div>
+        <div class="panels place_scroll state">
+            <div id="place01" class="sub-panel selected">
+                <ul class="place_items">
+                    <li>
+                        <a href="#" data-areaCode="39" class="search-area" data-sigungu="4"><span>제주시</span></a>
+                    </li>
+                    <li>
+                        <a href="#" data-areaCode="39" class="search-area" data-sigungu="3"><span>서귀포시</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="panels place_scroll state">
+            <div id="place03" class="sub-panel">
+                <ul class="place_items">
+                    <li>
+                        <a href="#" data-areaCode="32" class="search-area"><span>강원도</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="panels place_scroll state">
+            <div id="place04" class="sub-panel">
+                <ul class="place_items">
+                    <li>
+                        <a href="#" data-areaCode="35" class="search-area"><span>경상북도</span></a>
+                    </li>
+                    <li>
+                        <a href="#" data-areaCode="36" class="search-area"><span>경상남도</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="panels place_scroll state">
+            <div id="place05" class="sub-panel">
+                <ul class="place_items">
+                    <li>
+                        <a href="#" data-areaCode="37" class="search-area"><span>전라북도</span></a>
+                    </li>
+                    <li>
+                        <a href="#" data-areaCode="38" class="search-area"><span>전라남도</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="panels place_scroll state">
+            <div id="place06" class="sub-panel">
+                <ul class="place_items">
+                    <li>
+                        <a href="#" data-areaCode="33" class="search-area"><span>충청북도</span></a>
+                    </li>
+                    <li>
+                        <a href="#" data-areaCode="34" class="search-area"><span>충청남도</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="panels place_scroll state">
+            <div id="place07" class="sub-panel">
+                <ul class="place_items">
+                    <li>
+                        <a href="#" data-areaCode="1" class="search-area"><span>서울</span></a>
+                    </li>
+                    <li>
+                        <a href="#" data-areaCode="2" class="search-area"><span>인천</span></a>
+                    </li>
+                    <li>
+                        <a href="#" data-areaCode="31" class="search-area"><span>경기도</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div
+                class="close-btn"
+                style="position: absolute; bottom: 10px; right: 15px"
+        >
+            close
+        </div>
     </div>
+
+    <!-- 관광정보 표시 영역 -->
+    <div class="tour_img_container" id="tourContainer">
+
+        <div id="extraInfo">
+            <span style="margin: 0 10px;">관광지 목록</span>
+            <span style="margin: 0 10px;" class="sort" data-sort="title">제목순</span>
+            <span style="margin: 0 10px;" class="sort" data-sort="date">최신순</span>
+        </div>
+
+        <div class="tour_img_container">
+            <c:forEach var="i" items="${result}">
+                <div class="tour_img_box"><a href="/tour/getLoc?contentid=${i.contentid}"><img src="${i.firstimage}" style="height: 158px">
+                    <div>${i.title}</div>
+                </a></div>
+            </c:forEach>
+        </div>
+        <div class="pagination">
+
+        </div>
+    </div>
+
+
 </div>
 </body>
+<script>
 
+
+    document.querySelectorAll(".sort").forEach((sort) => {
+        sort.addEventListener("click", (e)=>{
+
+
+        })
+    })
+</script>
 </html>
-
-
-
-
-

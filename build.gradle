@@ -41,9 +41,7 @@ dependencies {
     implementation 'jakarta.servlet:jakarta.servlet-api'
     implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api'
     implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl'
-    implementation 'com.oracle.database.security:oraclepki:21.5.0.0'
-    implementation 'com.oracle.database.security:osdt_cert:21.5.0.0'
-    implementation 'com.oracle.database.security:osdt_core:21.5.0.0'
+    implementation 'com.google.code.gson:gson:2.10.1'
 }
 
 tasks.named('test') {

@@ -14,13 +14,15 @@
         <div class="main_content_container">
             <div class="main_content">
                 <div class="main_content_box">
-                    <a href=""><span>윗부분</span></a>
-                    <a href=""><p>1번내용</p></a>
-                    <a href=""><p>2번내용</p></a>
-                    <a href=""><p>3번내용</p></a>
-                    <a href=""><p>4번내용</p></a>
-                    <a href=""><p>5번내용</p></a>
-                    <a href=""><span>밑부분</span></a>
+                    <div style="text-align: center; display: flex"><a href="" style="margin-left: auto; margin-right: auto; display: flex"><span>윗부분</span></a><a href=""><span>더보기</span></a></div>
+                    <div>
+                        <a href=""><p>1번내용</p></a>
+                        <a href=""><p>2번내용</p></a>
+                        <a href=""><p>3번내용</p></a>
+                        <a href=""><p>4번내용</p></a>
+                        <a href=""><p>5번내용</p></a>
+                    </div>
+                    <a href=""><div><span>밑부분</span></div></a>
                 </div>
                 <div class="main_content_box">
                     <a href=""><span>윗부분</span></a>

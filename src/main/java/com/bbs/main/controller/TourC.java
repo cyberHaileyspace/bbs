@@ -2,39 +2,38 @@ package com.bbs.main.controller;
 
 import com.bbs.main.service.TourService;
 import com.bbs.main.vo.TourVO;
-import org.springframework.ui.Model;
+import com.google.gson.Gson;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/tour")
 @Controller
+@RequestMapping("/tour")
 public class TourC {
 
+    @Autowired
     private TourService tourService;
 
-    public TourC(TourService tourService) {
-        this.tourService = tourService;
+    @PostMapping("/loc")
+    public String getAttractionDataByLoc(@RequestParam String areaCode, @RequestParam String sigungu, Model model) {
+        List<TourVO> tourList =  tourService.getAllLocation(areaCode,sigungu);
+//        String tourJson = new Gson().toJson(tourList);
+//        model.addAttribute("resultJson", tourJson);  // json
+         model.addAttribute("result", tourList); // java
+         model.addAttribute("content", "wh/tour.jsp");
+         return "index";
     }
 
-    @GetMapping("/life")
-    public String life() {
-        return "life";
+    @GetMapping("/getLoc")
+    public String getLoc(Model model, String contentid) {
+        model.addAttribute("common", tourService.getDetailCommon(contentid));
+        model.addAttribute("intro", tourService.getDetailIntro(contentid));
+
+        model.addAttribute("content", "wh/tour_place.jsp");
+        return "index";
     }
 
-
-    @GetMapping("/board_free")
-    public String board_free() {
-        return "board_free";
-    }
-
-
-    @GetMapping("/tour")
-    public String getTourList(Model model) {
-        List<TourVO> tourList = tourService.getTourList();
-        model.addAttribute("tour", tourList);
-        return "wh/tour"; // tourList.jsp 또는 tourList.html로 연결
-    }
 }
