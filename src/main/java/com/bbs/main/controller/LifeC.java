@@ -32,14 +32,14 @@ public class LifeC {
         return ResponseEntity.ok().body(Collections.singletonMap("logincheck", logincheck));
     }
 
-    @GetMapping("/write")
+    @GetMapping("/reg")
     /*public ResponseEntity<?> write(HttpSession session) {
         boolean logincheck = userService.loginChk(session);
         return ResponseEntity.ok().body(Collections.singletonMap("logincheck", logincheck));
     }*/
-    public String write(Model model, HttpSession session) {
+    public String reg(Model model, HttpSession session) {
         if (userService.loginChk(session)) {
-            model.addAttribute("content", "life/writelife.jsp");
+            model.addAttribute("content", "life/lifereg.jsp");
             return "index";
         }
         return "redirect:/login";

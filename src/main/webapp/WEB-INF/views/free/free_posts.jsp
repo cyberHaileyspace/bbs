@@ -13,14 +13,14 @@
 <body>
 <div class="container">
     <div class="header">
-        <button class="register-btn" onclick="location.href='free/reg'">등록하기</button>
+        <button class="register-btn" onclick="logincheck('${sessionScope.user}')">등록하기</button>
     </div>
 
     <div class="post-list">
         <c:choose>
             <c:when test="${not empty posts}">
                 <c:forEach items="${posts}" var="p">
-                    <div class="post-item" onclick="location.href='free/${p.post_id}'">
+                    <div class="post-item" onclick="goToPost(${p.post_id})">
                         <div class="post-header">
                             <span class="post-no">No. ${p.post_id}</span>
                             <span class="post-name">${p.user_nickname}</span>
@@ -40,4 +40,26 @@
     </div>
 </div>
 </body>
+<script>
+    function generateToken() {
+        const now = new Date();
+        const token = now.getMinutes() + ":" + now.getSeconds();  // "mm:ss" 형식
+        return token;
+    }
+
+    function goToPost(postId) {
+        const token = generateToken();
+        sessionStorage.setItem("viewToken", token);
+        location.href = "free/" + postId + "?token=" + token;
+    }
+
+    function logincheck(user) {
+        if (user)
+            location.href = "free/reg";
+        else {
+            alert("먼저 로그인을 해주세요.");
+            location.href = "/login"
+        }
+    }
+</script>
 </html>

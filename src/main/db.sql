@@ -34,7 +34,6 @@ VALUES ('asas', '111', 'asd', 'asd', 'asdasd', null);
 select *
 from FREE_POST_DB;
 
-
 ALTER TABLE FREE_POST_DB
     MODIFY post_date TIMESTAMP WITH TIME ZONE DEFAULT SYSTIMESTAMP AT TIME ZONE 'Asia/Seoul';
 

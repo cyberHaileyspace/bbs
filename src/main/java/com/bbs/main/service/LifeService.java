@@ -17,8 +17,8 @@ public class LifeService {
     @Autowired
     private LifeMapper lifeMapper;
 
-    public List<LifeVO> getLifeWrite() {
-        return lifeMapper.getLifeWrite();
+    public List<LifeVO> getposts() {
+        return lifeMapper.getposts();
     }
 
     public void regPost(LifeVO lifeVO, MultipartFile post_file) {

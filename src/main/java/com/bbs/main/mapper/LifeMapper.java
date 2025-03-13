@@ -15,7 +15,7 @@ public interface LifeMapper {
     int regPost(LifeVO lifeVO);
 
     @Select("select * from Life_Post_DB order by post_id desc")
-    List<LifeVO> getLifeWrite();
+    List<LifeVO> getposts();
 
     @Select("select * from Life_Post_DB where post_id = #{no}")
     LifeVO getPost(int no);
