@@ -1,84 +1,29 @@
-const locWrap = document.querySelector(".location-wrap");
-document.querySelector(".location-input").addEventListener("focus", () => {
-    locWrap.classList.add("show");
-});
-document
-    .querySelector(".location-input")
-    .addEventListener("blur", (event) => {
-        // 클릭한 요소가 location-wrap 내부라면 닫지 않음
-        setTimeout(() => {
-            if (!locWrap.contains(document.activeElement)) {
-                locWrap.classList.remove("show");
-            }
-        }, 100);
-    });
-
-document.querySelector(".close-btn").addEventListener("click", () => {
-    locWrap.classList.remove("show");
-});
-
 document.addEventListener("DOMContentLoaded", function () {
-
-
-
-    // 메인 카테고리 리스트 (제주도, 울릉도, 강원 등)
-    const mainCategories = document.querySelectorAll(
-        ".panel_2depth .place_items li a"
-    );
-
-    // 모든 하위 지역 패널을 가져옴
-    const allSubPanels = document.querySelectorAll(".sub-panel");
-
-    // 초기 설정: 모든 하위 패널 숨기고 기본 선택된 것만 보이게 함
-    allSubPanels.forEach((tour_panel) => {
-        if (!tour_panel.classList.contains("selected")) {
-            tour_panel.style.display = "none";
-        }
-    });
-
-    // 메인 카테고리를 클릭하면 해당 지역의 하위 패널 표시
-    mainCategories.forEach((category) => {
-        category.addEventListener("click", function (event) {
-            event.preventDefault(); // a 태그의 기본 동작 방지
-
-            // 현재 클릭한 요소의 href 속성값을 가져옴 (ex: #place01)
-            const targetId = this.getAttribute("href").replace("#", "");
-
-            // 모든 하위 패널을 숨김 (대분류는 유지)
-            allSubPanels.forEach((tour_panel) => {
-                tour_panel.style.display = "none";
-                tour_panel.classList.remove("selected");
-            });
-
-            // 해당 ID를 가진 패널을 보이게 설정
-            const targetPanel = document.getElementById(targetId);
-            if (targetPanel) {
-                targetPanel.style.display = "block";
-                targetPanel.classList.add("selected");
-            }
-        });
-    });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    // 기존: 대분류/소분류 토글 코드
+    // 1. 기본 변수 및 요소 선택
     const locWrap = document.querySelector(".location-wrap");
-    document.querySelector(".location-input").addEventListener("focus", () => {
+    const locationInput = document.querySelector(".location-input");
+    const closeBtn = document.querySelector(".close-btn");
+    const mainCategories = document.querySelectorAll(".panel_2depth .place_items li a");
+    const allSubPanels = document.querySelectorAll(".sub-panel");
+    const subLinks = document.querySelectorAll(".sub-panel .place_items a");
+    const searchAreas = document.querySelectorAll(".search-area");
+
+    // 2. 위치 입력 필드 포커스/블러 이벤트 처리
+    locationInput.addEventListener("focus", () => {
         locWrap.classList.add("show");
     });
-    document.querySelector(".location-input").addEventListener("blur", () => {
+    locationInput.addEventListener("blur", () => {
         setTimeout(() => {
             if (!locWrap.contains(document.activeElement)) {
                 locWrap.classList.remove("show");
             }
         }, 100);
     });
-    document.querySelector(".close-btn").addEventListener("click", () => {
+    closeBtn.addEventListener("click", () => {
         locWrap.classList.remove("show");
     });
 
-    const mainCategories = document.querySelectorAll(".panel_2depth .place_items li a");
-    const allSubPanels = document.querySelectorAll(".sub-panel");
+    // 3. 메인 카테고리 클릭 시 하위 패널 토글
     allSubPanels.forEach(panel => {
         if (!panel.classList.contains("selected")) {
             panel.style.display = "none";
@@ -100,13 +45,12 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // 소분류 클릭 시 Ajax 호출
-    const subLinks = document.querySelectorAll(".sub-panel .place_items a");
+    // 4. 소분류 클릭 시 Ajax 호출 (관광지 목록 갱신)
     subLinks.forEach(link => {
         link.addEventListener("click", function (e) {
             e.preventDefault();
             const region = this.textContent.trim(); // 예: "전라북도"
-            // 예시: 지역코드를 사용하는 경우 실제 지역코드 값으로 수정 필요 (예: "39")
+            // 실제 지역코드에 맞게 수정 필요
             fetch(`/tour/region?areaCode=${encodeURIComponent(region)}`)
                 .then(response => response.json())
                 .then(data => {
@@ -116,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         const box = document.createElement("div");
                         box.className = "tour_img_box";
                         const anchor = document.createElement("a");
-                        // 상세 페이지로 이동하고 싶으면 아래 주석 해제 및 URL 구성
+                        // 상세 페이지로 이동할 URL 구성 (필요 시 주석 해제)
                         // anchor.href = `/tour/detail?spotId=${item.spot_id}`;
                         const img = document.createElement("img");
                         img.src = item.spot_image || "default.jpg";
@@ -128,85 +72,81 @@ document.addEventListener("DOMContentLoaded", function () {
                         box.appendChild(anchor);
                         container.appendChild(box);
                     });
+                    // 새 데이터 로드 후 페이징 다시 설정 (아래 페이징 함수 호출)
+                    setupPagination();
+                    showPage(1); // 1페이지부터 표시
                 })
                 .catch(err => console.error(err));
         });
     });
-});
 
-document.querySelectorAll(".search-area").forEach((atag) => {
-    atag.addEventListener("click", (e) => {
+    // 5. 검색 영역 클릭 시 폼 제출 (지역, sigungu 정보 전송)
+    searchAreas.forEach(atag => {
+        atag.addEventListener("click", (e) => {
+            // extraInfo 영역을 보여주기 위한 플래그 저장 (예: sessionStorage)
+            sessionStorage.setItem("showExtraInfo", "true");
 
-        // extraInfo 영역을 보이게 설정 전 플래그 저장 (세션 스토리지 사용 예)
-        sessionStorage.setItem("showExtraInfo", "true");
+            const areaCode = e.target.parentElement.dataset.areacode;
+            const sigungu = e.target.parentElement.dataset.sigungu;
+            console.log(areaCode, sigungu);
 
-        const areaCode = e.target.parentElement.dataset.areacode;
-        const sigungu = e.target.parentElement.dataset.sigungu;
-        console.log(areaCode);
-        console.log(sigungu);
+            const form = document.createElement("form");
+            form.method = "post";
+            form.action = "/tour/loc";
 
-        const form = document.createElement("form");
-        form.method = "post";
-        form.action = "/tour/loc"; // 실제 엔드포인트 URL로 변경
+            const areaCodeInput = document.createElement("input");
+            areaCodeInput.type = "hidden";
+            areaCodeInput.name = "areaCode";
+            areaCodeInput.value = areaCode;
+            form.appendChild(areaCodeInput);
 
-// areaCode를 담을 hidden input 생성
-        const areaCodeInput = document.createElement("input");
-        areaCodeInput.type = "hidden";
-        areaCodeInput.name = "areaCode";
-        areaCodeInput.value = areaCode;
-        form.appendChild(areaCodeInput);
+            const sigunguInput = document.createElement("input");
+            sigunguInput.type = "hidden";
+            sigunguInput.name = "sigungu";
+            if (sigungu != null) {
+                sigunguInput.value = sigungu;
+            }
+            form.appendChild(sigunguInput);
 
-// sigungu를 담을 hidden input 생성
-        const sigunguInput = document.createElement("input");
-        sigunguInput.type = "hidden";
-        sigunguInput.name = "sigungu";
-        if (sigungu != null) {
-            sigunguInput.value = sigungu;
-        }
-        form.appendChild(sigunguInput);
-
-// form을 문서 body에 추가 (필요 시 다른 곳에 추가해도 됨)
-        document.body.appendChild(form);
-        form.submit();
-    });
-})
-
-document.addEventListener("DOMContentLoaded", function () {
-    const container = document.querySelector("#tourContainer .tour_img_container");
-    const items = Array.from(container.querySelectorAll(".tour_img_box")); // 배열로 변환
-    const paginationDiv = document.querySelector(".pagination");
-
-    const itemsPerPage = 12; // 한 페이지에 보여줄 항목 수
-    const totalItems = items.length;
-    const totalPages = Math.ceil(totalItems / itemsPerPage);
-    let currentPage = 1; // 초기 페이지
-
-    // 초기 실행: 첫 페이지 표시 및 페이징 링크 생성
-    showPage(currentPage);
-    setupPagination();
-
-    // 특정 페이지의 항목들만 보여주는 함수
-    function showPage(page) {
-        items.forEach(item => {
-            item.style.display = "none";
+            document.body.appendChild(form);
+            form.submit();
         });
+    });
+
+    // 6. 페이징 기능 (동적 생성 및 항목 표시)
+    // 페이징 관련 DOM 요소는 #tourContainer 안의 .tour_img_container와 .pagination이어야 함.
+    const pagingContainer = document.querySelector("#tourContainer .tour_img_container");
+    const paginationDiv = document.querySelector(".pagination");
+    let items = []; // 페이징 대상 항목 배열 (폼 제출 시 갱신 필요)
+    const itemsPerPage = 12; // 한 페이지에 보여줄 항목 수
+    let totalPages = 0;
+    let currentPage = 1;
+
+    // 페이징 대상 항목을 갱신하는 함수
+    function updateItems() {
+        const container = document.querySelector("#tourContainer .tour_img_container");
+        items = Array.from(container.querySelectorAll(".tour_img_box"));
+        totalPages = Math.ceil(items.length / itemsPerPage);
+    }
+
+    // 특정 페이지 항목들만 표시하는 함수
+    function showPage(page) {
+        if (!items.length) return;
+        items.forEach(item => { item.style.display = "none"; });
         const start = (page - 1) * itemsPerPage;
-        const end = Math.min(start + itemsPerPage, totalItems);
+        const end = Math.min(start + itemsPerPage, items.length);
         for (let i = start; i < end; i++) {
             items[i].style.display = "block";
         }
     }
 
-    // 동적 페이징 링크 생성 함수 (페이지 번호를 10개씩 그룹화)
+    // 동적 페이징 링크 생성 함수 (페이지 번호 그룹화: 10개씩)
     function setupPagination() {
-        paginationDiv.innerHTML = ""; // 기존 페이징 링크 초기화
-        const blockSize = 10; // 한 그룹에 보여줄 페이지 번호 개수 (예: 10)
-
-        // 현재 페이지 그룹 계산
+        paginationDiv.innerHTML = "";
+        const blockSize = 10;
         const startPage = Math.floor((currentPage - 1) / blockSize) * blockSize + 1;
         const endPage = Math.min(startPage + blockSize - 1, totalPages);
 
-        // 항상 "first" 링크 생성
         const firstLink = document.createElement("a");
         firstLink.href = "#";
         firstLink.innerHTML = "&laquo; first";
@@ -223,8 +163,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         paginationDiv.appendChild(firstLink);
 
-        // 항상 "prev" 링크 생성
-        // "prev" 링크 수정: 현재 페이지에서 blockSize(10)를 빼도록 함
         const prevLink = document.createElement("a");
         prevLink.href = "#";
         prevLink.innerHTML = "&lsaquo; prev";
@@ -241,7 +179,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         paginationDiv.appendChild(prevLink);
 
-        // 현재 그룹의 페이지 번호 링크 생성 (startPage ~ endPage)
         for (let i = startPage; i <= endPage; i++) {
             const pageLink = document.createElement("a");
             pageLink.href = "#";
@@ -258,8 +195,6 @@ document.addEventListener("DOMContentLoaded", function () {
             paginationDiv.appendChild(pageLink);
         }
 
-        // 항상 "next" 링크 생성
-        // "next" 링크 수정: 현재 페이지에 blockSize(10)를 더하도록 함
         const nextLink = document.createElement("a");
         nextLink.href = "#";
         nextLink.innerHTML = "next &rsaquo;";
@@ -276,7 +211,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         paginationDiv.appendChild(nextLink);
 
-        // 항상 "last" 링크 생성
         const lastLink = document.createElement("a");
         lastLink.href = "#";
         lastLink.innerHTML = "last &raquo;";
@@ -292,8 +226,18 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
         paginationDiv.appendChild(lastLink);
-
-        // 이전 페이지 그룹 ("…") 및 다음 페이지 그룹 ("…") 링크도 필요하면 추가할 수 있습니다.
-        // 위 예제에서는 간단하게 first, prev, 페이지번호, next, last만 생성했습니다.
     }
-}); // 레디 함수 끝
+
+
+
+
+
+    // 페이징 초기 실행 (페이지 로드 후 데이터가 이미 있다면)
+    updateItems();
+    showPage(currentPage);
+    setupPagination();
+
+
+});
+
+

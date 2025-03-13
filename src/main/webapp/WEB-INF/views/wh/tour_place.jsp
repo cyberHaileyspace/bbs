@@ -63,6 +63,9 @@
         </div>
     </div>
     <div style="text-align: center; padding: 50px"><a href="/main/tour" style="text-decoration: none; color: black; font-size: large">리스트로 돌아가기</a></div>
+    <div>
+        댓글창이요~
+    </div>
 </div>
 
 

@@ -14,12 +14,13 @@ import java.util.List;
 @RequestMapping("/tour")
 public class TourC {
 
+
     @Autowired
     private TourService tourService;
 
     @PostMapping("/loc")
-    public String getAttractionDataByLoc(@RequestParam String areaCode, @RequestParam String sigungu, Model model) {
-        List<TourVO> tourList =  tourService.getAllLocation(areaCode,sigungu);
+    public String getAttractionDataByLoc(@RequestParam String areaCode, @RequestParam(required = false) String sigungu, @RequestParam(required = false) String sort, Model model) {
+        List<TourVO> tourList =  tourService.getAllLocation(areaCode,sigungu, sort);
 //        String tourJson = new Gson().toJson(tourList);
 //        model.addAttribute("resultJson", tourJson);  // json
          model.addAttribute("result", tourList); // java

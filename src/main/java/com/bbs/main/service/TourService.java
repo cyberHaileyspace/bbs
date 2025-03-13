@@ -8,7 +8,6 @@ import com.google.gson.stream.JsonReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
@@ -18,7 +17,6 @@ import java.lang.reflect.Type;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -54,12 +52,17 @@ public class TourService {
 "zipcode": "63006"
 }
      */
-    public List<TourVO> getAllLocation(String areaCode, String sigungu) {
-        System.out.print(serviceKey);
+    public List<TourVO> getAllLocation(String areaCode, String sigungu, String sort) {
+//        System.out.print(serviceKey);
         String url = "https://apis.data.go.kr/B551011/KorService1/areaBasedList1?";
         url += "serviceKey=" + serviceKey;
-        url += "&numOfRows=4000&pageNo=1&MobileOS=ETC&MobileApp=AppTest&_type=json&listYN=Y&arrange=O&contentTypeId=12";
+        url += "&numOfRows=50&pageNo=1&MobileOS=ETC&MobileApp=AppTest&_type=json&listYN=Y&contentTypeId=12";
         url += "&areaCode=" + areaCode;
+        System.out.print(sort + ">>>>>>>>>>>>>>>>>>>>>>>>>");
+        if (sort == "" || sort == null) {
+            sort = "O";
+        }
+        url += "&arrange=" + sort;
         if (sigungu != null) {
             url += "&sigunguCode=" + sigungu;
         }

@@ -17,7 +17,6 @@
         private String title;
         private String overview;
         private String zipcode;
-        private String originimgurl;
         private String usetime;
         private String restdate;
         private String infocenter;
