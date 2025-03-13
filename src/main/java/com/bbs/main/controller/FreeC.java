@@ -3,6 +3,8 @@ package com.bbs.main.controller;
 import com.bbs.main.service.RegisterService;
 import com.bbs.main.vo.FreeReplyVO;
 import com.bbs.main.vo.LifeWriteVO;
+import com.bbs.main.vo.RegisterVO;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,29 +27,30 @@ public class FreeC {
     private HttpSession session;
 
     @GetMapping("/reg")
-    public String write(Model model) {
-        model.addAttribute("content", "free/free_reg.jsp");
-        return "index";
+    public String add(Model model) {
+        if (registerService.loginChk(session)) {
+            model.addAttribute("content", "free/free_reg.jsp");
+            return "index";
+        }
+        return "redirect:/login";
+
     }
 
     @PostMapping
-    public String add(FreeVO freeVO, Model model, MultipartFile post_file, HttpSession session) {
-        if (registerService.loginChk(session)) {
+    public String add(FreeVO freeVO, MultipartFile post_file) {
+
             freeService.addPost(freeVO, post_file);
             return "redirect:/main/free";
-        }
-        return "redirect:/login";
+
     }
 
     @GetMapping("/{post_id}")
-    public String detail(@PathVariable int post_id, Model model, HttpSession session) {
-
-    String nickname = (String) session.getAttribute("user.user_nickname");
-       System.out.println(nickname);
-
+    public String detail(@PathVariable int post_id, Model model, HttpSession session, HttpServletRequest req){
+    RegisterVO user = (RegisterVO) session.getAttribute("user");
+    String nickname = (user != null) ? user.getUser_nickname() : "";
+    System.out.println(nickname);
+        model.addAttribute("login_nickname", nickname);
         model.addAttribute("post", freeService.detailPost(post_id));
-        model.addAttribute("replys", freeService.getReplys(post_id));
-        model.addAttribute("reply", "free_reply.jsp");
         model.addAttribute("content", "free/free_detail.jsp");
         return "index";
     }
@@ -67,7 +70,7 @@ public class FreeC {
     }
 
     @PostMapping("/update")
-    public String update(int post_id, FreeVO freeVO, Model model, MultipartFile post_file) {
+    public String update(int post_id, FreeVO freeVO, MultipartFile post_file) {
         System.out.println(post_id + "post no : " + freeVO.getPost_id());
         freeService.updatePost(freeVO, post_file);
         System.out.println("3333");

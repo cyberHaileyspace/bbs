@@ -9,14 +9,15 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="/resources/js/free/free.js"></script>
-
 </head>
 <body>
 <div>
     <div class="comment-section">
         <div class="comment-header">댓글 쓰기</div>
-        <textarea placeholder="댓글을 입력하세요..."></textarea>
-        <button onclick="location.href='reply'">댓글 쓰기</button>
+        <div hidden="hidden">닉네임 : <input name="user_nickname" value="${user.user_nickname}" type="text"
+                                          placeholder="${user.user_nickname}" readonly></div>
+        <textarea id="replyContent" placeholder="댓글을 입력하세요..."></textarea>
+        <button onclick="insertReply()">댓글 쓰기</button>
     </div>
     <c:choose>
     <c:when test="${not empty replys}">
@@ -24,8 +25,10 @@
        <span>작성자 : ${r.c_writer}</span>
        <span><fmt:formatDate value="${r.c_date}" pattern="YYYY-MM-DD HH:mm"/></span>
        <span>${r.c_context}</span>
-        <button>수정하기</button>
-        <button>삭제하기</button>
+        <c:if test="${user.user_nickname == r.c_writer}">
+            <button>삭제</button>
+            <button>수정</button>
+        </c:if>
         <br>
     </c:forEach>
     </c:when>
