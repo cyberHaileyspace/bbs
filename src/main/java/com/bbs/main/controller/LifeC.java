@@ -2,10 +2,14 @@ package com.bbs.main.controller;
 
 import com.bbs.main.service.LifeService;
 import com.bbs.main.service.UserService;
+import com.bbs.main.vo.FreeVO;
 import com.bbs.main.vo.LifeVO;
+import com.bbs.main.vo.UserVO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import org.eclipse.tags.shaded.org.apache.xpath.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -57,6 +62,7 @@ public class LifeC {
 
     @GetMapping("/{no}")
     public String detail(@PathVariable int no, String token, Model model, HttpSession session) {
+
         String sessionKey = "view_token_" + no;
         String lastToken = (String) session.getAttribute(sessionKey);
 
@@ -65,6 +71,9 @@ public class LifeC {
             session.setAttribute(sessionKey, token);  // 새로운 토큰 저장
         }
 
+        UserVO user = (UserVO) session.getAttribute("user");
+        String nickname = (user != null) ? user.getUser_nickname() : "";
+        model.addAttribute("login_nickname", nickname);
         model.addAttribute("post", lifeService.getPost(no));
         model.addAttribute("content", "life/lifedetail.jsp");
         return "index";
@@ -72,7 +81,6 @@ public class LifeC {
 
     /*@DeleteMapping("/{no}")
     public String delete(@PathVariable int no, HttpSession session) {
-        System.out.println("2222");
         if (userService.loginChk(session)) {
             lifeService.deletePost(no);
             return "redirect:/main/life";
@@ -83,7 +91,6 @@ public class LifeC {
     @DeleteMapping("/{no}")
     @ResponseBody
     public ResponseEntity<Map<String, Object>> delete(@PathVariable int no, HttpSession session) {
-        System.out.println("2222");
         Map<String, Object> response = new HashMap<>();
         if (userService.loginChk(session)) {
             lifeService.deletePost(no);
@@ -98,17 +105,30 @@ public class LifeC {
 
     @GetMapping("/update/{post_id}")
     public String update(Model model) {
-        model.addAttribute("content", "life/updatepost.jsp");
+        model.addAttribute("content", "life/lifeupdate.jsp");
         return "index";
     }
 
     @PostMapping("/update")
-    public String update(LifeVO lifeVO, Model model, MultipartFile post_file, HttpSession session) {
+    public String update(int post_id, LifeVO lifeVO, MultipartFile post_file) {
+        System.out.println(post_id + "post no : " + lifeVO.getPost_id());
+        lifeService.updatePost(lifeVO, post_file);
+        return "redirect:/main/life/" + post_id;
+    }
+
+    @GetMapping("/option")
+    @ResponseBody  // JSON 반환
+    public List<LifeVO> getsorts(@RequestParam("option") String option) {
+        return lifeService.getsorts(option);
+    }
+
+    @GetMapping("/like/{post_id}")
+    public String lifelike(@PathVariable("post_id") int no, Model model, HttpSession session) {
         if (userService.loginChk(session)) {
-            lifeService.updatePost(lifeVO, post_file);
-            return "redirect:/main/life";
+            lifeService.getCountLike(no);
+            model.addAttribute("content", "life/lifedetail.jsp");
+            return "index";
         }
         return "redirect:/login";
     }
-
 }

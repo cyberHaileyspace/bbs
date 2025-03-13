@@ -15,7 +15,6 @@ import java.util.UUID;
 @Service
 public class FreeService {
 
-
     @Autowired
     private FreeMapper freeMapper;
 
@@ -70,11 +69,9 @@ public class FreeService {
             UUID uuid = UUID.randomUUID();
             String fileName = uuid.toString().split("-")[0] + fileExtension;
             File saveFile = new File(uploadFolder + "/" + fileName);
-
             try {
                 // 새 파일 저장
                 post_file.transferTo(saveFile);
-
                 // 기존 이미지 삭제
                 if (existingPost.getPost_image() != null) {
                     File oldFile = new File(uploadFolder + "/" + existingPost.getPost_image());
@@ -82,7 +79,6 @@ public class FreeService {
                         oldFile.delete();
                     }
                 }
-
                 // 새 이미지 이름 업데이트
                 freeVO.setPost_image(fileName);
             } catch (IOException e) {
@@ -92,7 +88,6 @@ public class FreeService {
             // 이미지 수정 안 할 경우 기존 이미지 유지
             freeVO.setPost_image(existingPost.getPost_image());
         }
-
         // DB 업데이트 실행
         freeMapper.updatePost(freeVO);
     }

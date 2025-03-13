@@ -96,7 +96,7 @@
     border: lightgrey;
 }
 
-.mypage-content {
+/*.mypage-content {
     width: 400px;
     height: 40px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -107,13 +107,13 @@
     align-items: center;
     text-align: center;
     border: rgba(0, 0, 0, 0.1);
-}
+}*/
 
-.mypage-container {
+/*.mypage-container {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+    !* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); *!
     border-radius: 10px;
-}
+}*/
 
 .mypage-btn {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -217,4 +217,28 @@ hr {
     width: 20px;
     height: 20px;
     margin-right: 5px;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.show {
+    display: flex;
+    width: 100%;
+}
+
+.tab-button {
+    cursor: pointer;
+    padding: 10px;
+    display: inline-block;
+    /*background: lightgray;*/
+    border-radius: 5px;
+    margin-right: 5px;
+    color: lightgrey;
+}
+
+.tab-button.active {
+    /*background: gray;*/
+    color: black;
 }

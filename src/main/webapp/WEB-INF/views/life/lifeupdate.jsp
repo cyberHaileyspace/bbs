@@ -12,11 +12,13 @@
     <link rel="stylesheet" href="/resources/css/life/life.css">
 </head>
 <body>
-<form id="writereg" action="update" method="post" enctype="multipart/form-data">
+<form id="writereg" action="/main/life/update" method="post" enctype="multipart/form-data">
     <div>
-        <div>번호 : <input type="hidden" name="post_id" value="${post.post_id}" type="text"
-                                         placeholder="${post.post_id}" readonly></div>
+        <div hidden="hidden">
+            닉네임 : <input name="user_nickname" value="${user.user_nickname}" type="text"
+                         placeholder="${user.user_nickname}" readonly></div>
         <div>카테고리</div>
+        ${post.post_id}
         <div>
             <%--<input type="radio" name="post_category" &lt;%&ndash;id="life-tip"&ndash;%&gt; value="life-tip">&lt;%&ndash;<label for="life-tip">&ndash;%&gt;생활
             정보</label>
@@ -76,7 +78,7 @@
     </div>
     <div>
         <button class="update-cancel" type="button" onclick="history.back()">취소</button>
-        <button class="update-post" type="submit">수정</button>
+        <button class="update-post" type="submit" name="post_id" value="${post.post_id}">수정</button>
     </div>
 
 </form>
