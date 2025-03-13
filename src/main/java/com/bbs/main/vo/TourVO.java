@@ -2,7 +2,7 @@
 
     import lombok.Data;
 
-    import java.sql.Date;
+    import java.util.Date;
 
     @Data
     public class TourVO {
@@ -13,6 +13,7 @@
         private String mapx;
         private String mapy;
         private String sigungucode;
+        private String createdtime;
         private String title;
         private String overview;
         private String zipcode;
@@ -20,4 +21,6 @@
         private String usetime;
         private String restdate;
         private String infocenter;
+
+
     }

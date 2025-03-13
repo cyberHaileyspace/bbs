@@ -112,28 +112,36 @@
 
     <!-- 관광정보 표시 영역 -->
     <div class="tour_img_container" id="tourContainer">
+
+        <div id="extraInfo">
+            <span style="margin: 0 10px;">관광지 목록</span>
+            <span style="margin: 0 10px;" class="sort" data-sort="title">제목순</span>
+            <span style="margin: 0 10px;" class="sort" data-sort="date">최신순</span>
+        </div>
+
         <div class="tour_img_container">
             <c:forEach var="i" items="${result}">
-                <div class="tour_img_box"><a href="/tour/getLoc?contentid=${i.contentid}"><img src="${i.firstimage}">
+                <div class="tour_img_box"><a href="/tour/getLoc?contentid=${i.contentid}"><img src="${i.firstimage}" style="height: 158px">
                     <div>${i.title}</div>
                 </a></div>
             </c:forEach>
-            <div>
-                <a href=""><span>first</span></a>
-                <a href=""><span>prev</span></a>
-                <a href=""><span>1</span></a>
-                <a href=""><span>2</span></a>
-                <a href=""><span>3</span></a>
-                <a href=""><span>4</span></a>
-                <a href=""><span>5</span></a>
-                <a href=""><span>next</span></a>
-                <a href=""><span>last</span></a>
-            </div>
+        </div>
+        <div class="pagination">
 
         </div>
-
     </div>
-</div>
 
+
+</div>
 </body>
+<script>
+
+
+    document.querySelectorAll(".sort").forEach((sort) => {
+        sort.addEventListener("click", (e)=>{
+
+
+        })
+    })
+</script>
 </html>

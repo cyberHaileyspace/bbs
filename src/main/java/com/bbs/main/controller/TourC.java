@@ -2,6 +2,7 @@ package com.bbs.main.controller;
 
 import com.bbs.main.service.TourService;
 import com.bbs.main.vo.TourVO;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +19,10 @@ public class TourC {
 
     @PostMapping("/loc")
     public String getAttractionDataByLoc(@RequestParam String areaCode, @RequestParam String sigungu, Model model) {
-         model.addAttribute("result", tourService.getAttractionDataByLoc(areaCode,sigungu));
+        List<TourVO> tourList =  tourService.getAllLocation(areaCode,sigungu);
+//        String tourJson = new Gson().toJson(tourList);
+//        model.addAttribute("resultJson", tourJson);  // json
+         model.addAttribute("result", tourList); // java
          model.addAttribute("content", "wh/tour.jsp");
          return "index";
     }

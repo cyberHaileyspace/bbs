@@ -18,6 +18,9 @@ document.querySelector(".close-btn").addEventListener("click", () => {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+
+
+
     // 메인 카테고리 리스트 (제주도, 울릉도, 강원 등)
     const mainCategories = document.querySelectorAll(
         ".panel_2depth .place_items li a"
@@ -133,11 +136,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.querySelectorAll(".search-area").forEach((atag) => {
     atag.addEventListener("click", (e) => {
+
+        // extraInfo 영역을 보이게 설정 전 플래그 저장 (세션 스토리지 사용 예)
+        sessionStorage.setItem("showExtraInfo", "true");
+
         const areaCode = e.target.parentElement.dataset.areacode;
         const sigungu = e.target.parentElement.dataset.sigungu;
         console.log(areaCode);
         console.log(sigungu);
-
 
         const form = document.createElement("form");
         form.method = "post";
@@ -151,7 +157,6 @@ document.querySelectorAll(".search-area").forEach((atag) => {
         form.appendChild(areaCodeInput);
 
 // sigungu를 담을 hidden input 생성
-
         const sigunguInput = document.createElement("input");
         sigunguInput.type = "hidden";
         sigunguInput.name = "sigungu";
@@ -165,3 +170,130 @@ document.querySelectorAll(".search-area").forEach((atag) => {
         form.submit();
     });
 })
+
+document.addEventListener("DOMContentLoaded", function () {
+    const container = document.querySelector("#tourContainer .tour_img_container");
+    const items = Array.from(container.querySelectorAll(".tour_img_box")); // 배열로 변환
+    const paginationDiv = document.querySelector(".pagination");
+
+    const itemsPerPage = 12; // 한 페이지에 보여줄 항목 수
+    const totalItems = items.length;
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+    let currentPage = 1; // 초기 페이지
+
+    // 초기 실행: 첫 페이지 표시 및 페이징 링크 생성
+    showPage(currentPage);
+    setupPagination();
+
+    // 특정 페이지의 항목들만 보여주는 함수
+    function showPage(page) {
+        items.forEach(item => {
+            item.style.display = "none";
+        });
+        const start = (page - 1) * itemsPerPage;
+        const end = Math.min(start + itemsPerPage, totalItems);
+        for (let i = start; i < end; i++) {
+            items[i].style.display = "block";
+        }
+    }
+
+    // 동적 페이징 링크 생성 함수 (페이지 번호를 10개씩 그룹화)
+    function setupPagination() {
+        paginationDiv.innerHTML = ""; // 기존 페이징 링크 초기화
+        const blockSize = 10; // 한 그룹에 보여줄 페이지 번호 개수 (예: 10)
+
+        // 현재 페이지 그룹 계산
+        const startPage = Math.floor((currentPage - 1) / blockSize) * blockSize + 1;
+        const endPage = Math.min(startPage + blockSize - 1, totalPages);
+
+        // 항상 "first" 링크 생성
+        const firstLink = document.createElement("a");
+        firstLink.href = "#";
+        firstLink.innerHTML = "&laquo; first";
+        if (currentPage === 1) {
+            firstLink.classList.add("disabled");
+            firstLink.addEventListener("click", e => e.preventDefault());
+        } else {
+            firstLink.addEventListener("click", function(e) {
+                e.preventDefault();
+                currentPage = 1;
+                showPage(currentPage);
+                setupPagination();
+            });
+        }
+        paginationDiv.appendChild(firstLink);
+
+        // 항상 "prev" 링크 생성
+        // "prev" 링크 수정: 현재 페이지에서 blockSize(10)를 빼도록 함
+        const prevLink = document.createElement("a");
+        prevLink.href = "#";
+        prevLink.innerHTML = "&lsaquo; prev";
+        if (currentPage === 1) {
+            prevLink.classList.add("disabled");
+            prevLink.addEventListener("click", e => e.preventDefault());
+        } else {
+            prevLink.addEventListener("click", function(e) {
+                e.preventDefault();
+                currentPage = Math.max(1, currentPage - blockSize);
+                showPage(currentPage);
+                setupPagination();
+            });
+        }
+        paginationDiv.appendChild(prevLink);
+
+        // 현재 그룹의 페이지 번호 링크 생성 (startPage ~ endPage)
+        for (let i = startPage; i <= endPage; i++) {
+            const pageLink = document.createElement("a");
+            pageLink.href = "#";
+            pageLink.innerHTML = i;
+            if (i === currentPage) {
+                pageLink.classList.add("active");
+            }
+            pageLink.addEventListener("click", function(e) {
+                e.preventDefault();
+                currentPage = i;
+                showPage(currentPage);
+                setupPagination();
+            });
+            paginationDiv.appendChild(pageLink);
+        }
+
+        // 항상 "next" 링크 생성
+        // "next" 링크 수정: 현재 페이지에 blockSize(10)를 더하도록 함
+        const nextLink = document.createElement("a");
+        nextLink.href = "#";
+        nextLink.innerHTML = "next &rsaquo;";
+        if (currentPage === totalPages || totalPages === 0) {
+            nextLink.classList.add("disabled");
+            nextLink.addEventListener("click", e => e.preventDefault());
+        } else {
+            nextLink.addEventListener("click", function(e) {
+                e.preventDefault();
+                currentPage = Math.min(totalPages, currentPage + blockSize);
+                showPage(currentPage);
+                setupPagination();
+            });
+        }
+        paginationDiv.appendChild(nextLink);
+
+        // 항상 "last" 링크 생성
+        const lastLink = document.createElement("a");
+        lastLink.href = "#";
+        lastLink.innerHTML = "last &raquo;";
+        if (currentPage === totalPages || totalPages === 0) {
+            lastLink.classList.add("disabled");
+            lastLink.addEventListener("click", e => e.preventDefault());
+        } else {
+            lastLink.addEventListener("click", function(e) {
+                e.preventDefault();
+                currentPage = totalPages;
+                showPage(currentPage);
+                setupPagination();
+            });
+        }
+        paginationDiv.appendChild(lastLink);
+
+        // 이전 페이지 그룹 ("…") 및 다음 페이지 그룹 ("…") 링크도 필요하면 추가할 수 있습니다.
+        // 위 예제에서는 간단하게 first, prev, 페이지번호, next, last만 생성했습니다.
+    }
+}); // 레디 함수 끝
