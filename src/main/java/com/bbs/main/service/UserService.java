@@ -1,9 +1,7 @@
 package com.bbs.main.service;
 
-
-import com.bbs.main.controller.RegisterC;
-import com.bbs.main.mapper.RegisterMapper;
-import com.bbs.main.vo.RegisterVO;
+import com.bbs.main.mapper.UserMapper;
+import com.bbs.main.vo.UserVO;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,43 +9,45 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
 import java.util.UUID;
 
 @Service
-public class RegisterService {
+public class UserService {
 
     @Autowired
-    private RegisterMapper registerMapper;
+    private UserMapper registerMapper;
 
     public boolean loginChk(HttpSession session) {
-        RegisterVO user = (RegisterVO) session.getAttribute("user");
+        UserVO user = (UserVO) session.getAttribute("user");
         return user != null;
     }
 
-    public void regUser(RegisterVO registerVO, MultipartFile user_file) {
+    public void regUser(UserVO registerVO, MultipartFile user_file) {
         /* registerMapper.regUser(registerVO); */
-        String originName = user_file.getOriginalFilename();
-        String fileExtension = originName.substring(originName.lastIndexOf("."), originName.length());
-        System.out.println(fileExtension);
-        String uploadFolder = "C:\\Users\\soldesk\\Desktop\\uploadFolder";
-        UUID uuid = UUID.randomUUID();
-        System.out.println(uuid);
-        String[] uuids = uuid.toString().split("-");
-        System.out.println(uuids[0]);
-        String fileName = uuids[0] + fileExtension;
-        File saveFile = new File(uploadFolder + "\\" + fileName);
-        try {
-            user_file.transferTo(saveFile);
-            registerVO.setUser_image(fileName);
-            registerMapper.regUser(registerVO);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        if (user_file.getOriginalFilename().length() != 0) {
+
+            String originName = user_file.getOriginalFilename();
+            String fileExtension = originName.substring(originName.lastIndexOf("."), originName.length());
+            System.out.println(fileExtension);
+            String uploadFolder = "C:\\Users\\soldesk\\Desktop\\uploadFolder";
+            UUID uuid = UUID.randomUUID();
+            System.out.println(uuid);
+            String[] uuids = uuid.toString().split("-");
+            System.out.println(uuids[0]);
+            String fileName = uuids[0] + fileExtension;
+            File saveFile = new File(uploadFolder + "\\" + fileName);
+            try {
+                user_file.transferTo(saveFile);
+                registerVO.setUser_image(fileName);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
+        registerMapper.regUser(registerVO);
     }
 
-    public String loginuser(RegisterVO registerVO, HttpSession httpSession) {
-        RegisterVO user = registerMapper.login(registerVO);
+    public String loginuser(UserVO registerVO, HttpSession httpSession) {
+        UserVO user = registerMapper.login(registerVO);
         if (user != null) {
             if (registerVO.getUser_pw().equals(user.getUser_pw())) {
                 httpSession.setAttribute("user", user);
@@ -61,7 +61,7 @@ public class RegisterService {
 
     }
 
-    public String pwreset(RegisterVO registerVO) {
+    public String pwreset(UserVO registerVO) {
         int result = registerMapper.pwreset(registerVO);
         if (result == 1) {
             return "비밀번호가 변경되었습니다.";
@@ -82,7 +82,7 @@ public class RegisterService {
         return registerMapper.emailcheck(userEmail) > 0;
     }
 
-    public String updateUser(RegisterVO registerVO) {
+    public String updateUser(UserVO registerVO) {
         int result = registerMapper.updateUser(registerVO);
         if (result == 1) {
             return "내 정보가 변경되었습니다.";

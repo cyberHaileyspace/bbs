@@ -9,6 +9,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="/resources/js/free/free.js"></script>
+    <link rel="stylesheet" href="/resources/css/free/free.css">
     <style>
         body {
             font-family: Arial, sans-serif;

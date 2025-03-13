@@ -1,27 +1,23 @@
 package com.bbs.main.controller;
 
 import com.bbs.main.service.FreeService;
-import com.bbs.main.service.LifeWriteService;
-import com.bbs.main.service.RegisterService;
-import com.bbs.main.vo.LifeWriteVO;
-import jakarta.servlet.http.HttpSession;
+import com.bbs.main.service.LifeService;
+import com.bbs.main.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
 
 @RequestMapping("/main")
 @Controller
 public class MainC {
 
     @Autowired
-    private LifeWriteService lifeWriteService;
+    private LifeService lifeService;
 
     @Autowired
-    private RegisterService registerService;
+    private UserService userService;
 
     @Autowired
     private FreeService freeService;
@@ -34,24 +30,9 @@ public class MainC {
 
     @GetMapping("/life")
     public String life(Model model) {
-        model.addAttribute("content", "jm/life.jsp");
-        model.addAttribute("lifewrite", lifeWriteService.getLifeWrite());
+        model.addAttribute("posts", lifeService.getposts());
+        model.addAttribute("content", "life/life.jsp");
         return "index";
-    }
-
-    @GetMapping("/write")
-    public String write(Model model) {
-        model.addAttribute("content", "jm/writelife.jsp");
-        return "index";
-    }
-
-    @PostMapping("/writereg")
-    public String writereg(LifeWriteVO lifeWriteVO, Model model, MultipartFile post_file, HttpSession session) {
-        if (registerService.loginChk(session)) {
-            lifeWriteService.regWrite(lifeWriteVO, post_file);
-            return "redirect:life";
-        }
-        return "redirect:/login";
     }
 
     @GetMapping("/tour")
@@ -67,6 +48,5 @@ public class MainC {
         model.addAttribute("content", "free/free_posts.jsp");
         return "index";
     }
-
 
 }

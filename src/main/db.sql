@@ -1,5 +1,16 @@
+ALTER TABLE User_DB
+    MODIFY user_date TIMESTAMP WITH TIME ZONE DEFAULT SYSTIMESTAMP AT TIME ZONE 'Asia/Seoul';
 
--- ----------------------------------------------------------------------------------
+insert into User_DB (user_id, user_pw, user_name, user_nickname, user_email, user_gender, user_image)
+values ('user03', 'password03', 'Taro', 'taro_nick03', 'taro03@email.com', 'male', 'profile_image.png');
+
+select *
+from User_DB;
+
+SELECT user_date, user_date AT TIME ZONE 'Asia/Seoul'
+FROM User_DB;
+
+ALTER DATABASE SET TIME_ZONE = 'Asia/Seoul';
 
 CREATE TABLE Free_Post_DB
 (
@@ -10,8 +21,8 @@ CREATE TABLE Free_Post_DB
     post_title    varchar2(100 char) not null,
     post_context  clob               not null,
     post_image    varchar2(555 char) default null,
-    post_view     number             default null,
-    post_like     number             default null,
+    post_view     number             default 0,
+    post_like     number             default 0,
     post_date     timestamp          default SYSTIMESTAMP,
     post_update   timestamp          default SYSTIMESTAMP,
     foreign key (user_nickname) references User_DB (user_nickname) ON DELETE CASCADE
@@ -20,8 +31,8 @@ CREATE TABLE Free_Post_DB
 insert into FREE_POST_DB (user_nickname, post_category, post_menu, post_title, post_context, post_image)
 VALUES ('asas', '111', 'asd', 'asd', 'asdasd', null);
 
-select * from FREE_POST_DB;
-
+select *
+from FREE_POST_DB;
 
 ALTER TABLE FREE_POST_DB
     MODIFY post_date TIMESTAMP WITH TIME ZONE DEFAULT SYSTIMESTAMP AT TIME ZONE 'Asia/Seoul';
@@ -73,8 +84,7 @@ ALTER TABLE FREE_COMMENT
 
 drop table Free_comment;
 
--- ----------------------------------------------------------------------
-
+----------------------------------------------------------------
 
 create table User_DB
 (
@@ -88,7 +98,7 @@ create table User_DB
     user_date     timestamp          default SYSTIMESTAMP
 );
 
-drop table Life_Post_DB cascade constraints purge;
+drop table Free_Post_DB cascade constraints purge;
 
 insert into User_DB (user_id, user_pw, user_name, user_nickname, user_email, user_gender, user_image)
 values ('user03', 'password03', 'Taro', 'taro_nick03', 'taro03@email.com', 'male', 'profile_image.png');
@@ -113,33 +123,45 @@ CREATE TABLE Life_Post_DB
     post_title    varchar2(100 char) not null,
     post_context  clob               not null,
     post_image    varchar2(555 char) default null,
-    post_view     number             default null,
-    post_like     number             default null,
+    post_view     number             default 0,
+    post_like     number             default 0,
     post_date     timestamp          default SYSTIMESTAMP,
     post_update   timestamp          default SYSTIMESTAMP,
     foreign key (user_nickname) references User_DB (user_nickname) ON DELETE CASCADE
 );
+
+drop table Life_Post_DB cascade constraints purge;
 
 CREATE OR REPLACE TRIGGER update_nickname_trigger
     BEFORE UPDATE OF user_nickname
     ON User_DB
     FOR EACH ROW
 BEGIN
-    UPDATE ADMIN.FREE_POST_DB
+    UPDATE ADMIN.LIFE_POST_DB
     SET user_nickname = :NEW.user_nickname
     WHERE user_nickname = :OLD.user_nickname;
 END;
 
+ALTER TABLE Life_Post_DB
+    MODIFY post_date TIMESTAMP WITH TIME ZONE DEFAULT SYSTIMESTAMP AT TIME ZONE 'Asia/Seoul';
+
+insert into FREE_POST_DB (user_nickname, post_category, post_menu, post_title, post_context, post_image)
+VALUES ('456', '111', 'asd', 'asd', 'asdasd', null);
 
 insert into LIFE_POST_DB (user_nickname, post_category, post_menu, post_title, post_context, post_image)
-VALUES ('456', '111', 'asd', 'asd', 'asdasd', null);
+VALUES ('567', '111', 'asd', 'asd', 'asdasd', null);
 
 /*업데이트 시스데이트 다시 넣기*/
 
 select *
+from Free_Post_DB;
+
+select *
 from Life_Post_DB;
 
--- --------------------------------------------------------------
+update Life_Post_DB set post_view = 0 where post_id = 1;
+
+----------------------------------------------------------------
 
 CREATE TABLE Tourist_Spot_DB
 (
@@ -156,3 +178,6 @@ CREATE TABLE Tourist_Spot_DB
 
 select *
 from Tourist_Spot_DB;
+
+drop table Life_Post_DB cascade constraints purge;
+

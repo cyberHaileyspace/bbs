@@ -20,18 +20,18 @@
         <button onclick="insertReply()">댓글 쓰기</button>
     </div>
     <c:choose>
-    <c:when test="${not empty replys}">
-    <c:forEach items="${replys}" var="r">
-       <span>작성자 : ${r.c_writer}</span>
-       <span><fmt:formatDate value="${r.c_date}" pattern="YYYY-MM-DD HH:mm"/></span>
-       <span>${r.c_context}</span>
-        <c:if test="${user.user_nickname == r.c_writer}">
-            <button>삭제</button>
-            <button>수정</button>
-        </c:if>
-        <br>
-    </c:forEach>
-    </c:when>
+        <c:when test="${not empty replys}">
+            <c:forEach items="${replys}" var="r">
+                <span>작성자 : ${r.c_writer}</span>
+                <span><fmt:formatDate value="${r.c_date}" pattern="YYYY-MM-DD HH:mm"/></span>
+                <span>${r.c_context}</span>
+                <c:if test="${user.user_nickname == r.c_writer}">
+                    <button>삭제</button>
+                    <button>수정</button>
+                </c:if>
+                <br>
+            </c:forEach>
+        </c:when>
         <c:otherwise>
             <p>댓글이 없습니다. 댓글을 작성해 보세요!</p>
         </c:otherwise>

@@ -17,7 +17,7 @@
     <div>
         <div hidden="hidden">
             닉네임 : <input name="user_nickname" value="${user.user_nickname}" type="text"
-                                          placeholder="${user.user_nickname}" readonly></div>
+                         placeholder="${user.user_nickname}" readonly></div>
         <div>카테고리</div>
         ${post.post_id}
         <div>
