@@ -12,7 +12,7 @@
 <body>
 <div class="container">
     <div class="header">
-        <button class="register-btn">등록하기</button>
+        <button class="register-btn" onclick="location.href='free/reg'">등록하기</button>
     </div>
 
     <div class="post-list">
