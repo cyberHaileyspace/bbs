@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class LifeWriteVO {
+public class LifeVO {
     private String user_nickname;
     private String post_category;
     private String post_menu;

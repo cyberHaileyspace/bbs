@@ -21,8 +21,8 @@ CREATE TABLE Free_Post_DB
     post_title    varchar2(100 char) not null,
     post_context  clob               not null,
     post_image    varchar2(555 char) default null,
-    post_view     number             default null,
-    post_like     number             default null,
+    post_view     number             default 0,
+    post_like     number             default 0,
     post_date     timestamp          default SYSTIMESTAMP,
     post_update   timestamp          default SYSTIMESTAMP,
     foreign key (user_nickname) references User_DB (user_nickname) ON DELETE CASCADE
@@ -86,7 +86,7 @@ create table User_DB
     user_date     timestamp          default SYSTIMESTAMP
 );
 
-drop table Life_Post_DB cascade constraints purge;
+drop table Free_Post_DB cascade constraints purge;
 
 insert into User_DB (user_id, user_pw, user_name, user_nickname, user_email, user_gender, user_image)
 values ('user03', 'password03', 'Taro', 'taro_nick03', 'taro03@email.com', 'male', 'profile_image.png');
@@ -111,12 +111,14 @@ CREATE TABLE Life_Post_DB
     post_title    varchar2(100 char) not null,
     post_context  clob               not null,
     post_image    varchar2(555 char) default null,
-    post_view     number             default null,
-    post_like     number             default null,
+    post_view     number             default 0,
+    post_like     number             default 0,
     post_date     timestamp          default SYSTIMESTAMP,
     post_update   timestamp          default SYSTIMESTAMP,
     foreign key (user_nickname) references User_DB (user_nickname) ON DELETE CASCADE
 );
+
+drop table Life_Post_DB cascade constraints purge;
 
 CREATE OR REPLACE TRIGGER update_nickname_trigger
     BEFORE UPDATE OF user_nickname
@@ -144,6 +146,8 @@ from Free_Post_DB;
 
 select *
 from Life_Post_DB;
+
+update Life_Post_DB set post_view = 0 where post_id = 1;
 
 ----------------------------------------------------------------
 

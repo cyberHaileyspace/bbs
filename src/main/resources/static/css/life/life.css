@@ -1,0 +1,220 @@
+.title {
+    border-bottom: 1px solid grey;
+    text-align: center;
+}
+
+.id.pw.name.nickname.email.file {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+}
+
+/*.two_box input {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+}*/
+
+.login-button.register-button {
+    display: flex;
+    width: 100%;
+    /*justify-content: space-evenly;*/
+    align-items: center;
+}
+
+.login-button02 {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    border: 1px solid lightgrey;
+    text-align: center;
+}
+
+.panel {
+    width: 300px;
+    height: 100vh;
+    color: black;
+    background-color: white;
+    position: fixed;
+    left: -300px;
+    top: 66px;
+    transition: all 0.3s ease-out;
+    border: lightgrey;
+    text-align: center;
+    font-size: 20px;
+    padding-top: 20px;
+    z-index: 6;
+}
+
+.panel.open {
+    left: 0px;
+    gap: 20px;
+}
+
+.panel h1 {
+    text-align: center;
+}
+
+.panel-btn {
+    cursor: pointer;
+}
+
+.mypage {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 10%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.mypage-container {
+    width: 400px;
+    height: 400px;
+    box-shadow: 3px 3px 3px 3px lightgrey;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: lightgrey;
+}
+
+.mypage-btn {
+    width: 340px;
+    height: 40px;
+    box-shadow: 1px 1px 1px 1px lightgrey;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: lightgrey;
+}
+
+.mypage-content {
+    width: 400px;
+    height: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: rgba(0, 0, 0, 0.1);
+}
+
+.mypage-container {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+    border-radius: 10px;
+}
+
+.mypage-btn {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.mypage-content:hover {
+
+}
+
+/* 게시글 리스트 스타일 */
+.item {
+    width: 80%; /* 가로 크기 */
+    max-width: 800px; /* 최대 너비 */
+    margin: 20px auto; /* 중앙 정렬 */
+    padding: 20px;
+    border-radius: 10px; /* 모서리 둥글게 */
+    background: #fff; /* 카드 배경색 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    transition: transform 0.2s, box-shadow 0.2s; /* 호버 효과 */
+}
+
+/* 호버 효과 */
+.item:hover {
+    transform: translateY(-3px); /* 살짝 위로 이동 */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/*!* 제목 스타일 *!
+.item div:nth-child(2) {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+!* 작성자 & 날짜 스타일 *!
+.item div:nth-child(3),
+.item div:nth-child(4) {
+    font-size: 0.8em;
+    color: #777;
+}*/
+
+.life-kind {
+    display: flex;
+    font-size: 0.8em;
+    color: #777;
+}
+
+.life-title {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.life-info {
+    font-size: 0.8em;
+    color: #777;
+}
+
+/* 구분선 */
+hr {
+    width: 80%;
+    max-width: 800px;
+    border: none;
+    height: 1px;
+    background: #ddd;
+    margin: 10px auto;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 600px) {
+    .item {
+        width: 95%; /* 모바일에서는 더 넓게 */
+        padding: 15px;
+    }
+
+    .item div:nth-child(2) {
+        font-size: 1.2em;
+    }
+}
+
+.write-btn {
+    padding: 5px 10px;
+    font-size: 14px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.write-btn:hover {
+    background-color: #45a049;
+}
+
+.post-view > img,
+.post-like > img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}

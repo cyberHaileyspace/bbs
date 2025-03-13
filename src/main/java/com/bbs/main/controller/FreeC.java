@@ -1,14 +1,10 @@
 package com.bbs.main.controller;
 
-import com.bbs.main.vo.LifeWriteVO;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import com.bbs.main.service.FreeService;
-import com.bbs.main.vo.FreeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 @RequestMapping("/main/free")
 @Controller
