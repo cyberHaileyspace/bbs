@@ -1,4 +1,5 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
 <%--<link rel="stylesheet" href="/resources/css/free/free.css">--%>
@@ -8,6 +9,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="/resources/js/free/free.js"></script>
+    <link rel="stylesheet" href="/resources/css/free/free.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -120,22 +122,70 @@
     </div>
     <div class="title">[ ${post.post_category} ] [ ${post.post_menu} ]  ${post.post_title}</div>
     <div class="post-image-container">
-        <img src="/free/free_img/${post.post_image}" alt="Post Image">
+        <img src="/Users/kimsuhyeon/Desktop/final_img/${post.post_image}" alt="Post Image">
     </div>
     <div class="post-content">
         <div class="text">${post.post_context}</div>
-        <div class="date">작성일 : <c:formatDate value="${post.post_date}" pattern="yyyy-MM-dd HH:mm"/></div>
+        <div class="date">작성일 : <fmt:formatDate value="${post.post_date}" pattern="yyyy-MM-dd HH:mm"/></div>
     </div>
     <div class="buttons-container">
-        <button onclick="deletePost(${post.post_id})">삭제</button>
-        <button>수정하기</button>
-        <button onclick="history.back()">목록으로</button>
+        <c:if test="${login_nickname == post.user_nickname}">
+            <button onclick="deletePost(${post.post_id})">삭제</button>
+            <button onclick="location.href='update/${post.post_id}'">수정하기</button>
+        </c:if>
+        <button onclick="location.href='/main/free'">목록으로</button>
     </div>
-    <div class="comment-section">
-        <div class="comment-header">댓글 쓰기</div>
-        <textarea placeholder="댓글을 입력하세요..."></textarea>
-        <button>댓글 쓰기</button>
-    </div>
+    <div>
+        <div id="commentSection">
+            <p></p>
+        </div>
+        <script>
+            var post_id = ${post.post_id}; // JSP 변수를 JavaScript 변수에 할당
+            var user_nickname = "${login_nickname}"; // 로그인한 사용자의 닉네임을 JSP 변수로 받아옴
+
+            // 페이지 로드 시 댓글을 비동기적으로 가져오는 함수
+            function loadComments() {
+                fetch(`/main/free/ReplyPost/${post_id}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const commentSection = document.getElementById("commentSection");
+                        commentSection.innerHTML = ""; // 기존 댓글 삭제
+
+                        if (data.length === 0) {
+                            commentSection.innerHTML = "<p>댓글이 없습니다. 댓글을 작성해 보세요!</p>";
+                        } else {
+                            data.forEach(comment => {
+                                const commentDiv = document.createElement("div");
+                                commentDiv.classList.add("comment");
+
+                                // 댓글 작성자와 로그인한 사용자가 동일한 경우 삭제 및 수정 버튼을 추가
+                                let commentHTML = `
+                            <span>작성자 : ${comment.c_writer}</span>
+                            <span>${comment.c_date}</span>
+                            <p>${comment.c_context}</p>
+                        `;
+
+                                if (user_nickname === comment.c_writer) {
+                                    commentHTML += `
+                                <button onclick="deleteComment(${comment.c_id})">삭제</button>
+                                <button onclick="editComment(${comment.c_id})">수정</button>
+                            `;
+                                }
+
+                                commentDiv.innerHTML = commentHTML;
+                                commentSection.appendChild(commentDiv);
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error("댓글 로드 실패:", error);
+                    });
+            }
+            console.log(post_id, user_nickname)
+            // 페이지가 로드되면 댓글을 비동기적으로 불러오는 함수 호출
+            window.onload = loadComments;
+        </script>
+</div>
 </div>
 </body>
 </html>

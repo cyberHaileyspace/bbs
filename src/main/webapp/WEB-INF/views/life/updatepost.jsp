@@ -9,13 +9,13 @@
     <title>Title</title>
     <%-- <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /> --%>
     <script type="text/javascript" src="/resources/nse_files/js/HuskyEZCreator.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="/resources/css/sample.css">
+    <link rel="stylesheet" href="/resources/css/life/life.css">
 </head>
 <body>
-<form id="freeReg" action="/main/free" method="post" enctype="multipart/form-data">
+<form id="writereg" action="update" method="post" enctype="multipart/form-data">
     <div>
-        <div hidden="hidden">닉네임 : <input name="user_nickname" value="${user.user_nickname}" type="text"
-                                          placeholder="${user.user_nickname}" readonly></div>
+        <div>번호 : <input type="hidden" name="post_id" value="${post.post_id}" type="text"
+                                         placeholder="${post.post_id}" readonly></div>
         <div>카테고리</div>
         <div>
             <%--<input type="radio" name="post_category" &lt;%&ndash;id="life-tip"&ndash;%&gt; value="life-tip">&lt;%&ndash;<label for="life-tip">&ndash;%&gt;생활
@@ -55,7 +55,8 @@
 
     <div>
         <div>제목</div>
-        <div><textarea name="post_title" rows="5" cols="100" placeholder="제목을 입력하세요." style="resize: none;"></textarea>
+        <div><textarea name="post_title" rows="5" cols="100" placeholder="${post.post_title}"
+                       style="resize: none;"></textarea>
         </div>
     </div>
 
@@ -63,7 +64,7 @@
         <div>내용</div>
         <div>
             <textarea name="post_context" id="writearea" value="post_context" rows="25" cols="100"
-                      placeholder="내용을 입력하세요"></textarea>
+                      placeholder="${post.post_context}"></textarea>
         </div>
     </div>
     <div>
@@ -74,8 +75,8 @@
 
     </div>
     <div>
-        <button class="reg-cancel" type="button" onclick="history.back()">취소</button>
-        <button class="reg-post" type="submit">등록</button>
+        <button class="update-cancel" type="button" onclick="history.back()">취소</button>
+        <button class="update-post" type="submit">수정</button>
     </div>
 
 </form>
@@ -101,10 +102,9 @@
         }
     });
 
-    document.querySelector(".reg-post").addEventListener("click", function (e) {
+    document.querySelector(".update-post").addEventListener("click", function (e) {
         oEditors.getById["writearea"].exec("UPDATE_CONTENTS_FIELD", []);
         console.log(oEditors.getById["writearea"].exec("UPDATE_CONTENTS_FILED", []));
-        $("#writereg").submit();
     });
 
 </script>

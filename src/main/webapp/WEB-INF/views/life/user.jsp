@@ -7,14 +7,14 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <%--script src="/resources/js/sample.js"></script>--%>
-    <link rel="stylesheet" href="/resources/css/sample.css">
+    <link rel="stylesheet" href="/resources/css/life/life.css">
 </head>
 <body>
 <div class="content">
     <div class="main02">
         <div>
             <div class="title"><h1>회원가입 페이지</h1></div>
-            <form action="register" method="post" class="center" onsubmit="return validateForm()" enctype="multipart/form-data">
+            <form action="user" method="post" class="center" onsubmit="return validateForm()" enctype="multipart/form-data">
                 <div class="id">
                     <br>
                     <div>ID</div>

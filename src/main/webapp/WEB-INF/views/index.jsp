@@ -6,20 +6,18 @@ uri="http://java.sun.com/jsp/jstl/core" %>
   <head>
     <meta charset="UTF-8" />
     <title>Diaspora - ディアスポラ</title>
-    <link rel="stylesheet" href="/resources/css/sample.css"/>
-    <link rel="stylesheet" href="/resources/css/main.css"/>
-    <link rel="stylesheet" href="/resources/css/tour.css"/>
-    <link rel="stylesheet" href="/resources/css/tour_place.css">
+    <link rel="stylesheet" href="/resources/css/sample.css">
+    <link rel="stylesheet" href="/resources/css/life/life.css">
+    <link rel="stylesheet" href="/resources/css/main.css" />
+    <link rel="stylesheet" href="/resources/css/tour.css" />
     <script src="/resources/js/sample.js"></script>
-
-</head>
-<body>
-<div class="header">
-    <div style="display: flex; flex-direction: row; align-items: center">
-        <img width="50px" src="/resources/css/Diaspora.png" class="panel-btn">
-    </div>
-    <div onclick="location.href='/'" style="cursor: pointer;">
-
+  </head>
+  <body>
+    <div class="header">
+      <div style="display: flex; flex-direction: row; align-items: center">
+        <img width="50px" src="/resources/css/Diaspora.png" class="panel-btn" />
+      </div>
+      <div onclick="location.href='/'" style="cursor: pointer">
         Diaspora - ディアスポラ
       </div>
       <c:choose>
