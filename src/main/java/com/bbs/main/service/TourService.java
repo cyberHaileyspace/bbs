@@ -1,6 +1,7 @@
 package com.bbs.main.service;
 
 import com.bbs.main.mapper.TourMapper;
+import com.bbs.main.vo.TourCommentVO;
 import com.bbs.main.vo.TourVO;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
@@ -27,33 +28,11 @@ public class TourService {
     @Autowired
     private TourMapper tourMapper;
 
-    /*
-    {
-"addr1": "제주특별자치도 제주시 한경면 청수서5길 63",
-"addr2": "",
-"areacode": "39",
-"booktour": "0",
-"cat1": "A01",
-"cat2": "A0101",
-"cat3": "A01010400",
-"contentid": "1884191",
-"contenttypeid": "12",
-"createdtime": "20140113184533",
-"firstimage": "http://tong.visitkorea.or.kr/cms/resource/72/3477972_image2_1.jpg",
-"firstimage2": "http://tong.visitkorea.or.kr/cms/resource/72/3477972_image3_1.jpg",
-"cpyrhtDivCd": "Type3",
-"mapx": "126.2507039833",
-"mapy": "33.3059197039",
-"mlevel": "6",
-"modifiedtime": "20250214140439",
-"sigungucode": "4",
-"tel": "",
-"title": "가마오름",
-"zipcode": "63006"
-}
-     */
+//    public List<TourCommentVO> getComment(int contentid) {
+//        return TourMapper.getComment(contentid);
+//    }
+
     public List<TourVO> getAllLocation(String areaCode, String sigungu, String sort) {
-//        System.out.print(serviceKey);
         String url = "https://apis.data.go.kr/B551011/KorService1/areaBasedList1?";
         url += "serviceKey=" + serviceKey;
         url += "&numOfRows=50&pageNo=1&MobileOS=ETC&MobileApp=AppTest&_type=json&listYN=Y&contentTypeId=12";
@@ -75,7 +54,6 @@ public class TourService {
 
             JsonReader reader = new JsonReader(isr);
             reader.setLenient(true); // lenient 모드 활성화
-
             JsonObject rootObj = JsonParser.parseReader(reader).getAsJsonObject()
                     .getAsJsonObject("response")
                     .getAsJsonObject("body");
@@ -226,12 +204,6 @@ public class TourService {
             throw new RuntimeException(e);
         }
     }
-
-
-
-
-
-
 
     /**
      * 내부 DTO 클래스: 한국관광공사 API 응답 구조 (예시)

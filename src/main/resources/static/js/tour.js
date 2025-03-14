@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
             e.preventDefault();
             const region = this.textContent.trim(); // 예: "전라북도"
             // 실제 지역코드에 맞게 수정 필요
-            fetch(`/tour/region?areaCode=${encodeURIComponent(region)}`)
+            fetch(`/main/tour/region?areaCode=${encodeURIComponent(region)}`)
                 .then(response => response.json())
                 .then(data => {
                     const container = document.getElementById("tourContainer");
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const form = document.createElement("form");
             form.method = "post";
-            form.action = "/tour/loc";
+            form.action = "/main/tour/loc";
 
             const areaCodeInput = document.createElement("input");
             areaCodeInput.type = "hidden";

@@ -20,6 +20,4 @@
         private String usetime;
         private String restdate;
         private String infocenter;
-
-
     }

@@ -122,7 +122,7 @@
 
         <div class="tour_img_container">
             <c:forEach var="i" items="${result}">
-                <div class="tour_img_box"><a href="/tour/getLoc?contentid=${i.contentid}"><img src="${i.firstimage}" style="height: 158px">
+                <div class="tour_img_box"><a href="/main/tour/getLoc?contentid=${i.contentid}"><img src="${i.firstimage}" style="height: 158px">
                     <div>${i.title}</div>
                 </a></div>
             </c:forEach>
@@ -143,7 +143,7 @@
 
             const form = document.createElement("form");
             form.method = "post";
-            form.action = "/tour/loc";
+            form.action = "/main/tour/loc";
 
             const inputAreaCode = document.createElement("input");
             inputAreaCode.type = "hidden";
