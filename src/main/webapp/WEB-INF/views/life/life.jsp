@@ -49,7 +49,7 @@
                         <div style="display: flex">
                             <div class="info-name">작성자 : ${p.user_nickname }</div>&nbsp;/&nbsp;
                             <div class="info-date">작성일 : <fmt:formatDate value="${p.post_date}"
-                                                                         pattern="yyyy-MM-dd"/></div>
+                                                                         pattern="yyyy-MM-dd HH:mm"/></div>
                         </div>
                         <div style="display: flex">
                             <div class="info-view">조회수 : ${p.post_view }</div>&nbsp;/&nbsp;

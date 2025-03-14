@@ -13,9 +13,11 @@
 <body>
 <div class="mypage">
     <div class="mypage-container">
-        <div>
-            <img src="/file/${user.user_image}" style="width: 100px; height: 100px">
-        </div>
+        <c:if test="${user.user_image ne null}">
+            <div>
+                <img src="/file/${user.user_image}" style="width: 100px; height: 100px">
+            </div>
+        </c:if>
         <div>
             프로필 사진 변경
         </div>
@@ -45,7 +47,7 @@
         <div style="width: 45%; margin: 20px">
             <h3>자유게시판</h3>
             <c:forEach items="${freePosts}" var="p">
-                <div class="item" onclick="goToPost(${p.post_id})">
+                <div class="item" <%--onclick="goToPost(${p.post_id})"--%>>
                         <%--<div>번호 : ${l.post_id}</div>
                         <div>제목 : ${l.post_title}</div>
                         <div>작성자 : ${l.user_nickname}</div>
@@ -68,7 +70,7 @@
                             <div style="display: flex">
                                 <div class="info-name">작성자 : ${p.user_nickname }</div>&nbsp;/&nbsp;
                                 <div class="info-date">작성일 : <fmt:formatDate value="${p.post_date}"
-                                                                             pattern="yyyy-MM-dd"/></div>
+                                                                             pattern="yyyy-MM-dd HH:mm"/></div>
                             </div>
                             <div style="display: flex">
                                 <div class="info-view">조회수 : ${p.post_view }</div>&nbsp;/&nbsp;
@@ -116,7 +118,7 @@
                             <div style="display: flex">
                                 <div class="info-name">작성자 : ${p.user_nickname }</div>&nbsp;/&nbsp;
                                 <div class="info-date">작성일 : <fmt:formatDate value="${p.post_date}"
-                                                                             pattern="yyyy-MM-dd"/></div>
+                                                                             pattern="yyyy-MM-dd HH:mm"/></div>
                             </div>
                             <div style="display: flex">
                                 <div class="info-view">조회수 : ${p.post_view }</div>&nbsp;/&nbsp;
@@ -131,8 +133,12 @@
     <div class="tab-content" id="comments">
         <div style="width: 45%; margin: 20px">
             <h3>자유게시판</h3>
-            <c:forEach items="${freePostReplies}" var="r">
-                <div>${r}</div>
+            <c:forEach items="${freePostReplies}" var="fr">
+                <%--<div>${fr}</div>--%>
+                <div class="free-context">
+                    <div class="free-reply-text">${fr.r_context}&nbsp;/&nbsp;<fmt:formatDate value="${fr.r_date}"
+                                                                                       pattern="yyyy-MM-dd HH:mm"/></div>
+                </div>
                 <%--<div class="item" onclick="goToPost(${p.post_id})">
                         &lt;%&ndash;<div>번호 : ${l.post_id}</div>
                         <div>제목 : ${l.post_title}</div>
@@ -180,8 +186,12 @@
         </div>
         <div style="width: 45%; margin: 20px">
             <h3>생활게시판</h3>
-            <c:forEach items="${lifePostReplies}" var="r">
-                <div>${r}</div>
+            <c:forEach items="${lifePostReplies}" var="lr">
+                <%--<div>${lr}</div>--%>
+                <div class="life-context">
+                    <div class="life-reply-text">${lr.r_context}&nbsp;/&nbsp;<fmt:formatDate value="${lr.r_date}"
+                                                                                       pattern="yyyy-MM-dd HH:mm"/></div>
+                </div>
             </c:forEach>
         </div>
     </div>
@@ -235,7 +245,7 @@
     function goToPost(postId) {
         const token = generateToken();
         sessionStorage.setItem("viewToken", token);
-        location.href = "life/" + postId + "?token=" + token;
+        location.href = "free/" + postId + "?token=" + token;
     }
 </script>
 </html>

@@ -31,10 +31,10 @@ public interface FreeMapper {
             "WHERE post_id = #{post_id}")
     int updatePost(FreeVO freeVO);
 
-    @Select("select * FROM Free_Comment where post_id = #{post_id} order by c_id desc")
+    @Select("select * FROM Free_reply where post_id = #{post_id} order by c_id desc")
     List<FreeReplyVO> getReplys(int post_id);
 
-    @Insert("insert into Free_Comment" +
+    @Insert("insert into Free_reply" +
             "(c_context)" +
             "values" +
             "(#{c_context})")

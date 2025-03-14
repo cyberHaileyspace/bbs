@@ -40,7 +40,7 @@
             >로그인</span
             >
                 &nbsp;|&nbsp;
-                <span onclick="location.href='/register'" style="cursor: pointer"
+                <span onclick="location.href='/user'" style="cursor: pointer"
                 >회원가입</span
                 >
             </div>

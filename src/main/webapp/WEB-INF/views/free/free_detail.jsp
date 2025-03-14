@@ -9,8 +9,8 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="/resources/js/free/free.js"></script>
-    <link rel="stylesheet" href="/resources/css/free/free.css">
-    <style>
+    <link rel="stylesheet" href="/resources/css/life/life.css">
+    <%--<style>
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
@@ -113,7 +113,7 @@
         .comment-section button:hover {
             background-color: #0056b3;
         }
-    </style>
+    </style>--%>
 </head>
 <body>
 <div class="container">

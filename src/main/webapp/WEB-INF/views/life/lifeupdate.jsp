@@ -9,23 +9,17 @@
     <title>Title</title>
     <%-- <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /> --%>
     <script type="text/javascript" src="/resources/nse_files/js/HuskyEZCreator.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="/resources/css/life/life.css">
+    <link rel="stylesheet" href="/resources/css/sample.css">
 </head>
 <body>
 <form id="writereg" action="/main/life/update" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="post_id" value="${post.post_id}">  <!-- 여기에 post_id 추가 -->
     <div>
         <div hidden="hidden">
             닉네임 : <input name="user_nickname" value="${user.user_nickname}" type="text"
                          placeholder="${user.user_nickname}" readonly></div>
         <div>카테고리</div>
-        ${post.post_id}
         <div>
-            <%--<input type="radio" name="post_category" &lt;%&ndash;id="life-tip"&ndash;%&gt; value="life-tip">&lt;%&ndash;<label for="life-tip">&ndash;%&gt;생활
-            정보</label>
-            <input type="radio" name="post_category" &lt;%&ndash;id="life-health"&ndash;%&gt; value="life-health">&lt;%&ndash;<label for="life-health">&ndash;%&gt;건강
-            정보</label>
-            <input type="radio" name="post_category" &lt;%&ndash;id="life-qna"&ndash;%&gt; value="life-qna">&lt;%&ndash;<label for="life-qna">&ndash;%&gt;질문</label>
-            <input type="radio" name="post_category" &lt;%&ndash;id="life-aft"&ndash;%&gt; value="life-aft">&lt;%&ndash;<label for="life-aft">&ndash;%&gt;후기</label>--%>
             <select name="post_category">
                 <option value="생활 정보">생활 정보</option>
                 <option value="건강 정보">건강 정보</option>
@@ -35,13 +29,6 @@
         </div>
         <div>
             <div>지역</div>
-            <%--<div class="add-size">
-                <input type="radio" name="post_menu" &lt;%&ndash;id="life-tip"&ndash;%&gt; value="life-tip">&lt;%&ndash;<label for="life-tip">&ndash;%&gt;생활
-                정보</label>
-                <input type="radio" name="post_menu" &lt;%&ndash;id="life-health"&ndash;%&gt; value="life-health">&lt;%&ndash;<label for="life-health">&ndash;%&gt;건강
-                정보</label>
-                <input type="radio" name="post_menu" &lt;%&ndash;id="life-qna"&ndash;%&gt; value="life-qna">&lt;%&ndash;<label for="life-qna">&ndash;%&gt;질문</label>
-            </div>--%>
             <select name="post_menu">
                 <option value="서울">서울</option>
                 <option value="경기/인천">경기/인천</option>
@@ -57,30 +44,28 @@
 
     <div>
         <div>제목</div>
-        <div><textarea name="post_title" rows="5" cols="100" placeholder="${post.post_title}"
-                       style="resize: none;"></textarea>
+        <div><textarea name="post_title" rows="5" cols="100" style="resize: none;">${post.post_title}
+        </textarea>
         </div>
     </div>
 
     <div>
         <div>내용</div>
         <div>
-            <textarea name="post_context" id="writearea" value="post_context" rows="25" cols="100"
-                      placeholder="${post.post_context}"></textarea>
+            <textarea name="post_context" id="writearea" value="post_context" rows="25" cols="100">${post.post_context}
+            </textarea>
         </div>
     </div>
     <div>
 
         <div>
-            <input type='file' name="post_file" id='btnAtt'>
+            <input type='file' name="post_file" id='btnAtt' value="${post.post_image}">
         </div>
-
     </div>
     <div>
-        <button class="update-cancel" type="button" onclick="history.back()">취소</button>
-        <button class="update-post" type="submit" name="post_id" value="${post.post_id}">수정</button>
+        <button class="reg-cancel" type="button" onclick="history.back()">취소</button>
+        <button class="reg-post" type="submit" name="post_id" value="${post.post_id}">등록</button>
     </div>
-
 </form>
 </body>
 <script type="text/javascript" id="smartEditor">
@@ -104,9 +89,10 @@
         }
     });
 
-    document.querySelector(".update-post").addEventListener("click", function (e) {
+    document.querySelector(".reg-post").addEventListener("click", function (e) {
         oEditors.getById["writearea"].exec("UPDATE_CONTENTS_FIELD", []);
         console.log(oEditors.getById["writearea"].exec("UPDATE_CONTENTS_FILED", []));
+        $("#writereg").submit();
     });
 
 </script>

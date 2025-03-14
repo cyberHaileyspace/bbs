@@ -58,6 +58,7 @@ public class LifeService {
     }
 
     public void updatePost(LifeVO lifeVO, MultipartFile post_file) {
+        // 기존 게시글 조회
         LifeVO existingPost = lifeMapper.detailPost(lifeVO.getPost_id());
 
         // 기존 게시글이 존재하는지 확인
@@ -65,7 +66,7 @@ public class LifeService {
             throw new IllegalArgumentException("해당 게시글이 존재하지 않습니다: ID=" + lifeVO.getPost_id());
         }
 
-        String uploadFolder = "/Users/kimsuhyeon/Desktop/final_img";
+        String uploadFolder = "C:\\Users\\soldesk\\Desktop\\uploadFolder";
 
         if (post_file != null && !post_file.isEmpty()) {
             String originName = post_file.getOriginalFilename();
@@ -92,6 +93,7 @@ public class LifeService {
             // 이미지 수정 안 할 경우 기존 이미지 유지
             lifeVO.setPost_image(existingPost.getPost_image());
         }
+        // DB 업데이트 실행
         lifeMapper.updatePost(lifeVO);
     }
 

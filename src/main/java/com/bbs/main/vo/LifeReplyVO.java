@@ -6,11 +6,11 @@ import java.util.Date;
 
 @Data
 public class LifeReplyVO {
-   private String c_id;
+   private String r_id;
    private String post_id;
-   private String c_writer;
-   private String c_context;
-   private String c_like;
-   private Date c_date;
-   private Date c_update;
+   private String r_writer;
+   private String r_context;
+   private String r_like;
+   private Date r_date;
+   private Date r_update;
 }

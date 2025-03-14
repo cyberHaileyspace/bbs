@@ -104,10 +104,18 @@ public class LifeC {
     }
 
     @GetMapping("/update/{post_id}")
-    public String update(Model model) {
+    public String update(@PathVariable int post_id, Model model) {
+        model.addAttribute("post", lifeService.getPost(post_id));
         model.addAttribute("content", "life/lifeupdate.jsp");
         return "index";
     }
+
+    /*@PostMapping("/update")
+    public String update(int post_id, LifeVO lifeVO, MultipartFile post_file) {
+        System.out.println(post_id + "post no : " + lifeVO.getPost_id());
+        lifeService.updatePost(lifeVO, post_file);
+        return "redirect:/main/life/" + post_id;
+    }*/
 
     @PostMapping("/update")
     public String update(int post_id, LifeVO lifeVO, MultipartFile post_file) {

@@ -1,5 +1,6 @@
 package com.bbs.main.mapper;
 
+import com.bbs.main.vo.FreeVO;
 import com.bbs.main.vo.LifeVO;
 import org.apache.ibatis.annotations.*;
 
