@@ -10,9 +10,22 @@
     <link rel="stylesheet" href="/resources/css/life/life.css">
 </head>
 <body>
+<div class="category">
+    <input type="radio" id="all" name="cm-dog">전체<%--<label class="size" for="all">전체</label>--%>
+    <input type="radio" id="tip" name="cm-dog">생활 정보<%--<label class="size" data-val="소형견" for="s">생활 정보</label>--%>
+    <input type="radio" id="health" name="cm-dog">건강 정보<%--<label class="size" data-val="중형견" for="m">건강 정보</label>--%>
+    <input type="radio" id="qna" name="cm-dog">질문<%--<label class="size" data-val="대형견" for="l">질문</label>--%>
+    <input type="radio" id="aft" name="cm-dog">후기<%--<label class="size" data-val="대형견" for="l">후기</label>--%>
+</div>
+<div class="sort">
+    <input type="radio" name="option" value="new" checked="checked"/> 최신순
+    <input type="radio" name="option" value="like"/> 좋아요순
+    <input type="radio" name="option" value="view"/> 조회순
+</div>
 <c:choose>
     <c:when test="${not empty posts}">
         <c:forEach items="${posts}" var="p">
+
             <div class="item">
                     <%--<div>번호 : ${l.post_id}</div>
                     <div>제목 : ${l.post_title}</div>
@@ -36,7 +49,7 @@
                         <div style="display: flex">
                             <div class="info-name">작성자 : ${p.user_nickname }</div>&nbsp;/&nbsp;
                             <div class="info-date">작성일 : <fmt:formatDate value="${p.post_date}"
-                                                                         pattern="yyyy-MM-dd"/></div>
+                                                                         pattern="yyyy-MM-dd HH:mm"/></div>
                         </div>
                         <div style="display: flex">
                             <div class="info-view">조회수 : ${p.post_view }</div>&nbsp;/&nbsp;
@@ -74,5 +87,32 @@
             location.href = "/login"
         }
     }
+
+    $(document).ready(function () {
+        function radio() {
+            $("input[name='option']").change(function () {
+                let option = $("input[name='option']:checked").val();
+                console.log("선택된 정렬 옵션:", option);
+
+                $.ajax({
+                    url: 'life/option',
+                    type: 'GET',
+                    data: {option: option},
+                    async: true,
+                })
+                    .done(function (resData) {
+                        console.log("응답 데이터:", resData);
+                        if (resData.length !== 0) {
+                            $("#item").empty();
+                            showResult(resData);
+                        }
+                    })
+                    .fail(function (xhr) {
+                        console.error("요청 실패:", xhr);
+                    });
+            });
+        }
+    });
+
 </script>
 </html>

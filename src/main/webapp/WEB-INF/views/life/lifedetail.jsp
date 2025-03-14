@@ -10,6 +10,7 @@
     <%-- <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /> --%>
     <script type="text/javascript" src="/resources/nse_files/js/HuskyEZCreator.js" charset="utf-8"></script>
     <link rel="stylesheet" href="/resources/css/life/life.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <div class="container-cm-post">
@@ -42,17 +43,20 @@
             </div>
         </c:if>
         <div class="post-text">${post.post_context}</div>
-        <div id="post-${post.post_id}">
-            <button class="like-button" data-post-id="${post.post_id}">♡</button>
-            <span class="like-count" id="like-count-${post.post_id}">0</span>
+        <div id="post<%---${post.post_id}--%>">
+            <button class="like-button" onclick="location.href='like/${post.post_id}'">♡</button>
+            <span <%--class="like-count" id="like-count-${post.post_id}"--%>>${post.post_like}</span>
         </div>
         <%--<div class="cm-asd-btn">
             <button class="cm-up-btn" style="display: ${asd}" onclick="location.href='CmUpdateC?no=${getPost.cm_no}'">수정</button>
             <button class="cm-del-btn" style="display: ${asd}" onclick="deleteCm('${getPost.cm_no}')">삭제</button>
         </div>--%>
     </div>
-    <button onclick="deletePost(${post.post_id})">삭제</button>
-    <button onclick="updatePost(${post.post_id})">수정</button>
+    <c:if test="${login_nickname == post.user_nickname}">
+        <button onclick="deletePost(${post.post_id})">삭제</button>
+        <button onclick="location.href='update/${post.post_id}'">수정</button>
+    </c:if>
+    <button onclick="location.href='/main/life'">목록</button>
 </div>
 </body>
 <script type="text/javascript" id="smartEditor">

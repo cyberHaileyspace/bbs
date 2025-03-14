@@ -1,7 +1,9 @@
 package com.bbs.main.mapper;
 
-import com.bbs.main.vo.UserVO;
+import com.bbs.main.vo.*;
 import org.apache.ibatis.annotations.*;
+
+import java.util.List;
 
 @Mapper
 public interface UserMapper {
@@ -29,4 +31,16 @@ public interface UserMapper {
 
     @Update("update User_DB set user_name = #{user_name}, user_nickname = #{user_nickname}, user_email = #{user_email} where user_id = #{user_id}")
     int updateUser(UserVO registerVO);
+
+    @Select("select * from free_post_db where user_nickname = #{user_id} order by post_id desc")
+    List<FreeVO> getMyFreePosts(String user_id);
+
+    @Select("select * from life_post_db where user_nickname = #{user_id} order by post_id desc")
+    List<LifeVO> getMyLifePosts(String user_id);
+
+    @Select("select * from free_reply where r_writer = #{user_nickname} order by r_id desc")
+    List<FreeReplyVO> getMyFreePostReplies(String user_nickname);
+
+    @Select("select * from life_reply where r_writer = #{user_nickname} order by r_id desc")
+    List<LifeReplyVO> getMyLifePostReplies(String user_nickname);
 }

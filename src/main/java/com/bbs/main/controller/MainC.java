@@ -43,7 +43,6 @@ public class MainC {
 
     @GetMapping("/free")
     public String list(Model model) {
-        System.out.println("1111");
         model.addAttribute("posts", freeService.getposts());
         model.addAttribute("content", "free/free_posts.jsp");
         return "index";
