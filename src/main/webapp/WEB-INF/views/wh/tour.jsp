@@ -114,14 +114,15 @@
     <div class="tour_img_container" id="tourContainer">
 
         <div id="extraInfo">
-            <span style="margin: 0 10px;">관광지 목록</span>
-            <span style="margin: 0 10px;" class="sort" data-sort="title">제목순</span>
-            <span style="margin: 0 10px;" class="sort" data-sort="date">최신순</span>
+            <span class="extraList" style="margin-right: auto">관광지 목록</span>
+            <span style="margin: 0 15px" class="sort" data-sort="O" data-area-code="${param.areaCode}" data-sigungu="${param.sigungu}">제목순</span>
+            <span>|</span>
+            <span style="margin: 0 15px" class="sort" data-sort="R" data-area-code="${param.areaCode}" data-sigungu="${param.sigungu}">최신순</span>
         </div>
 
         <div class="tour_img_container">
             <c:forEach var="i" items="${result}">
-                <div class="tour_img_box"><a href="/tour/getLoc?contentid=${i.contentid}"><img src="${i.firstimage}" style="height: 158px">
+                <div class="tour_img_box"><a href="/main/tour/getLoc?contentid=${i.contentid}"><img src="${i.firstimage}" style="height: 158px">
                     <div>${i.title}</div>
                 </a></div>
             </c:forEach>
@@ -135,12 +136,35 @@
 </div>
 </body>
 <script>
-
-
     document.querySelectorAll(".sort").forEach((sort) => {
         sort.addEventListener("click", (e)=>{
+            // 기존 시군구, 지역코드, 솔팅
+            const params = e.target.dataset;
 
+            const form = document.createElement("form");
+            form.method = "post";
+            form.action = "/main/tour/loc";
 
+            const inputAreaCode = document.createElement("input");
+            inputAreaCode.type = "hidden";
+            inputAreaCode.name = "areaCode";
+            inputAreaCode.value = params.areaCode;
+            form.appendChild(inputAreaCode);
+
+            const inputSigungu = document.createElement("input");
+            inputSigungu.type = "hidden";
+            inputSigungu.name = "sigungu";
+            inputSigungu.value = params.sigungu;
+            form.appendChild(inputSigungu);
+
+            const inputSort = document.createElement("input");
+            inputSort.type = "hidden";
+            inputSort.name = "sort";
+            inputSort.value = params.sort;
+            form.appendChild(inputSort);
+
+            document.body.appendChild(form);
+            form.submit();
         })
     })
 </script>
