@@ -136,40 +136,51 @@
         <button onclick="location.href='/main/free'">목록으로</button>
     </div>
     <div>
+        <div class="comment-section">
+            <div class="comment-header">댓글 쓰기</div>
+            <div hidden="hidden">닉네임 : <input name="user_nickname" value="${user.user_nickname}" type="text"
+                                              placeholder="${user.user_nickname}" readonly></div>
+            <textarea id="replyContent" placeholder="댓글을 입력하세요..."></textarea>
+            <button id="commentButton"
+                    onclick="handleReplySubmit('${user.user_nickname}')">댓글 쓰기</button>
+        </div>
         <div id="commentSection">
             <p></p>
         </div>
+    </div>
+</div>
+<%--        ---------------------------------------------------------------------------------------%>
         <script>
             var post_id = ${post.post_id}; // JSP 변수를 JavaScript 변수에 할당
             var user_nickname = "${login_nickname}"; // 로그인한 사용자의 닉네임을 JSP 변수로 받아옴
 
             // 페이지 로드 시 댓글을 비동기적으로 가져오는 함수
-            function loadComments() {
-                fetch(`/main/free/ReplyPost/${post_id}`)
+            function loadReplies() {
+                fetch(`/main/free/reply/${post_id}`)
                     .then(response => response.json())
                     .then(data => {
+                        console.log("Fetched Comments:", data)
                         const commentSection = document.getElementById("commentSection");
                         commentSection.innerHTML = ""; // 기존 댓글 삭제
 
                         if (data.length === 0) {
                             commentSection.innerHTML = "<p>댓글이 없습니다. 댓글을 작성해 보세요!</p>";
                         } else {
-                            data.forEach(comment => {
+                            data.forEach(reply => {
                                 const commentDiv = document.createElement("div");
                                 commentDiv.classList.add("comment");
 
                                 // 댓글 작성자와 로그인한 사용자가 동일한 경우 삭제 및 수정 버튼을 추가
-                                let commentHTML = `
-                            <span>작성자 : ${comment.c_writer}</span>
-                            <span>${comment.c_date}</span>
-                            <p>${comment.c_context}</p>
-                        `;
+                                let commentHTML =
+                            "<span>작성자 : " + reply.r_writer + "</span>" + "<br>" +
+                            "<span> 작성일 : "  + reply.r_date + "</span>" +
+                            "<p>"+ reply.r_context +"</p>"
+                        ;
 
-                                if (user_nickname === comment.c_writer) {
-                                    commentHTML += `
-                                <button onclick="deleteComment(${comment.c_id})">삭제</button>
-                                <button onclick="editComment(${comment.c_id})">수정</button>
-                            `;
+                                if (user_nickname === reply.r_writer) {
+                                    commentHTML += "<button onclick=\"deleteReply(" + reply.r_id + ")\">삭제</button>" +
+                                        "<button onclick=\"editReply(" + reply.r_id + ")\">수정</button>";
+                                    ;
                                 }
 
                                 commentDiv.innerHTML = commentHTML;
@@ -182,10 +193,11 @@
                     });
             }
             console.log(post_id, user_nickname)
+
             // 페이지가 로드되면 댓글을 비동기적으로 불러오는 함수 호출
-            window.onload = loadComments;
+
+            document.addEventListener("DOMContentLoaded", loadReplies);
+
         </script>
-</div>
-</div>
 </body>
 </html>
