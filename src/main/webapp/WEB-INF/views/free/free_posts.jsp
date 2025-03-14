@@ -95,7 +95,7 @@
                 console.log("선택된 정렬 옵션:", option);
 
                 $.ajax({
-                    url: 'life/option',
+                    url: 'free/option',
                     type: 'GET',
                     data: {option: option},
                     async: true,
