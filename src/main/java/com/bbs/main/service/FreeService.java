@@ -101,4 +101,7 @@ public class FreeService {
         return freeMapper.getReplys(post_id);
     }
 
+    public int addReply(FreeReplyVO freeReplyVO) {
+        return freeMapper.addReply(freeReplyVO);
+    }
 }
