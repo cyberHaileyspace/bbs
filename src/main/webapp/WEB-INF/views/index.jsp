@@ -52,7 +52,13 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="panel">
     <div>뉴스</div>
     <div onclick="location.href='/main/free'" style="cursor: pointer">자유게시판</div>
-    <div onclick="location.href='/main/tour'" style="cursor: pointer">관광게시판</div>
+    <form id="defaultTourForm" action="/main/tour/loc" method="post">
+        <input type="hidden" name="areaCode" value="1" />
+        <input type="hidden" name="sigungu" value="" />
+        <input type="hidden" name="sort" value="R" />
+        <input type="hidden" name="pageNo" value="1" />
+    </form>
+    <div onclick="document.getElementById('defaultTourForm').submit()" style="cursor: pointer">관광게시판</div>
     <div onclick="location.href='/main/life'" style="cursor: pointer">생활게시판</div>
     <div onclick="location.href='/login'" style="cursor: pointer">로그인</div>
     <div onclick="location.href='/register'" style="cursor: pointer">회원가입</div>

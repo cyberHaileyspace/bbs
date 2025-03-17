@@ -32,7 +32,8 @@ ul {
 .tour_img_box {
     display: flex;
     justify-content: center;
-    min-width: 220px;
+    width: 220px;
+
     position: relative;
 }
 .tour_img_box div {
@@ -74,8 +75,8 @@ ul {
 }
 
 .tour_img_box img {
-    width: 100%;
-    height: auto;
+    width: 220px;
+    height: 158px;
     display: block;
 }
 

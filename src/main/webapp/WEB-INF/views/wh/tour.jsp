@@ -10,7 +10,8 @@
 <body>
 <div style="width: 100%">
     <div style="display: flex; flex-direction: column; align-items: center">
-        <h3 style="width: 240px; height: 50px; background-color: #399dc8; text-align: center; display: flex; align-items: center; justify-content: center; border-radius: 15px; margin-bottom: 0">가고싶은 지역을 골라보세요</h3>
+        <h3 style="width: 240px; height: 50px; background-color: #399dc8; text-align: center; display: flex; align-items: center; justify-content: center; border-radius: 15px; margin-bottom: 0">
+            가고싶은 지역을 골라보세요</h3>
         <input type="text" class="location-input" style="width: 230px"/>
     </div>
     <!-- 대분류/소분류 영역 (이전 코드와 동일) -->
@@ -115,16 +116,21 @@
 
         <div id="extraInfo">
             <span class="extraList" style="margin-right: auto">관광지 목록</span>
-            <span style="margin: 0 15px" class="sort" data-sort="O" data-area-code="${param.areaCode}" data-sigungu="${param.sigungu}">제목순</span>
+            <span style="margin: 0 15px" class="sort" data-sort="O" data-area-code="${param.areaCode}"
+                  data-sigungu="${param.sigungu}">제목순</span>
             <span>|</span>
-            <span style="margin: 0 15px" class="sort" data-sort="R" data-area-code="${param.areaCode}" data-sigungu="${param.sigungu}">최신순</span>
+            <span style="margin: 0 15px" class="sort" data-sort="R" data-area-code="${param.areaCode}"
+                  data-sigungu="${param.sigungu}">최신순</span>
         </div>
 
         <div class="tour_img_container">
             <c:forEach var="i" items="${result}">
-                <div class="tour_img_box"><a href="/main/tour/getLoc?contentid=${i.contentid}"><img src="${i.firstimage}" style="height: 158px">
-                    <div>${i.title}</div>
-                </a></div>
+                <div class="tour_img_box">
+                    <a href="/main/tour/getLoc?contentid=${i.contentid}&areaCode=${param.areaCode}&sigungu=${param.sigungu}&sort=${param.sort}&pageNo=${param.pageNo}">
+                        <img src="${i.firstimage}">
+                        <div>${i.title}</div>
+                    </a>
+                </div>
             </c:forEach>
         </div>
         <div class="pagination">
@@ -137,7 +143,7 @@
 </body>
 <script>
     document.querySelectorAll(".sort").forEach((sort) => {
-        sort.addEventListener("click", (e)=>{
+        sort.addEventListener("click", (e) => {
             // 기존 시군구, 지역코드, 솔팅
             const params = e.target.dataset;
 

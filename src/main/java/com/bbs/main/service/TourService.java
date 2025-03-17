@@ -28,14 +28,24 @@ public class TourService {
     @Autowired
     private TourMapper tourMapper;
 
-//    public List<TourCommentVO> getComment(int contentid) {
-//        return TourMapper.getComment(contentid);
-//    }
+    public List<TourCommentVO> getComment(int contentid) {
+        return tourMapper.getComment(contentid);
+    }
+
+    public void addComment(TourCommentVO comment) {
+        tourMapper.insertComment(comment);
+    }
+
+    public void removeComment(int c_id) {
+        tourMapper.deleteComment(c_id);
+    }
+
+    // 댓글 추가, 삭제 등 다른 비즈니스 로직 메서드도 추가할 수 있습니다.
 
     public List<TourVO> getAllLocation(String areaCode, String sigungu, String sort) {
         String url = "https://apis.data.go.kr/B551011/KorService1/areaBasedList1?";
         url += "serviceKey=" + serviceKey;
-        url += "&numOfRows=50&pageNo=1&MobileOS=ETC&MobileApp=AppTest&_type=json&listYN=Y&contentTypeId=12";
+        url += "&numOfRows=300&pageNo=1&MobileOS=ETC&MobileApp=AppTest&_type=json&listYN=Y&contentTypeId=12";
         url += "&areaCode=" + areaCode;
         System.out.print(sort + ">>>>>>>>>>>>>>>>>>>>>>>>>");
         if (sort == "" || sort == null) {
