@@ -9,7 +9,7 @@
     <title>Title</title>
     <%-- <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /> --%>
     <script type="text/javascript" src="/resources/nse_files/js/HuskyEZCreator.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="/resources/css/sample.css">
+    <link rel="stylesheet" href="/resources/css/board.css">
 </head>
 <body>
 <form id="writereg" action="/main/life/update" method="post" enctype="multipart/form-data">

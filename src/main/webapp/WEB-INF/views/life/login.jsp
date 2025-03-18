@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="/resources/css/life/life.css">
+    <link rel="stylesheet" href="/resources/css/board.css">
     <script src="/resources/js/sample.js"></script>
 </head>
 
@@ -35,7 +35,7 @@
                 <br>
             </form>
             <div class="login-button02">
-                <div onclick="location.href='register'">회원가입</div>
+                <div onclick="location.href='user'">회원가입</div>
                 <div onclick="location.href='pwreset'">패스워드 재설정</div>
             </div>
             <%--<div class="two_box">

@@ -9,7 +9,7 @@
     <title>Title</title>
     <%-- <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /> --%>
     <script type="text/javascript" src="/resources/nse_files/js/HuskyEZCreator.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="/resources/css/life/life.css">
+    <link rel="stylesheet" href="/resources/css/board.css">
 </head>
 <body>
 <form id="writereg" action="reg" method="post" enctype="multipart/form-data">
@@ -73,7 +73,7 @@
         </div>
 
     </div>
-    <div>
+    <div style="display: flex; gap: 20px">
         <button class="reg-cancel" type="button" onclick="history.back()">취소</button>
         <button class="reg-post" type="submit">등록</button>
     </div>

@@ -3,11 +3,15 @@ package com.bbs.main.controller;
 import com.bbs.main.service.FreeService;
 import com.bbs.main.service.LifeService;
 import com.bbs.main.service.UserService;
+import com.bbs.main.vo.LifeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 @RequestMapping("/main")
 @Controller
@@ -30,9 +34,14 @@ public class MainC {
 
     @GetMapping("/life")
     public String life(Model model) {
-        model.addAttribute("posts", lifeService.getposts());
         model.addAttribute("content", "life/life.jsp");
         return "index";
+    }
+
+    @ResponseBody
+    @GetMapping("/life/all")
+    public List<LifeVO> life() {
+        return lifeService.getposts();
     }
 
     @GetMapping("/tour")

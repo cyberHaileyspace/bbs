@@ -7,22 +7,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <%-- <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /> --%>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <script type="text/javascript" src="/resources/nse_files/js/HuskyEZCreator.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="/resources/css/life/life.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="/resources/css/board.css">
+    <script src="/resources/js/sample.js"></script>
 </head>
 <body>
 <div class="container-cm-post">
-
-    <div onclick="location.href='/main/life'" style="cursor: pointer">생활게시판 ></div>
-
+    <div class="life-back" onclick="location.href='/main/life'">생활게시판 ></div>
     <div class="post-title"><span> ${post.post_title } </span></div>
-
     <div class="post-info">
-        <%--<div>
-            <img src="/file/${post.user_image}" style="width: 100px; height: 100px">
-        </div>--%>
+        <div class="post-profile"><img alt="" src="file/${user.user_image }"></div>
         <div class="post-mini-wrapper">
             <div class="post-string">
                 <div class="post-name">${post.user_nickname }</div>
@@ -36,27 +31,49 @@
             </div>
         </div>
     </div>
+
     <div class="post-content">
         <c:if test="${post.post_image ne null}">
             <div class="post-img">
                 <img src="/file/${post.post_image}" style="width: 400px; height: 400px">
             </div>
         </c:if>
-        <div class="post-text">${post.post_context}</div>
-        <div id="post<%---${post.post_id}--%>">
-            <button class="like-button" onclick="location.href='like/${post.post_id}'">♡</button>
-            <span <%--class="like-count" id="like-count-${post.post_id}"--%>>${post.post_like}</span>
+        <div class="post-text" id="post<%---${post.post_id}--%>">
+            <div>${post.post_context}</div>
         </div>
-        <%--<div class="cm-asd-btn">
-            <button class="cm-up-btn" style="display: ${asd}" onclick="location.href='CmUpdateC?no=${getPost.cm_no}'">수정</button>
-            <button class="cm-del-btn" style="display: ${asd}" onclick="deleteCm('${getPost.cm_no}')">삭제</button>
-        </div>--%>
+        <br>
+        <div class="post-button">
+            <button class="like-button" onclick="location.href='like/' + ${post.post_id}">
+                추천수 : ${post.post_like}
+            </button>
+            <c:if test="${login_nickname == post.user_nickname}">
+                <button onclick="deletePost(${post.post_id})">삭제</button>
+                <button onclick="location.href='update/${post.post_id}'">수정</button>
+            </c:if>
+            <button onclick="location.href='/main/life'">목록</button>
+        </div>
     </div>
-    <c:if test="${login_nickname == post.user_nickname}">
-        <button onclick="deletePost(${post.post_id})">삭제</button>
-        <button onclick="location.href='update/${post.post_id}'">수정</button>
-    </c:if>
-    <button onclick="location.href='/main/life'">목록</button>
+</div>
+<div>
+    <div>
+        <div class="comment-section">
+            <div class="comment-header">댓글 쓰기</div>
+            <div hidden="hidden">닉네임 : <input name="user_nickname" value="${user.user_nickname}" type="text"
+                                              placeholder="${user.user_nickname}" readonly></div>
+
+            <div class="comment-ta">
+                <textarea id="replyContent" placeholder="댓글을 입력하세요..." style="resize: none"></textarea>
+            </div>
+
+            <button id="commentButton"
+                    onclick="handleReplySubmit('${user.user_nickname}')">댓글 쓰기
+            </button>
+        </div>
+
+        <div id="commentSection">
+            <p></p>
+        </div>
+    </div>
 </div>
 </body>
 <script type="text/javascript" id="smartEditor">
@@ -86,44 +103,52 @@
     });
 </script>
 <script>
-    function deletePost(no) {
-        if (confirm('정말 삭제하시겠습니까?')) {
-            // DELETE 요청으로 데이터를 보냄
-            /*fetch('/main/life/' + no, {
-                method: 'DELETE',  // HTTP method를 DELETE로 설정
-                headers: {
-                    'Content-Type': 'application/json',  // JSON 형식으로 데이터 전송
+    var post_id = ${post.post_id}; // JSP 변수를 JavaScript 변수에 할당
+    var user_nickname = "${login_nickname}"; // 로그인한 사용자의 닉네임을 JSP 변수로 받아옴
+
+    // 페이지 로드 시 댓글을 비동기적으로 가져오는 함수
+    function loadReplies() {
+        fetch('/main/life/reply/'+ post_id)
+            .then(response => response.json())
+            .then(data => {
+                console.log("Fetched Comments:", data)
+                const commentSection = document.getElementById("commentSection");
+                commentSection.innerHTML = ""; // 기존 댓글 삭제
+
+                if (data.length === 0) {
+                    commentSection.innerHTML = "<p>댓글이 없습니다. 댓글을 작성해 보세요!</p>";
+                } else {
+                    data.forEach(reply => {
+                        const commentDiv = document.createElement("div");
+                        commentDiv.classList.add("comment");
+
+                        // 댓글 작성자와 로그인한 사용자가 동일한 경우 삭제 및 수정 버튼을 추가
+                        let commentHTML =
+                            "<span>작성자 : " + reply.r_writer + "</span>" + "<br>" +
+                            "<span>작성일 : " + reply.r_date + "</span>" +
+                            "<p>" + reply.r_context + "</p>"
+                        ;
+
+                        if (user_nickname === reply.r_writer) {
+                            commentHTML += "<button onclick=\"deleteReply(" + reply.r_id + ")\">삭제</button>" +
+                                "<button onclick=\"editReply(" + reply.r_id + ")\">수정</button>";
+                            ;
+                        }
+
+                        commentDiv.innerHTML = commentHTML;
+                        commentSection.appendChild(commentDiv);
+                    });
                 }
             })
-                .then(response => response.json())  // 서버에서 응답을 JSON 형태로 받음
-                .then(data => {
-                    alert('삭제되었습니다.');
-                    location.href = '/main/life';  // 삭제 후 페이지를 리다이렉트
-                })
-                .catch(error => {
-                    console.error('Error:', error);  // 에러 처리
-                });*/
-
-            fetch('/main/life/' + no, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            })
-                .then(response => response.json())  // JSON 응답을 받음
-                .then(data => {
-                    if (data.success) {
-                        alert('삭제되었습니다.');
-                    } else {
-                        alert('로그인이 필요합니다.');
-                    }
-                    location.href = data.redirectUrl;  // 수동으로 페이지 이동
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-
-        }
+            .catch(error => {
+                console.error("댓글 로드 실패:", error);
+            });
     }
+
+    console.log(post_id, user_nickname)
+
+    // 페이지가 로드되면 댓글을 비동기적으로 불러오는 함수 호출
+
+    document.addEventListener("DOMContentLoaded", loadReplies);
 </script>
 </html>

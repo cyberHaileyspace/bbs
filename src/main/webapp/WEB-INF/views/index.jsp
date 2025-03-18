@@ -40,7 +40,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
               >로그인</span
             >
             &nbsp;|&nbsp;
-            <span onclick="location.href='/register'" style="cursor: pointer"
+            <span onclick="location.href='/user'" style="cursor: pointer"
               >회원가입</span
             >
           </div>
@@ -50,7 +50,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 
 </div>
 <div class="panel">
-    <div>뉴스</div>
+    <div>뉴스 및 공지</div>
     <div onclick="location.href='/main/free'" style="cursor: pointer">자유게시판</div>
     <div onclick="location.href='/main/tour'" style="cursor: pointer">관광게시판</div>
     <div onclick="location.href='/main/life'" style="cursor: pointer">생활게시판</div>
@@ -72,6 +72,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         <h4>© 2025 디아스포라(Diaspora) 한국 일본인 생활 정보 커뮤니티</h4>
       </div>
     </div>
-    <script src="/resources/js/tour.js"></script>
+<%--    <script src="/resources/js/tour.js"></script>--%>
   </body>
 </html>

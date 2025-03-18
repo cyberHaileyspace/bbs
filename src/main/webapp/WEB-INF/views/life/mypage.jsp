@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="/resources/css/life/life.css">
+    <link rel="stylesheet" href="/resources/css/board.css">
     <script src="/resources/js/sample.js"></script>
 </head>
 <body>
@@ -55,7 +55,7 @@
                         <%--<div>
                             <button onclick="location.href='delete?pk=${p.p_no}'">삭제</button>
                         </div>--%>
-                    <div class="post-life" onclick="goToPost(${p.post_id})">
+                    <div class="post-life" onclick="goTofreePost(${p.post_id})">
                         <div class="life-kind">
                             <div class="life-no">번호 : ${p.post_id }</div>&nbsp;/&nbsp;
                             <div class="life-cate">카테고리 : ${p.post_category }</div>&nbsp;/&nbsp;
@@ -69,8 +69,7 @@
                         <div class="life-info">
                             <div style="display: flex">
                                 <div class="info-name">작성자 : ${p.user_nickname }</div>&nbsp;/&nbsp;
-                                <div class="info-date">작성일 : <fmt:formatDate value="${p.post_date}"
-                                                                             pattern="yyyy-MM-dd HH:mm"/></div>
+                                <div class="info-date">작성일 : <fmt:formatDate value="${p.post_date}" pattern="yyyy-MM-dd HH:mm"/> </div>
                             </div>
                             <div style="display: flex">
                                 <div class="info-view">조회수 : ${p.post_view }</div>&nbsp;/&nbsp;
@@ -103,7 +102,7 @@
                         <%--<div>
                             <button onclick="location.href='delete?pk=${p.p_no}'">삭제</button>
                         </div>--%>
-                    <div class="post-life" onclick="goToPost(${p.post_id})">
+                    <div class="post-life" onclick="goTolifePost(${p.post_id})">
                         <div class="life-kind">
                             <div class="life-no">번호 : ${p.post_id }</div>&nbsp;/&nbsp;
                             <div class="life-cate">카테고리 : ${p.post_category }</div>&nbsp;/&nbsp;
@@ -117,8 +116,7 @@
                         <div class="life-info">
                             <div style="display: flex">
                                 <div class="info-name">작성자 : ${p.user_nickname }</div>&nbsp;/&nbsp;
-                                <div class="info-date">작성일 : <fmt:formatDate value="${p.post_date}"
-                                                                             pattern="yyyy-MM-dd HH:mm"/></div>
+                                <div class="info-date">작성일 : <fmt:formatDate value="${p.post_date}" pattern="yyyy-MM-dd HH:mm"/></div>
                             </div>
                             <div style="display: flex">
                                 <div class="info-view">조회수 : ${p.post_view }</div>&nbsp;/&nbsp;
@@ -136,8 +134,7 @@
             <c:forEach items="${freePostReplies}" var="fr">
                 <%--<div>${fr}</div>--%>
                 <div class="free-context">
-                    <div class="free-reply-text">${fr.r_context}&nbsp;/&nbsp;<fmt:formatDate value="${fr.r_date}"
-                                                                                       pattern="yyyy-MM-dd HH:mm"/></div>
+                    <div class="free-reply-text">${fr.r_context}&nbsp;/&nbsp;${fr.r_date}</div>
                 </div>
                 <%--<div class="item" onclick="goToPost(${p.post_id})">
                         &lt;%&ndash;<div>번호 : ${l.post_id}</div>
@@ -189,8 +186,7 @@
             <c:forEach items="${lifePostReplies}" var="lr">
                 <%--<div>${lr}</div>--%>
                 <div class="life-context">
-                    <div class="life-reply-text">${lr.r_context}&nbsp;/&nbsp;<fmt:formatDate value="${lr.r_date}"
-                                                                                       pattern="yyyy-MM-dd HH:mm"/></div>
+                    <div class="life-reply-text">${lr.r_context}&nbsp;/&nbsp;${lr.r_date}</div>
                 </div>
             </c:forEach>
         </div>
@@ -242,10 +238,22 @@
     }
 </script>--%>
 <script>
-    function goToPost(postId) {
+    function generateToken() {
+        const now = new Date();
+        const token = now.getMinutes() + ":" + now.getSeconds();  // "mm:ss" 형식
+        return token;
+    }
+
+    function goTofreePost(postId) {
         const token = generateToken();
         sessionStorage.setItem("viewToken", token);
-        location.href = "free/" + postId + "?token=" + token;
+        location.href = "main/free/" + postId + "?token=" + token;
+    }
+
+    function goTolifePost(postId) {
+        const token = generateToken();
+        sessionStorage.setItem("viewToken", token);
+        location.href = "main/life/" + postId + "?token=" + token;
     }
 </script>
 </html>

@@ -43,5 +43,4 @@ public interface FreeMapper {
             "VALUES (#{post_id}, #{r_writer}, #{r_context})")
     int addReply(FreeReplyVO freeReplyVO);
 
-
 }

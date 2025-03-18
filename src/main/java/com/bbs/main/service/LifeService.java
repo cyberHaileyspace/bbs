@@ -1,7 +1,9 @@
 package com.bbs.main.service;
 
 import com.bbs.main.mapper.LifeMapper;
+import com.bbs.main.vo.FreeReplyVO;
 import com.bbs.main.vo.FreeVO;
+import com.bbs.main.vo.LifeReplyVO;
 import com.bbs.main.vo.LifeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -112,5 +114,30 @@ public class LifeService {
 
     public int getCountLike(int no) {
         return lifeMapper.getCountLike(no);
+    }
+
+    public List<LifeReplyVO> getReplys(int post_id) {
+        return lifeMapper.getReplys(post_id);
+    }
+
+    public int addReply(LifeReplyVO lifeReplyVO) {
+        return lifeMapper.addReply(lifeReplyVO);
+    }
+
+    public List<LifeVO> getcategory(String category) {
+        switch (category) {
+            case "전체":
+                return lifeMapper.getAll(category);
+            case "생활 정보":
+                return lifeMapper.getLife(category);
+            case "건강 정보":
+                return lifeMapper.getHealth(category);
+            case "질문":
+                return lifeMapper.getQNA(category);
+            case "후기":
+                return lifeMapper.getAft(category);
+            default:
+                return new ArrayList<>();
+        }
     }
 }

@@ -119,19 +119,20 @@ public class LifeC {
 
     @PostMapping("/update")
     public String update(int post_id, LifeVO lifeVO, MultipartFile post_file) {
-        System.out.println(post_id + "post no : " + lifeVO.getPost_id());
+        /*System.out.println(post_id + "post no : " + lifeVO.getPost_id());*/
         lifeService.updatePost(lifeVO, post_file);
         return "redirect:/main/life/" + post_id;
     }
 
     @GetMapping("/option")
-    @ResponseBody  // JSON 반환
+    @ResponseBody
     public List<LifeVO> getsorts(@RequestParam("option") String option) {
         return lifeService.getsorts(option);
     }
 
     @GetMapping("/like/{post_id}")
     public String lifelike(@PathVariable("post_id") int no, Model model, HttpSession session) {
+        System.out.println("-----");
         if (userService.loginChk(session)) {
             lifeService.getCountLike(no);
             model.addAttribute("content", "life/lifedetail.jsp");
@@ -139,4 +140,11 @@ public class LifeC {
         }
         return "redirect:/login";
     }
+
+    @GetMapping("/category")
+    @ResponseBody
+    public List<LifeVO> getcategory(@RequestParam("category") String category) {
+        return lifeService.getcategory(category);
+    }
+
 }
