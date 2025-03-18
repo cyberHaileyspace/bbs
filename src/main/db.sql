@@ -70,7 +70,7 @@ CREATE TABLE Free_reply (
 
 create sequence Free_reply;
 
-insert into Free_reply (post_id, r_writer, r_context, r_date)values (1,'kim', '좋은글입니다.', systimestamp);
+insert into Free_reply (post_id, r_writer, r_context, r_date)values (2,'kim', '좋은글입니다.', systimestamp);
 
 select * from Free_reply;
 
@@ -98,7 +98,7 @@ CREATE TABLE Life_reply (
 
 create sequence Life_reply;
 
-insert into Life_reply (post_id, r_writer, r_context, r_date)values (22,'kim', '좋은글입니다.', systimestamp);
+insert into Life_reply (post_id, r_writer, r_context, r_date)values (42,'567', '좋은글입니다.', systimestamp);
 
 select * from Life_reply;
 
@@ -217,8 +217,7 @@ create table tourlist_reply(
                                c_update TIMESTAMP  -- 수정 시 UPDATE문에서 변경
 );
 
-insert into tourlist_reply (contentid,c_writer, c_context, c_date) values ('264570','수현호','여기 물가 무서워...',sysdate);
-
+insert into tourlist_reply (contentid, c_writer, c_context, c_date) values ('264570','수현호','여기 물가 무서워...',sysdate);
 
 select *
 from tourlist_reply;

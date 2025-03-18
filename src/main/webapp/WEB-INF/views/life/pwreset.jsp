@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="/resources/css/life/life.css">
+    <link rel="stylesheet" href="/resources/css/board.css">
     <script src="/resources/js/sample.js"></script>
 </head>
 <script>
@@ -37,7 +37,6 @@
             <div class="title"><h1>패스워드 재설정 페이지</h1></div>
 
             <div class="center">
-
                 <div class="id">
                     <div>ID</div>
                     <div><input name="user_id" type="text" required></div>

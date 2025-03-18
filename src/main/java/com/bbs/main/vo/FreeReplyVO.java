@@ -11,6 +11,6 @@ public class FreeReplyVO {
    private String r_writer;
    private String r_context;
    private String r_like;
-   private String r_date;
-   private String r_update;
+   private Date r_date;
+   private Date r_update;
 }
