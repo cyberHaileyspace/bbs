@@ -34,8 +34,8 @@
             </button>
         </div>
         <div class="search-btn">
-            <input type="text" placeholder="검색할 내용을 입력하세요." id="search-btn">
-            <button><img class="search-btn-img" alt="" src="https://cdn-icons-png.flaticon.com/256/25/25313.png"/> 검색
+            <input type="text" placeholder="검색할 내용을 입력하세요." id="search-input">
+            <button id="search-btn"><img class="search-btn-img" alt="" src="https://cdn-icons-png.flaticon.com/256/25/25313.png"/> 검색
             </button>
         </div>
     </div>
@@ -51,8 +51,5 @@
 <div id="pagination-container" style="display: flex; justify-content: center"></div>
 </body>
 <script src="/resources/js/life/life.js"></script>
-<script>
-    $()
-</script>
 
 </html>

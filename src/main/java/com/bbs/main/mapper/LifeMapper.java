@@ -17,8 +17,8 @@ public interface LifeMapper {
             "(#{user_nickname}, #{post_category}, #{post_menu}, #{post_title}, #{post_context}, #{post_image, jdbcType=NULL})")
     int regPost(LifeVO lifeVO);
 
-    @Select("select * from Life_Post_DB order by post_id desc")
-    List<LifeVO> getposts();
+    @Select("select * from Life_Post_DB where post_title like '%'||#{title}||'%' order by post_id desc")
+    List<LifeVO> getposts(String title);
 
     @Select("select * from Life_Post_DB where post_id = #{no}")
     LifeVO getPost(int no);

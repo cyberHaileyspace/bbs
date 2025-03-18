@@ -1,4 +1,3 @@
-
 function generateToken() {
     const now = new Date();
     return now.getMinutes() + ":" + now.getSeconds();  // "mm:ss" 형식
@@ -19,10 +18,12 @@ function logincheck(user) {
     }
 }
 
-async function loadData() {
+async function loadData(title) {
+
     try {
         let data = await $.ajax({
-            url: "/main/life/all"
+            url: "/main/life/all",
+            data: {title}
         });
         return data;
     } catch (error) {
@@ -152,8 +153,30 @@ function categoryHandler() {
 
 $(document).ready(async function () {
 
-    let data = await loadData();
+    let data = await loadData("");
     categoryHandler();
     optionHandler();
     paging(data);
+    searchHandler();
 });
+
+function searchHandler() {
+    const searchBtn = document.querySelector("#search-btn");
+    const searchInput = document.querySelector("#search-input");
+
+    searchBtn.addEventListener("click", async () => {
+        console.log(searchInput.value);
+        let data = await loadData(searchInput.value);
+        console.log(data)
+        paging(data);
+
+        searchInput.focus();
+    });
+
+    searchInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            searchBtn.click();
+        }
+    })
+
+}

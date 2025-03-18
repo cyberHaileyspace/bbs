@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -40,8 +41,9 @@ public class MainC {
 
     @ResponseBody
     @GetMapping("/life/all")
-    public List<LifeVO> life() {
-        return lifeService.getposts();
+    public List<LifeVO> life(@RequestParam(defaultValue = "", required = false) String title) {
+        System.out.println(title);
+        return lifeService.getposts(title);
     }
 
     @GetMapping("/tour")
@@ -54,6 +56,12 @@ public class MainC {
     public String list(Model model) {
         model.addAttribute("posts", freeService.getposts());
         model.addAttribute("content", "free/free_posts.jsp");
+        return "index";
+    }
+
+    @GetMapping("/news")
+    public String news(Model model) {
+        model.addAttribute("content", "news.jsp");
         return "index";
     }
 
