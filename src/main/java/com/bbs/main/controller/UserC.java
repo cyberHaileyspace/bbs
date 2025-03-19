@@ -1,5 +1,6 @@
 package com.bbs.main.controller;
 
+import com.bbs.main.service.LifeService;
 import com.bbs.main.service.UserService;
 import com.bbs.main.vo.UserVO;
 import jakarta.servlet.http.HttpSession;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -94,8 +96,18 @@ public class UserC {
     }
 
     @GetMapping("mypage")
-    public String mypage(Model model) {
-        model.addAttribute("content", "life/mypage.jsp");
+    public String mypage(Model model, HttpSession session) {
+        UserVO user = (UserVO) session.getAttribute("user");
+        // 내 글 / 댓글 로드
+        if (userService.loginChk(session)) {
+            model.addAttribute("freePosts", userService.getMyFreePosts(user.getUser_nickname()));
+            model.addAttribute("lifePosts", userService.getMyLifePosts(user.getUser_nickname()));
+            model.addAttribute("freePostReplies", userService.getMyFreePostReplies(user.getUser_nickname()));
+            model.addAttribute("lifePostReplies", userService.getMyLifePostReplies(user.getUser_nickname()));
+            model.addAttribute("content", "life/mypage.jsp");
+        } else {
+            return "redirect:login";
+        }
         return "index";
     }
 
@@ -140,5 +152,11 @@ public class UserC {
             return "redirect:/login";
         }
     }
+
+    /*
+    public List<Post> getUserPosts(@AuthenticationPrincipal User user) {
+        return postService.getPostsByUser(user.getUserId());
+    }*/
+
 
 }

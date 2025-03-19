@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <%--script src="/resources/js/sample.js"></script>--%>
-    <link rel="stylesheet" href="/resources/css/life/life.css">
+    <link rel="stylesheet" href="/resources/css/board.css">
 </head>
 <body>
 <div class="content">

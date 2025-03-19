@@ -18,7 +18,7 @@ function deletePost(no) {
     }
 }
 
-function handleReplySubmit(user_nickname) {
+function handleFreeReplySubmit(user_nickname) {
     if (user_nickname) {
         // 사용자가 로그인된 경우, 댓글을 등록하는 함수 호출
         submitReply();
