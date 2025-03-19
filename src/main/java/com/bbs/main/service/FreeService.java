@@ -104,4 +104,14 @@ public class FreeService {
     public int addReply(FreeReplyVO freeReplyVO) {
         return freeMapper.addReply(freeReplyVO);
     }
+
+    public int updateReply(FreeReplyVO freeReplyVO) {
+        int result = freeMapper.updateReply(freeReplyVO);
+        System.out.println("updateReply 실행 결과: " + result);
+        return result;
+    }
+
+    public int deleteReply(int r_id) {
+        return freeMapper.deleteReply(r_id);
+    }
 }

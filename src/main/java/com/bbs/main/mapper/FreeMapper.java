@@ -43,5 +43,9 @@ public interface FreeMapper {
             "VALUES (#{post_id}, #{r_writer}, #{r_context})")
     int addReply(FreeReplyVO freeReplyVO);
 
+   @Update("UPDATE Free_Reply set r_context = #{r_context} where r_id = #{r_id}")
+    int updateReply(FreeReplyVO freeReplyVO);
 
+   @Delete("DELETE FREE_REPLY WHERE R_ID = #{r_id}")
+    int deleteReply(int r_id);
 }

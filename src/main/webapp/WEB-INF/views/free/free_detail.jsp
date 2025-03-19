@@ -136,20 +136,20 @@
         <button onclick="location.href='/main/free'">목록으로</button>
     </div>
     <div>
-        <div class="comment-section">
-            <div class="comment-header">댓글 쓰기</div>
+        <div class="reply-section">
+            <div class="reply-header">댓글 쓰기</div>
             <div hidden="hidden">닉네임 : <input name="user_nickname" value="${user.user_nickname}" type="text"
                                               placeholder="${user.user_nickname}" readonly></div>
             <textarea id="replyContent" placeholder="댓글을 입력하세요..."></textarea>
-            <button id="commentButton"
+            <button id="replyButton"
                     onclick="handleReplySubmit('${user.user_nickname}')">댓글 쓰기</button>
         </div>
-        <div id="commentSection">
+        <div id="replySection">
             <p></p>
         </div>
     </div>
 </div>
-<%--        ---------------------------------------------------------------------------------------%>
+<%----------------------------------------------------------------------------------------------------------%>
         <script>
             var post_id = ${post.post_id}; // JSP 변수를 JavaScript 변수에 할당
             var user_nickname = "${login_nickname}"; // 로그인한 사용자의 닉네임을 JSP 변수로 받아옴
@@ -159,32 +159,35 @@
                 fetch(`/main/free/reply/${post_id}`)
                     .then(response => response.json())
                     .then(data => {
-                        console.log("Fetched Comments:", data)
-                        const commentSection = document.getElementById("commentSection");
-                        commentSection.innerHTML = ""; // 기존 댓글 삭제
+                        console.log("Fetched Replies:", data)
+                        const replySection = document.getElementById("replySection");
+                        replySection.innerHTML = ""; // 기존 댓글 삭제
 
                         if (data.length === 0) {
-                            commentSection.innerHTML = "<p>댓글이 없습니다. 댓글을 작성해 보세요!</p>";
+                            replySection.innerHTML = "<p>댓글이 없습니다. 댓글을 작성해 보세요!</p>";
                         } else {
                             data.forEach(reply => {
-                                const commentDiv = document.createElement("div");
-                                commentDiv.classList.add("comment");
-
+                                const replyDiv = document.createElement("div");
+                                replyDiv.classList.add("reply")
+                                replyDiv.id = "reply-" + reply.r_id;
                                 // 댓글 작성자와 로그인한 사용자가 동일한 경우 삭제 및 수정 버튼을 추가
-                                let commentHTML =
+                                let replytHTML =
+                            "<div>" +
                             "<span>작성자 : " + reply.r_writer + "</span>" + "<br>" +
                             "<span> 작성일 : "  + reply.r_date + "</span>" +
                             "<p>"+ reply.r_context +"</p>"
+                          + "</div>"
                         ;
 
                                 if (user_nickname === reply.r_writer) {
-                                    commentHTML += "<button onclick=\"deleteReply(" + reply.r_id + ")\">삭제</button>" +
-                                        "<button onclick=\"editReply(" + reply.r_id + ")\">수정</button>";
-                                    ;
+                                    replytHTML += "<button onclick=\"editReply('" + reply.r_id + "', '" + reply.r_writer + "', '" + reply.r_date + "', '" + reply.r_context + "')\">수정</button>"
+                                        +
+                                        "<button onclick=\"deleteReply('" + reply.r_id + "')\">삭제</button>" ;
                                 }
 
-                                commentDiv.innerHTML = commentHTML;
-                                commentSection.appendChild(commentDiv);
+
+                                replyDiv.innerHTML = replytHTML;
+                                replySection.appendChild(replyDiv);
                             });
                         }
                     })
