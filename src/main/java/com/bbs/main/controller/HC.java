@@ -29,6 +29,7 @@ public class HC {
     public String home(Model model) {
         model.addAttribute("life", lifeService.getposts());
         model.addAttribute("free", freeService.getposts());
+        model.addAttribute("tour", tourService.getAllLocation("1", null, "R"));
         model.addAttribute("content", "wh/main.jsp");
         return "index";
     }

@@ -53,26 +53,4 @@
 </c:choose>
 <button class="write-btn" onclick="logincheck('${sessionScope.user}')">작성</button>
 </body>
-<script>
-    function generateToken() {
-        const now = new Date();
-        const token = now.getMinutes() + ":" + now.getSeconds();  // "mm:ss" 형식
-        return token;
-    }
-
-    function goToPost(postId) {
-        const token = generateToken();
-        sessionStorage.setItem("viewToken", token);
-        location.href = "life/" + postId + "?token=" + token;
-    }
-
-    function logincheck(user) {
-        if (user)
-            location.href = "life/reg";
-        else {
-            alert("먼저 로그인을 해주세요.");
-            location.href = "/login"
-        }
-    }
-</script>
 </html>

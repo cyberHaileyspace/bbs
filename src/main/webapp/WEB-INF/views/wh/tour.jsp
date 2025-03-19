@@ -10,23 +10,23 @@
 <body>
 <div style="width: 100%">
     <div style="display: flex; flex-direction: column; align-items: center">
-        <h3 style="width: 240px; height: 50px; background-color: #399dc8; text-align: center; display: flex; align-items: center; justify-content: center; border-radius: 15px; margin-bottom: 0">
+        <h3 style="width: 240px; height: 50px; background-color: #007BFF; text-align: center; display: flex; align-items: center; justify-content: center; border-radius: 15px; margin-bottom: 0">
             가고싶은 지역을 골라보세요</h3>
-        <input type="text" class="location-input" style="width: 230px"/>
+        <input type="text" class="location-input" style="width: 230px" placeholder="여길 누르면 지역선택창이 뜹니다."/>
     </div>
     <!-- 대분류/소분류 영역 (이전 코드와 동일) -->
     <div class="location-wrap">
         <div class="panels place_scroll panel_2depth">
             <div class="tour_panel selected">
                 <ul class="place_items">
-                    <li class="on"><a href="#place01"><span>제주도</span></a></li>
-                    <li class="on"><a href="#place03"><span>강원</span></a></li>
-                    <li class="on"><a href="#place04"><span>경상</span></a></li>
-                    <li class="on"><a href="#place05"><span>전라</span></a></li>
-                    <li class="on"><a href="#place06"><span>충청</span></a></li>
                     <li class="selected on"><a href="#place07"><span>서울/인천/경기</span></a></li>
+                    <li class="on"><a href="#place03"><span>강원</span></a></li>
+                    <li class="on"><a href="#place06"><span>충청</span></a></li>
+                    <li class="on"><a href="#place05"><span>전라</span></a></li>
+                    <li class="on"><a href="#place04"><span>경상</span></a></li>
                     <li class="on"><a href="#place02" class="search-area" data-areaCode="6"><span>부산</span></a></li>
                     <li class="on"><a href="#place02" class="search-area" data-areaCode="4"><span>대구</span></a></li>
+                    <li class="on"><a href="#place01"><span>제주도</span></a></li>
                 </ul>
             </div>
         </div>

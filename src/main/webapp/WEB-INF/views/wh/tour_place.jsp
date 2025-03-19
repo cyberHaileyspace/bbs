@@ -6,58 +6,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>
-        .post-header div {
-            font-size: 16px;
-            color: #555;
-        }
-
-        .post-header .title {
-            font-weight: bold;
-            color: #333;
-            font-size: 20px;
-        }
-
-        .post-image-container img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-
-        .post-content .text {
-            font-size: 14px;
-            color: #333;
-            line-height: 1.8;
-        }
-
-        .post-content .date {
-            font-size: 12px;
-            color: #888;
-        }
-
-        .comment-section .comment-header {
-            font-weight: bold;
-            color: #333;
-        }
-
-        .comment-section textarea {
-            width: 100%;
-            height: 100px;
-            padding: 10px;
-            margin-top: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-
-        .comment-section button {
-            background-color: #007BFF;
-            margin-top: 10px;
-        }
-
-        .comment-section button:hover {
-            background-color: #0056b3;
-        }
-    </style>
 </head>
 <body>
 <div class="tour_info_wrapper">

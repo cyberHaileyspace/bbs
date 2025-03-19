@@ -9,20 +9,77 @@ a {
 .main_content {
     display: flex;
     justify-content: center;
+    padding: 40px 0;
     gap: 50px;
 }
 
 .main_content_box {
     width: 42%;
     background-color: aqua;
+    padding: 15px 20px;
 }
 
 .main_content_box a {
     text-decoration: none;
 }
 
-.content_list {
+.main_board_header {
+    text-align: center;
+    display: flex;
+    font-size: larger;
+    padding: 10px 0;
+}
 
+.main_board_header_link {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+}
+
+.main_board_header_title {
+    margin: 0 auto;
+    width: 85%;
+}
+
+.main_board_header_plus {
+    margin-left: auto;
+}
+
+.main_board_box{
+    text-align: center;
+    display: flex;
+    height: 40px;
+    margin-right: auto;
+    padding: 4px 0;
+}
+/* 이미지 hover 효과 */
+.main_board_box img {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* 부드러운 효과 */
+}
+
+/* 마우스 오버 시 이미지 확대 및 그림자 효과 */
+.main_board_box:hover img {
+    transform: scale(1.1); /* 10% 확대 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 살짝 입체감 추가 */
+}
+
+.main_board_box a {
+    height: 100%;
+    text-decoration: none;
+    font-size: large;
+}
+.main_board_box p {
+    margin: 0;
+    height: 100%; /* 원하는 고정 높이 */
+    display: flex;
+    align-items: center; /* 수직 가운데 정렬 */
+}
+.main_board_content_title {
+    padding-left: 15px;
+}
+.main_board_box img {
+    height: 100%;
+    width: 40px;
 }
 
 .main_ul_box {

@@ -47,7 +47,7 @@ public class TourService {
         url += "serviceKey=" + serviceKey;
         url += "&numOfRows=300&pageNo=1&MobileOS=ETC&MobileApp=AppTest&_type=json&listYN=Y&contentTypeId=12";
         url += "&areaCode=" + areaCode;
-        System.out.print(sort + ">>>>>>>>>>>>>>>>>>>>>>>>>");
+//        System.out.print(sort + ">>>>>>>>>>>>>>>>>>>>>>>>>");
         if (sort == "" || sort == null) {
             sort = "O";
         }
@@ -71,18 +71,24 @@ public class TourService {
             // "response" -> "body" -> "items" -> "item" 으로 접근
             JsonElement itemsElement;
             if (sigungu != null) {
-                itemsElement = rootObj
-                        .getAsJsonObject("items")
-                        .get("item");
+                itemsElement = rootObj.getAsJsonObject("items").get("item");
             } else {
-                itemsElement = rootObj
-                        .get("items");
+                itemsElement = rootObj.get("items")
+                        .getAsJsonObject().get("item");
             }
             // TourVO 리스트로 변환 (VO 클래스는 아래와 같이 정의된 것으로 가정)
             Gson gson = new Gson();
-            Type listType = new TypeToken<List<TourVO>>() {
-            }.getType();
-            List<TourVO> tourList = gson.fromJson(itemsElement, listType);
+            List<TourVO> tourList = new ArrayList<>();
+            // itemsElement가 배열인지 객체인지 확인 후 처리
+            if (itemsElement.isJsonArray()) {
+                Type listType = new TypeToken<List<TourVO>>() {}.getType();
+                tourList = gson.fromJson(itemsElement, listType);
+            } else if (itemsElement.isJsonObject()) {
+                TourVO tour = gson.fromJson(itemsElement.getAsJsonObject(), TourVO.class);
+                tourList.add(tour);
+            } else {
+                throw new RuntimeException("예상치 못한 item 형식: " + itemsElement);
+            }
 
             List<TourVO> limitedList = new ArrayList<>();
             for (TourVO tour : tourList) {
