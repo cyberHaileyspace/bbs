@@ -86,7 +86,9 @@ public class TourService {
 
             List<TourVO> limitedList = new ArrayList<>();
             for (TourVO tour : tourList) {
-                limitedList.add(tour);
+                if (tour.getFirstimage() != null && !tour.getFirstimage().trim().isEmpty()) {
+                    limitedList.add(tour);
+                }
             }
             return limitedList;
 
@@ -179,6 +181,46 @@ public class TourService {
         String url = "https://apis.data.go.kr/B551011/KorService1/detailInfo1?";
         url += "serviceKey=" + serviceKey;
         url += "&MobileOS=ETC&MobileApp=AppTest&_type=json&contentTypeId=12&numOfRows=10&pageNo=1";
+        url += "&contentId=" + contentid;
+        try {
+            URL u = new URL(url);
+            HttpsURLConnection huc = (HttpsURLConnection) u.openConnection();
+            InputStream is = huc.getInputStream();
+            InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
+            BufferedReader br = new BufferedReader(isr);
+            StringBuilder jsonBuilder = new StringBuilder();
+            String line;
+            while ((line = br.readLine()) != null) {
+                jsonBuilder.append(line);
+            }
+            String json = jsonBuilder.toString();
+            System.out.println(json);
+            JsonObject rootObj = JsonParser.parseString(json).getAsJsonObject();
+            JsonObject responseObj = rootObj.getAsJsonObject("response");
+            JsonObject bodyObj = responseObj.getAsJsonObject("body");
+            JsonObject itemObj = bodyObj.getAsJsonObject("items");
+            JsonArray itemElement = itemObj.getAsJsonArray("item");
+            Gson gson = new Gson();
+            TourVO detail;
+            if (itemElement.isJsonArray()) {
+                // 배열인 경우, 첫 번째 요소를 상세 데이터로 사용
+                detail = gson.fromJson(itemElement.getAsJsonArray().get(0), TourVO.class);
+            } else if (itemElement.isJsonObject()) {
+                // 단일 객체인 경우
+                detail = gson.fromJson(itemElement.getAsJsonObject(), TourVO.class);
+            } else {
+                throw new RuntimeException("예상치 못한 item 형식: " + itemElement);
+            }
+            return detail;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public TourVO getDetailImage(String contentid) {
+        String url = "https://apis.data.go.kr/B551011/KorService1/detailImage1?";
+        url += "serviceKey=" + serviceKey;
+        url += "&MobileOS=ETC&MobileApp=AppTest&_type=json&imageYN=Y&subImageYN=Y&numOfRows=10&pageNo=1";
         url += "&contentId=" + contentid;
         try {
             URL u = new URL(url);

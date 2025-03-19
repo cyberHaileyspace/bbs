@@ -113,7 +113,6 @@
 
     <!-- 관광정보 표시 영역 -->
     <div class="tour_img_container" id="tourContainer">
-
         <div id="extraInfo">
             <span class="extraList" style="margin-right: auto">관광지 목록</span>
             <span style="margin: 0 15px" class="sort" data-sort="O" data-area-code="${param.areaCode}"
@@ -122,19 +121,16 @@
             <span style="margin: 0 15px" class="sort" data-sort="R" data-area-code="${param.areaCode}"
                   data-sigungu="${param.sigungu}">최신순</span>
         </div>
-
         <div class="tour_img_container">
             <c:forEach var="i" items="${result}">
-                <div class="tour_img_box">
-                    <a href="/main/tour/getLoc?contentid=${i.contentid}&areaCode=${param.areaCode}&sigungu=${param.sigungu}&sort=${param.sort}&pageNo=${param.pageNo}">
-                        <img src="${i.firstimage}">
+                <div class="tour_img_box" data-img-url="${i.firstimage}">
+                    <a href="/main/tour/getLoc?contentid=${i.contentid}">
                         <div>${i.title}</div>
                     </a>
                 </div>
             </c:forEach>
         </div>
         <div class="pagination">
-
         </div>
     </div>
 

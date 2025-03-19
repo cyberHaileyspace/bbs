@@ -52,7 +52,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="panel">
     <div>뉴스</div>
     <div onclick="location.href='/main/free'" style="cursor: pointer">자유게시판</div>
-    <form id="defaultTourForm" action="/main/tour/loc" method="post">
+    <form id="defaultTourForm" action="/main/tour/loc" method="get">
         <input type="hidden" name="areaCode" value="1" />
         <input type="hidden" name="sigungu" value="" />
         <input type="hidden" name="sort" value="R" />

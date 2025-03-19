@@ -1,5 +1,3 @@
-
-
 document.addEventListener("DOMContentLoaded", function () {
     // 1. 기본 변수 및 요소 선택
     const locWrap = document.querySelector(".location-wrap");
@@ -24,27 +22,34 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // 2. 위치 입력 필드 포커스/블러 이벤트 처리
-    locationInput.addEventListener("focus", () => {
-        locWrap.classList.add("show");
-    });
-    locationInput.addEventListener("blur", () => {
-        setTimeout(() => {
-            if (!locWrap.contains(document.activeElement)) {
-                locWrap.classList.remove("show");
-            }
-        }, 100);
-    });
-    closeBtn.addEventListener("click", () => {
-        locWrap.classList.remove("show");
-    });
+    if (locationInput) {
 
-    // 3. 메인 카테고리 클릭 시 하위 패널 토글
-    allSubPanels.forEach(panel => {
-        if (!panel.classList.contains("selected")) {
-            panel.style.display = "none";
-        }
-    });
+        // 2. 위치 입력 필드 포커스/블러 이벤트 처리
+        locationInput.addEventListener("focus", () => {
+            locWrap.classList.add("show");
+        });
+        locationInput.addEventListener("blur", () => {
+            setTimeout(() => {
+                if (!locWrap.contains(document.activeElement)) {
+                    locWrap.classList.remove("show");
+                }
+            }, 100);
+        });
+    }
+    if (closeBtn) {
+        closeBtn.addEventListener("click", () => {
+            locWrap.classList.remove("show");
+        });
+    }
+    if (allSubPanels) {
+
+        // 3. 메인 카테고리 클릭 시 하위 패널 토글
+        allSubPanels.forEach(panel => {
+            if (!panel.classList.contains("selected")) {
+                panel.style.display = "none";
+            }
+        });
+    }
     mainCategories.forEach(category => {
         category.addEventListener("click", function (event) {
             event.preventDefault();
@@ -61,41 +66,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // 4. 소분류 클릭 시 Ajax 호출 (관광지 목록 갱신)
-    subLinks.forEach(link => {
-        link.addEventListener("click", function (e) {
-            e.preventDefault();
-            const region = this.textContent.trim(); // 예: "전라북도"
-            // 실제 지역코드에 맞게 수정 필요
-            fetch(`/main/tour/region?areaCode=${encodeURIComponent(region)}`)
-                .then(response => response.json())
-                .then(data => {
-                    const container = document.getElementById("tourContainer");
-                    container.innerHTML = "";
-                    data.forEach(item => {
-                        const box = document.createElement("div");
-                        box.className = "tour_img_box";
-                        const anchor = document.createElement("a");
-                        // 상세 페이지로 이동할 URL 구성 (필요 시 주석 해제)
-                        // anchor.href = `/tour/detail?spotId=${item.spot_id}`;
-                        const img = document.createElement("img");
-                        img.src = item.spot_image || "default.jpg";
-                        img.alt = item.spot_name || "";
-                        const infoDiv = document.createElement("div");
-                        infoDiv.textContent = item.spot_name || "이름없음";
-                        anchor.appendChild(img);
-                        anchor.appendChild(infoDiv);
-                        box.appendChild(anchor);
-                        container.appendChild(box);
-                    });
-                    // 새 데이터 로드 후 페이징 다시 설정 (아래 페이징 함수 호출)
-                    setupPagination();
-                    showPage(1); // 1페이지부터 표시
-                })
-                .catch(err => console.error(err));
-        });
-    });
-
     // 5. 검색 영역 클릭 시 폼 제출 (지역, sigungu 정보 전송)
     searchAreas.forEach(atag => {
         atag.addEventListener("click", (e) => {
@@ -107,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log(areaCode, sigungu);
 
             const form = document.createElement("form");
-            form.method = "post";
+            form.method = "get";
             form.action = "/main/tour/loc";
 
             const areaCodeInput = document.createElement("input");
@@ -137,12 +107,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const itemsPerPage = 12; // 한 페이지에 보여줄 항목 수
     let totalPages = 0;
     let currentPage = 1;
-    // if(sessionStorage.getItem("page") != null){
-    //     currentPage = sessionStorage.getItem("page")
-    // }
-console.log(currentPage)
-    // let savePageNum = sessionStorage.getItem("page");
-    // console.log(savePageNum)
+
+    // console.log(currentPage)
+
     // 동적 페이징 링크 생성 함수 (페이지 번호를 10개씩 그룹화)
     function setupPagination() {
         paginationDiv.innerHTML = ""; // 기존 페이징 링크 초기화
@@ -164,7 +131,7 @@ console.log(currentPage)
             firstLink.addEventListener("click", function (e) {
                 e.preventDefault();
                 currentPage = 1;
-                 // sessionStorage.setItem("page", currentPage);
+                // sessionStorage.setItem("page", currentPage);
                 showPage(currentPage);
                 setupPagination();
             });
@@ -183,7 +150,7 @@ console.log(currentPage)
                 e.preventDefault();
                 // 이전 블록의 마지막 페이지는 현재 블록의 시작페이지 - 1
                 currentPage = startPage - 1;
-              //  sessionStorage.setItem("page", currentPage);
+                //  sessionStorage.setItem("page", currentPage);
                 showPage(currentPage);
                 setupPagination();
             });
@@ -200,8 +167,8 @@ console.log(currentPage)
             }
             pageLink.addEventListener("click", function (e) {
                 e.preventDefault();
-            //    sessionStorage.setItem("page", i);
-            //     currentPage = sessionStorage.getItem("page");
+                //    sessionStorage.setItem("page", i);
+                //     currentPage = sessionStorage.getItem("page");
                 currentPage = i;
                 console.log(i)
                 showPage(currentPage);
@@ -252,8 +219,11 @@ console.log(currentPage)
 // 페이징 대상 항목을 갱신하는 함수
     function updateItems() {
         const container = document.querySelector("#tourContainer .tour_img_container");
-        items = Array.from(container.querySelectorAll(".tour_img_box"));
-        totalPages = Math.ceil(items.length / itemsPerPage);
+        if (container) {
+
+            items = Array.from(container.querySelectorAll(".tour_img_box"));
+            totalPages = Math.ceil(items.length / itemsPerPage);
+        }
     }
 
 // 특정 페이지 항목들만 표시하는 함수
@@ -273,6 +243,11 @@ console.log(currentPage)
         const end = Math.min(start + itemsPerPage, items.length);
         for (let i = start; i < end; i++) {
             items[i].style.display = "block";
+            if (!items[i].children[0].querySelector("img")) {
+                const img = document.createElement("img");
+                img.src = items[i].dataset.imgUrl;
+                items[i].children[0].prepend(img);
+            }
         }
 
         updateState(page);
@@ -284,24 +259,21 @@ console.log(currentPage)
     setupPagination();
 
 
-
     // 페이지를 로드한 후 현재 상태 저장 (초기 상태: 1페이지)
-    window.addEventListener('load', function() {
+    window.addEventListener('load', function () {
         // 만약 이전 상태가 없으면 기본 상태(페이지 1) 설정
         if (!history.state) {
-            history.replaceState({ pageNo: 1 }, '', window.location.href);
+            history.replaceState({pageNo: 1}, '', window.location.href);
         }
         // 페이지 번호를 복원하고 페이징 함수 호출
         const state = history.state;
         currentPage = state.pageNo;
-        showPage(currentPage);
-        setupPagination();
     });
 
     // 페이징 상태가 변경될 때마다 URL과 history 상태 업데이트
     function updateState(pageNo) {
         // 현재 상태를 업데이트 (pushState 대신 replaceState 사용하면 뒤로가기 동작에 문제가 덜 생깁니다)
-        history.replaceState({ pageNo: pageNo }, '', updateUrl(pageNo));
+        history.replaceState({pageNo: pageNo}, '', updateUrl(pageNo));
     }
 
 // 예: URL에 pageNo를 반영하는 함수 (다른 파라미터는 그대로 둠)
@@ -312,7 +284,7 @@ console.log(currentPage)
     }
 
     // 뒤로 가기(또는 포워드) 이벤트 처리: history state를 복원하여 페이지 표시
-    window.addEventListener('popstate', function(event) {
+    window.addEventListener('popstate', function (event) {
         if (event.state && event.state.pageNo) {
             currentPage = event.state.pageNo;
             showPage(currentPage);

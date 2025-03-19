@@ -19,8 +19,8 @@ public class TourC {
     @Autowired
     private TourService tourService;
 
-    @PostMapping("/loc")
-    public String getAttractionDataByLoc(@RequestParam String areaCode,
+    @GetMapping("/loc")
+    public String getAttractionDataByLoc(@RequestParam(required = false) String areaCode,
                                          @RequestParam(required = false) String sigungu,
                                          @RequestParam(required = false) String sort,
                                          @RequestParam(required = false, defaultValue = "1") int pageNo,

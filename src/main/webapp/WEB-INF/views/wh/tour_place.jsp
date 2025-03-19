@@ -7,8 +7,6 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-
-
         .post-header div {
             font-size: 16px;
             color: #555;
@@ -37,10 +35,6 @@
             color: #888;
         }
 
-        .comment-section {
-            margin-top: 30px;
-        }
-
         .comment-section .comment-header {
             font-weight: bold;
             color: #333;
@@ -63,7 +57,6 @@
         .comment-section button:hover {
             background-color: #0056b3;
         }
-
     </style>
 </head>
 <body>
@@ -125,21 +118,19 @@
     </div>
     <div style="text-align: center; padding: 50px">
 
-<%--        <form id="backForm" action="/main/tour/loc" method="post" style="display:inline">--%>
-            <input type="hidden" name="areaCode" value="${param.areaCode}" />
-            <input type="hidden" name="sigungu" value="${param.sigungu}" />
-            <input type="hidden" name="sort" value="${param.sort}" />
-            <input type="hidden" name="pageNo" value="${param.pageNo}" />
-            <button type="button" onclick="history.back()" style="background:none; border:none; text-decoration: none; color: black; font-size: large; cursor: pointer; width: 230px">
-                리스트로 돌아가기
-            </button>
-<%--        </form>--%>
+        <%--        <form id="backForm" action="/main/tour/loc" method="post" style="display:inline">--%>
+        <button type="button" onclick="history.back()"
+                style="background:none; border:none; text-decoration: none; color: black; font-size: large; cursor: pointer; width: 230px">
+            리스트로 돌아가기
+        </button>
+        <%--        </form>--%>
     </div>
     <!-- 댓글 입력 폼 -->
     <form id="commentForm" action="/tour/comment" method="post">
         <input type="hidden" name="contentid" value="${common.contentid}"/>
         <!-- 로그인된 경우에만 사용자 닉네임을 넣음. (로그인하지 않은 경우 빈 문자열) -->
-        <input type="hidden" name="c_writer" value="${sessionScope.user != null ? sessionScope.user.user_nickname : ''}"/>
+        <input type="hidden" name="c_writer"
+               value="${sessionScope.user != null ? sessionScope.user.user_nickname : ''}"/>
         <textarea name="c_context" placeholder="댓글을 입력하세요..."></textarea>
         <input type="submit" value="댓글 쓰기"/>
     </form>
@@ -173,4 +164,28 @@
     </div>
 </div>
 </body>
+<script>
+    window.addEventListener("load", function() {
+        const slider = document.getElementById("imageSlider");
+        if (!slider) return;
+        const images = slider.querySelectorAll("img");
+        if (images.length <= 1) return; // 이미지가 1장 이하이면 슬라이더 작동 안 함
+
+        // 모든 이미지가 같은 너비라고 가정 (최대 600px)
+        // slider의 현재 translateX 값을 관리할 변수
+        let currentIndex = 0;
+
+        // 다음 슬라이드로 전환하는 함수
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % images.length;
+            // 슬라이더의 너비(또는 이미지의 너비)를 기준으로 이동
+            // 이미지가 inline-block으로 나열되어 있으므로, 각 이미지의 너비를 사용합니다.
+            const imageWidth = images[0].offsetWidth;
+            slider.style.transform = "translateX(-" + (currentIndex * imageWidth) + "px)";
+        }
+
+        // 3초마다 nextSlide 함수 호출
+        setInterval(nextSlide, 3000);
+    });
+</script>
 </html>
