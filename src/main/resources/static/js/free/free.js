@@ -37,7 +37,7 @@ function submitReply() {
         alert("댓글 내용을 입력해주세요.");
         return;
     }
-    console.log(post_id)
+    // console.log(post_id)
     // 댓글을 서버로 전송하는 fetch 요청 (서버 경로는 실제 경로로 수정해야 합니다)
     fetch(`/main/free/reply`, {
         method: "POST",

@@ -218,20 +218,13 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %> <%--<link
                                           +
                                           "<button onclick=\"deleteReply('" + reply.r_id + "')\">삭제</button>" ;
                                   }
-
-
                                   replyDiv.innerHTML = replytHTML;
                                   replySection.appendChild(replyDiv);
                               });
-
-
                           }
-
                           commentDiv.innerHTML = commentHTML;
                           commentSection.appendChild(commentDiv);
-                      });
-                  }
-              })
+                      })
               .catch(error => {
                   console.error("댓글 로드 실패:", error);
               });
