@@ -129,7 +129,7 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %> <%--<link
       </div>
       <div class="post-image-container">
         <img
-          src="/Users/kimsuhyeon/Desktop/final_img/${post.post_image}"
+          src="/img/free/${post.post_image}"
           alt="Post Image"
         />
       </div>
@@ -222,8 +222,6 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %> <%--<link
                                   replySection.appendChild(replyDiv);
                               });
                           }
-                          commentDiv.innerHTML = commentHTML;
-                          commentSection.appendChild(commentDiv);
                       })
               .catch(error => {
                   console.error("댓글 로드 실패:", error);
