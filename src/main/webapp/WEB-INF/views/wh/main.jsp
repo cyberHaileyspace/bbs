@@ -9,70 +9,58 @@
 </head>
 <body>
 <div>
-    <div class="main_content_wrapper" style="width: 100%">
+    <div class="main_content_wrapper" style="min-width: 100%">
         <div class="main_content_container">
+
+
+
             <div class="main_content">
+                    <%-- 뉴스 게시판 --%>
                 <div class="main_content_box">
-                    <div style="text-align: center; display: flex"><a href=""
-                                                                      style="margin-left: auto; margin-right: auto; display: flex"><span>윗부분</span></a><a
-                            href=""><span>더보기</span></a></div>
-                    <div>
-                        <a href=""><p>1번내용</p></a>
-                        <a href=""><p>2번내용</p></a>
-                        <a href=""><p>3번내용</p></a>
-                        <a href=""><p>4번내용</p></a>
-                        <a href=""><p>5번내용</p></a>
-                    </div>
-                    <a href="">
-                        <div><span>밑부분</span></div>
-                    </a>
-                </div>
-                <div class="main_content_box">
-                    <div style="text-align: center; display: flex"><a href=""
-                                                                      style="margin-left: auto; margin-right: auto; display: flex"><span>윗부분</span></a><a
-                            href=""><span>더보기</span></a></div>
-                    <div>
-                        <a href=""><p>1번내용</p></a>
-                        <a href=""><p>2번내용</p></a>
-                        <a href=""><p>3번내용</p></a>
-                        <a href=""><p>4번내용</p></a>
-                        <a href=""><p>5번내용</p></a>
-                    </div>
-                    <a href="">
-                        <div><span>밑부분</span></div>
-                    </a>
-                </div>
-            </div>
-            <div class="main_content">
-                <div class="main_content_box">
-                    <div class="main_board_header"><span class="main_board_header_title">관광게시판</span><span
-                            class="main_board_header_plus">더보기</span></div>
+                    <div class="main_board_header"><span class="main_board_header_title" onclick="location.href='/main/news'">뉴스 및 공지</span><span class="main_board_header_plus" onclick="location.href='/main/news'">더보기</span></div>
                     <c:forEach var="t" items="${tour}" varStatus="status">
                         <c:if test="${status.index < 5}">
                             <div class="main_board_box">
-                                <a href="/main/tour/getLoc?contentid=${t.contentid}" style="display: flex"><img
-                                        src="${t.firstimage}">
-                                    <p class="main_board_content_title">${t.title}</p></a>
-                                <p style="margin-left: auto">생성날짜</p>
+                                <a href="/main/news" style="display: flex"><img src="${t.firstimage}"><p class="main_board_content_title">${t.title}</p></a><p style="margin-left: auto">생성날짜</p>
                             </div>
                         </c:if>
                     </c:forEach>
                 </div>
+                    <%-- 자유 게시판 --%>
                 <div class="main_content_box">
-                    <div class="main_board_header"><a href="" class="main_board_header_link"><span>생활게시판</span></a><a
-                            href=""><span class="main_board_header_plus">더보기</span></a></div>
-                    <c:forEach var="l" items="${life}" varStatus="status">
+                    <div class="main_board_header"><span class="main_board_header_title" onclick="location.href='/main/free'">자유게시판</span><span class="main_board_header_plus" onclick="location.href='/main/free'">더보기</span></div>
+                    <c:forEach var="f" items="${free}" varStatus="status">
                         <c:if test="${status.index < 5}">
                             <div class="main_board_box">
-                                <a href="javascript:goToPost(${p.post_id})" style="display: flex"><img
-                                        src="${l.post_image}">
-                                    <p>${l.post_title}</p></a>
-                                <p style="margin-left: auto; padding-right: 10px">생성날짜</p>
+                                <a href="/main/free" style="display: flex"><img src="${f.post_image}"><p class="main_board_content_title">${f.post_title}</p></a><p style="margin-left: auto">생성날짜</p>
                             </div>
                         </c:if>
                     </c:forEach>
-                </div>  
-
+                </div>
+            </div>
+            <div class="main_content">
+                    <%-- 관광 게시판 --%>
+                <div class="main_content_box">
+                    <div class="main_board_header"><span class="main_board_header_title tour-link" onclick="location.href='/main/tour/loc?areaCode=1&sigungu=&sort=R&pageNo=1'">관광게시판</span><span class="main_board_header_plus tour-link" onclick="location.href='/main/tour/loc?areaCode=1&sigungu=&sort=R&pageNo=1'">더보기</span></div>
+                    <c:forEach var="t" items="${tour}" varStatus="status">
+                        <c:if test="${status.index < 5}">
+                            <div class="main_board_box">
+                                <a href="/main/tour/getLoc?contentid=${t.contentid}" style="display: flex"><img src="${t.firstimage}"><p class="main_board_content_title">${t.title}</p></a><p style="margin-left: auto">생성날짜</p>
+                            </div>
+                        </c:if>
+                    </c:forEach>
+                </div>
+                    <%-- 생활 게시판 --%>
+                <div class="main_content_box">
+                    <div class="main_board_header"><span class="main_board_header_title" onclick="location.href='/main/life'">생활게시판</span><span class="main_board_header_plus" onclick="location.href='/main/life'">더보기</span></div>
+                    <c:forEach var="t" items="${tour}" varStatus="status">
+                        <c:if test="${status.index < 5}">
+                            <div class="main_board_box">
+                                <a href="/main/life" style="display: flex"><img src="${t.firstimage}"><p class="main_board_content_title">${t.title}</p></a><p style="margin-left: auto">생성날짜</p>
+                            </div>
+                        </c:if>
+                    </c:forEach>
+                </div>
             </div>
             <div class="main_content">
                 <div>
@@ -84,5 +72,18 @@
         </div>
     </div>
 </div>
+<script>
+    function generateToken() {
+        const now = new Date();
+        const token = now.getMinutes() + ":" + now.getSeconds();  // "mm:ss" 형식
+        return token;
+    }
+
+    function goToPost(postId) {
+        const token = generateToken();
+        sessionStorage.setItem("viewToken", token);
+        location.href = "free/" + postId + "?token=" + token;
+    }
+</script>
 </body>
 </html>

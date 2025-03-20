@@ -46,6 +46,7 @@ body {
     z-index: 10;
     padding: 15px 30px;
     border-bottom: 1px solid lightgrey;
+    min-width: 100%;
 }
 
 /* .header02 {
@@ -67,7 +68,7 @@ body {
 }
 
 .main-cnt {
-    width: 70%;
+    width: 75%;
     background-color: white;
     margin: 20px auto;
     padding: 20px;
