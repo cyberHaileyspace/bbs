@@ -66,6 +66,34 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 </div>
 <div class="main">
     <div class="main-cnt">
+      </c:choose>
+    </div>
+    <div class="panel">
+      <div onclick="location.href='/main/news'" style="cursor: pointer">
+        뉴스 및 공지
+      </div>
+      <div onclick="location.href='/main/free'" style="cursor: pointer">
+        자유게시판
+      </div>
+      <div onclick="location.href='/main/tour'" style="cursor: pointer">
+        관광게시판
+      </div>
+      <div onclick="location.href='/main/life'" style="cursor: pointer">
+        생활게시판
+      </div>
+      <div onclick="location.href='/login'" style="cursor: pointer">로그인</div>
+      <div onclick="location.href='/user'" style="cursor: pointer">
+        회원가입
+      </div>
+      <div
+        onclick="location.href='https://www.kr.emb-japan.go.jp/itprtop_ko/index.html'"
+        style="cursor: pointer"
+      >
+        在大韓民国日本国大使館
+      </div>
+    </div>
+    <div class="main">
+      <div class="main-cnt">
         <jsp:include page="${content}"></jsp:include>
     </div>
 </div>

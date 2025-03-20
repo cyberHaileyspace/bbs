@@ -1,7 +1,7 @@
 package com.bbs.main.service;
 
 import com.bbs.main.mapper.UserMapper;
-import com.bbs.main.vo.UserVO;
+import com.bbs.main.vo.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,13 +9,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 @Service
 public class UserService {
 
     @Autowired
-    private UserMapper registerMapper;
+    private UserMapper userMapper;
 
     public boolean loginChk(HttpSession session) {
         UserVO user = (UserVO) session.getAttribute("user");
@@ -43,11 +44,11 @@ public class UserService {
                 throw new RuntimeException(e);
             }
         }
-        registerMapper.regUser(registerVO);
+        userMapper.regUser(registerVO);
     }
 
     public String loginuser(UserVO registerVO, HttpSession httpSession) {
-        UserVO user = registerMapper.login(registerVO);
+        UserVO user = userMapper.login(registerVO);
         if (user != null) {
             if (registerVO.getUser_pw().equals(user.getUser_pw())) {
                 httpSession.setAttribute("user", user);
@@ -62,7 +63,7 @@ public class UserService {
     }
 
     public String pwreset(UserVO registerVO) {
-        int result = registerMapper.pwreset(registerVO);
+        int result = userMapper.pwreset(registerVO);
         if (result == 1) {
             return "비밀번호가 변경되었습니다.";
         } else {
@@ -71,23 +72,39 @@ public class UserService {
     }
 
     public boolean idcheck(String userId) {
-        return registerMapper.idcheck(userId) > 0;
+        return userMapper.idcheck(userId) > 0;
     }
 
     public boolean nickcheck(String userNick) {
-        return registerMapper.nickcheck(userNick) > 0;
+        return userMapper.nickcheck(userNick) > 0;
     }
 
     public boolean emailcheck(String userEmail) {
-        return registerMapper.emailcheck(userEmail) > 0;
+        return userMapper.emailcheck(userEmail) > 0;
     }
 
     public String updateUser(UserVO registerVO) {
-        int result = registerMapper.updateUser(registerVO);
+        int result = userMapper.updateUser(registerVO);
         if (result == 1) {
             return "내 정보가 변경되었습니다.";
         } else {
             return "변경할 수 없습니다";
         }
+    }
+
+    public List<FreeVO> getMyFreePosts(String user_id) {
+        return userMapper.getMyFreePosts(user_id);
+    }
+
+    public List<LifeVO> getMyLifePosts(String user_id) {
+        return userMapper.getMyLifePosts(user_id);
+    }
+
+    public List<FreeReplyVO> getMyFreePostReplies(String user_nickname) {
+        return userMapper.getMyFreePostReplies(user_nickname);
+    }
+
+    public List<LifeReplyVO> getMyLifePostReplies(String user_nickname) {
+        return userMapper.getMyLifePostReplies(user_nickname);
     }
 }

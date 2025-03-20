@@ -53,4 +53,6 @@
 </c:choose>
 <button class="write-btn" onclick="logincheck('${sessionScope.user}')">작성</button>
 </body>
+<script src="/resources/js/life/life.js"></script>
+
 </html>

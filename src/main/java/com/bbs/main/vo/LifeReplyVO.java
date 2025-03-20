@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class FreeReplyVO {
+public class LifeReplyVO {
    private String r_id;
    private String post_id;
    private String r_writer;
