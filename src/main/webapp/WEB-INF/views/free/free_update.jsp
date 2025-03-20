@@ -62,7 +62,15 @@
     <div>
 
         <div>
-            <input type='file' name="post_file" id='btnAtt' value="${post.post_image}">
+            <div>현재 파일 :
+            <c:if test="${not empty post.post_image}">
+                <span>${post.post_image}</span> <!-- 기존 파일명 표시 -->
+                <input type="hidden" name="existing_post_image" value="${post.post_image}">
+            </c:if>
+            </div>
+            <div>
+                <input type="file" name="post_file" id="btnAtt">
+            </div>
         </div>
     </div>
     <div>

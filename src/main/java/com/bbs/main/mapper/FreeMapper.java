@@ -2,7 +2,6 @@ package com.bbs.main.mapper;
 
 import com.bbs.main.vo.FreeReplyVO;
 import com.bbs.main.vo.FreeVO;
-import com.bbs.main.vo.LifeVO;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -42,5 +41,12 @@ public interface FreeMapper {
     @Insert("INSERT INTO Free_Reply (post_id, r_writer, r_context) " +
             "VALUES (#{post_id}, #{r_writer}, #{r_context})")
     int addReply(FreeReplyVO freeReplyVO);
+
+
+   @Update("UPDATE Free_Reply set r_context = #{r_context} where r_id = #{r_id}")
+    int updateReply(FreeReplyVO freeReplyVO);
+
+   @Delete("DELETE FREE_REPLY WHERE R_ID = #{r_id}")
+    int deleteReply(int r_id);
 
 }
