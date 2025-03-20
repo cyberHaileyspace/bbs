@@ -67,9 +67,12 @@ function paging(data) {
 }
 
 function renderPosts(posts) {
-    $("#post-container").empty();  // 기존 게시글 제거
+    $("#post-container").empty(); // 기존 게시글 제거
     let postHtml = "";
+
     posts.forEach(p => {
+        const formattedDate = new Date(p.post_date).toISOString().split('T')[0];
+
         postHtml +=
             "<div class='item'>" +
             "<div class='post-life' onclick='goToPost(" + p.post_id + ")'>" +
@@ -86,7 +89,7 @@ function renderPosts(posts) {
             "<div class='life-info'>" +
             "<div style='display: flex'>" +
             "<div class='info-name'>작성자: " + p.user_nickname + "</div>&nbsp;/&nbsp;" +
-            "<div class='info-date'>작성일: " + p.post_date + "</div>" +
+            "<div class='info-date'>작성일: " + formattedDate + "</div>" +
             "</div>" +
             "<div style='display: flex'>" +
             "<div class='info-view'>조회수: " + p.post_view + "</div>&nbsp;/&nbsp;" +
@@ -95,7 +98,6 @@ function renderPosts(posts) {
             "</div>" +
             "</div>" +
             "</div>";
-
     });
     console.log("새로운 데이터 추가 완료");
     return postHtml;

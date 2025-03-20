@@ -256,7 +256,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // 페이징 초기 실행 (페이지 로드 후 데이터가 이미 있다면)
     updateItems();
     showPage(currentPage);
-    setupPagination();
+    /*setupPagination();*/
 
 
     // 페이지를 로드한 후 현재 상태 저장 (초기 상태: 1페이지)

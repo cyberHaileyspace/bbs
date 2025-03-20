@@ -62,7 +62,7 @@ button {
 
 /* 가입하기 버튼 */
 .sign {
-    background-color: #007bff;
+    background-color: rgb(0, 123, 255);
     color: white;
     font-weight: bold;
 }

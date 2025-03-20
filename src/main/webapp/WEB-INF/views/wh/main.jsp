@@ -45,11 +45,15 @@
             </div>
             <div class="main_content">
                 <div class="main_content_box">
-                    <div class="main_board_header"><span class="main_board_header_title">관광게시판</span><span class="main_board_header_plus">더보기</span></div>
+                    <div class="main_board_header"><span class="main_board_header_title">관광게시판</span><span
+                            class="main_board_header_plus">더보기</span></div>
                     <c:forEach var="t" items="${tour}" varStatus="status">
                         <c:if test="${status.index < 5}">
                             <div class="main_board_box">
-                                <a href="/main/tour/getLoc?contentid=${t.contentid}" style="display: flex"><img src="${t.firstimage}"><p class="main_board_content_title">${t.title}</p></a><p style="margin-left: auto">생성날짜</p>
+                                <a href="/main/tour/getLoc?contentid=${t.contentid}" style="display: flex"><img
+                                        src="${t.firstimage}">
+                                    <p class="main_board_content_title">${t.title}</p></a>
+                                <p style="margin-left: auto">생성날짜</p>
                             </div>
                         </c:if>
                     </c:forEach>
@@ -60,11 +64,14 @@
                     <c:forEach var="l" items="${life}" varStatus="status">
                         <c:if test="${status.index < 5}">
                             <div class="main_board_box">
-                                <a href="javascript:goToPost(${p.post_id})" style="display: flex"><img src="${l.post_image}"><p>${l.post_title}</p></a><p style="margin-left: auto; padding-right: 10px">생성날짜</p>
+                                <a href="javascript:goToPost(${p.post_id})" style="display: flex"><img
+                                        src="${l.post_image}">
+                                    <p>${l.post_title}</p></a>
+                                <p style="margin-left: auto; padding-right: 10px">생성날짜</p>
                             </div>
                         </c:if>
                     </c:forEach>
-                </div>
+                </div>  
 
             </div>
             <div class="main_content">

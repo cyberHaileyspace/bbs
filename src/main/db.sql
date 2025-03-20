@@ -221,3 +221,20 @@ insert into tourlist_reply (contentid, c_writer, c_context, c_date) values ('264
 
 select *
 from tourlist_reply;
+
+create table like_tbl(
+    l_id number(3) primary key ,
+    l_user_id varchar2(20 char),
+    l_post_id number(3)
+);
+
+create sequence like_tbl_seq;
+
+
+insert into like_tbl values (like_tbl_seq.nextval, 'test', 10);
+select  * from like_tbl;
+
+select * from like_tbl where l_user_id = 'test' and l_post_id = 11;
+
+
+

@@ -136,4 +136,5 @@
         setInterval(nextSlide, 3000);
     });
 </script>
+<script src="/resources/js/tour.js"></script>
 </html>
