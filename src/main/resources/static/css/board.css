@@ -256,11 +256,12 @@ button {
 }
 
 .search-btn {
+    display: flex;
     margin: 20px;
+    gap: 20px;
 }
 
 .search-btn input {
-    display: flex;
     width: 100%;
     border-radius: 10px;
 }

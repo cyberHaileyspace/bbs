@@ -39,6 +39,7 @@
             </button>
         </div>
     </div>
+
 </div>
 <br>
 <%--<button class="write-btn" onclick="logincheck('${sessionScope.user}')">

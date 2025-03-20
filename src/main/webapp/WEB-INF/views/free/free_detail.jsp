@@ -120,69 +120,68 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %> <%--<link
     --%>
   </head>
   <body>
-    <div class="container">
-      <div class="post-header">
-        <div>작성인 : ${post.user_nickname}</div>
-      </div>
-      <div class="title">
-        [ ${post.post_category} ] [ ${post.post_menu} ] ${post.post_title}
-      </div>
-      <div class="post-image-container">
-        <img
-          src="/img/free/${post.post_image}"
-          alt="Post Image"
-        />
-      </div>
-      <div class="post-content">
-        <div class="text">${post.post_context}</div>
-        <div class="date">
-          작성일 :
-          <fmt:formatDate
-            value="${post.post_date}"
-            pattern="yyyy-MM-dd HH:mm"
-          />
+  <div class="container-cm-post">
+    <div class="life-back" onclick="location.href='/main/life'">생활게시판 ></div>
+    <div class="post-title"><span> ${post.post_title } </span></div>
+    <div class="post-info">
+      <div class="post-profile"><img alt="" src="file/${user.user_image }"></div>
+      <div class="post-mini-wrapper">
+        <div class="post-string">
+          <div class="post-name">${post.user_nickname }</div>
+          <div class="post-date"><fmt:formatDate value="${post.post_date}" pattern="yyyy-MM-dd"/></div>
         </div>
-      </div>
-      <div class="buttons-container">
-        <c:if test="${login_nickname == post.user_nickname}">
-          <button onclick="deletePost(${post.post_id})">삭제</button>
-          <button onclick="location.href='update/${post.post_id}'">
-            수정하기
-          </button>
-        </c:if>
-        <button onclick="location.href='/main/free'">목록으로</button>
-      </div>
-      <div>
-        <div class="reply-section">
-          <div class="reply-header">댓글 쓰기</div>
-          <div hidden="hidden">
-            닉네임 :
-            <input
-              name="user_nickname"
-              value="${user.user_nickname}"
-              type="text"
-              placeholder="${user.user_nickname}"
-              readonly
-            />
-          </div>
-
-          <textarea
-            id="replyContent"
-            placeholder="댓글을 입력하세요..."
-          ></textarea>
-          <button
-            id="replyButton"
-            onclick="handleFreeReplySubmit('${user.user_nickname}')"
-          >
-            댓글 쓰기
-          </button>
-        </div>
-        <div id="replySection">
-          <p></p>
+        <div class="post-items">
+          <div class="post-view"><img
+                  src="https://cdn-icons-png.flaticon.com/512/7835/7835667.png">${post.post_view }</div>
+          <div class="post-like"><img
+                  src="https://cdn-icons-png.flaticon.com/512/833/833234.png">${post.post_like }</div>
         </div>
       </div>
     </div>
 
+    <div class="post-content">
+      <c:if test="${post.post_image ne null}">
+        <div class="post-img">
+          <img src="/file/${post.post_image}" style="width: 400px; height: 400px">
+        </div>
+      </c:if>
+      <div class="post-text" id="post<%---${post.post_id}--%>">
+        <div>${post.post_context}</div>
+      </div>
+      <br>
+      <div class="post-button">
+        <button class="like-button" onclick="location.href='like/' + ${post.post_id}">
+          추천수 : ${post.post_like}
+        </button>
+        <c:if test="${login_nickname == post.user_nickname}">
+          <button onclick="deletePost(${post.post_id})">삭제</button>
+          <button onclick="location.href='update/${post.post_id}'">수정</button>
+        </c:if>
+        <button onclick="location.href='/main/life'">목록</button>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div>
+      <div class="comment-section">
+        <div class="comment-header">댓글 쓰기</div>
+        <div hidden="hidden">닉네임 : <input name="user_nickname" value="${user.user_nickname}" type="text"
+                                          placeholder="${user.user_nickname}" readonly></div>
+
+        <div class="comment-ta">
+          <textarea id="replyContent" placeholder="댓글을 입력하세요..." style="resize: none"></textarea>
+        </div>
+
+        <button id="commentButton"
+                onclick="handleReplySubmit('${user.user_nickname}')">댓글 쓰기
+        </button>
+      </div>
+
+      <div id="commentSection">
+        <p></p>
+      </div>
+    </div>
+  </div>
     <%----------------------------------------------------------------------------------------------------------%>
     <script>
               var post_id = ${post.post_id}; // JSP 변수를 JavaScript 변수에 할당

@@ -178,5 +178,4 @@ function searchHandler() {
             searchBtn.click();
         }
     })
-
 }

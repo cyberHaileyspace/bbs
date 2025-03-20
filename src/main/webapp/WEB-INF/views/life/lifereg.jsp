@@ -105,6 +105,5 @@
         oEditors.getById["writearea"].exec("UPDATE_CONTENTS_FIELD", []);
         console.log(oEditors.getById["writearea"].exec("UPDATE_CONTENTS_FILED", []));
     });
-
 </script>
 </html>
