@@ -40,6 +40,10 @@ public class TourService {
         tourMapper.deleteComment(c_id);
     }
 
+    public void updateComment(TourCommentVO comment) {
+        tourMapper.updateComment(comment);
+    }
+
     // 댓글 추가, 삭제 등 다른 비즈니스 로직 메서드도 추가할 수 있습니다.
 
     public List<TourVO> getAllLocation(String areaCode, String sigungu, String sort) {
@@ -262,6 +266,8 @@ public class TourService {
             throw new RuntimeException(e);
         }
     }
+
+
 
     /**
      * 내부 DTO 클래스: 한국관광공사 API 응답 구조 (예시)

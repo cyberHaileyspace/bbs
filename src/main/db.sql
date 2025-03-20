@@ -217,6 +217,8 @@ create table tourlist_reply(
                                c_update TIMESTAMP  -- 수정 시 UPDATE문에서 변경
 );
 
+
+
 insert into tourlist_reply (contentid, c_writer, c_context, c_date) values ('264570','수현호','여기 물가 무서워...',sysdate);
 
 select *

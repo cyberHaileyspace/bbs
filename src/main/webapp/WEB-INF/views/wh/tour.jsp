@@ -170,4 +170,5 @@
         })
     })
 </script>
+<script src="/resources/js/tour.js"></script>
 </html>

@@ -10,11 +10,11 @@ a {
     display: flex;
     justify-content: center;
     padding: 40px 0;
-    gap: 50px;
+    gap: 60px;
 }
 
 .main_content_box {
-    width: 42%;
+    min-width: 42%;
     background-color: aqua;
     padding: 15px 20px;
 }
@@ -39,10 +39,12 @@ a {
 .main_board_header_title {
     margin: 0 auto;
     width: 85%;
+    cursor: pointer;
 }
 
 .main_board_header_plus {
     margin-left: auto;
+    cursor: pointer;
 }
 
 .main_board_box{
