@@ -6,21 +6,22 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        .news-wrap{
+        .news-wrap {
             margin: 20px;
             border: 2px solid indianred;
         }
     </style>
+
 </head>
 <body>
-<h1>News data --</h1>
- <div id="news-container"></div>
-    <button id="more-btn">More</button>
+<h1>오늘의 일본 해외 인기 뉴스</h1>
+<div id="news-container"></div>
+<button id="more-btn">More</button>
 </body>
 <script>
-window.onload = () =>{
-   getNews();
-}
+    window.onload = () => {
+        getNews();
+    }
 
     function getNews() {
 
@@ -49,17 +50,19 @@ window.onload = () =>{
                 renderNews(data);
             }) // 변환된 JSON 데이터 출력
     }
-let cnt = 5;
+
+    let cnt = 5;
+
     function renderNews(data) {
         const newsContainer = document.querySelector("#news-container");
         let content = "";
-        data.articles.forEach(function(news, i) {
-            if (i <= cnt){
-            content +=
-                "<div class='news-wrap'>" +
-                "<div>" + news.title + "</div>" +
-                "<div><a href="+news.url+">visit</a></div>" +
-                "</div>";
+        data.articles.forEach(function (news, i) {
+            if (i <= cnt) {
+                content +=
+                    "<div class='news-wrap'>" +
+                    "<div>" + news.title + "</div>" +
+                    "<div><a href=" + news.url + ">visit</a></div>" +
+                    "</div>";
             }
         });
         newsContainer.innerHTML = content;

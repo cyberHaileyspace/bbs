@@ -51,7 +51,7 @@
 
 </div>
 <div class="panel">
-    <div onclick="location.href='/main/news'" style="cursor: pointer">뉴스 및 공지</div>
+    <div onclick="location.href='/main/news'" style="cursor: pointer">해외 뉴스</div>
     <div onclick="location.href='/main/free'" style="cursor: pointer">자유게시판</div>
     <div onclick="location.href='/main/tour'" style="cursor: pointer">관광게시판</div>
     <div onclick="location.href='/main/life'" style="cursor: pointer">생활게시판</div>
