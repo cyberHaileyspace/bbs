@@ -1,10 +1,8 @@
 package com.bbs.main.mapper;
 
 import com.bbs.main.vo.TourCommentVO;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.*;
+
 import java.util.List;
 
 @Mapper
@@ -21,4 +19,9 @@ public interface TourMapper {
     // 댓글 삭제
     @Delete("DELETE FROM tourlist_reply WHERE c_id = #{c_id}")
     void deleteComment(int c_id);
+
+    // 댓글 수정
+    @Update("UPDATE tourlist_reply SET c_context = #{c_context}, c_update = NOW() WHERE c_id = #{c_id}")
+    void updateComment(TourCommentVO comment);
+
 }

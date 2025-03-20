@@ -22,12 +22,8 @@ public class HC {
     @Autowired
     private FreeService freeService;
 
-//    ,@RequestParam(required = false) String areaCode,
-//    @RequestParam(required = false) String sigungu,
-//    @RequestParam(required = false) String sort
     @GetMapping("/")
-    public String home(Model model, String title) {
-        model.addAttribute("life", lifeService.getposts(title));
+    public String home(Model model) {
         model.addAttribute("free", freeService.getposts());
         model.addAttribute("tour", tourService.getAllLocation("1", null, "R"));
         model.addAttribute("content", "wh/main.jsp");

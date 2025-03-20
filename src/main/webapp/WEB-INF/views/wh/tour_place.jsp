@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
 <!DOCTYPE html>
@@ -99,6 +100,11 @@
                                 <input type="hidden" name="contentid" value="${common.contentid}"/>
                                 <input type="submit" value="삭제"/>
                             </form>
+                            <form action="/tour/comment/update" method="get" style="display:inline">
+                                <input type="hidden" name="c_id" value="${r.c_id}"/>
+                                <input type="hidden" name="contentid" value="${common.contentid}"/>
+                                <input type="submit" value="수정"/>
+                            </form>
                             <!-- 수정 버튼은 별도의 수정 페이지나 팝업으로 구현할 수 있습니다. -->
                         </c:if>
                     </div>
@@ -112,28 +118,5 @@
     </div>
 </div>
 </body>
-<script>
-    window.addEventListener("load", function() {
-        const slider = document.getElementById("imageSlider");
-        if (!slider) return;
-        const images = slider.querySelectorAll("img");
-        if (images.length <= 1) return; // 이미지가 1장 이하이면 슬라이더 작동 안 함
-
-        // 모든 이미지가 같은 너비라고 가정 (최대 600px)
-        // slider의 현재 translateX 값을 관리할 변수
-        let currentIndex = 0;
-
-        // 다음 슬라이드로 전환하는 함수
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % images.length;
-            // 슬라이더의 너비(또는 이미지의 너비)를 기준으로 이동
-            // 이미지가 inline-block으로 나열되어 있으므로, 각 이미지의 너비를 사용합니다.
-            const imageWidth = images[0].offsetWidth;
-            slider.style.transform = "translateX(-" + (currentIndex * imageWidth) + "px)";
-        }
-
-        // 3초마다 nextSlide 함수 호출
-        setInterval(nextSlide, 3000);
-    });
-</script>
+<script src="/resources/js/tour.js"></script>
 </html>

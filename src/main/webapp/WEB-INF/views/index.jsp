@@ -49,25 +49,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     </c:choose>
 
 </div>
-<div class="panel">
-    <div>뉴스</div>
-    <div onclick="location.href='/main/free'" style="cursor: pointer">자유게시판</div>
-    <form id="defaultTourForm" action="/main/tour/loc" method="get">
-        <input type="hidden" name="areaCode" value="1" />
-        <input type="hidden" name="sigungu" value="" />
-        <input type="hidden" name="sort" value="R" />
-        <input type="hidden" name="pageNo" value="1" />
-    </form>
-    <div onclick="document.getElementById('defaultTourForm').submit()" style="cursor: pointer">관광게시판</div>
-    <div onclick="location.href='/main/life'" style="cursor: pointer">생활게시판</div>
-    <div onclick="location.href='/login'" style="cursor: pointer">로그인</div>
-    <div onclick="location.href='/register'" style="cursor: pointer">회원가입</div>
-    <div onclick="location.href='https://www.kr.emb-japan.go.jp/itprtop_ko/index.html'" style="cursor: pointer;">在大韓民国日本国大使館</div>
-</div>
-<div class="main">
-    <div class="main-cnt">
-      </c:choose>
-    </div>
+
     <div class="panel">
       <div onclick="location.href='/main/news'" style="cursor: pointer">
         뉴스 및 공지
@@ -75,9 +57,13 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       <div onclick="location.href='/main/free'" style="cursor: pointer">
         자유게시판
       </div>
-      <div onclick="location.href='/main/tour'" style="cursor: pointer">
-        관광게시판
-      </div>
+        <form id="defaultTourForm" action="/main/tour/loc" method="get">
+            <input type="hidden" name="areaCode" value="1" />
+            <input type="hidden" name="sigungu" value="" />
+            <input type="hidden" name="sort" value="R" />
+            <input type="hidden" name="pageNo" value="1" />
+        </form>
+        <div onclick="document.getElementById('defaultTourForm').submit()" style="cursor: pointer">관광게시판</div>
       <div onclick="location.href='/main/life'" style="cursor: pointer">
         생활게시판
       </div>
@@ -106,6 +92,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         <h4>© 2025 디아스포라(Diaspora) 한국 일본인 생활 정보 커뮤니티</h4>
       </div>
     </div>
-    <script src="/resources/js/tour.js"></script>
+
   </body>
 </html>
