@@ -6,11 +6,11 @@ uri="http://java.sun.com/jsp/jstl/core" %>
   <head>
     <meta charset="UTF-8" />
     <title>Diaspora - ディアスポラ</title>
-    <link rel="stylesheet" href="/resources/css/sample.css" />
-    <link rel="stylesheet" href="/resources/css/life/life.css" />
+    <link rel="stylesheet" href="/resources/css/sample.css">
+    <link rel="stylesheet" href="/resources/css/life/life.css">
     <link rel="stylesheet" href="/resources/css/main.css" />
     <link rel="stylesheet" href="/resources/css/tour.css" />
-    <link rel="stylesheet" href="/resources/css/tour_place.css" />
+    <link rel="stylesheet" href="/resources/css/tour_place.css">
     <script src="/resources/js/sample.js"></script>
   </head>
   <body>
@@ -39,13 +39,33 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             <span onclick="location.href='/login'" style="cursor: pointer"
               >로그인</span
             >
-
             &nbsp;|&nbsp;
-            <span onclick="location.href='/user'" style="cursor: pointer"
+            <span onclick="location.href='/register'" style="cursor: pointer"
               >회원가입</span
             >
           </div>
         </c:otherwise>
+
+    </c:choose>
+
+</div>
+<div class="panel">
+    <div>뉴스</div>
+    <div onclick="location.href='/main/free'" style="cursor: pointer">자유게시판</div>
+    <form id="defaultTourForm" action="/main/tour/loc" method="get">
+        <input type="hidden" name="areaCode" value="1" />
+        <input type="hidden" name="sigungu" value="" />
+        <input type="hidden" name="sort" value="R" />
+        <input type="hidden" name="pageNo" value="1" />
+    </form>
+    <div onclick="document.getElementById('defaultTourForm').submit()" style="cursor: pointer">관광게시판</div>
+    <div onclick="location.href='/main/life'" style="cursor: pointer">생활게시판</div>
+    <div onclick="location.href='/login'" style="cursor: pointer">로그인</div>
+    <div onclick="location.href='/register'" style="cursor: pointer">회원가입</div>
+    <div onclick="location.href='https://www.kr.emb-japan.go.jp/itprtop_ko/index.html'" style="cursor: pointer;">在大韓民国日本国大使館</div>
+</div>
+<div class="main">
+    <div class="main-cnt">
       </c:choose>
     </div>
     <div class="panel">
@@ -75,8 +95,8 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <div class="main">
       <div class="main-cnt">
         <jsp:include page="${content}"></jsp:include>
-      </div>
     </div>
+</div>
     <div class="footer">
       <div style="font-size: 12px">
         디아스포라를 통해 한국 생활 및 비즈니스에 유용한 각종 최신 꿀팁 정보를
@@ -86,8 +106,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         <h4>© 2025 디아스포라(Diaspora) 한국 일본인 생활 정보 커뮤니티</h4>
       </div>
     </div>
-    <%--
     <script src="/resources/js/tour.js"></script>
-    --%>
   </body>
 </html>
