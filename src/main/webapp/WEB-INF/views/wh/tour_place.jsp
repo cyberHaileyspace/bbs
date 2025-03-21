@@ -73,46 +73,75 @@
         </button>
         <%--        </form>--%>
     </div>
-    <!-- 댓글 입력 폼 -->
-    <form id="commentForm" action="/tour/comment" method="post">
-        <input type="hidden" name="contentid" value="${common.contentid}"/>
-        <!-- 로그인된 경우에만 사용자 닉네임을 넣음. (로그인하지 않은 경우 빈 문자열) -->
-        <input type="hidden" name="c_writer"
-               value="${sessionScope.user != null ? sessionScope.user.user_nickname : ''}"/>
-        <textarea name="c_context" placeholder="댓글을 입력하세요..."></textarea>
-        <input type="submit" value="댓글 쓰기"/>
-    </form>
+    <div>
+        <div class="comment-section">
+            <div class="comment-header">댓글 쓰기</div>
+            <div hidden="hidden">닉네임 : <input name="user_nickname" value="${sessionScope.user.user_nickname}" type="text"
+                                              placeholder="${sessionScope.user.user_nickname}" readonly></div>
 
+            <div class="comment-ta">
+                <textarea id="replyContent" placeholder="댓글을 입력하세요..." style="resize: none"></textarea>
+            </div>
 
-    <!-- 댓글 목록 표시 영역 -->
-    <div id="commentSection">
-        <c:choose>
-            <c:when test="${not empty commentList}">
-                <c:forEach var="r" items="${commentList}">
-                    <div class="comment">
-                        <span>작성자: ${r.c_writer}</span>
-                        <span><fmt:formatDate value="${r.c_date}" pattern="yyyy-MM-dd HH:mm"/></span>
-                        <p>${r.c_context}</p>
-                        <c:if test="${user.user_nickname == r.c_writer}">
-                            <form action="/tour/comment/delete" method="post" style="display:inline">
-                                <input type="hidden" name="c_id" value="${r.c_id}"/>
-                                <input type="hidden" name="contentid" value="${common.contentid}"/>
-                                <input type="submit" value="삭제"/>
-                            </form>
-                            <!-- 수정 버튼은 별도의 수정 페이지나 팝업으로 구현할 수 있습니다. -->
-                        </c:if>
-                    </div>
-                    <hr>
-                </c:forEach>
-            </c:when>
-            <c:otherwise>
-                <p>댓글이 없습니다. 댓글을 작성해 보세요!</p>
-            </c:otherwise>
-        </c:choose>
+            <button id="commentButton"
+                    onclick="handleTourReplySubmit('${sessionScope.user.user_nickname}')">댓글 쓰기
+            </button>
+        </div>
+        <div id="replySection">
+        </div>
     </div>
 </div>
-</body>
+
 <script>
+    var post_id = ${common.contentid}; // JSP 변수를 JavaScript 변수에 할당
+    var user_nickname = "${sessionScope.user.user_nickname}"; // 로그인한 사용자의 닉네임을 JSP 변수로 받아옴
+
+    console.log(post_id, user_nickname);
+    // 페이지 로드 시 댓글을 비동기적으로 가져오는 함수
+    function loadReplies() {
+        fetch('/main/tour/reply/' + post_id)
+            .then(response => response.json())
+            .then(data => {
+                console.log("Fetched Replies:", data)
+                const replySection = document.getElementById("replySection");
+                replySection.innerHTML = ""; // 기존 댓글 삭제
+
+                if (data.length === 0) {
+                    replySection.innerHTML = "<p>댓글이 없습니다. 댓글을 작성해 보세요!</p>";
+                } else {
+                    data.forEach(reply => {
+                        const replyDiv = document.createElement("div");
+                        replyDiv.classList.add("reply")
+                        replyDiv.id = "reply-" + reply.c_id;
+                        // 댓글 작성자와 로그인한 사용자가 동일한 경우 삭제 및 수정 버튼을 추가
+                        let replytHTML =
+                            "<div>" +
+                            "<span>작성자 : " + reply.c_writer + "</span>" + "<br>" +
+                            "<span> 작성일 : "  + reply.c_date + "</span>" +
+                            "<p>"+ reply.c_context +"</p>"
+                            + "</div>"
+                        ;
+
+                        if (user_nickname === reply.c_writer) {
+                            replytHTML += "<button onclick=\"editReply('" + reply.c_id + "', '" + reply.c_writer + "', '" + reply.c_date + "', '" + reply.c_context + "')\">수정</button>"
+                                +
+                                "<button onclick=\"deleteReply('" + reply.c_id + "')\">삭제</button>" ;
+                        }
+                        replyDiv.innerHTML = replytHTML;
+                        replySection.appendChild(replyDiv);
+                    });
+                }
+            })
+            .catch(error => {
+                console.error("댓글 로드 실패:", error);
+            });
+    }
+
+
+    // 페이지가 로드되면 댓글을 비동기적으로 불러오는 함수 호출
+
+    document.addEventListener("DOMContentLoaded", loadReplies);
+
     window.addEventListener("load", function() {
         const slider = document.getElementById("imageSlider");
         if (!slider) return;
@@ -136,4 +165,5 @@
         setInterval(nextSlide, 3000);
     });
 </script>
+</body>
 </html>
