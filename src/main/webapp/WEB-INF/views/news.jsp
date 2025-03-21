@@ -5,9 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
     <style>
-        .news-wrap {
+        .news-wrap{
             margin: 20px;
             /*border: 2px solid indianred;*/
         }
@@ -25,9 +24,9 @@
     }
 
     function getNews() {
-
         let date = new Date();
         console.log(date);
+
         let year = date.getFullYear();
         let month = (date.getMonth() + 1).toString().padStart(2, '0'); // 두 자릿수로 변환
         let day = date.getDate() - 7;
@@ -45,6 +44,7 @@
         fetch(req)
             .then(response => response.json()) // JSON 변환 후 반환
             .then(data => {
+                console.log(data)
                 renderNews(data);
                 newsData = data;
                 loadMore()

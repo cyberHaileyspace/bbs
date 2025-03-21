@@ -9,6 +9,8 @@ function goToPost(postId) {
     location.href = "life/" + postId + "?token=" + token;
 }
 
+/* -------------------- 조회수 증가 로직 -------------------- */
+
 function logincheck(user) {
     if (user)
         location.href = "life/reg";
@@ -17,6 +19,8 @@ function logincheck(user) {
         location.href = "/login"
     }
 }
+
+/* -------------------- 로그인 체크 -------------------- */
 
 async function loadData(title) {
 
@@ -31,6 +35,8 @@ async function loadData(title) {
         return [];  // ❗ 오류 발생 시 빈 배열 반환
     }
 }
+
+/* -------------------- 뉴스 -------------------- */
 
 function paging(data) {
     console.log("paging 실행됨, 데이터 개수:", data.length);
@@ -162,6 +168,8 @@ $(document).ready(async function () {
     searchHandler();
 });
 
+/* -------------------- 페이징 -------------------- */
+
 function searchHandler() {
     const searchBtn = document.querySelector("#search-btn");
     const searchInput = document.querySelector("#search-input");
@@ -181,3 +189,5 @@ function searchHandler() {
         }
     })
 }
+
+/* -------------------- 검색 -------------------- */

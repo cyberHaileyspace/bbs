@@ -44,9 +44,6 @@ public interface LifeMapper {
     @Select("SELECT * FROM Life_Post_DB ORDER BY post_view DESC")
     List<LifeVO> getSortsView();  // 조회순
 
-    /*@Update("update Life_Post_DB set post_like = post_like + 1 where post_id = #{post_id}")
-    int getCountLike(int no);*/
-
     @Update("UPDATE Life_Post_DB SET post_like = post_like + 1 WHERE post_id = #{post_id}")
     void incrementLike(int post_id);
 
