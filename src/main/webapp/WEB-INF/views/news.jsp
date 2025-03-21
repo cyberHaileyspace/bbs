@@ -35,7 +35,7 @@
 
         let formattedDate = year + "-" + month + "-" + day; // 원하는 형식으로 합침
         console.log(formattedDate); // 예: 2025-03-17
-        var url = 'https://newsapi.org/v2/everything' +
+        var url = 'https://newsapi.org/v2/everything?' +
             'q=japan&from=' + formattedDate + '&searchIn=title&sortBy=popularity' +
             '&apiKey=cac04d3f1ecc479580de012e82548f93';
 
