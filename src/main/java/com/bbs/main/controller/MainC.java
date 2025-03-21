@@ -43,7 +43,7 @@ public class MainC {
     @GetMapping("/life/all")
     public List<LifeVO> life(@RequestParam(defaultValue = "", required = false) String title) {
         System.out.println(title);
-        return lifeService.getposts(title);
+        return lifeService.searchposts(title);
     }
 
     @GetMapping("/tour")
