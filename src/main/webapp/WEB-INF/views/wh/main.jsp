@@ -19,13 +19,7 @@
                     <%-- 뉴스 게시판 --%>
                 <div class="main_content_box">
                     <div class="main_board_header"><span class="main_board_header_title" onclick="location.href='/main/news'">뉴스 및 공지</span><span class="main_board_header_plus" onclick="location.href='/main/news'">더보기</span></div>
-                    <c:forEach var="t" items="${tour}" varStatus="status">
-                        <c:if test="${status.index < 5}">
-                            <div class="main_board_box">
-                                <img src="${t.firstimage}"><p class="main_board_content_title">${t.title}</p><p style="margin-left: auto">생성날짜</p>
-                            </div>
-                        </c:if>
-                    </c:forEach>
+                    <div id="news-container"></div> <!-- 뉴스가 들어갈 공간 -->
                 </div>
                     <%-- 자유 게시판 --%>
                 <div class="main_content_box">
@@ -101,6 +95,45 @@
         location.href = "/main/life/" + postId + "?token=" + token;
     }
 
+    // 뉴스 데이터를 가져와서 메인 페이지에 5개만 표시하는 함수
+    function getNewsForMain() {
+        let date = new Date();
+        let year = date.getFullYear();
+        let month = (date.getMonth() + 1).toString().padStart(2, '0');
+        let day = (date.getDate() - 7).toString().padStart(2, '0');
+
+        let formattedDate = `${year}-${month}-${day}`;
+        let url = `https://newsapi.org/v2/everything?q=japan&from=${formattedDate}&searchIn=title&sortBy=popularity&apiKey=cac04d3f1ecc479580de012e82548f93`;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                renderNewsForMain(data.articles.slice(0, 5)); // 상위 5개만 표시
+            })
+            .catch(error => console.error("뉴스 로드 오류:", error));
+    }
+
+    // 메인 페이지에 뉴스 5개 출력
+    function renderNewsForMain(newsList) {
+        const newsContainer = document.querySelector("#news-container"); // 뉴스 표시할 컨테이너
+        newsList.forEach((news, index) => {
+            const newsItem = document.createElement("div");
+            newsItem.classList.add("main_board_box");
+
+            newsItem.innerHTML =
+                "<p class='main_board_content_title'>" +
+                "<a href='" + news.url + "' target='_blank'>" + news.title + "</a>" +
+                "</p>" +
+                "<p style='margin-left: auto'>출처: " + news.source.name + "</p>";
+
+            newsContainer.appendChild(newsItem);
+        });
+    }
+
+    // 메인 페이지 로드 시 뉴스 가져오기
+    document.addEventListener("DOMContentLoaded", function () {
+        getNewsForMain();
+    });
 </script>
 </body>
 </html>
