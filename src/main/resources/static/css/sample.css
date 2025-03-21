@@ -60,25 +60,7 @@ body {
     z-index: 2;
 } */
 
-.main {
-    display: flex;
-    justify-content: center;
-    min-height: 875px;
-    background-color: black;
-}
 
-.main-cnt {
-    width: 75%;
-    background-color: white;
-    margin: 20px auto;
-    padding: 20px;
-    gap: 20px;
-    border-radius: 10px;
-}
-
-.main02 {
-    width: 35%;
-}
 
 .footer {
     width: 100%;

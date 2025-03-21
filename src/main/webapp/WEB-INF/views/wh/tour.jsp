@@ -9,6 +9,10 @@
 </head>
 <body>
 <div style="width: 100%">
+    <div class="travel">
+        <div>관광게시판</div>
+        <div>관광정보</div>
+    </div>
     <div style="display: flex; flex-direction: column; align-items: center; width: 300px; height: 70px; background-color: #dce1ff; margin: 0 auto; padding: 20px 0; border-radius: 20px">
         <h3 style="width: 240px; height: 50px; text-align: center; display: flex; align-items: center; justify-content: center; border-radius: 15px; margin: 0">
             가고싶은 지역을 골라보세요</h3>
@@ -136,7 +140,6 @@
 
 
 </div>
-</body>
 <script>
     document.querySelectorAll(".sort").forEach((sort) => {
         sort.addEventListener("click", (e) => {
@@ -171,4 +174,5 @@
     })
 </script>
 <script src="/resources/js/tour.js"></script>
+</body>
 </html>

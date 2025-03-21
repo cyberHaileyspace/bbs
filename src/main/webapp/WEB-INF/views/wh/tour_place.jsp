@@ -90,6 +90,7 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
         </form>
         --%>
       </div>
+
       <div>
         <div class="comment-section">
           <div class="comment-header">댓글 쓰기</div>
@@ -167,34 +168,7 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
                   console.error("댓글 로드 실패:", error);
               });
       }
-
-
-      // 페이지가 로드되면 댓글을 비동기적으로 불러오는 함수 호출
-
-      document.addEventListener("DOMContentLoaded", loadReplies);
-
-      window.addEventListener("load", function() {
-          const slider = document.getElementById("imageSlider");
-          if (!slider) return;
-          const images = slider.querySelectorAll("img");
-          if (images.length <= 1) return; // 이미지가 1장 이하이면 슬라이더 작동 안 함
-
-          // 모든 이미지가 같은 너비라고 가정 (최대 600px)
-          // slider의 현재 translateX 값을 관리할 변수
-          let currentIndex = 0;
-
-          // 다음 슬라이드로 전환하는 함수
-          function nextSlide() {
-              currentIndex = (currentIndex + 1) % images.length;
-              // 슬라이더의 너비(또는 이미지의 너비)를 기준으로 이동
-              // 이미지가 inline-block으로 나열되어 있으므로, 각 이미지의 너비를 사용합니다.
-              const imageWidth = images[0].offsetWidth;
-              slider.style.transform = "translateX(-" + (currentIndex * imageWidth) + "px)";
-          }
-
-          // 3초마다 nextSlide 함수 호출
-          setInterval(nextSlide, 3000);
-      });
     </script>
+  <script src="/resources/js/tour.js"></script>
   </body>
 </html>

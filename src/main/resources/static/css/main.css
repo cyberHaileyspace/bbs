@@ -1,3 +1,24 @@
+
+.main {
+    display: flex;
+    justify-content: center;
+    min-height: 875px;
+    background-color: black;
+}
+
+.main-cnt {
+    width: 85%;
+    background-color: white;
+    margin: 20px auto;
+    padding: 20px;
+    gap: 20px;
+    border-radius: 10px;
+}
+
+.main02 {
+    width: 35%;
+}
+
 .header_title {
     cursor: pointer;
     display: flex;
@@ -28,11 +49,11 @@ a {
     display: flex;
     justify-content: center;
     padding: 40px 0;
-    gap: 60px;
+    gap: 30px;
 }
 
 .main_content_box {
-    min-width: 45%;
+    min-width: 44%;
     background-color: #e9efec;
     padding: 15px 20px;
     border-radius: 20px;
