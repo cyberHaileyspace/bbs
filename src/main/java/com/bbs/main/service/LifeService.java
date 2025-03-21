@@ -2,11 +2,11 @@ package com.bbs.main.service;
 
 import com.bbs.main.mapper.LifeMapper;
 import com.bbs.main.vo.FreeReplyVO;
-import com.bbs.main.vo.FreeVO;
 import com.bbs.main.vo.LifeReplyVO;
 import com.bbs.main.vo.LifeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -116,8 +116,17 @@ public class LifeService {
         }
     }
 
-    public int getCountLike(int no) {
+    /*public int getCountLike(int no) {
         return lifeMapper.getCountLike(no);
+    }*/
+
+    @Transactional
+    public void updateLike(int no) {
+        lifeMapper.incrementLike(no);
+    }
+
+    public int getLikeCount(int no) {
+        return lifeMapper.getLikeCount(no);
     }
 
     public List<LifeReplyVO> getReplys(int post_id) {

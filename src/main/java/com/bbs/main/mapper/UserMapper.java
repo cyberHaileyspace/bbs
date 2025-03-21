@@ -38,9 +38,19 @@ public interface UserMapper {
     @Select("select * from life_post_db where user_nickname = #{user_id} order by post_id desc")
     List<LifeVO> getMyLifePosts(String user_id);
 
-    @Select("select * from free_reply where r_writer = #{user_nickname} order by r_id desc")
+    @Select("SELECT r_id, post_id, r_context, r_like, " +
+            "TO_CHAR(r_date, 'YYYY.MM.DD HH24:MI') AS r_date, " +
+            "TO_CHAR(r_update, 'YYYY.MM.DD HH24:MI') AS r_update " +
+            "FROM Free_Reply " +
+            "where r_writer = #{user_nickname} " +
+            "ORDER BY r_id DESC")
     List<FreeReplyVO> getMyFreePostReplies(String user_nickname);
 
-    @Select("select * from life_reply where r_writer = #{user_nickname} order by r_id desc")
+    @Select("SELECT r_id, post_id, r_context, r_like, " +
+            "TO_CHAR(r_date, 'YYYY.MM.DD HH24:MI') AS r_date, " +
+            "TO_CHAR(r_update, 'YYYY.MM.DD HH24:MI') AS r_update " +
+            "FROM Life_Reply " +
+            "where r_writer = #{user_nickname} " +
+            "ORDER BY r_id DESC")
     List<LifeReplyVO> getMyLifePostReplies(String user_nickname);
 }

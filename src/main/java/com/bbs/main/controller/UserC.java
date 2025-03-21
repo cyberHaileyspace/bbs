@@ -60,7 +60,7 @@ public class UserC {
         if (msg.equals("로그인 되었습니다.")) {
             /*RegisterVO user = registerMapper.login(registerVO);
             session.setAttribute("user", user);*/
-            model.addAttribute("content", "main.jsp");
+            model.addAttribute("content", "wh/main.jsp");
             return "index";
         } else {
             redirectAttributes.addFlashAttribute("error", "ログイン失敗。IDまたはパスワードを確認してください。");

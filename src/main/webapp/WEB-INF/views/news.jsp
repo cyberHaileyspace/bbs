@@ -6,14 +6,14 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        .news-wrap {
+        .news-wrap{
             margin: 20px;
-        /border: 2px solid indianred;/
+            /*border: 2px solid indianred;*/
         }
     </style>
 </head>
 <body>
-<h1>今日の日本海外トップニュース</h1>
+<div style="text-align: center"><h1>今日の日本海外トップニュース</h1></div>
 <div id="news-container"></div>
 <button id="more-btn">More</button>
 </body>
@@ -24,9 +24,9 @@
     }
 
     function getNews() {
-
         let date = new Date();
         console.log(date);
+
         let year = date.getFullYear();
         let month = (date.getMonth() + 1).toString().padStart(2, '0'); // 두 자릿수로 변환
         let day = date.getDate() - 7;
@@ -35,7 +35,7 @@
 
         let formattedDate = year + "-" + month + "-" + day; // 원하는 형식으로 합침
         console.log(formattedDate); // 예: 2025-03-17
-        var url = 'https://newsapi.org/v2/everything' +
+        var url = 'https://newsapi.org/v2/everything?' +
             'q=japan&from=' + formattedDate + '&searchIn=title&sortBy=popularity' +
             '&apiKey=cac04d3f1ecc479580de012e82548f93';
 
@@ -44,6 +44,7 @@
         fetch(req)
             .then(response => response.json()) // JSON 변환 후 반환
             .then(data => {
+                console.log(data)
                 renderNews(data);
                 newsData = data;
                 loadMore()
@@ -64,11 +65,11 @@
             const newsWrap = document.createElement("div");
             newsWrap.classList.add("news-wrap");
             newsWrap.innerHTML =
-                "<div class='item'>" + "<div>" + (currentIndex + i + 1) + "位" + "/" + "題目" + ":" +
-                /"<div>" +/ news.title + "</div>" +
-            "<div>" + news.description + "</div>" +
-            "<div><a href='" + news.url + "' target='_blank'>詳細を見る</a></div>" +
-            "</div>";
+                "<div class='item'>" + "<div>" + "<h3>" + (currentIndex + i + 1) + "位" + "&nbsp;/&nbsp;" + "題目" + "&nbsp;:&nbsp;" +
+                /*"<div>" +*/ news.title + "</h3>" + "</div>" +
+                "<div>" + news.description + "</div>" +
+                "<div><a href='" + news.url + "' target='_blank'>詳細を見る</a></div>" +
+                "</div>";
             newsContainer.appendChild(newsWrap);
         });
 
@@ -83,7 +84,7 @@
             } else {
                 console.error("No data loaded yet!");
             }
-        });
+        })
     }
 </script>
 </html>
