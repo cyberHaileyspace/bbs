@@ -62,7 +62,7 @@ public interface LifeMapper {
     @Select("SELECT r_id, post_id, r_writer, r_context, r_like, " +
             "TO_CHAR(r_date, 'YYYY.MM.DD HH24:MI') AS r_date, " +
             "TO_CHAR(r_update, 'YYYY.MM.DD HH24:MI') AS r_update " +
-            "FROM Free_Reply " +
+            "FROM Life_Reply " +
             "WHERE post_id = #{post_id} " +
             "ORDER BY r_id DESC")
     List<LifeReplyVO> getReplys(int post_id);
