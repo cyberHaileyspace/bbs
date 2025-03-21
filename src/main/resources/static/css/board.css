@@ -62,7 +62,7 @@ button {
 
 /* 가입하기 버튼 */
 .sign {
-    background-color: #007bff;
+    background-color: rgb(0, 123, 255);
     color: white;
     font-weight: bold;
 }
@@ -256,11 +256,12 @@ button {
 }
 
 .search-btn {
+    display: flex;
     margin: 20px;
+    gap: 20px;
 }
 
 .search-btn input {
-    display: flex;
     width: 100%;
     border-radius: 10px;
 }

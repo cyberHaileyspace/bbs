@@ -4,6 +4,8 @@ import com.bbs.main.service.TourService;
 import com.bbs.main.vo.FreeReplyVO;
 import com.bbs.main.vo.TourCommentVO;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +17,7 @@ public class Tour_placeC {
     @Autowired
     private TourService tourService;
 
+
     @GetMapping("/{post_id}")
    public List<TourCommentVO> list(@PathVariable("post_id") int post_id){
         List<TourCommentVO> replies = tourService.getComment(post_id);
@@ -23,9 +26,10 @@ public class Tour_placeC {
     }
 
     @PostMapping
-    public int add(@RequestBody TourCommentVO tourCommentVO){
+    public int add(@RequestBody TourCommentVO tourCommentVO) {
         System.out.println(tourCommentVO);
         return tourService.addComment(tourCommentVO);
+
     }
 
     @PutMapping

@@ -41,6 +41,7 @@ public class TourService {
        return tourMapper.updateReply(tourCommentVO);
     }
 
+
     public int deleteReply(int r_id) {
        return tourMapper.deleteReply(r_id);
     }
@@ -268,6 +269,8 @@ public class TourService {
             throw new RuntimeException(e);
         }
     }
+
+
 
     /**
      * 내부 DTO 클래스: 한국관광공사 API 응답 구조 (예시)

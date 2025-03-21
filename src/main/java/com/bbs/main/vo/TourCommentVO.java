@@ -10,6 +10,6 @@ public class TourCommentVO {
     private String c_writer;   // 댓글 작성자
     private String c_context;  // 댓글 내용
     private int c_like;        // 좋아요 수
-    private String c_date;  // 댓글 작성 시간
+    private Timestamp c_date;  // 댓글 작성 시간
     private String c_update; // 댓글 수정 시간
 }
