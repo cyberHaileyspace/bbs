@@ -112,6 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 동적 페이징 링크 생성 함수 (페이지 번호를 10개씩 그룹화)
     function setupPagination() {
+        console.log("pagination called..")
         paginationDiv.innerHTML = ""; // 기존 페이징 링크 초기화
         const blockSize = 10; // 한 그룹에 보여줄 페이지 번호 개수 (예: 10)
 
@@ -249,15 +250,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 items[i].children[0].prepend(img);
             }
         }
-
         updateState(page);
     }
 
     // 페이징 초기 실행 (페이지 로드 후 데이터가 이미 있다면)
     updateItems();
     showPage(currentPage);
-    /*setupPagination();*/
-
+    setupPagination();
 
     // 페이지를 로드한 후 현재 상태 저장 (초기 상태: 1페이지)
     window.addEventListener('load', function () {
@@ -292,7 +291,3 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
-
-
-
-

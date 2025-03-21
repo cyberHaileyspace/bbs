@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
     <style>
         .news-wrap {
             margin: 20px;
@@ -13,7 +14,7 @@
     </style>
 </head>
 <body>
-<h1>오늘의 일본 해외 인기 뉴스</h1>
+<div style="text-align: center"><h1>今日の日本海外トップニュース</h1></div>
 <div id="news-container"></div>
 <button id="more-btn">More</button>
 </body>
@@ -58,16 +59,16 @@
         const newsContainer = document.querySelector("#news-container");
         // 새로 추가할 뉴스만 가져오기
         const newArticles = data.articles.slice(currentIndex, currentIndex + cnt);
-        console.log(currentIndex+cnt)
+        console.log(currentIndex + cnt)
         let content = "";
         newArticles.forEach((news, i) => {
             const newsWrap = document.createElement("div");
             newsWrap.classList.add("news-wrap");
             newsWrap.innerHTML =
-                "<div class='news-wrap'>" + (currentIndex + i + 1) +
-                "<div>" + news.title + "</div>" +
-                "<div>" + news.title + "</div>" +
-                "<div><a href='" + news.url + "' target='_blank'>visit</a></div>" +
+                "<div class='item'>" + "<div>" + "<h3>" + (currentIndex + i + 1) + "位" + "&nbsp;/&nbsp;" + "題目" + "&nbsp;:&nbsp;" +
+                /*"<div>" +*/ news.title + "</h3>" + "</div>" +
+                "<div>" + news.description + "</div>" +
+                "<div><a href='" + news.url + "' target='_blank'>詳細を見る</a></div>" +
                 "</div>";
             newsContainer.appendChild(newsWrap);
         });
@@ -83,7 +84,7 @@
             } else {
                 console.error("No data loaded yet!");
             }
-        });
+        })
     }
 </script>
 </html>

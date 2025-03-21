@@ -6,7 +6,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <%--script src="/resources/js/sample.js"></script>--%>
     <link rel="stylesheet" href="/resources/css/board.css">
 </head>
 <body>
@@ -203,7 +202,7 @@
         });
     });
 
-     function validateForm() {
+    function validateForm() {
         let userId = $("#user_id").val().trim();
         let userNick = $("#user_nickname").val().trim();
         let userEmail = $("#user_email").val().trim();

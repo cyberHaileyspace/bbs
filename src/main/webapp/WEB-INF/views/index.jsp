@@ -7,7 +7,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <meta charset="UTF-8" />
     <title>Diaspora - ディアスポラ</title>
     <link rel="stylesheet" href="/resources/css/sample.css">
-    <link rel="stylesheet" href="/resources/css/life/life.css">
+    <link rel="stylesheet" href="/resources/css/board.css">
     <link rel="stylesheet" href="/resources/css/main.css" />
     <link rel="stylesheet" href="/resources/css/tour.css" />
     <link rel="stylesheet" href="/resources/css/tour_place.css">
@@ -27,8 +27,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             <span onclick="location.href='/mypage'" style="cursor: pointer"
               >${user.user_nickname} 님의 마이페이지</span
             >
-            &nbsp;|&nbsp; <%--
-            <span onclick="location.href='/register'">会員登録</span> --%>
+            &nbsp;|&nbsp;
             <span onclick="location.href='/logout'" style="cursor: pointer"
               >로그아웃</span
             >
@@ -40,7 +39,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
               >로그인</span
             >
             &nbsp;|&nbsp;
-            <span onclick="location.href='/register'" style="cursor: pointer"
+            <span onclick="location.href='/user'" style="cursor: pointer"
               >회원가입</span
             >
           </div>
@@ -52,7 +51,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 
     <div class="panel">
       <div onclick="location.href='/main/news'" style="cursor: pointer">
-        뉴스 및 공지
+        해외 뉴스
       </div>
       <div onclick="location.href='/main/free'" style="cursor: pointer">
         자유게시판

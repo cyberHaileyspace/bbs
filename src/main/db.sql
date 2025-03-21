@@ -232,11 +232,7 @@ create table like_tbl(
 
 create sequence like_tbl_seq;
 
-
 insert into like_tbl values (like_tbl_seq.nextval, 'test', 10);
 select  * from like_tbl;
 
 select * from like_tbl where l_user_id = 'test' and l_post_id = 11;
-
-
-
