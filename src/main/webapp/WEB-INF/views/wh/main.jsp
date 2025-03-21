@@ -29,7 +29,7 @@
                             <div class="main_board_box">
                                 <img src="${f.post_image}" onclick="goToFree(${f.post_id})"><p onclick="goToFree(${f.post_id})" class="main_board_content_title">${f.post_title}</p>
                                 <p style="margin-left: auto">
-                                    <fmt:formatDate value="${f.post_date}" pattern="yyyy.MM.dd"/>
+                                    <fmt:formatDate value="${f.post_date}" pattern="yyyy.M.d"/>
                                 </p>
                             </div>
                         </c:if>
@@ -46,7 +46,7 @@
                                 <a href="/main/tour/getLoc?contentid=${t.contentid}" style="display: flex"><img src="${t.firstimage}"><p class="main_board_content_title">${t.title}</p></a>
                                 <p style="margin-left: auto">
                                     <fmt:parseDate value="${t.createdtime.substring(0,8)}" pattern="yyyyMMdd" var="parsedDate" />
-                                    <fmt:formatDate value="${parsedDate}" pattern="yyyy.MM.dd" />
+                                    <fmt:formatDate value="${parsedDate}" pattern="yyyy.M.d" />
                                 </p>
                             </div>
                         </c:if>
@@ -60,7 +60,7 @@
                             <div class="main_board_box">
                                 <img src="${l.post_image}" onclick="goToLife(${l.post_id})"><p onclick="goToLife(${l.post_id})" class="main_board_content_title">${l.post_title}</p>
                                 <p style="margin-left: auto">
-                                    <fmt:formatDate value="${l.post_date}" pattern="yyyy.MM.dd"/>
+                                    <fmt:formatDate value="${l.post_date}" pattern="yyyy.M.d"/>
                                 </p>
                             </div>
                         </c:if>
@@ -121,10 +121,13 @@
             newsItem.classList.add("main_board_box");
 
             newsItem.innerHTML =
-                "<p class='main_board_content_title'>" +
+                "<p class='main_board_content_news'>" +
                 "<a href='" + news.url + "' target='_blank'>" + news.title + "</a>" +
                 "</p>" +
-                "<p style='margin-left: auto'>출처: " + news.source.name + "</p>";
+                "<p style='margin-left: auto'>" +
+                (new Date(news.publishedAt).getFullYear()) + "." +
+                (new Date(news.publishedAt).getMonth() + 1) + "." +
+                (new Date(news.publishedAt).getDate()) + "</p>";
 
             newsContainer.appendChild(newsItem);
         });

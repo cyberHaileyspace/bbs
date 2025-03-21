@@ -32,7 +32,7 @@ a {
 }
 
 .main_content_box {
-    min-width: 42%;
+    min-width: 45%;
     background-color: #e9efec;
     padding: 15px 20px;
     border-radius: 20px;
@@ -100,6 +100,15 @@ a {
     padding-left: 15px;
     cursor: pointer;
 }
+.main_board_content_news {
+    padding: 0;
+    cursor: pointer;
+}
+.main_board_content_news a {
+    cursor: pointer;
+    font-size: 11pt;
+}
+
 .main_board_box img {
     height: 100%;
     width: 40px;
