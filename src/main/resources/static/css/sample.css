@@ -112,12 +112,6 @@ body {
     cursor: pointer;
 }
 
-/*.two_box input {
-    width: 100%;
-    max-width: 300px;
-    text-align: center;
-}*/
-
 button {
     width: 120px;
 }
@@ -247,7 +241,7 @@ button {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* 제목 스타일 */
+/* 제목 스타일
 .item div:nth-child(2) {
     font-size: 1.4em;
     font-weight: bold;
@@ -255,14 +249,14 @@ button {
     margin-bottom: 10px;
 }
 
-/* 작성자 & 날짜 스타일 */
+작성자 & 날짜 스타일
 .item div:nth-child(3),
 .item div:nth-child(4) {
     font-size: 0.8em;
     color: #777;
 }
 
-/* 구분선 */
+구분선 */
 hr {
     width: 80%;
     max-width: 800px;
