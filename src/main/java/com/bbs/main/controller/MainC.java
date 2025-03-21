@@ -41,7 +41,7 @@ public class MainC {
 
     @ResponseBody
     @GetMapping("/life/all")
-    public List<LifeVO> life(@RequestParam(defaultValue = "", required = false) String title) {
+    public List<LifeVO> lifesearch(@RequestParam(defaultValue = "", required = false) String title) {
         System.out.println(title);
         return lifeService.searchposts(title);
     }

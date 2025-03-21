@@ -43,8 +43,8 @@
         </div>
         <br>
         <div class="post-button">
-            <button class="like-button" onclick="location.href='like/' + ${post.post_id}">
-                추천수 : ${post.post_like}
+            <button class="like-button" onclick="likePost(${post.post_id}, this)">
+                추천수&nbsp;<span class="like-count">${post.post_like}</span>
             </button>
             <c:if test="${login_nickname == post.user_nickname}">
                 <button onclick="deletePost(${post.post_id})">삭제</button>
@@ -150,5 +150,23 @@
     // 페이지가 로드되면 댓글을 비동기적으로 불러오는 함수 호출
 
     document.addEventListener("DOMContentLoaded", loadReplies);
+</script>
+<script>
+    function likePost(postId, button) {
+        fetch(`/main/life/like/` + postId, {
+            method: "POST", // POST 요청으로 변경
+        })
+            .then(response => response.json()) // JSON 응답 처리
+            .then(data => {
+                console.log(data)
+                if (data.success) {
+                    button.querySelector(".like-count").textContent = data.newLikeCount; // 추천수 업데이트
+                } else {
+                    alert("로그인이 필요합니다.");
+                    window.location.href = "/login"; // 로그인 페이지로 이동
+                }
+            })
+            .catch(error => console.error("Error:", error));
+    }
 </script>
 </html>

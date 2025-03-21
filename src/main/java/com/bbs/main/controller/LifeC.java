@@ -130,7 +130,7 @@ public class LifeC {
         return lifeService.getsorts(option);
     }
 
-    @GetMapping("/like/{post_id}")
+    /*@GetMapping("/like/{post_id}")
     public String lifelike(@PathVariable("post_id") int no, Model model, HttpSession session) {
         System.out.println("-----");
         if (userService.loginChk(session)) {
@@ -139,6 +139,23 @@ public class LifeC {
             return "index";
         }
         return "redirect:/login";
+    }*/
+
+    @PostMapping("/like/{post_id}")
+    @ResponseBody // JSON 응답을 위한 애너테이션
+    public Map<String, Object> lifelike(@PathVariable("post_id") int no, HttpSession session) {
+        Map<String, Object> response = new HashMap<>();
+
+        if (userService.loginChk(session)) {
+            lifeService.updateLike(no); // 추천수 업데이트
+            int newLikeCount = lifeService.getLikeCount(no); // 새로운 추천수 가져오기
+            response.put("success", true);
+            response.put("newLikeCount", newLikeCount);
+        } else {
+            response.put("success", false);
+        }
+
+        return response; // JSON 형태로 반환
     }
 
     @GetMapping("/category")
