@@ -15,8 +15,6 @@ public class LifeAPI {
     @Autowired
     private LifeService lifeService;
 
-
-
     @GetMapping("/{post_id}")
     public List<LifeReplyVO> list(@PathVariable("post_id") int post_id,  @RequestParam(required = false) String token) {
         List<LifeReplyVO> replies = lifeService.getReplys(post_id);

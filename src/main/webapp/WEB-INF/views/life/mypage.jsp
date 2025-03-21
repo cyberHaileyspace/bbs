@@ -184,7 +184,6 @@
         <div style="width: 45%; margin: 20px">
             <h3>생활게시판</h3>
             <c:forEach items="${lifePostReplies}" var="lr">
-                <%--<div>${lr}</div>--%>
                 <div class="life-context">
                     <div class="life-reply-text">${lr.r_context}&nbsp;/&nbsp;${lr.r_date}</div>
                 </div>

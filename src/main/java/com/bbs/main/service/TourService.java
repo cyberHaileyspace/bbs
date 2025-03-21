@@ -28,21 +28,24 @@ public class TourService {
     @Autowired
     private TourMapper tourMapper;
 
-    public List<TourCommentVO> getComment(int contentid) {
-        return tourMapper.getComment(contentid);
+    public List<TourCommentVO> getComment(int post_id) {
+        return tourMapper.getComment(post_id);
     }
 
-    public void addComment(TourCommentVO comment) {
-        tourMapper.insertComment(comment);
+    public int addComment(TourCommentVO comment) {
+       return tourMapper.insertComment(comment);
+
     }
 
-    public void removeComment(int c_id) {
-        tourMapper.deleteComment(c_id);
+    public int updateReply(TourCommentVO tourCommentVO) {
+       return tourMapper.updateReply(tourCommentVO);
     }
 
-    public void updateComment(TourCommentVO comment) {
-        tourMapper.updateComment(comment);
+
+    public int deleteReply(int r_id) {
+       return tourMapper.deleteReply(r_id);
     }
+
 
     // 댓글 추가, 삭제 등 다른 비즈니스 로직 메서드도 추가할 수 있습니다.
 

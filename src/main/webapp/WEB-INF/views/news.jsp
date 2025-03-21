@@ -6,14 +6,14 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        .news-wrap {
+        .news-wrap{
             margin: 20px;
-        /border: 2px solid indianred;/
+            /*border: 2px solid indianred;*/
         }
     </style>
 </head>
 <body>
-<h1>今日の日本海外トップニュース</h1>
+<div style="text-align: center"><h1>今日の日本海外トップニュース</h1></div>
 <div id="news-container"></div>
 <button id="more-btn">More</button>
 </body>
@@ -24,7 +24,6 @@
     }
 
     function getNews() {
-
         let date = new Date();
         console.log(date);
         let year = date.getFullYear();
@@ -44,6 +43,7 @@
         fetch(req)
             .then(response => response.json()) // JSON 변환 후 반환
             .then(data => {
+                console.log(data)
                 renderNews(data);
                 newsData = data;
                 loadMore()

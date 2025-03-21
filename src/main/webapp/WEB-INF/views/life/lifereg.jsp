@@ -16,6 +16,7 @@
     <div>
         <div hidden="hidden">닉네임 : <input name="user_nickname" value="${user.user_nickname}" type="text"
                                           placeholder="${user.user_nickname}" readonly></div>
+        생활게시판
         <div>카테고리</div>
         <div>
             <%--<input type="radio" name="post_category" &lt;%&ndash;id="life-tip"&ndash;%&gt; value="life-tip">&lt;%&ndash;<label for="life-tip">&ndash;%&gt;생활
@@ -105,6 +106,5 @@
         oEditors.getById["writearea"].exec("UPDATE_CONTENTS_FIELD", []);
         console.log(oEditors.getById["writearea"].exec("UPDATE_CONTENTS_FILED", []));
     });
-
 </script>
 </html>

@@ -17,7 +17,7 @@ public interface LifeMapper {
             "(#{user_nickname}, #{post_category}, #{post_menu}, #{post_title}, #{post_context}, #{post_image, jdbcType=NULL})")
     int regPost(LifeVO lifeVO);
 
-    @Select("select * from Life_Post_DB order by post_id desc")
+    @Select("select * from Life_post_DB order by post_id desc")
     List<LifeVO> getposts();
 
     @Select("select * from Life_Post_DB where post_title like '%'||#{title}||'%' order by post_id desc")
@@ -44,8 +44,11 @@ public interface LifeMapper {
     @Select("SELECT * FROM Life_Post_DB ORDER BY post_view DESC")
     List<LifeVO> getSortsView();  // 조회순
 
-    @Update("update Life_Post_DB set post_like = post_like + 1 where post_id = #{post_id}")
-    int getCountLike(int no);
+    @Update("UPDATE Life_Post_DB SET post_like = post_like + 1 WHERE post_id = #{post_id}")
+    void incrementLike(int post_id);
+
+    @Select("SELECT post_like FROM Life_Post_DB WHERE post_id = #{post_id}")
+    int getLikeCount(int post_id);
 
     @Select("select * from Life_post_DB where post_id = #{post_id}")
     LifeVO detailPost(int post_id);
@@ -59,7 +62,7 @@ public interface LifeMapper {
     @Select("SELECT r_id, post_id, r_writer, r_context, r_like, " +
             "TO_CHAR(r_date, 'YYYY.MM.DD HH24:MI') AS r_date, " +
             "TO_CHAR(r_update, 'YYYY.MM.DD HH24:MI') AS r_update " +
-            "FROM Free_Reply " +
+            "FROM Life_Reply " +
             "WHERE post_id = #{post_id} " +
             "ORDER BY r_id DESC")
     List<LifeReplyVO> getReplys(int post_id);
