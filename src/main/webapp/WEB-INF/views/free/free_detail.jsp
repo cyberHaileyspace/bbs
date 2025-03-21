@@ -11,117 +11,10 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %> <%--<link
     <title>Title</title>
     <script src="/resources/js/free/free.js"></script>
     <link rel="stylesheet" href="/resources/css/board.css" />
-    <%--
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-        margin: 0;
-        padding: 0;
-        background-color: #f4f4f4;
-      }
-
-      .container {
-        margin: 20px;
-      }
-
-      .post-header,
-      .post-content {
-        margin-bottom: 20px;
-      }
-
-      .post-header {
-        display: flex;
-        justify-content: space-between;
-        border-bottom: 1px solid #ddd;
-        padding-bottom: 10px;
-      }
-
-      .post-header div {
-        font-size: 16px;
-        color: #555;
-      }
-
-      .post-header .title {
-        font-weight: bold;
-        color: #333;
-        font-size: 20px;
-      }
-
-      .post-image-container img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 8px;
-      }
-
-      .post-content .text {
-        font-size: 14px;
-        color: #333;
-        line-height: 1.8;
-      }
-
-      .post-content .date {
-        font-size: 12px;
-        color: #888;
-      }
-
-      .buttons-container {
-        margin-top: 20px;
-      }
-
-      button {
-        background-color: #4caf50;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        text-align: center;
-        margin: 10px 5px;
-        cursor: pointer;
-        border-radius: 4px;
-        transition: background-color 0.3s;
-      }
-
-      button:hover {
-        background-color: #45a049;
-      }
-
-      button:disabled {
-        background-color: #ccc;
-        cursor: not-allowed;
-      }
-
-      .comment-section {
-        margin-top: 30px;
-      }
-
-      .comment-section .comment-header {
-        font-weight: bold;
-        color: #333;
-      }
-
-      .comment-section textarea {
-        width: 100%;
-        height: 100px;
-        padding: 10px;
-        margin-top: 10px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-      }
-
-      .comment-section button {
-        background-color: #007bff;
-        margin-top: 10px;
-      }
-
-      .comment-section button:hover {
-        background-color: #0056b3;
-      }
-    </style>
-    --%>
   </head>
   <body>
   <div class="container-cm-post">
-    <div class="life-back" onclick="location.href='/main/life'">생활게시판 ></div>
+    <div class="life-back" onclick="location.href='/main/free'">생활게시판 ></div>
     <div class="post-title"><span> ${post.post_title } </span></div>
     <div class="post-info">
       <div class="post-profile"><img alt="" src="file/${user.user_image }"></div>
@@ -157,7 +50,7 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %> <%--<link
           <button onclick="deletePost(${post.post_id})">삭제</button>
           <button onclick="location.href='update/${post.post_id}'">수정</button>
         </c:if>
-        <button onclick="location.href='/main/life'">목록</button>
+        <button onclick="location.href='/main/free'">목록</button>
       </div>
     </div>
   </div>
@@ -173,12 +66,10 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %> <%--<link
         </div>
 
         <button id="commentButton"
-                onclick="handleReplySubmit('${user.user_nickname}')">댓글 쓰기
+                onclick="handleFreeReplySubmit('${user.user_nickname}')">댓글 쓰기
         </button>
       </div>
-
-      <div id="commentSection">
-        <p></p>
+      <div id="replySection">
       </div>
     </div>
   </div>
@@ -213,9 +104,8 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %> <%--<link
                           ;
 
                                   if (user_nickname === reply.r_writer) {
-                                      replytHTML += "<button onclick=\"editReply('" + reply.r_id + "', '" + reply.r_writer + "', '" + reply.r_date + "', '" + reply.r_context + "')\">수정</button>"
-                                          +
-                                          "<button onclick=\"deleteReply('" + reply.r_id + "')\">삭제</button>" ;
+                                      replytHTML += "<button onclick=\"editReply('" + reply.r_id + "', '" + reply.r_writer + "', '" + reply.r_date + "', '" + reply.r_context + "')\">수정</button>" +
+                                              "<button onclick=\"deleteReply('" + reply.r_id + "')\">삭제</button>";
                                   }
                                   replyDiv.innerHTML = replytHTML;
                                   replySection.appendChild(replyDiv);

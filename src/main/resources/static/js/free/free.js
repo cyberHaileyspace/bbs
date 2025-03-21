@@ -126,7 +126,7 @@ function saveEdit(r_id, r_writer, r_date, originalContent) {
         .then(data => {
             console.log("서버 응답 데이터", data); // 응답 데이터 확인
 
-            if (!data || !data.success) {
+            if (data === 1) {
                 alert("댓글이 수정되었습니다.");
                 loadReplies(); // 수정 성공 후 댓글 목록 갱신
             } else {
@@ -152,7 +152,7 @@ function deleteReply(r_id) {
         })
             .then(response => response.json())  // 서버에서 응답을 JSON 형태로 받음
             .then(data => {
-                if (data || !data.success) {
+                if (data === 1) {
                     alert("댓글이 삭제되었습니다.");
                     loadReplies();  // 댓글 삭제 후 댓글 목록 갱신
                 } else {

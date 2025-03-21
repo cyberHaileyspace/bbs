@@ -14,14 +14,13 @@ public interface TourMapper {
 
     // 댓글 삽입
     @Insert("INSERT INTO tourlist_reply(contentid, c_writer, c_context, c_date) VALUES(#{contentid}, #{c_writer}, #{c_context}, sysdate)")
-    void insertComment(TourCommentVO comment);
+    int insertComment(TourCommentVO comment);
 
+    @Update("update tourlist_reply set c_context = #{c_context, jdbcType=VARCHAR} where c_id = #{c_id}")
+    int updateReply(TourCommentVO tourCommentVO);
     // 댓글 삭제
     @Delete("DELETE FROM tourlist_reply WHERE c_id = #{c_id}")
-    void deleteComment(int c_id);
+    int deleteReply(int c_id);
 
-    // 댓글 수정
-    @Update("UPDATE tourlist_reply SET c_context = #{c_context}, c_update = NOW() WHERE c_id = #{c_id}")
-    void updateComment(TourCommentVO comment);
 
 }
