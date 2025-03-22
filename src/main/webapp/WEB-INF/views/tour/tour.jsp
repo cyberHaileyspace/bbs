@@ -10,7 +10,7 @@
 <body>
 <div style="width: 100%">
     <div class="travel">
-        <div onclick="location.href=''">관광게시판</div>
+        <div onclick="location.href='/main/tour'">관광게시판</div>
         <div>관광정보</div>
     </div>
     <div style="display: flex; flex-direction: column; align-items: center; width: 300px; height: 70px; background-color: #dce1ff; margin: 0 auto; padding: 20px 0; border-radius: 20px">

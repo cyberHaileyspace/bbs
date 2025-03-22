@@ -11,19 +11,20 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<div class="travel">
-    <div>관광게시판</div>
+<div style="width: 100%">
+    <div class="travel">
+        <div>관광게시판</div>
+        <div onclick="document.getElementById('defaultTourForm').submit()"
+            style="cursor: pointer">관광정보
+        </div>
+    </div>
     <form id="defaultTourForm" action="/main/tourInfo/loc" method="get">
         <input type="hidden" name="areaCode" value="1"/>
         <input type="hidden" name="sigungu" value=""/>
         <input type="hidden" name="sort" value="R"/>
         <input type="hidden" name="pageNo" value="1"/>
     </form>
-    <div onclick="document.getElementById('defaultTourForm').submit()"
-            style="cursor: pointer">관광정보
-    </div>
-</div>
-<br>
+    <br>
 <button class="write-btn" onclick="logincheck('${sessionScope.user}')"><img class="write-btn-img"
                                                                             alt=""
                                                                             src="https://cdn-icons-png.flaticon.com/512/117/117476.png"/>작성</button>
@@ -31,13 +32,7 @@
     <c:when test="${not empty posts}">
         <c:forEach items="${posts}" var="p">
             <div class="item">
-                    <%--<div>번호 : ${l.post_id}</div>
-                    <div>제목 : ${l.post_title}</div>
-                    <div>작성자 : ${l.user_nickname}</div>
-                    <div>작성일 : <fmt:formatDate value="${l.post_date}" pattern="yyyy-MM-dd"/></div>--%>
-                    <%--<div>
-                        <button onclick="location.href='delete?pk=${p.p_no}'">삭제</button>
-                    </div>--%>
+
                 <div class="post-life" onclick="goToPost(${p.post_id})">
                     <div class="life-kind">
                         <div class="life-no">번호 : ${p.post_id }</div>&nbsp;/&nbsp;
@@ -68,6 +63,7 @@
         <p>게시글이 없습니다. 게시글을 작성해 보세요!</p>
     </c:otherwise>
 </c:choose>
+</div>
 </body>
 <script>
     function generateToken() {
@@ -84,7 +80,7 @@
 
     function logincheck(user) {
         if (user)
-            location.href = "free/reg";
+            location.href = "/main/tourBoard/reg";
         else {
             alert("먼저 로그인을 해주세요.");
             location.href = "/login"

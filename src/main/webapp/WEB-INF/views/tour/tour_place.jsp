@@ -144,20 +144,20 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
                       data.forEach(reply => {
                           const replyDiv = document.createElement("div");
                           replyDiv.classList.add("reply")
-                          replyDiv.id = "reply-" + reply.c_id;
+                          replyDiv.id = "reply-" + reply.r_id;
                           // 댓글 작성자와 로그인한 사용자가 동일한 경우 삭제 및 수정 버튼을 추가
                           let replytHTML =
                               "<div>" +
-                              "<span>작성자 : " + reply.c_writer + "</span>" + "<br>" +
-                              "<span> 작성일 : "  + reply.c_date + "</span>" +
-                              "<p>"+ reply.c_context +"</p>"
+                              "<span>작성자 : " + reply.r_writer + "</span>" + "<br>" +
+                              "<span> 작성일 : "  + reply.r_date + "</span>" +
+                              "<p>"+ reply.r_context +"</p>"
                               + "</div>"
                           ;
 
-                          if (user_nickname === reply.c_writer) {
-                              replytHTML += "<button onclick=\"editReply('" + reply.c_id + "', '" + reply.c_writer + "', '" + reply.c_date + "', '" + reply.c_context + "')\">수정</button>"
+                          if (user_nickname === reply.r_writer) {
+                              replytHTML += "<button onclick=\"editReply('" + reply.r_id + "', '" + reply.r_writer + "', '" + reply.r_date + "', '" + reply.r_context + "')\">수정</button>"
                                   +
-                                  "<button onclick=\"deleteReply('" + reply.c_id + "')\">삭제</button>" ;
+                                  "<button onclick=\"deleteReply('" + reply.r_id + "')\">삭제</button>" ;
                           }
                           replyDiv.innerHTML = replytHTML;
                           replySection.appendChild(replyDiv);
