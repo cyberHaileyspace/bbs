@@ -2,10 +2,8 @@
 
     import lombok.Data;
 
-    import java.util.Date;
-
     @Data
-    public class TourVO {
+    public class Tour_API_VO {
         private String addr1;
         private String areacode;
         private String contentid;

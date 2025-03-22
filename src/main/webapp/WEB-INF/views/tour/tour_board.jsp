@@ -11,6 +11,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+
 <div style="width: 100%">
     <div class="travel">
         <div>관광게시판</div>
@@ -36,7 +37,6 @@
                 <div class="post-life" onclick="goToPost(${p.post_id})">
                     <div class="life-kind">
                         <div class="life-no">번호 : ${p.post_id }</div>&nbsp;/&nbsp;
-                        <div class="life-cate">카테고리 : ${p.post_category }</div>&nbsp;/&nbsp;
                         <div class="life-menu">지역 : ${p.post_menu }</div>
                     </div>
                     <div class="life-title">${p.post_title }</div>
@@ -75,7 +75,7 @@
     function goToPost(postId) {
         const token = generateToken();
         sessionStorage.setItem("viewToken", token);
-        location.href = "free/" + postId + "?token=" + token;
+        location.href = "tourBoard/" + postId + "?token=" + token;
     }
 
     function logincheck(user) {

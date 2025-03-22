@@ -1,20 +1,17 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> <%@ taglib
 uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <%@ page language="java"
-contentType="text/html; charset=utf-8" pageEncoding="utf-8" %> <%--<link
-  rel="stylesheet"
-  href="/resources/css/free/free.css"
-/>--%>
+contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <title>Title</title>
-    <script src="/resources/js/free/free.js"></script>
+    <script src="/resources/js/tourBoard.js"></script>
     <link rel="stylesheet" href="/resources/css/board.css" />
   </head>
   <body>
   <div class="container-cm-post">
-    <div class="life-back" onclick="location.href='/main/free'">생활게시판 ></div>
+    <div class="life-back" onclick="location.href='/main/tourBoard'">생활게시판 ></div>
     <div class="post-title"><span> ${post.post_title } </span></div>
     <div class="post-info">
       <div class="post-profile"><img alt="" src="file/${user.user_image }"></div>
@@ -50,7 +47,7 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %> <%--<link
           <button onclick="deletePost(${post.post_id})">삭제</button>
           <button onclick="location.href='update/${post.post_id}'">수정</button>
         </c:if>
-        <button onclick="location.href='/main/free'">목록</button>
+        <button onclick="location.href='/main/tour'">목록</button>
       </div>
     </div>
   </div>
@@ -80,7 +77,7 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %> <%--<link
 
               // 페이지 로드 시 댓글을 비동기적으로 가져오는 함수
               function loadReplies() {
-                  fetch(`/main/free/reply/${post_id}`)
+                  fetch(`/main/tourBoard/reply/${post_id}`)
                       .then(response => response.json())
                       .then(data => {
                           console.log("Fetched Replies:", data)

@@ -12,20 +12,11 @@
     <link rel="stylesheet" href="/resources/css/sample.css">
 </head>
 <body>
-<form id="freeReg" action="/main/free" method="post" enctype="multipart/form-data">
+<form id="freeReg" action="/main/tourBoard" method="post" enctype="multipart/form-data">
     <div>
         <div hidden="hidden">닉네임 : <input name="user_nickname" value="${user.user_nickname}" type="text"
                                           placeholder="${user.user_nickname}" readonly></div>
-        <div>카테고리</div>
-        <div>
 
-            <select name="post_category">
-                <option value="생활 정보">생활 정보</option>
-                <option value="건강 정보">건강 정보</option>
-                <option value="질문">질문</option>
-                <option value="후기">후기</option>
-            </select>
-        </div>
         <div>
             <div>지역</div>
             <select name="post_menu">

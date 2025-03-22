@@ -351,8 +351,8 @@
       },
       body: JSON.stringify({
         contentid: post_id,
-        c_context: replyContent,
-        c_writer: user_nickname,
+        r_context: replyContent,
+        r_writer: user_nickname,
       }),
     })
         .then((response) => response.json())
@@ -424,8 +424,8 @@
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        c_id: r_id, // 수정할 댓글의 ID 포함
-        c_context: newText, // 새로운 댓글 내용
+        r_id: r_id, // 수정할 댓글의 ID 포함
+        r_context: newText, // 새로운 댓글 내용
       }),
     })
         .then((response) => response.json())

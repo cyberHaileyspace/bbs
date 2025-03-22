@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/resources/css/sample.css">
 </head>
 <body>
-<form id="writereg" action="/main/free/update" method="post" enctype="multipart/form-data">
+<form id="writereg" action="/main/tourBoard/update" method="post" enctype="multipart/form-data">
     <input type="hidden" name="post_id" value="${post.post_id}">  <!-- 여기에 post_id 추가 -->
     <div>
         <div hidden="hidden">
