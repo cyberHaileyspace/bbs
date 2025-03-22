@@ -135,7 +135,10 @@
     // 동적 페이징 링크 생성 함수 (페이지 번호를 10개씩 그룹화)
     function setupPagination() {
       console.log("pagination called..");
+      if(paginationDiv){
+
       paginationDiv.innerHTML = ""; // 기존 페이징 링크 초기화
+
       const blockSize = 10; // 한 그룹에 보여줄 페이지 번호 개수 (예: 10)
 
       // 현재 페이지 그룹 계산
@@ -238,7 +241,7 @@
       }
       paginationDiv.appendChild(lastLink);
     }
-
+    }
     // 페이징 대상 항목을 갱신하는 함수
     function updateItems() {
       const container = document.querySelector(
@@ -280,7 +283,7 @@
     updateItems();
     showPage(currentPage);
     setupPagination();
-
+    loadReplies();
     // 페이지를 로드한 후 현재 상태 저장 (초기 상태: 1페이지)
     window.addEventListener("load", function () {
       // 만약 이전 상태가 없으면 기본 상태(페이지 1) 설정

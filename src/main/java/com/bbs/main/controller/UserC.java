@@ -61,7 +61,7 @@ public class UserC {
             /*RegisterVO user = registerMapper.login(registerVO);
             session.setAttribute("user", user);*/
             model.addAttribute("content", "wh/main.jsp");
-            return "index";
+            return "redirect:/";
         } else {
             redirectAttributes.addFlashAttribute("error", "ログイン失敗。IDまたはパスワードを確認してください。");
             return "redirect:/login";
