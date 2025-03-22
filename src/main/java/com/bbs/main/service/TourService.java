@@ -28,25 +28,6 @@ public class TourService {
     @Autowired
     private TourMapper tourMapper;
 
-    public List<TourCommentVO> getComment(int post_id) {
-        return tourMapper.getComment(post_id);
-    }
-
-    public int addComment(TourCommentVO comment) {
-       return tourMapper.insertComment(comment);
-
-    }
-
-    public int updateReply(TourCommentVO tourCommentVO) {
-       return tourMapper.updateReply(tourCommentVO);
-    }
-
-
-    public int deleteReply(int r_id) {
-       return tourMapper.deleteReply(r_id);
-    }
-
-
     // 댓글 추가, 삭제 등 다른 비즈니스 로직 메서드도 추가할 수 있습니다.
 
     public List<TourVO> getAllLocation(String areaCode, String sigungu, String sort) {
@@ -270,43 +251,22 @@ public class TourService {
         }
     }
 
+    public List<TourCommentVO> getComment(int post_id) {
+        return tourMapper.getComment(post_id);
+    }
+    public int addComment(TourCommentVO comment) {
+        return tourMapper.insertComment(comment);
+    }
+    public int updateReply(TourCommentVO tourCommentVO) {
+        return tourMapper.updateReply(tourCommentVO);
+    }
+    public int deleteReply(int r_id) {
+        return tourMapper.deleteReply(r_id);
+    }
 
 
-    /**
-     * 내부 DTO 클래스: 한국관광공사 API 응답 구조 (예시)
-     * 실제 응답 JSON 구조에 맞게 수정해야 합니다.
-     */
-//    public static class KtoApiResponse {
-//        public Response response;
-//
-//        public static class Response {
-//            public Header header;
-//            public Body body;
-//        }
-//
-//        public static class Header {
-//            public int resultCode;
-//            public String resultMsg;
-//        }
-//
-//        public static class Body {
-//            public Items items;
-//        }
-//
-//        public static class Items {
-//            public List<Item> item;
-//        }
-//
-//        public static class Item {
-//            public String firstimage;  // 이미지 URL
-//            public String title;       // 관광지 이름
-//            public String addr1;       // 주소
-//            public String overview;    // 설명
-//            public String tel;         // 문의 및 안내
-//            public String restdate;    // 쉬는 날
-//            public String usetime;     // 이용 시간
-//            public String originimgurl;// 상세이미지
-//            public String infocenter;  // 연락처
-//        }
-//    }
+
+
+
+
 }

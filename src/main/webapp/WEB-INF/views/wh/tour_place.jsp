@@ -131,7 +131,7 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
       console.log(post_id, user_nickname);
       // 페이지 로드 시 댓글을 비동기적으로 가져오는 함수
       function loadReplies() {
-          fetch('/main/tour/reply/' + post_id)
+          fetch('/main/locReply/' + post_id)
               .then(response => response.json())
               .then(data => {
                   console.log("Fetched Replies:", data)

@@ -18,7 +18,7 @@
 
         const form = document.createElement("form");
         form.method = "get";
-        form.action = "/main/tour/loc";
+        form.action = "/main/tourInfo/loc";
 
         const inputAreaCode = document.createElement("input");
         inputAreaCode.type = "hidden";
@@ -98,7 +98,7 @@
 
         const form = document.createElement("form");
         form.method = "get";
-        form.action = "/main/tour/loc";
+        form.action = "/main/tourInfo/loc";
 
         const areaCodeInput = document.createElement("input");
         areaCodeInput.type = "hidden";
@@ -344,7 +344,7 @@
     }
     // console.log(post_id)
     // 댓글을 서버로 전송하는 fetch 요청 (서버 경로는 실제 경로로 수정해야 합니다)
-    fetch(`/main/tour/reply`, {
+    fetch(`/main/locReply`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -420,7 +420,7 @@
       return; // 텍스트가 비어 있으면 수정하지 않음
     }
 
-    fetch(`/main/tour/reply`, {
+    fetch(`/main/locReply`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -450,7 +450,7 @@
   function deleteReply(r_id) {
     if (confirm("정말로 이 댓글을 삭제하시겠습니까?")) {
       // DELETE 요청으로 데이터를 보냄
-      fetch(`/main/tour/reply/${r_id}`, {
+      fetch(`/main/locReply/${r_id}`, {
         method: "DELETE", // HTTP method를 DELETE로 설정
         headers: {
           "Content-Type": "application/json", // JSON 형식으로 데이터 전송

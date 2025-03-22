@@ -58,14 +58,14 @@
         <div onclick="location.href='/main/free'" style="cursor: pointer">
             자유게시판
         </div>
-        <form id="defaultTourForm" action="/main/tour/loc" method="get">
-            <input type="hidden" name="areaCode" value="1"/>
-            <input type="hidden" name="sigungu" value=""/>
-            <input type="hidden" name="sort" value="R"/>
-            <input type="hidden" name="pageNo" value="1"/>
-        </form>
+<%--        <form id="defaultTourForm" action="/main/tourInfo/loc" method="get">--%>
+<%--            <input type="hidden" name="areaCode" value="1"/>--%>
+<%--            <input type="hidden" name="sigungu" value=""/>--%>
+<%--            <input type="hidden" name="sort" value="R"/>--%>
+<%--            <input type="hidden" name="pageNo" value="1"/>--%>
+<%--        </form>--%>
         <div
-                onclick="document.getElementById('defaultTourForm').submit()"
+                onclick="location.href='/main/tour'"
                 style="cursor: pointer"
         >
             관광게시판

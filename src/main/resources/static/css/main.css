@@ -4,6 +4,7 @@
     justify-content: center;
     min-height: 875px;
     background-color: black;
+    min-width: 1300px;
 }
 
 .main-cnt {

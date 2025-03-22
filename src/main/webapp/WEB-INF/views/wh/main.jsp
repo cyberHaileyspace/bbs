@@ -39,11 +39,11 @@
             <div class="main_content">
                     <%-- 관광 게시판 --%>
                 <div class="main_content_box">
-                    <div class="main_board_header"><span class="main_board_header_title tour-link" onclick="location.href='/main/tour/loc?areaCode=1&sigungu=&sort=R&pageNo=1'">관광게시판</span><span class="main_board_header_plus tour-link" onclick="location.href='/main/tour/loc?areaCode=1&sigungu=&sort=R&pageNo=1'">더보기</span></div>
+                    <div class="main_board_header"><span class="main_board_header_title tour-link" onclick="location.href='/main/tour'">관광게시판</span><span class="main_board_header_plus tour-link" onclick="location.href='/main/tour'">더보기</span></div>
                     <c:forEach var="t" items="${tour}" varStatus="status">
                         <c:if test="${status.index < 5}">
                             <div class="main_board_box">
-                                <a href="/main/tour/getLoc?contentid=${t.contentid}" style="display: flex"><img src="${t.firstimage}"><p class="main_board_content_title">${t.title}</p></a>
+                                <a href="/main/tourInfo/getLoc?contentid=${t.contentid}" style="display: flex"><img src="${t.firstimage}"><p class="main_board_content_title">${t.title}</p></a>
                                 <p style="margin-left: auto">
                                     <fmt:parseDate value="${t.createdtime.substring(0,8)}" pattern="yyyyMMdd" var="parsedDate" />
                                     <fmt:formatDate value="${parsedDate}" pattern="yyyy.M.d" />

@@ -3,7 +3,6 @@ package com.bbs.main.controller;
 import com.bbs.main.service.TourService;
 import com.bbs.main.vo.TourCommentVO;
 import com.bbs.main.vo.TourVO;
-import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,8 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/main/tour")
-public class TourC {
+@RequestMapping("/main/tourInfo")
+public class Tour_InfoC {
 
 
     @Autowired

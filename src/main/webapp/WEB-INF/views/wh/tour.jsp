@@ -10,7 +10,7 @@
 <body>
 <div style="width: 100%">
     <div class="travel">
-        <div>관광게시판</div>
+        <div onclick="location.href=''">관광게시판</div>
         <div>관광정보</div>
     </div>
     <div style="display: flex; flex-direction: column; align-items: center; width: 300px; height: 70px; background-color: #dce1ff; margin: 0 auto; padding: 20px 0; border-radius: 20px">
@@ -128,7 +128,7 @@
         <div class="tour_img_container">
             <c:forEach var="i" items="${result}">
                 <div class="tour_img_box" data-img-url="${i.firstimage}">
-                    <a href="/main/tour/getLoc?contentid=${i.contentid}">
+                    <a href="/main/tourInfo/getLoc?contentid=${i.contentid}">
                         <div>${i.title}</div>
                     </a>
                 </div>
@@ -148,7 +148,7 @@
 
             const form = document.createElement("form");
             form.method = "get";
-            form.action = "/main/tour/loc";
+            form.action = "/main/tourInfo/loc";
 
             const inputAreaCode = document.createElement("input");
             inputAreaCode.type = "hidden";
