@@ -11,7 +11,7 @@ function validateForm() {
     // 사용자 ID 유효성 검사
     const idPattern = /^[a-zA-Z0-9]{6,16}$/;
     if (!idPattern.test(userId)) {
-        alert("IDは6～16文字の半角英数字で入力してください。");
+        alert("ユーザーIDは6～16文字の半角英数字で入力してください。");
         return false;
     }
 
@@ -25,7 +25,7 @@ function validateForm() {
 
     const pwPattern = /^[a-zA-Z0-9._%+!@#$^&*()_+[\]{}|;:'",.<>?/]{6,16}$/;
     if (!pwPattern.test(userPw)) {
-        alert("パスワードは6～16文字の半角英数字または指定された特別な文字を含めてください。");
+        alert("パスワードは6～16文字の英数字、または一部の記号を含めて入力してください。");
         return false;
     }
 
@@ -37,15 +37,15 @@ function validateForm() {
 
     // 이름, 닉네임, 이메일 유효성 검사
     if (userName.trim() === "") {
-        alert("名前は必須です。");
+        alert("お名前は必須項目です。");
         return false;
     }
     if (userNickname.trim() === "") {
-        alert("ニックネームは必須です。");
+        alert("ニックネームは必須項目です。");
         return false;
     }
     if (userEmail.trim() === "") {
-        alert("メールアドレスは必須です。");
+        alert("メールアドレスは必須項目です。");
         return false;
     }
 
@@ -58,7 +58,7 @@ function validateForm() {
 
     if (isNotType(userImage, "jpg") &&
         isNotType(userImage, "png")) {
-        alert('형식에 맞는 자료를 첨부하세요.')
+        alert('JPGまたはPNG形式の画像を添付してください。')
         userImage.value = "";
         return;
     }
@@ -129,12 +129,12 @@ function logincheck(user) {
     if (user)
         location.href = "life/reg";
     else {
-        alert("먼저 로그인을 해주세요.");
+        alert("先にログインしてください。");
         location.href = "/login"
     }
 }
 function deletePost(no) {
-    if (confirm('정말 삭제하시겠습니까?')) {
+    if (confirm('本当に削除しますか？')) {
         // DELETE 요청으로 데이터를 보냄
         /*fetch('/main/life/' + no, {
             method: 'DELETE',  // HTTP method를 DELETE로 설정
@@ -160,14 +160,14 @@ function deletePost(no) {
             .then(response => response.json())  // JSON 응답을 받음
             .then(data => {
                 if (data.success) {
-                    alert('삭제되었습니다.');
+                    alert('削除が完了しました。');
                 } else {
-                    alert('로그인이 필요합니다.');
+                    alert('ログインが必要です。');
                 }
                 location.href = data.redirectUrl;  // 수동으로 페이지 이동
             })
             .catch(error => {
-                console.error('Error:', error);
+                console.error('削除中にエラーが発生しました:', error);
             });
 
     }
@@ -178,7 +178,7 @@ function handleReplySubmit(user_nickname) {
         // 사용자가 로그인된 경우, 댓글을 등록하는 함수 호출
         submitReply();
     } else {
-        alert("로그인 후 작성 가능합니다.")
+        alert("コメントの投稿にはログインが必要です。")
         // 로그인되지 않은 경우, 로그인 페이지로 리다이렉트
         window.location.href = "/login"; // 필요에 따라 URL을 수정하세요
     }
@@ -189,7 +189,7 @@ function submitReply() {
     console.log(replyContent)
     // 댓글 내용이 비어있으면 경고 메시지
     if (!replyContent) {
-        alert("댓글 내용을 입력해주세요.");
+        alert("コメント内容を入力してください。");
         return;
     }
     console.log(post_id)
@@ -208,13 +208,13 @@ function submitReply() {
         .then(response => response.json())
         .then(data => {
             if (data) {
-                alert("댓글이 등록되었습니다.");
+                alert("コメントが投稿されました。");
                 loadReplies(); // 댓글을 성공적으로 등록한 후 댓글을 다시 불러옴
             } else {
-                alert("댓글 등록 실패. 다시 시도해주세요.");
+                alert("コメントの投稿に失敗しました。もう一度お試しください。");
             }
         })
         .catch(error => {
-            console.error("댓글 등록 실패:", error);
+            console.error("コメント投稿エラー:", error);
         });
 }

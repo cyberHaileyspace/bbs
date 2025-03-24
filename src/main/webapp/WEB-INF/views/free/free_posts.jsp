@@ -12,22 +12,22 @@
 </head>
 <body>
 <div class="category">
-    <div><span class="menu">전체</span></div>
-    <div><span class="menu" data-val="생활 정보">생활 정보</span></div>
-    <div><span class="menu" data-val="건강 정보">건강 정보</span></div>
-    <div><span class="menu" data-val="질문">질문</span></div>
-    <div><span class="menu" data-val="후기">후기</span></div>
+    <div><span class="menu">すべて</span></div>
+    <div><span class="menu" data-val="생활 정보">生活情報</span></div>
+    <div><span class="menu" data-val="건강 정보">健康情報</span></div>
+    <div><span class="menu" data-val="질문">質問</span></div>
+    <div><span class="menu" data-val="후기">レビュー</span></div>
 </div>
 <hr>
 <div class="sort">
-    <input type="radio" name="option" value="new" checked="checked"/> 최신순
-    <input type="radio" name="option" value="like"/> 추천순
-    <input type="radio" name="option" value="view"/> 조회순
+    <input type="radio" name="option" value="new" checked="checked"/> 最新順
+    <input type="radio" name="option" value="like"/> おすすめ順
+    <input type="radio" name="option" value="view"/> 閲覧数順
 </div>
 <br>
 <button class="write-btn" onclick="logincheck('${sessionScope.user}')"><img class="write-btn-img"
                                                                             alt=""
-                                                                            src="https://cdn-icons-png.flaticon.com/512/117/117476.png"/>작성</button>
+                                                                            src="https://cdn-icons-png.flaticon.com/512/117/117476.png"/>投稿</button>
 <c:choose>
     <c:when test="${not empty posts}">
         <c:forEach items="${posts}" var="p">
@@ -66,7 +66,7 @@
         </c:forEach>
     </c:when>
     <c:otherwise>
-        <p>게시글이 없습니다. 게시글을 작성해 보세요!</p>
+        <p>投稿がありません。ぜひ最初の投稿をしてみてください！</p>
     </c:otherwise>
 </c:choose>
 </body>
@@ -87,7 +87,7 @@
         if (user)
             location.href = "free/reg";
         else {
-            alert("먼저 로그인을 해주세요.");
+            alert("先にログインしてください。");
             location.href = "/login"
         }
     }

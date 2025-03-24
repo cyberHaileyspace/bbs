@@ -14,10 +14,10 @@
 <body>
 <form id="writereg" action="reg" method="post" enctype="multipart/form-data">
     <div>
-        <div hidden="hidden">닉네임 : <input name="user_nickname" value="${user.user_nickname}" type="text"
+        <div hidden="hidden">ニックネーム : <input name="user_nickname" value="${user.user_nickname}" type="text"
                                           placeholder="${user.user_nickname}" readonly></div>
-        생활게시판
-        <div>카테고리</div>
+        生活掲示板
+        <div>カテゴリー</div>
         <div>
             <%--<input type="radio" name="post_category" &lt;%&ndash;id="life-tip"&ndash;%&gt; value="life-tip">&lt;%&ndash;<label for="life-tip">&ndash;%&gt;생활
             정보</label>
@@ -26,10 +26,10 @@
             <input type="radio" name="post_category" &lt;%&ndash;id="life-qna"&ndash;%&gt; value="life-qna">&lt;%&ndash;<label for="life-qna">&ndash;%&gt;질문</label>
             <input type="radio" name="post_category" &lt;%&ndash;id="life-aft"&ndash;%&gt; value="life-aft">&lt;%&ndash;<label for="life-aft">&ndash;%&gt;후기</label>--%>
             <select name="post_category">
-                <option value="생활 정보">생활 정보</option>
-                <option value="건강 정보">건강 정보</option>
-                <option value="질문">질문</option>
-                <option value="후기">후기</option>
+                <option value="생활 정보">生活情報</option>
+                <option value="건강 정보">健康情報</option>
+                <option value="질문">質問</option>
+                <option value="후기">レビュー</option>
             </select>
         </div>
         <div>
@@ -42,21 +42,21 @@
                 <input type="radio" name="post_menu" &lt;%&ndash;id="life-qna"&ndash;%&gt; value="life-qna">&lt;%&ndash;<label for="life-qna">&ndash;%&gt;질문</label>
             </div>--%>
             <select name="post_menu">
-                <option value="서울">서울</option>
-                <option value="경기/인천">경기/인천</option>
-                <option value="충청/대전">충청/대전</option>
-                <option value="전라/광주">전라/광주</option>
-                <option value="경북/대구">경북/대구</option>
-                <option value="경남/부산/울산">경남/부산/울산</option>
-                <option value="강원">강원</option>
-                <option value="제주">제주</option>
+                <option value="서울">ソウル</option>
+                <option value="경기/인천">京畿／仁川</option>
+                <option value="충청/대전">忠清／大田</option>
+                <option value="전라/광주">全羅／光州</option>
+                <option value="경북/대구">慶北／大邱</option>
+                <option value="경남/부산/울산">慶南／釜山／蔚山</option>
+                <option value="강원">江原</option>
+                <option value="제주">済州</option>
             </select>
         </div>
     </div>
 
     <div>
         <div>제목</div>
-        <div><textarea name="post_title" rows="5" cols="100" placeholder="제목을 입력하세요." style="resize: none;"></textarea>
+        <div><textarea name="post_title" rows="5" cols="100" placeholder="タイトルを入力してください。" style="resize: none;"></textarea>
         </div>
     </div>
 
@@ -64,7 +64,7 @@
         <div>내용</div>
         <div>
             <textarea name="post_context" id="writearea" value="post_context" rows="25" cols="100"
-                      placeholder="내용을 입력하세요"></textarea>
+                      placeholder="内容を入力してください。"></textarea>
         </div>
     </div>
     <div>
@@ -75,8 +75,8 @@
 
     </div>
     <div style="display: flex; gap: 20px">
-        <button class="reg-cancel" type="button" onclick="history.back()">취소</button>
-        <button class="reg-post" type="submit">등록</button>
+        <button class="reg-cancel" type="button" onclick="history.back()">キャンセル</button>
+        <button class="reg-post" type="submit">登録</button>
     </div>
 
 </form>

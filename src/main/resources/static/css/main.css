@@ -52,7 +52,7 @@ a {
 }
 
 .main_content_box {
-    min-width: 44%;
+    width: 500px;
     background-color: #e9efec;
     padding: 15px 20px;
     border-radius: 20px;

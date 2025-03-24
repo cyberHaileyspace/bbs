@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="/resources/css/main.css"/>
     <link rel="stylesheet" href="/resources/css/tour.css"/>
     <link rel="stylesheet" href="/resources/css/tour_place.css"/>
+    <link rel="stylesheet" href="/resources/css/board.css">
+    <link rel="stylesheet" href="/resources/css/tourBoard.css">
     <script src="/resources/js/sample.js"></script>
 </head>
 <body>
@@ -27,24 +29,24 @@
             <c:when test="${user ne null}">
                 <div style="font-size: 20px">
             <span onclick="location.href='/mypage'" style="cursor: pointer"
-            >${user.user_nickname} 님의 마이페이지</span
+            >${user.user_nickname} 様のマイページ</span
             >
 
                     &nbsp;|&nbsp; <%--
             <span onclick="location.href='/register'">会員登録</span> --%>
                     <span onclick="location.href='/logout'" style="cursor: pointer"
-                    >로그아웃</span
+                    >ログアウト</span
                     >
                 </div>
             </c:when>
             <c:otherwise>
                 <div style="font-size: 20px">
             <span onclick="location.href='/login'" style="cursor: pointer"
-            >로그인</span
+            >ログイン</span
             >
                     &nbsp;|&nbsp;
                     <span onclick="location.href='/user'" style="cursor: pointer"
-                    >회원가입</span
+                    >ユーザー登録</span
                     >
                 </div>
             </c:otherwise>
@@ -53,10 +55,10 @@
 
     <div class="panel">
         <div onclick="location.href='/main/news'" style="cursor: pointer">
-            뉴스 및 공지
+            ニュース・お知らせ
         </div>
         <div onclick="location.href='/main/free'" style="cursor: pointer">
-            자유게시판
+            自由掲示板
         </div>
 <%--        <form id="defaultTourForm" action="/main/tourInfo/loc" method="get">--%>
 <%--            <input type="hidden" name="areaCode" value="1"/>--%>
@@ -68,14 +70,14 @@
                 onclick="location.href='/main/tour'"
                 style="cursor: pointer"
         >
-            관광게시판
+            観光掲示板
         </div>
         <div onclick="location.href='/main/life'" style="cursor: pointer">
-            생활게시판
+            生活掲示板
         </div>
-        <div onclick="location.href='/login'" style="cursor: pointer">로그인</div>
+        <div onclick="location.href='/login'" style="cursor: pointer">ログイン</div>
         <div onclick="location.href='/user'" style="cursor: pointer">
-            회원가입
+            会員登録
         </div>
         <div
                 onclick="location.href='https://www.kr.emb-japan.go.jp/itprtop_ko/index.html'"
@@ -91,11 +93,10 @@
     </div>
     <div class="footer">
         <div style="font-size: 12px">
-            디아스포라를 통해 한국 생활 및 비즈니스에 유용한 각종 최신 꿀팁 정보를
-            공유해 보세요
+            ディアスポラを通じて、韓国での生活やビジネスに役立つ最新のヒントを共有しましょう。
         </div>
         <div>
-            <h4>© 2025 디아스포라(Diaspora) 한국 일본인 생활 정보 커뮤니티</h4>
+            <h4>© 2025 ディアスポラ（Diaspora） 韓国在住日本人のための生活情報コミュニティ</h4>
         </div>
     </div>
 </div>

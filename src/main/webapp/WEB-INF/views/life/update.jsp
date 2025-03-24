@@ -34,33 +34,33 @@
 <div class="content">
     <div class="main02">
         <form action="update" method="post">
-            <div class="title"><h1>내 정보 재설정 페이지</h1></div>
+            <div class="title"><h1>マイ情報再設定ページ</h1></div>
             <div class="center">
                 <div class="id" hidden="hidden">
-                    <div>ID</div>
+                    <div>ユーザーID</div>
                     <div><input name="user_id" value="${user.user_id}" type="text" placeholder="${user.user_id}" readonly></div>
                 </div>
                 <div class="name">
-                    <div>이름</div>
+                    <div>氏名</div>
                     <div><input name="user_name" id="user_name" type="text" placeholder="${user.user_name}"></div>
                 </div>
                 <div class="nickname">
-                    <div>닉네임</div>
+                    <div>ニックネーム</div>
                     <div><input name="user_nickname" id="user_nickname" type="text" placeholder="${user.user_nickname}"></div>
                     <span id="nick_check" style="color: red; font-size: 12px"></span>
-                    <button type="button" id="nick_check_btn">중복확인</button>
+                    <button type="button" id="nick_check_btn">重複チェック</button>
                 </div>
                 <div class="email">
-                    <div>메일 주소</div>
+                    <div>メールアドレス</div>
                     <div><input name="user_email" id="user_email" type="text" placeholder="${user.user_email}"></div>
                     <span id="email_check" style="color: red; font-size: 12px"></span>
-                    <button type="button" id="email_check_btn">중복확인</button>
+                    <button type="button" id="email_check_btn">重複チェック</button>
                 </div>
                 <div class="login-button">
                     <%--<button onclick="location.href='/'" class="back">
                         閉じる
                     </button>--%>
-                    <button type="submit">재설정</button>
+                    <button type="submit">更新する</button>
                 </div>
 
                 <%--<div class="two_box">
@@ -106,13 +106,13 @@
 
             // 입력값이 없는 경우
             if (userId === "") {
-                msgBox.text("ID를 입력하세요.");
+                msgBox.text("ユーザーIDを入力してください。");
                 return;
             }
 
             // 정규식 검사 실패
             if (!idPattern.test(userId)) {
-                msgBox.text("ID는 영문과 숫자로 6~16자여야 합니다.");
+                msgBox.text("ユーザーIDは半角英数字6～16文字で入力してください。");
                 return;
             }
 
@@ -124,13 +124,13 @@
                 data: JSON.stringify({ user_id: userId }),
                 success: function(response) {
                     if (response.exists) {
-                        msgBox.text("이미 사용 중인 ID입니다.");
+                        msgBox.text("すでに使用されているIDです。");
                     } else {
-                        msgBox.css("color", "blue").text("사용 가능한 ID입니다.");
+                        msgBox.css("color", "blue").text("使用可能なIDです。");
                     }
                 },
                 error: function() {
-                    msgBox.text("서버 오류가 발생했습니다.");
+                    msgBox.text("サーバーエラーが発生しました。");
                 }
             });
         });
@@ -146,13 +146,13 @@
 
             // 입력값이 없는 경우
             if (userNick === "") {
-                msgBox.text("닉네임을 입력하세요.");
+                msgBox.text("ニックネームを入力してください。");
                 return;
             }
 
             // 정규식 검사 실패
             if (!nickPattern.test(userNick)) {
-                msgBox.text("닉네임은 2~16자여야 합니다.");
+                msgBox.text("ニックネームは2～16文字で入力してください。");
                 return;
             }
 
@@ -164,13 +164,13 @@
                 data: JSON.stringify({ user_nick: userNick }),
                 success: function(response) {
                     if (response.exists) {
-                        msgBox.text("이미 사용 중인 닉네임입니다.");
+                        msgBox.text("すでに使用されているニックネームです。");
                     } else {
-                        msgBox.css("color", "blue").text("사용 가능한 닉네임입니다.");
+                        msgBox.css("color", "blue").text("使用可能なニックネームです。");
                     }
                 },
                 error: function() {
-                    msgBox.text("서버 오류가 발생했습니다.");
+                    msgBox.text("サーバーエラーが発生しました。");
                 }
             });
         });
@@ -186,13 +186,13 @@
 
             // 입력값이 없는 경우
             if (userEmail === "") {
-                msgBox.text("이메일을 입력하세요.");
+                msgBox.text("メールアドレスを入力してください。");
                 return;
             }
 
             // 정규식 검사 실패
             if (!emailPattern.test(userEmail)) {
-                msgBox.text("올바른 이메일 형식이 아닙니다.");
+                msgBox.text("有効なメールアドレスを入力してください。");
                 return;
             }
 
@@ -204,13 +204,13 @@
                 data: JSON.stringify({ user_email: userEmail }),
                 success: function(response) {
                     if (response.exists) {
-                        msgBox.text("이미 사용 중인 이메일입니다.");
+                        msgBox.text("すでに使用されているメールアドレスです。");
                     } else {
-                        msgBox.css("color", "blue").text("사용 가능한 이메일입니다.");
+                        msgBox.css("color", "blue").text("使用可能なメールアドレスです。");
                     }
                 },
                 error: function() {
-                    msgBox.text("서버 오류가 발생했습니다.");
+                    msgBox.text("サーバーエラーが発生しました。");
                 }
             });
         });

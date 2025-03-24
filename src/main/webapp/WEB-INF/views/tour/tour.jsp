@@ -10,27 +10,27 @@
 <body>
 <div style="width: 100%">
     <div class="travel">
-        <div onclick="location.href='/main/tour'">관광게시판</div>
-        <div>관광정보</div>
+        <div onclick="location.href='/main/tour'">観光掲示板</div>
+        <div>観光情報</div>
     </div>
     <div style="display: flex; flex-direction: column; align-items: center; width: 300px; height: 70px; background-color: #dce1ff; margin: 0 auto; padding: 20px 0; border-radius: 20px">
         <h3 style="width: 240px; height: 50px; text-align: center; display: flex; align-items: center; justify-content: center; border-radius: 15px; margin: 0">
-            가고싶은 지역을 골라보세요</h3>
-        <input type="text" class="location-input" style="width: 230px; border-radius: 5px; border: none" placeholder="여길 누르면 지역선택창이 뜹니다."/>
+            行きたい地域を選んでください</h3>
+        <input type="text" class="location-input" style="width: 230px; border-radius: 5px; border: none" placeholder="ここをクリックすると地域選択ウィンドウが表示されます。"/>
     </div>
     <!-- 대분류/소분류 영역 (이전 코드와 동일) -->
     <div class="location-wrap">
         <div class="panels place_scroll panel_2depth">
             <div class="tour_panel selected">
                 <ul class="place_items">
-                    <li class="selected on"><a href="#place07"><span>서울/인천/경기</span></a></li>
-                    <li class="on"><a href="#place03"><span>강원</span></a></li>
-                    <li class="on"><a href="#place06"><span>충청</span></a></li>
-                    <li class="on"><a href="#place05"><span>전라</span></a></li>
-                    <li class="on"><a href="#place04"><span>경상</span></a></li>
-                    <li class="on"><a href="#place02" class="search-area" data-areaCode="6"><span>부산</span></a></li>
-                    <li class="on"><a href="#place02" class="search-area" data-areaCode="4"><span>대구</span></a></li>
-                    <li class="on"><a href="#place01"><span>제주도</span></a></li>
+                    <li class="selected on"><a href="#place07"><span>ソウル/仁川/京畿</span></a></li>
+                    <li class="on"><a href="#place03"><span>江原</span></a></li>
+                    <li class="on"><a href="#place06"><span>忠清</span></a></li>
+                    <li class="on"><a href="#place05"><span>全羅</span></a></li>
+                    <li class="on"><a href="#place04"><span>慶尚</span></a></li>
+                    <li class="on"><a href="#place02" class="search-area" data-areaCode="6"><span>蔚山</span></a></li>
+                    <li class="on"><a href="#place02" class="search-area" data-areaCode="4"><span>大邱</span></a></li>
+                    <li class="on"><a href="#place01"><span>済州</span></a></li>
                 </ul>
             </div>
         </div>
@@ -38,10 +38,10 @@
             <div id="place01" class="sub-panel selected">
                 <ul class="place_items">
                     <li>
-                        <a href="#" data-areaCode="39" class="search-area" data-sigungu="4"><span>제주시</span></a>
+                        <a href="#" data-areaCode="39" class="search-area" data-sigungu="4"><span>済州市</span></a>
                     </li>
                     <li>
-                        <a href="#" data-areaCode="39" class="search-area" data-sigungu="3"><span>서귀포시</span></a>
+                        <a href="#" data-areaCode="39" class="search-area" data-sigungu="3"><span>西帰浦市</span></a>
                     </li>
                 </ul>
             </div>
@@ -51,7 +51,7 @@
             <div id="place03" class="sub-panel">
                 <ul class="place_items">
                     <li>
-                        <a href="#" data-areaCode="32" class="search-area"><span>강원도</span></a>
+                        <a href="#" data-areaCode="32" class="search-area"><span>江原道</span></a>
                     </li>
                 </ul>
             </div>
@@ -60,10 +60,10 @@
             <div id="place04" class="sub-panel">
                 <ul class="place_items">
                     <li>
-                        <a href="#" data-areaCode="35" class="search-area"><span>경상북도</span></a>
+                        <a href="#" data-areaCode="35" class="search-area"><span>慶尚北道</span></a>
                     </li>
                     <li>
-                        <a href="#" data-areaCode="36" class="search-area"><span>경상남도</span></a>
+                        <a href="#" data-areaCode="36" class="search-area"><span>慶尚南道</span></a>
                     </li>
                 </ul>
             </div>
@@ -72,10 +72,10 @@
             <div id="place05" class="sub-panel">
                 <ul class="place_items">
                     <li>
-                        <a href="#" data-areaCode="37" class="search-area"><span>전라북도</span></a>
+                        <a href="#" data-areaCode="37" class="search-area"><span>全羅北道</span></a>
                     </li>
                     <li>
-                        <a href="#" data-areaCode="38" class="search-area"><span>전라남도</span></a>
+                        <a href="#" data-areaCode="38" class="search-area"><span>全羅南道</span></a>
                     </li>
                 </ul>
             </div>
@@ -84,10 +84,10 @@
             <div id="place06" class="sub-panel">
                 <ul class="place_items">
                     <li>
-                        <a href="#" data-areaCode="33" class="search-area"><span>충청북도</span></a>
+                        <a href="#" data-areaCode="33" class="search-area"><span>忠清北道</span></a>
                     </li>
                     <li>
-                        <a href="#" data-areaCode="34" class="search-area"><span>충청남도</span></a>
+                        <a href="#" data-areaCode="34" class="search-area"><span>忠清南道</span></a>
                     </li>
                 </ul>
             </div>
@@ -96,13 +96,13 @@
             <div id="place07" class="sub-panel">
                 <ul class="place_items">
                     <li>
-                        <a href="#" data-areaCode="1" class="search-area"><span>서울</span></a>
+                        <a href="#" data-areaCode="1" class="search-area"><span>ソウル</span></a>
                     </li>
                     <li>
-                        <a href="#" data-areaCode="2" class="search-area"><span>인천</span></a>
+                        <a href="#" data-areaCode="2" class="search-area"><span>仁川</span></a>
                     </li>
                     <li>
-                        <a href="#" data-areaCode="31" class="search-area"><span>경기도</span></a>
+                        <a href="#" data-areaCode="31" class="search-area"><span>京畿道</span></a>
                     </li>
                 </ul>
             </div>
@@ -111,19 +111,19 @@
                 class="close-btn"
                 style="position: absolute; bottom: 10px; right: 15px"
         >
-            close
+            閉じる
         </div>
     </div>
 
     <!-- 관광정보 표시 영역 -->
     <div class="tour_img_container" id="tourContainer">
         <div id="extraInfo">
-            <span class="extraList" style="margin-right: auto">관광지 목록</span>
+            <span class="extraList" style="margin-right: auto">観光地リスト</span>
             <span style="margin: 0 15px" class="sort" data-sort="O" data-area-code="${param.areaCode}"
-                  data-sigungu="${param.sigungu}">제목순</span>
+                  data-sigungu="${param.sigungu}">タイトル順</span>
             <span>|</span>
             <span style="margin: 0 15px" class="sort" data-sort="R" data-area-code="${param.areaCode}"
-                  data-sigungu="${param.sigungu}">최신순</span>
+                  data-sigungu="${param.sigungu}">最新順</span>
         </div>
         <div class="tour_img_container">
             <c:forEach var="i" items="${result}">

@@ -32,9 +32,9 @@ public class TourService {
     // 댓글 추가, 삭제 등 다른 비즈니스 로직 메서드도 추가할 수 있습니다.
 
     public List<Tour_API_VO> getAllLocation(String areaCode, String sigungu, String sort) {
-        String url = "https://apis.data.go.kr/B551011/KorService1/areaBasedList1?";
+        String url = "https://apis.data.go.kr/B551011/JpnService1/areaBasedList1?";
         url += "serviceKey=" + serviceKey;
-        url += "&numOfRows=300&pageNo=1&MobileOS=ETC&MobileApp=AppTest&_type=json&listYN=Y&contentTypeId=12";
+        url += "&numOfRows=300&pageNo=1&MobileOS=ETC&MobileApp=AppTest&_type=json&listYN=Y&contentTypeId=76";
         url += "&areaCode=" + areaCode;
 //        System.out.print(sort + ">>>>>>>>>>>>>>>>>>>>>>>>>");
         if (sort == "" || sort == null) {
@@ -93,9 +93,9 @@ public class TourService {
     }
 
     public Tour_API_VO getDetailCommon(String contentid) {
-        String url = "https://apis.data.go.kr/B551011/KorService1/detailCommon1?";
+        String url = "https://apis.data.go.kr/B551011/JpnService1/detailCommon1?";
         url += "serviceKey=" + serviceKey;
-        url += "&MobileOS=ETC&MobileApp=AppTest&_type=json&contentTypeId=12&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&numOfRows=1&pageNo=1";
+        url += "&MobileOS=ETC&MobileApp=AppTest&_type=json&contentTypeId=76&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&numOfRows=1&pageNo=1";
         url += "&contentId=" + contentid;
         try {
             URL u = new URL(url);
@@ -133,9 +133,9 @@ public class TourService {
     }
 
     public Tour_API_VO getDetailIntro(String contentid) {
-        String url = "https://apis.data.go.kr/B551011/KorService1/detailIntro1?";
+        String url = "https://apis.data.go.kr/B551011/JpnService1/detailIntro1?";
         url += "serviceKey=" + serviceKey;
-        url += "&MobileOS=ETC&MobileApp=AppTest&_type=json&contentTypeId=12&numOfRows=10&pageNo=1";
+        url += "&MobileOS=ETC&MobileApp=AppTest&_type=json&contentTypeId=76&numOfRows=10&pageNo=1";
         url += "&contentId=" + contentid;
         try {
             URL u = new URL(url);
@@ -173,9 +173,9 @@ public class TourService {
     }
 
     public Tour_API_VO getDetailInfo(String contentid) {
-        String url = "https://apis.data.go.kr/B551011/KorService1/detailInfo1?";
+        String url = "https://apis.data.go.kr/B551011/JpnService1/detailInfo1?";
         url += "serviceKey=" + serviceKey;
-        url += "&MobileOS=ETC&MobileApp=AppTest&_type=json&contentTypeId=12&numOfRows=10&pageNo=1";
+        url += "&MobileOS=ETC&MobileApp=AppTest&_type=json&contentTypeId=76&numOfRows=10&pageNo=1";
         url += "&contentId=" + contentid;
         try {
             URL u = new URL(url);
@@ -213,7 +213,7 @@ public class TourService {
     }
 
     public Tour_API_VO getDetailImage(String contentid) {
-        String url = "https://apis.data.go.kr/B551011/KorService1/detailImage1?";
+        String url = "https://apis.data.go.kr/B551011/JpnService1/detailImage1?";
         url += "serviceKey=" + serviceKey;
         url += "&MobileOS=ETC&MobileApp=AppTest&_type=json&imageYN=Y&subImageYN=Y&numOfRows=10&pageNo=1";
         url += "&contentId=" + contentid;
@@ -282,7 +282,7 @@ public class TourService {
             String originName = post_file.getOriginalFilename();
             String fileExtension = originName.substring(originName.lastIndexOf("."), originName.length());
             System.out.println(fileExtension);
-            String uploadFolder = "/Users/kimsuhyeon/Desktop/final_img";
+            String uploadFolder = "C:/Users/dutch/Documents/bbs/src/main/resources/static/img/upload";
             UUID uuid = UUID.randomUUID();
             System.out.println(uuid);
             String[] uuids = uuid.toString().split("-");
@@ -292,6 +292,7 @@ public class TourService {
             try {
                 post_file.transferTo(saveFile);
                 tourVO.setPost_image(fileName);
+                System.out.println(tourVO.getPost_image());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -308,7 +309,7 @@ public class TourService {
             throw new IllegalArgumentException("해당 게시글이 존재하지 않습니다: ID=" + tourVO.getPost_id());
         }
 
-        String uploadFolder = "/Users/kimsuhyeon/Desktop/final_img";
+        String uploadFolder = "C:/Users/dutch/Documents/bbs/src/main/resources/static/img/upload";
 
         if (post_file != null && !post_file.isEmpty()) {
             String originName = post_file.getOriginalFilename();

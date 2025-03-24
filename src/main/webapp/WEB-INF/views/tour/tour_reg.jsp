@@ -14,35 +14,35 @@
 <body>
 <form id="freeReg" action="/main/tourBoard" method="post" enctype="multipart/form-data">
     <div>
-        <div hidden="hidden">닉네임 : <input name="user_nickname" value="${user.user_nickname}" type="text"
+        <div hidden="hidden">ニックネーム : <input name="user_nickname" value="${user.user_nickname}" type="text"
                                           placeholder="${user.user_nickname}" readonly></div>
 
         <div>
-            <div>지역</div>
+            <div>地域</div>
             <select name="post_menu">
-                <option value="서울">서울</option>
-                <option value="경기/인천">경기/인천</option>
-                <option value="충청/대전">충청/대전</option>
-                <option value="전라/광주">전라/광주</option>
-                <option value="경북/대구">경북/대구</option>
-                <option value="경남/부산/울산">경남/부산/울산</option>
-                <option value="강원">강원</option>
-                <option value="제주">제주</option>
+                <option value="서울">ソウル</option>
+                <option value="경기/인천">京畿／仁川</option>
+                <option value="충청/대전">忠清／大田</option>
+                <option value="전라/광주">全羅／光州</option>
+                <option value="경북/대구">慶北／大邱</option>
+                <option value="경남/부산/울산">慶南／釜山／蔚山</option>
+                <option value="강원">江原</option>
+                <option value="제주">済州</option>
             </select>
         </div>
     </div>
 
     <div>
-        <div>제목</div>
-        <div><textarea name="post_title" rows="5" cols="100" placeholder="제목을 입력하세요." style="resize: none;"></textarea>
+        <div>タイトル</div>
+        <div><textarea name="post_title" rows="5" cols="100" placeholder="タイトルを入力してください。" style="resize: none;"></textarea>
         </div>
     </div>
 
     <div>
-        <div>내용</div>
+        <div>内容</div>
         <div>
             <textarea name="post_context" id="writearea" value="post_context" rows="25" cols="100"
-                      placeholder="내용을 입력하세요"></textarea>
+                      placeholder="内容を入力してください。"></textarea>
         </div>
     </div>
     <div>
@@ -53,8 +53,8 @@
 
     </div>
     <div>
-        <button class="reg-cancel" type="button" onclick="history.back()">취소</button>
-        <button class="reg-post" type="submit">등록</button>
+        <button class="reg-cancel" type="button" onclick="history.back()">キャンセル</button>
+        <button class="reg-post" type="submit">投稿する</button>
     </div>
 
 </form>

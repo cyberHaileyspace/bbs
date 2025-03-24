@@ -7,20 +7,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="/resources/css/board.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
 <div style="width: 100%">
     <div class="travel">
-        <div>관광게시판</div>
-        <div onclick="document.getElementById('defaultTourForm').submit()"
-            style="cursor: pointer">관광정보
+        <div>観光掲示板</div>
+        <div onclick="document.getElementById('defaultTourForm').submit()">
+            観光情報
         </div>
     </div>
     <form id="defaultTourForm" action="/main/tourInfo/loc" method="get">
-        <input type="hidden" name="areaCode" value="1"/>
+        <input type="hidden" name="areaCode" value="6"/>
         <input type="hidden" name="sigungu" value=""/>
         <input type="hidden" name="sort" value="R"/>
         <input type="hidden" name="pageNo" value="1"/>
@@ -28,16 +27,16 @@
     <br>
 <button class="write-btn" onclick="logincheck('${sessionScope.user}')"><img class="write-btn-img"
                                                                             alt=""
-                                                                            src="https://cdn-icons-png.flaticon.com/512/117/117476.png"/>작성</button>
+                                                                            src="https://cdn-icons-png.flaticon.com/512/117/117476.png"/>投稿</button>
 <c:choose>
     <c:when test="${not empty posts}">
         <c:forEach items="${posts}" var="p">
             <div class="item">
 
-                <div class="post-life" onclick="goToPost(${p.post_id})">
+                <div class="post-life" onclick="gotoTour(${p.post_id})">
                     <div class="life-kind">
-                        <div class="life-no">번호 : ${p.post_id }</div>&nbsp;/&nbsp;
-                        <div class="life-menu">지역 : ${p.post_menu }</div>
+                        <div class="life-no">番号 : ${p.post_id }</div>&nbsp;/&nbsp;
+                        <div class="life-menu">地域 : ${p.post_menu }</div>
                     </div>
                     <div class="life-title">${p.post_title }</div>
                     <div class="life-context">
@@ -46,13 +45,13 @@
                     </div>
                     <div class="life-info">
                         <div style="display: flex">
-                            <div class="info-name">작성자 : ${p.user_nickname }</div>&nbsp;/&nbsp;
-                            <div class="info-date">작성일 : <fmt:formatDate value="${p.post_date}"
+                            <div class="info-name">投稿者 : ${p.user_nickname }</div>&nbsp;/&nbsp;
+                            <div class="info-date">投稿日 : <fmt:formatDate value="${p.post_date}"
                                                                          pattern="yyyy-MM-dd HH:mm"/></div>
                         </div>
                         <div style="display: flex">
-                            <div class="info-view">조회수 : ${p.post_view }</div>&nbsp;/&nbsp;
-                            <div class="info-like">좋아요 : ${p.post_like }</div>
+                            <div class="info-view">閲覧数 : ${p.post_view }</div>&nbsp;/&nbsp;
+                            <div class="info-like">いいね : ${p.post_like }</div>
                         </div>
                     </div>
                 </div>
@@ -60,7 +59,7 @@
         </c:forEach>
     </c:when>
     <c:otherwise>
-        <p>게시글이 없습니다. 게시글을 작성해 보세요!</p>
+        <p>投稿がありません。ぜひ最初の投稿をしてみてください！</p>
     </c:otherwise>
 </c:choose>
 </div>
@@ -72,7 +71,7 @@
         return token;
     }
 
-    function goToPost(postId) {
+    function gotoTour(postId) {
         const token = generateToken();
         sessionStorage.setItem("viewToken", token);
         location.href = "tourBoard/" + postId + "?token=" + token;
@@ -82,7 +81,7 @@
         if (user)
             location.href = "/main/tourBoard/reg";
         else {
-            alert("먼저 로그인을 해주세요.");
+            alert("先にログインしてください。");
             location.href = "/login"
         }
     }
