@@ -18,13 +18,7 @@
                                           placeholder="${user.user_nickname}" readonly></div>
         <div>카테고리</div>
         <div>
-            <%--<input type="radio" name="post_category" &lt;%&ndash;id="life-tip"&ndash;%&gt; value="life-tip">&lt;%&ndash;<label for="life-tip">&ndash;%&gt;생활
-            정보</label>
-            <input type="radio" name="post_category" &lt;%&ndash;id="life-health"&ndash;%&gt; value="life-health">&lt;%&ndash;<label for="life-health">&ndash;%&gt;건강
-            정보</label>
-            <input type="radio" name="post_category" &lt;%&ndash;id="life-qna"&ndash;%&gt; value="life-qna">&lt;%&ndash;<label for="life-qna">&ndash;%&gt;질문</label>
-            <input type="radio" name="post_category" &lt;%&ndash;id="life-aft"&ndash;%&gt; value="life-aft">&lt;%&ndash;<label for="life-aft">&ndash;%&gt;후기</label>--%>
-            <select name="post_category">
+               <select name="post_category">
                 <option value="생활 정보">생활 정보</option>
                 <option value="건강 정보">건강 정보</option>
                 <option value="질문">질문</option>
@@ -33,13 +27,7 @@
         </div>
         <div>
             <div>지역</div>
-            <%--<div class="add-size">
-                <input type="radio" name="post_menu" &lt;%&ndash;id="life-tip"&ndash;%&gt; value="life-tip">&lt;%&ndash;<label for="life-tip">&ndash;%&gt;생활
-                정보</label>
-                <input type="radio" name="post_menu" &lt;%&ndash;id="life-health"&ndash;%&gt; value="life-health">&lt;%&ndash;<label for="life-health">&ndash;%&gt;건강
-                정보</label>
-                <input type="radio" name="post_menu" &lt;%&ndash;id="life-qna"&ndash;%&gt; value="life-qna">&lt;%&ndash;<label for="life-qna">&ndash;%&gt;질문</label>
-            </div>--%>
+
             <select name="post_menu">
                 <option value="서울">서울</option>
                 <option value="경기/인천">경기/인천</option>

@@ -3,6 +3,7 @@ package com.bbs.main.controller;
 import com.bbs.main.service.FreeService;
 import com.bbs.main.service.LifeService;
 import com.bbs.main.service.UserService;
+import com.bbs.main.vo.FreeVO;
 import com.bbs.main.vo.LifeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -54,9 +55,15 @@ public class MainC {
 
     @GetMapping("/free")
     public String list(Model model) {
-        model.addAttribute("posts", freeService.getposts());
         model.addAttribute("content", "free/free_posts.jsp");
         return "index";
+    }
+
+    @ResponseBody
+    @GetMapping("/free/all")
+    public List<FreeVO> freesearch(@RequestParam(defaultValue = "", required = false) String title) {
+        System.out.println(title);
+        return freeService.searchposts(title);
     }
 
     @GetMapping("/news")
