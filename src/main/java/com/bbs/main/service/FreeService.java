@@ -27,6 +27,10 @@ public class FreeService {
         freeMapper.incrementLike(no);
     }
 
+    public void updateUnlike(int no) { freeMapper.updateUnlike(no);
+
+    }
+
     public int getLikeCount(int no) {
         return freeMapper.getLikeCount(no);
     }
@@ -160,14 +164,19 @@ public class FreeService {
         freeMapper.incrementReplyLike(no);
     }
 
+    public void updateReplyUnlike(int no) {
+        freeMapper.updateReplyUnlike(no);
+    }
+
     public int getReplyLikeCount(int no) {
         return freeMapper.getReplyLikeCount(no);
     }
+
 
 
     public List<FreeReplyVO> getReplysSortedByLike(int postId, int offset, int size) {
         return freeMapper.getPagedRepliesSortedByLike(postId, offset, size);
     }
 
-//
+
 }

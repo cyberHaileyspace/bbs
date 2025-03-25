@@ -54,6 +54,9 @@ public interface FreeMapper {
     @Update("UPDATE Free_POST_DB SET post_like = post_like + 1 WHERE post_id = #{post_id}")
     void incrementLike(int post_id);
 
+    @Update("UPDATE Free_POST_DB SET post_like = post_like - 1 WHERE post_id = #{post_id}")
+    void updateUnlike(int post_id);
+
     @Select("SELECT post_like FROM Free_POST_DB WHERE post_id = #{post_id}")
     int getLikeCount(int post_id);
 
@@ -94,6 +97,9 @@ public interface FreeMapper {
     @Update("UPDATE Free_Reply SET r_like = r_like + 1 WHERE r_id = #{r_id}")
     void incrementReplyLike(int r_id);
 
+    @Update("UPDATE Free_Reply SET r_like = r_like - 1 WHERE r_id = #{r_id}")
+    void updateReplyUnlike(int r_id);
+
     @Select("SELECT r_like FROM Free_Reply WHERE r_id = #{r_id}")
     int getReplyLikeCount(int r_id);
 
@@ -108,5 +114,6 @@ public interface FreeMapper {
     List<FreeReplyVO> getPagedRepliesSortedByLike(@Param("post_id") int postId,
                                                   @Param("offset") int offset,
                                                   @Param("size") int size);
+
 
 }

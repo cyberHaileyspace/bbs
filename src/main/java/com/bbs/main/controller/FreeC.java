@@ -110,6 +110,24 @@ public class FreeC {
 
         return response; // JSON 형태로 반환
     }
+
+    @PostMapping("/unlike/{post_id}")
+    @ResponseBody // JSON 응답을 위한 애너테이션
+    public Map<String, Object> freeUnlike(@PathVariable("post_id") int no, HttpSession session) {
+        Map<String, Object> response = new HashMap<>();
+
+        if (userService.loginChk(session)) {
+            freeService.updateUnlike(no); // 언라이크 기능: 추천수를 감소시키는 로직
+            int newLikeCount = freeService.getLikeCount(no); // 새로운 추천수 가져오기
+            response.put("success", true);
+            response.put("newLikeCount", newLikeCount);
+        } else {
+            response.put("success", false);
+        }
+
+        return response; // JSON 형태로 반환
+    }
+
 }
 
 

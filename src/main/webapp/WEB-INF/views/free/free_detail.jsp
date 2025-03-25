@@ -13,7 +13,6 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
   </head>
   <body>
   <div class="container-cm-post">
-
     <div class="life-back" onclick="location.href='/main/free'">자유게시판 ></div>
 
     <div class="post-title"><span> ${post.post_title } </span></div>
@@ -45,10 +44,10 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
       <br>
       <div class="post-button">
 
-        <button class="like-button" onclick="likePost(${post.post_id}, this)">
+        <button class="like-button" data-liked="false" onclick="toggleLike(${post.post_id}, this)">
           추천수&nbsp;<span class="like-count">${post.post_like}</span>
-
         </button>
+
         <c:if test="${login_nickname == post.user_nickname}">
           <button onclick="deletePost(${post.post_id})">削除</button>
           <button onclick="location.href='update/${post.post_id}'">修正</button>
@@ -135,13 +134,16 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
                             replyDiv.classList.add("reply");
                             replyDiv.id = "reply-" + reply.r_id;
 
+                            // 댓글 HTML 생성 예시
                             let replyHTML =
                                     "<div>" +
                                     "<span>작성자 : " + reply.r_writer + "</span><br>" +
                                     "<span>작성일 : " + reply.r_date + "</span>" +
                                     "<p>" + reply.r_context + "</p>" +
-                                    "<button class='like-button' onclick='likeReply(" + reply.r_id + ", this)'>" +
-                                    "추천수&nbsp;<span class='like-count'>" + reply.r_like + "</span></button>";
+                                    // data-liked 속성을 기본 false로 설정하고 toggleReplyLike 함수를 호출하도록 변경
+                                    "<button class='like-button' data-liked='false' onclick='toggleReplyLike(" + reply.r_id + ", this)'>" +
+                                    "추천수&nbsp;<span class='like-count'>" + reply.r_like + "</span>" +
+                                    "</button>";
 
                             if (user_nickname === reply.r_writer) {
                               replyHTML +=
@@ -203,21 +205,38 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 
     </script>
   <script>
-    function likePost(postId, button) {
-      fetch(`/main/free/like/` + postId, {
-        method: "POST", // POST 요청으로 변경
+    function toggleLike(postId, button) {
+      // 현재 추천 여부 확인 ("true"/"false" 문자열)
+      var isLiked = button.getAttribute("data-liked") === "true";
+      // 추천 또는 추천취소에 따른 API 엔드포인트 선택
+      var url = isLiked ? "/main/free/unlike/" + postId : "/main/free/like/" + postId;
+
+      fetch(url, {
+        method: "POST"
       })
-              .then(response => response.json()) // JSON 응답 처리
-              .then(data => {
-                console.log(data);
+              .then(function(response) {
+                return response.json();
+              })
+              .then(function(data) {
                 if (data.success) {
-                  button.querySelector(".like-count").textContent = data.newLikeCount; // 추천수 업데이트
+                  // 추천 합계 업데이트
+                  button.querySelector(".like-count").textContent = data.newLikeCount;
+                  // 상태에 따라 버튼 텍스트와 data attribute 변경
+                  if (isLiked) {
+                    button.innerHTML = "추천수&nbsp;<span class='like-count'>" + data.newLikeCount + "</span>";
+                    button.setAttribute("data-liked", "false");
+                  } else {
+                    button.innerHTML = "추천취소&nbsp;<span class='like-count'>" + data.newLikeCount + "</span>";
+                    button.setAttribute("data-liked", "true");
+                  }
                 } else {
                   alert("로그인이 필요합니다.");
-                  window.location.href = "/login"; // 로그인 페이지로 이동
+                  window.location.href = "/login";
                 }
               })
-              .catch(error => console.error("Error:", error));
+              .catch(function(error) {
+                console.error("Error:", error);
+              });
     }
   </script>
   <script src="/resources/js/free/free_reply.js"></script>
