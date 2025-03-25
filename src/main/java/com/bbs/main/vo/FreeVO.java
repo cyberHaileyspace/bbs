@@ -17,4 +17,5 @@ public class FreeVO {
     private int post_like;
     private Date post_date;
     private Date post_update;
+    private int reply_count;
 }

@@ -20,7 +20,11 @@
 <div style="max-width: 1300px; margin: 0 auto">
     <div class="header">
         <div style="display: flex; flex-direction: row; align-items: center">
-            <img width="50px" src="/resources/css/Diaspora.png" class="panel-btn"/>
+          <img
+            width="50px"
+            src="/resources/css/Diaspora.png"
+            class="panel-btn"
+          />
         </div>
         <div onclick="location.href='/'" style="cursor: pointer">
             Diaspora - ディアスポラ

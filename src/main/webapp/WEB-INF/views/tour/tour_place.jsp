@@ -73,10 +73,7 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
               color: black;
               font-size: large;
               cursor: pointer;
-              width: 200px;
-              padding: 0;
-              background-color: #efc752;
-              border-radius: 15px;
+              width: 230px;
             "
           >
             リストに戻る
