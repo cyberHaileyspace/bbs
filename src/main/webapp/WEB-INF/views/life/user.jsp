@@ -12,46 +12,46 @@
 <div class="content">
     <div class="main02">
         <div>
-            <div class="title"><h1>회원가입 페이지</h1></div>
+            <div class="title"><h1>新規会員登録ページ</h1></div>
             <form action="user" method="post" class="center" onsubmit="return validateForm()" enctype="multipart/form-data">
                 <div class="id">
                     <br>
-                    <div>ID</div>
+                    <div>ユーザーID</div>
                     <div><input name="user_id" id="user_id" type="text" placeholder="※半角英数字6～16文字。"></div>
                     <span id="id_check" style="color: red; font-size: 12px"></span>
-                    <button type="button" id="id_check_btn">중복확인</button>
+                    <button type="button" id="id_check_btn">重複確認</button>
                 </div>
                 <div class="pw">
-                    <div>패스워드</div>
+                    <div>パスワード</div>
                     <div><input name="user_pw" type="password" placeholder="※半角英数字6～16文字。"></div>
                     <div><input name="pw02" type="password" placeholder="パスワード再入力"></div>
                 </div>
                 <div class="name">
-                    <div>이름</div>
+                    <div>氏名</div>
                     <div><input name="user_name" type="text"></div>
                 </div>
                 <div class="nickname">
-                    <div>닉네임</div>
+                    <div>ニックネーム</div>
                     <div><input name="user_nickname" id="user_nickname" type="text" placeholder="※半角英数字6～16文字。"></div>
                     <span id="nick_check" style="color: red; font-size: 12px"></span>
-                    <button type="button" id="nick_check_btn">중복확인</button>
+                    <button type="button" id="nick_check_btn">重複確認</button>
                 </div>
                 <div class="email">
-                    <div>메일 주소</div>
+                    <div>メールアドレス</div>
                     <div><input name="user_email" id="user_email" type="text"></div>
                     <span id="email_check" style="color: red; font-size: 12px"></span>
-                    <button type="button" id="email_check_btn">중복확인</button>
+                    <button type="button" id="email_check_btn">重複確認</button>
                 </div>
                 <div class="gender" style="display: flex; justify-content: space-evenly;">
-                    <div>성별</div>
+                    <div>性別</div>
                     &nbsp;|&nbsp;
                     <div>
-                        <label>남<input type="radio" name="user_gender" value="male" checked="checked"></label>
-                        <label>여<input type="radio" name="user_gender" value="female"></label>
+                        <label>男性<input type="radio" name="user_gender" value="male" checked="checked"></label>
+                        <label>女性<input type="radio" name="user_gender" value="female"></label>
                     </div>
                 </div>
                 <div class="file">
-                    프로필 : <input type="file" name="user_file">
+                    プロフィール画像 : <input type="file" name="user_file">
                 </div>
 
                 <%--.login-button {
@@ -69,9 +69,9 @@
                 }--%>
 
                 <div class="register-button">
-                    <button type="submit" class="sign">가입하기</button>
+                    <button type="submit" class="sign">登録する</button>
                     <button onclick="location.href='/'" class="back">
-                        뒤로가기
+                        戻る
                     </button>
                 </div>
         </div>
@@ -92,13 +92,13 @@
 
             // 입력값이 없는 경우
             if (userId === "") {
-                msgBox.text("ID를 입력하세요.");
+                msgBox.text("ユーザーIDを入力してください。");
                 return;
             }
 
             // 정규식 검사 실패
             if (!idPattern.test(userId)) {
-                msgBox.text("ID는 영문과 숫자로 6~16자여야 합니다.");
+                msgBox.text("ユーザーIDは英数字6～16文字で入力してください。");
                 return;
             }
 
@@ -110,13 +110,13 @@
                 data: JSON.stringify({ user_id: userId }),
                 success: function(response) {
                     if (response.exists) {
-                        msgBox.text("이미 사용 중인 ID입니다.");
+                        msgBox.text("既に使用されているユーザーIDです。");
                     } else {
-                        msgBox.css("color", "blue").text("사용 가능한 ID입니다.");
+                        msgBox.css("color", "blue").text("使用可能なユーザーIDです。");
                     }
                 },
                 error: function() {
-                    msgBox.text("서버 오류가 발생했습니다.");
+                    msgBox.text("サーバーエラーが発生しました。");
                 }
             });
         });
@@ -132,13 +132,13 @@
 
             // 입력값이 없는 경우
             if (userNick === "") {
-                msgBox.text("닉네임을 입력하세요.");
+                msgBox.text("ニックネームを入力してください。");
                 return;
             }
 
             // 정규식 검사 실패
             if (!nickPattern.test(userNick)) {
-                msgBox.text("닉네임은 2~16자여야 합니다.");
+                msgBox.text("ニックネームは2～16文字で入力してください。");
                 return;
             }
 
@@ -150,13 +150,13 @@
                 data: JSON.stringify({ user_nick: userNick }),
                 success: function(response) {
                     if (response.exists) {
-                        msgBox.text("이미 사용 중인 닉네임입니다.");
+                        msgBox.text("既に使用されているニックネームです。");
                     } else {
-                        msgBox.css("color", "blue").text("사용 가능한 닉네임입니다.");
+                        msgBox.css("color", "blue").text("使用可能なニックネームです。");
                     }
                 },
                 error: function() {
-                    msgBox.text("서버 오류가 발생했습니다.");
+                    msgBox.text("サーバーエラーが発生しました。");
                 }
             });
         });
@@ -172,13 +172,13 @@
 
             // 입력값이 없는 경우
             if (userEmail === "") {
-                msgBox.text("이메일을 입력하세요.");
+                msgBox.text("メールアドレスを入力してください。");
                 return;
             }
 
             // 정규식 검사 실패
             if (!emailPattern.test(userEmail)) {
-                msgBox.text("올바른 이메일 형식이 아닙니다.");
+                msgBox.text("正しいメールアドレスの形式ではありません。");
                 return;
             }
 
@@ -190,13 +190,13 @@
                 data: JSON.stringify({ user_email: userEmail }),
                 success: function(response) {
                     if (response.exists) {
-                        msgBox.text("이미 사용 중인 이메일입니다.");
+                        msgBox.text("既に使用されているメールアドレスです。");
                     } else {
-                        msgBox.css("color", "blue").text("사용 가능한 이메일입니다.");
+                        msgBox.css("color", "blue").text("使用可能なメールアドレスです。");
                     }
                 },
                 error: function() {
-                    msgBox.text("서버 오류가 발생했습니다.");
+                    msgBox.text("サーバーエラーが発生しました。");
                 }
             });
         });
@@ -212,12 +212,12 @@
         let emailCheckMsg = $("#email_check").text();
 
         if (userId === "" || userNick === "" || userEmail === "") {
-            alert("모든 필드를 입력해주세요.");
+            alert("全ての項目を入力してください。");
             return false;
         }
 
-        if (idCheckMsg !== "사용 가능한 ID입니다." || nickCheckMsg !== "사용 가능한 닉네임입니다." || emailCheckMsg !== "사용 가능한 이메일입니다.") {
-            alert("ID, 닉네임, 이메일 중복 확인을 완료해주세요.");
+        if (idCheckMsg !== "使用可能なユーザーIDです。" || nickCheckMsg !== "使用可能なニックネームです。" || emailCheckMsg !== "使用可能なメールアドレスです。") {
+            alert("ユーザーID・ニックネーム・メールアドレスの重複確認を完了してください。");
             return false;
         }
         return true;

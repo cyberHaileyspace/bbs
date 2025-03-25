@@ -13,7 +13,9 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
   </head>
   <body>
   <div class="container-cm-post">
+
     <div class="life-back" onclick="location.href='/main/free'">자유게시판 ></div>
+
     <div class="post-title"><span> ${post.post_title } </span></div>
     <div class="post-info">
       <div class="post-profile"><img alt="" src="file/${user.user_image }"></div>
@@ -42,30 +44,32 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
       </div>
       <br>
       <div class="post-button">
+
         <button class="like-button" onclick="likePost(${post.post_id}, this)">
           추천수&nbsp;<span class="like-count">${post.post_like}</span>
+
         </button>
         <c:if test="${login_nickname == post.user_nickname}">
-          <button onclick="deletePost(${post.post_id})">삭제</button>
-          <button onclick="location.href='update/${post.post_id}'">수정</button>
+          <button onclick="deletePost(${post.post_id})">削除</button>
+          <button onclick="location.href='update/${post.post_id}'">修正</button>
         </c:if>
-        <button onclick="location.href='/main/free'">목록</button>
+        <button onclick="location.href='/main/free'">リスト</button>
       </div>
     </div>
   </div>
   <div>
     <div>
       <div class="comment-section">
-        <div class="comment-header">댓글 쓰기</div>
-        <div hidden="hidden">닉네임 : <input name="user_nickname" value="${user.user_nickname}" type="text"
+        <div class="comment-header">コメントを書く</div>
+        <div hidden="hidden">ニックネーム : <input name="user_nickname" value="${user.user_nickname}" type="text"
                                           placeholder="${user.user_nickname}" readonly></div>
 
         <div class="comment-ta">
-          <textarea id="replyContent" placeholder="댓글을 입력하세요..." style="resize: none"></textarea>
+          <textarea id="replyContent" placeholder="コメントを入力してください..." style="resize: none"></textarea>
         </div>
 
         <button id="commentButton"
-                onclick="handleFreeReplySubmit('${user.user_nickname}')">댓글 쓰기
+                onclick="handleFreeReplySubmit('${user.user_nickname}')">コメント投稿
         </button>
       </div>
       <div id="replyCountContainer"></div>
@@ -118,6 +122,7 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
                           const replySection = document.getElementById("replySection");
 
                           if (data.length === 0) {
+
                             if (replyPage === 0) {
                               replySection.innerHTML = "<p>댓글이 없습니다. 첫 댓글을 남겨보세요!</p>";
                             }

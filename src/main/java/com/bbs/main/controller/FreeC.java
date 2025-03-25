@@ -56,6 +56,7 @@ public class FreeC {
             session.setAttribute(sessionKey, token);  // 새로운 토큰 저장
         }
 
+
         UserVO user = (UserVO) session.getAttribute("user");
         String nickname = (user != null) ? user.getUser_nickname() : "";
         System.out.println(nickname);

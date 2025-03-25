@@ -1,0 +1,118 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+         pageEncoding="utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<div style="width: 100%">
+    <div class="travel">
+        <div>観光掲示板</div>
+        <div onclick="document.getElementById('defaultTourForm').submit()">
+            観光情報
+        </div>
+    </div>
+    <form id="defaultTourForm" action="/main/tourInfo/loc" method="get">
+        <input type="hidden" name="areaCode" value="6"/>
+        <input type="hidden" name="sigungu" value=""/>
+        <input type="hidden" name="sort" value="R"/>
+        <input type="hidden" name="pageNo" value="1"/>
+    </form>
+    <br>
+<button class="write-btn" onclick="logincheck('${sessionScope.user}')"><img class="write-btn-img"
+                                                                            alt=""
+                                                                            src="https://cdn-icons-png.flaticon.com/512/117/117476.png"/>投稿</button>
+<c:choose>
+    <c:when test="${not empty posts}">
+        <c:forEach items="${posts}" var="p">
+            <div class="item">
+
+                <div class="post-life" onclick="gotoTour(${p.post_id})">
+                    <div class="life-kind">
+                        <div class="life-no">番号 : ${p.post_id }</div>&nbsp;/&nbsp;
+                        <div class="life-menu">地域 : ${p.post_menu }</div>
+                    </div>
+                    <div class="life-title">${p.post_title }</div>
+                    <div class="life-context">
+                        <div class="life-text"><span>${p.post_context }</span></div>
+                        <div class="life-image"><img alt="" src="img/post/${p.post_image }"></div>
+                    </div>
+                    <div class="life-info">
+                        <div style="display: flex">
+                            <div class="info-name">投稿者 : ${p.user_nickname }</div>&nbsp;/&nbsp;
+                            <div class="info-date">投稿日 : <fmt:formatDate value="${p.post_date}"
+                                                                         pattern="yyyy-MM-dd HH:mm"/></div>
+                        </div>
+                        <div style="display: flex">
+                            <div class="info-view">閲覧数 : ${p.post_view }</div>&nbsp;/&nbsp;
+                            <div class="info-like">いいね : ${p.post_like }</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
+    </c:when>
+    <c:otherwise>
+        <p>投稿がありません。ぜひ最初の投稿をしてみてください！</p>
+    </c:otherwise>
+</c:choose>
+</div>
+</body>
+<script>
+    function generateToken() {
+        const now = new Date();
+        const token = now.getMinutes() + ":" + now.getSeconds();  // "mm:ss" 형식
+        return token;
+    }
+
+    function gotoTour(postId) {
+        const token = generateToken();
+        sessionStorage.setItem("viewToken", token);
+        location.href = "tourBoard/" + postId + "?token=" + token;
+    }
+
+    function logincheck(user) {
+        if (user)
+            location.href = "/main/tourBoard/reg";
+        else {
+            alert("先にログインしてください。");
+            location.href = "/login"
+        }
+    }
+
+    $(document).ready(function () {
+        radio();  // radio 함수 호출
+
+        function radio() {
+            $("input[name='option']").change(function () {
+                let option = $("input[name='option']:checked").val();
+                console.log("선택된 정렬 옵션:", option);
+
+                $.ajax({
+                    url: 'free/option',
+                    type: 'GET',
+                    data: {option: option},
+                    async: true,
+                })
+                    .done(function (resData) {
+                        console.log("응답 데이터:", resData);
+                        if (resData.length !== 0) {
+                            $("#item").empty();
+                            showResult(resData);
+                        }
+                    })
+                    .fail(function (xhr) {
+                        console.error("요청 실패:", xhr);
+                    });
+            });
+        }
+    });
+
+</script>
+</html>

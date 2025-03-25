@@ -1,26 +1,20 @@
-    package com.bbs.main.vo;
+package com.bbs.main.vo;
 
-    import lombok.Data;
+import lombok.Data;
 
-    import java.util.Date;
+import java.util.Date;
 
-    @Data
-    public class TourVO {
-        private String addr1;
-        private String areacode;
-        private String contentid;
-        private String firstimage;
-        private String mapx;
-        private String mapy;
-        private String sigungucode;
-        private String createdtime;
-        private String title;
-        private String overview;
-        private String zipcode;
-        private String originimgurl;
-        private String usetime;
-        private String restdate;
-        private String infocenter;
-        private String infoname;
-        private String infotext;
-    }
+@Data
+public class TourVO {
+    private String user_nickname;
+    private String post_category;
+    private String post_menu;
+    private int post_id;
+    private String post_title;
+    private String post_context;
+    private String post_image;
+    private int post_view;
+    private int post_like;
+    private Date post_date;
+    private Date post_update;
+}

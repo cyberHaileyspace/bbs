@@ -26,7 +26,6 @@
     function getNews() {
         let date = new Date();
         console.log(date);
-
         let year = date.getFullYear();
         let month = (date.getMonth() + 1).toString().padStart(2, '0'); // 두 자릿수로 변환
         let day = date.getDate() - 7;
@@ -65,11 +64,11 @@
             const newsWrap = document.createElement("div");
             newsWrap.classList.add("news-wrap");
             newsWrap.innerHTML =
-                "<div class='item'>" + "<div>" + "<h3>" + (currentIndex + i + 1) + "位" + "&nbsp;/&nbsp;" + "題目" + "&nbsp;:&nbsp;" +
-                /*"<div>" +*/ news.title + "</h3>" + "</div>" +
-                "<div>" + news.description + "</div>" +
-                "<div><a href='" + news.url + "' target='_blank'>詳細を見る</a></div>" +
-                "</div>";
+                "<div class='item'>" + "<div>" + (currentIndex + i + 1) + "位" + "/" + "題目" + ":" +
+                "<div>" + news.title + "</div>" +
+            "<div>" + news.description + "</div>" +
+            "<div><a href='" + news.url + "' target='_blank'>詳細を見る</a></div>" +
+            "</div>";
             newsContainer.appendChild(newsWrap);
         });
 
@@ -84,7 +83,7 @@
             } else {
                 console.error("No data loaded yet!");
             }
-        })
+        });
     }
 </script>
 </html>
