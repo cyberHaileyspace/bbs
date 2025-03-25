@@ -12,9 +12,6 @@
 <div>
     <div class="main_content_wrapper" style="min-width: 100%">
         <div class="main_content_container">
-
-
-
             <div class="main_content">
                     <%-- 뉴스 게시판 --%>
                 <div class="main_content_box">

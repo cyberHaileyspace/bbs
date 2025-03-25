@@ -1,7 +1,6 @@
 package com.bbs.main.service;
 
 import com.bbs.main.mapper.LifeMapper;
-import com.bbs.main.vo.FreeReplyVO;
 import com.bbs.main.vo.LifeReplyVO;
 import com.bbs.main.vo.LifeVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -135,6 +134,16 @@ public class LifeService {
 
     public int addReply(LifeReplyVO lifeReplyVO) {
         return lifeMapper.addReply(lifeReplyVO);
+    }
+
+    public int updateReply(LifeReplyVO lifeReplyVO) {
+        int result = lifeMapper.updateReply(lifeReplyVO);
+        System.out.println("updateReply 실행 결과: " + result);
+        return result;
+    }
+
+    public int deleteReply(int r_id) {
+        return lifeMapper.deleteReply(r_id);
     }
 
     public List<LifeVO> getcategory(String category) {

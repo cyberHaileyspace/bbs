@@ -21,7 +21,7 @@ CREATE TABLE Free_Post_DB
     post_title    varchar2(100 char) not null,
     post_context  clob               not null,
     post_image    varchar2(555 char) default null,
-    post_view     number             default 0,
+    post_view number             default 0,
     post_like     number             default 0,
     post_date     timestamp          default SYSTIMESTAMP,
     post_update   timestamp          default SYSTIMESTAMP,

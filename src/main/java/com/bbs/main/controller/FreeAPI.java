@@ -13,7 +13,6 @@ public class FreeAPI {
     @Autowired
     private FreeService freeService;
 
-
     @GetMapping("/{post_id}")
     public List<FreeReplyVO> list(@PathVariable("post_id") int post_id) {
         List<FreeReplyVO> replies = freeService.getReplys(post_id);

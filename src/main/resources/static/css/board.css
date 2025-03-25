@@ -471,7 +471,7 @@ hr {
     background-color: darkgrey;
 }
 
-.comment-section {
+.reply-section {
     width: 90%;
     margin: 20px auto;
     padding: 20px;
@@ -479,11 +479,11 @@ hr {
     transition: background-color 0.3s ease;
 }
 
-.comment-section button {
+.reply-section button {
     border-radius: 20px;
 }
 
-.comment-section button:hover {
+.reply-section button:hover {
     background-color: darkgrey;
 }
 
@@ -495,7 +495,7 @@ hr {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.comment-ta > textarea {
+.reply-ta > textarea {
     width: 94%;
     margin: 20px auto;
     padding: 20px;

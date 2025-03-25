@@ -18,7 +18,7 @@ function deletePost(no) {
     }
 }
 
-function handleFreeReplySubmit(user_nickname) {
+function handleReplySubmit(user_nickname) {
     if (user_nickname) {
         // 사용자가 로그인된 경우, 댓글을 등록하는 함수 호출
         submitReply();
@@ -85,9 +85,9 @@ function editReply(r_id, r_writer, r_date, r_context) {
 }
 
 function cancelEdit(r_id, r_writer, r_date, originalContent) {
-   if (confirm("수정을 취소하시겠습니까?")){
-      loadReplies();
-   }
+    if (confirm("수정을 취소하시겠습니까?")) {
+        loadReplies();
+    }
 
     // const commentDiv = document.getElementById(`reply-${r_id}`);
     //
@@ -103,6 +103,7 @@ function cancelEdit(r_id, r_writer, r_date, originalContent) {
     //
     // `;
 }
+
 function saveEdit(r_id, r_writer, r_date, originalContent) {
     const newText = document.getElementById(`edit-text-${r_id}`).value;
 
@@ -116,7 +117,7 @@ function saveEdit(r_id, r_writer, r_date, originalContent) {
 
     fetch(`/main/free/reply`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
             r_id: r_id, // 수정할 댓글의 ID 포함
             r_context: newText // 새로운 댓글 내용
@@ -156,7 +157,7 @@ function deleteReply(r_id) {
                     alert("댓글이 삭제되었습니다.");
                     loadReplies();  // 댓글 삭제 후 댓글 목록 갱신
                 } else {
-                   alert("댓글 삭제 실패! 서버 응답: " + JSON.stringify(data));
+                    alert("댓글 삭제 실패! 서버 응답: " + JSON.stringify(data));
                 }
             })
             .catch(error => {
@@ -165,4 +166,3 @@ function deleteReply(r_id) {
             });
     }
 }
-

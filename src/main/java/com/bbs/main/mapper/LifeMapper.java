@@ -1,7 +1,5 @@
 package com.bbs.main.mapper;
 
-import com.bbs.main.vo.FreeReplyVO;
-import com.bbs.main.vo.FreeVO;
 import com.bbs.main.vo.LifeReplyVO;
 import com.bbs.main.vo.LifeVO;
 import org.apache.ibatis.annotations.*;
@@ -67,9 +65,15 @@ public interface LifeMapper {
             "ORDER BY r_id DESC")
     List<LifeReplyVO> getReplys(int post_id);
 
-    @Insert("INSERT INTO Free_Reply (post_id, r_writer, r_context) " +
+    @Insert("INSERT INTO Life_Reply (post_id, r_writer, r_context) " +
             "VALUES (#{post_id}, #{r_writer}, #{r_context})")
     int addReply(LifeReplyVO lifeReplyVO);
+
+    @Update("UPDATE Life_Reply set r_context = #{r_context} where r_id = #{r_id}")
+    int updateReply(LifeReplyVO lifeReplyVO);
+
+    @Delete("DELETE LIFE_REPLY WHERE R_ID = #{r_id}")
+    int deleteReply(int r_id);
 
     @Select("SELECT * FROM Life_Post_DB ORDER BY post_date DESC")
     List<LifeVO> getAll(String category);

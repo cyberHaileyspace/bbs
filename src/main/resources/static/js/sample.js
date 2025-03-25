@@ -113,7 +113,7 @@ window.onload = () => {
     panel();
 }
 
-function generateToken() {
+/*function generateToken() {
     const now = new Date();
     const token = now.getMinutes() + ":" + now.getSeconds();  // "mm:ss" 형식
     return token;
@@ -132,7 +132,8 @@ function logincheck(user) {
         alert("먼저 로그인을 해주세요.");
         location.href = "/login"
     }
-}
+}*/
+
 function deletePost(no) {
     if (confirm('정말 삭제하시겠습니까?')) {
         // DELETE 요청으로 데이터를 보냄
