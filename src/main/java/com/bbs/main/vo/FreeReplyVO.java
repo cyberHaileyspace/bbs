@@ -13,5 +13,5 @@ public class FreeReplyVO {
    private String r_like;
    private String r_date;
    private String r_update;
-   private int reply_count = 0;
+
 }

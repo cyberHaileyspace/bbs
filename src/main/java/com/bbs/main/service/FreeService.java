@@ -131,6 +131,8 @@ public class FreeService {
                 return freeMapper.getSortsLike();
             case "view":
                 return freeMapper.getSortsView();
+            case "reply":
+                return freeMapper.getSortsReply();
             default:
                 return new ArrayList<>();
         }

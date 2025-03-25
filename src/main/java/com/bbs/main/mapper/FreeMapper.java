@@ -17,12 +17,8 @@ public interface FreeMapper {
             "(#{user_nickname}, #{post_category}, #{post_menu}, #{post_title}, #{post_context}, #{post_image, jdbcType=NULL})")
     int addPost(FreeVO freeVO);
 
-    @Select("SELECT f.*, " +
-            "(SELECT COUNT(*) FROM Free_Reply r WHERE r.post_id = f.post_id) AS comment_count " +
-            "FROM Free_post_DB f " +
-            "ORDER BY f.post_id DESC")
+    @Select("SELECT f.*, (SELECT COUNT(*) FROM Free_Reply r WHERE r.post_id = f.post_id) AS reply_count FROM Free_post_DB f ORDER BY f.post_id DESC")
     List<FreeVO> getposts();
-
 
     @Select("select * from Free_post_DB where post_id = #{post_id}")
     FreeVO detailPost(int post_id);
@@ -71,7 +67,11 @@ public interface FreeMapper {
     @Select("SELECT * FROM Free_POST_DB ORDER BY post_view DESC")
     List<FreeVO> getSortsView();  // 조회순
 
-    @Select("select * from Free_POST_DB where post_title like '%'||#{title}||'%' order by post_id desc")
+    @Select("SELECT f.*, (SELECT COUNT(*) FROM Free_Reply r WHERE r.post_id = f.post_id) AS reply_count " +
+            "FROM Free_post_DB f ORDER BY reply_count DESC")
+    List<FreeVO> getSortsReply(); // 댓글순
+
+    @Select("select f.*, (SELECT COUNT(*) FROM Free_Reply r WHERE r.post_id = f.post_id) AS reply_count FROM Free_post_DB f where post_title like '%'||#{title}||'%' order by post_id desc")
     List<FreeVO> searchposts(String title);
 
     @Select("SELECT r_id, post_id, r_writer, r_context, r_like, " +
@@ -104,6 +104,7 @@ public interface FreeMapper {
             "WHERE post_id = #{post_id} " +
             "ORDER BY r_like DESC " +
             "OFFSET #{offset} ROWS FETCH NEXT #{size} ROWS ONLY")
+
     List<FreeReplyVO> getPagedRepliesSortedByLike(@Param("post_id") int postId,
                                                   @Param("offset") int offset,
                                                   @Param("size") int size);

@@ -28,6 +28,11 @@ CREATE TABLE Free_Post_DB
     foreign key (user_nickname) references User_DB (user_nickname) ON DELETE CASCADE
 );
 
+SELECT f.*, (SELECT COUNT(*) FROM Free_Reply r WHERE r.post_id = f.post_id) AS reply_count
+FROM Free_post_DB f;
+
+
+
 insert into FREE_POST_DB (user_nickname, post_category, post_menu, post_title, post_context, post_image)
 VALUES ('asas', '111', 'asd', 'asd', 'asdasd', null);
 

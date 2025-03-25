@@ -74,12 +74,13 @@ function paging(data) {
 }
 
 function renderPosts(posts) {
+
     $("#post-container").empty(); // 기존 게시글 제거
     let postHtml = "";
 
     posts.forEach(p => {
         const formattedDate = new Date(p.post_date).toISOString().split('T')[0];
-
+        console.log(posts);
         postHtml +=
             "<div class='item'>" +
             "<div class='post-life' onclick='goToPost(" + p.post_id + ")'>" +
@@ -101,7 +102,7 @@ function renderPosts(posts) {
             "<div style='display: flex'>" +
             "<div class='info-view'>조회수: " + p.post_view + "</div>&nbsp;/&nbsp;" +
             "<div class='info-like'>추천수: " + p.post_like + "</div>&nbsp;/&nbsp;" +
-            "<div class='info-reply'>댓글: " + p.reply_count + "</div>"
+            "<div class='info-reply'>댓글수: " + p.reply_count + "</div>"
             +
             "</div>" +
             "</div>" +

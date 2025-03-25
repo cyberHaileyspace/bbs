@@ -27,6 +27,7 @@ public class HC {
 
 
         model.addAttribute("free", freeService.getposts());
+
         model.addAttribute("tour", tourService.getAllLocation("1", null, "R"));
 
         model.addAttribute("life", lifeService.getposts());
