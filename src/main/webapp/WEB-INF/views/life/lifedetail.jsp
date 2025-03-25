@@ -162,7 +162,7 @@
                 if (data.success) {
                     button.querySelector(".like-count").textContent = data.newLikeCount; // 추천수 업데이트
                 } else {
-                    alert("로그인이 필요합니다.");
+                    alert("ログインが必要です。");
                     window.location.href = "/login"; // 로그인 페이지로 이동
                 }
             })

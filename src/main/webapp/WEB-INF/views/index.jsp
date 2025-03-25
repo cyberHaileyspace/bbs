@@ -60,20 +60,17 @@
         <div onclick="location.href='/main/free'" style="cursor: pointer">
             自由掲示板
         </div>
-<%--        <form id="defaultTourForm" action="/main/tourInfo/loc" method="get">--%>
-<%--            <input type="hidden" name="areaCode" value="1"/>--%>
-<%--            <input type="hidden" name="sigungu" value=""/>--%>
-<%--            <input type="hidden" name="sort" value="R"/>--%>
-<%--            <input type="hidden" name="pageNo" value="1"/>--%>
-<%--        </form>--%>
+        <div onclick="location.href='/main/life'" style="cursor: pointer">
+            生活掲示板
+        </div>
         <div
                 onclick="location.href='/main/tour'"
                 style="cursor: pointer"
         >
             観光掲示板
         </div>
-        <div onclick="location.href='/main/life'" style="cursor: pointer">
-            生活掲示板
+        <div onclick="document.getElementById('defaultTourForm').submit()" style="cursor: pointer">
+            観光情報
         </div>
         <div onclick="location.href='/login'" style="cursor: pointer">ログイン</div>
         <div onclick="location.href='/user'" style="cursor: pointer">
@@ -100,5 +97,11 @@
         </div>
     </div>
 </div>
+        <form id="defaultTourForm" action="/main/tourInfo/loc" method="get">
+            <input type="hidden" name="areaCode" value="1"/>
+            <input type="hidden" name="sigungu" value=""/>
+            <input type="hidden" name="sort" value="R"/>
+            <input type="hidden" name="pageNo" value="1"/>
+        </form>
 </body>
 </html>

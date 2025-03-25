@@ -8,15 +8,15 @@
     <title>Tour Page</title>
 </head>
 <body>
-<div style="width: 100%">
+<div class="info_wrap" style="width: 100%">
     <div class="travel">
         <div onclick="location.href='/main/tour'">観光掲示板</div>
         <div>観光情報</div>
     </div>
-    <div style="display: flex; flex-direction: column; align-items: center; width: 300px; height: 70px; background-color: #dce1ff; margin: 0 auto; padding: 20px 0; border-radius: 20px">
-        <h3 style="width: 240px; height: 50px; text-align: center; display: flex; align-items: center; justify-content: center; border-radius: 15px; margin: 0">
+    <div style="display: flex; flex-direction: column; align-items: center; width: 350px; height: 70px; background-color: #dce1ff; margin: 0 auto; padding: 20px 0; border-radius: 20px">
+        <h3 style="width: 80%; height: 50px; text-align: center; display: flex; align-items: center; justify-content: center; border-radius: 15px; margin: 0">
             行きたい地域を選んでください</h3>
-        <input type="text" class="location-input" style="width: 230px; border-radius: 5px; border: none" placeholder="ここをクリックすると地域選択ウィンドウが表示されます。"/>
+        <input type="text" class="location-input" style="width: 75%; border-radius: 5px; border: none" placeholder="クリックすると地域選択が表示されます。"/>
     </div>
     <!-- 대분류/소분류 영역 (이전 코드와 동일) -->
     <div class="location-wrap">
@@ -107,10 +107,7 @@
                 </ul>
             </div>
         </div>
-        <div
-                class="close-btn"
-                style="position: absolute; bottom: 10px; right: 15px"
-        >
+        <div class="close-btn">
             閉じる
         </div>
     </div>
@@ -119,17 +116,17 @@
     <div class="tour_img_container" id="tourContainer">
         <div id="extraInfo">
             <span class="extraList" style="margin-right: auto">観光地リスト</span>
-            <span style="margin: 0 15px" class="sort" data-sort="O" data-area-code="${param.areaCode}"
+            <span style="margin: 0 15px; cursor: pointer" class="sort" data-sort="O" data-area-code="${param.areaCode}"
                   data-sigungu="${param.sigungu}">タイトル順</span>
             <span>|</span>
-            <span style="margin: 0 15px" class="sort" data-sort="R" data-area-code="${param.areaCode}"
+            <span style="margin: 0 15px; cursor: pointer" class="sort" data-sort="R" data-area-code="${param.areaCode}"
                   data-sigungu="${param.sigungu}">最新順</span>
         </div>
         <div class="tour_img_container">
             <c:forEach var="i" items="${result}">
                 <div class="tour_img_box" data-img-url="${i.firstimage}">
                     <a href="/main/tourInfo/getLoc?contentid=${i.contentid}">
-                        <div>${i.title}</div>
+                        <div class="jp-title" data-title="${i.title}">${i.title}</div>
                     </a>
                 </div>
             </c:forEach>
@@ -172,6 +169,7 @@
             form.submit();
         })
     })
+
 </script>
 <script src="/resources/js/tour.js"></script>
 </body>

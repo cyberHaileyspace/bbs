@@ -44,9 +44,12 @@ public interface TourMapper {
             "WHERE post_id = #{post_id}")
     int updatePost(TourVO tourVO);
 
-    @Select("select * from Life_post_DB order by post_id desc")
-    TourVO getpost(int post_id);
-
     @Update("update Tour_Post_DB set post_view = post_view + 1 where post_id = #{post_id}")
     int getCount(int postId);
+
+    @Update("UPDATE TOUR_POST_DB SET post_like = post_like + 1 WHERE post_id = #{post_id}")
+    int incrementLike(int post_id);
+
+    @Select("SELECT post_like FROM TOUR_POST_DB WHERE post_id = #{post_id}")
+    int getLikeCount(int post_id);
 }

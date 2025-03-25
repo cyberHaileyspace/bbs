@@ -10,6 +10,7 @@ import com.google.gson.stream.JsonReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -343,5 +344,14 @@ public class TourService {
 
     public int getCount(int postId) {
         return tourMapper.getCount(postId);
+    }
+
+    @Transactional
+    public void updateLike(int post_id) {
+        tourMapper.incrementLike(post_id);
+    }
+
+    public int getLikeCount(int post_id) {
+        return tourMapper.getLikeCount(post_id);
     }
 }

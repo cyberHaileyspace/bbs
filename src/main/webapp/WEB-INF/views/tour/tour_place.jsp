@@ -62,7 +62,7 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
           </script>
         </div>
       </div>
-      <div style="text-align: center; padding: 50px">
+      <div style="text-align: center; padding: 50px; justify-content: center; display: flex; border-bottom: 1px solid">
           <button
             type="button"
             onclick="history.back()"
@@ -73,7 +73,10 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
               color: black;
               font-size: large;
               cursor: pointer;
-              width: 230px;
+              width: 200px;
+              padding: 0;
+              background-color: #efc752;
+              border-radius: 15px;
             "
           >
             リストに戻る
