@@ -18,6 +18,13 @@
                                           placeholder="${user.user_nickname}" readonly></div>
         <div>カテゴリー</div>
         <div>
+<<<<<<< HEAD
+               <select name="post_category">
+                <option value="생활 정보">생활 정보</option>
+                <option value="건강 정보">건강 정보</option>
+                <option value="질문">질문</option>
+                <option value="후기">후기</option>
+=======
             <%--<input type="radio" name="post_category" &lt;%&ndash;id="life-tip"&ndash;%&gt; value="life-tip">&lt;%&ndash;<label for="life-tip">&ndash;%&gt;생활
             정보</label>
             <input type="radio" name="post_category" &lt;%&ndash;id="life-health"&ndash;%&gt; value="life-health">&lt;%&ndash;<label for="life-health">&ndash;%&gt;건강
@@ -29,17 +36,12 @@
                 <option value="健康情報">健康情報</option>
                 <option value="質問">質問</option>
                 <option value="レビュー">レビュー</option>
+>>>>>>> 55bc51adf42d42ceefae6d154d5651b706bb1f93
             </select>
         </div>
         <div>
             <div>지역</div>
-            <%--<div class="add-size">
-                <input type="radio" name="post_menu" &lt;%&ndash;id="life-tip"&ndash;%&gt; value="life-tip">&lt;%&ndash;<label for="life-tip">&ndash;%&gt;생활
-                정보</label>
-                <input type="radio" name="post_menu" &lt;%&ndash;id="life-health"&ndash;%&gt; value="life-health">&lt;%&ndash;<label for="life-health">&ndash;%&gt;건강
-                정보</label>
-                <input type="radio" name="post_menu" &lt;%&ndash;id="life-qna"&ndash;%&gt; value="life-qna">&lt;%&ndash;<label for="life-qna">&ndash;%&gt;질문</label>
-            </div>--%>
+
             <select name="post_menu">
                 <option value="ソウル">ソウル</option>
                 <option value="京畿／仁川">京畿／仁川</option>
