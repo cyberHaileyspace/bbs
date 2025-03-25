@@ -45,6 +45,7 @@ public class FreeC {
 
     @GetMapping("/{post_id}")
     public String detail(@PathVariable int post_id, Model model, HttpSession session, HttpServletRequest req) {
+
         UserVO user = (UserVO) session.getAttribute("user");
         String nickname = (user != null) ? user.getUser_nickname() : "";
         System.out.println(nickname);

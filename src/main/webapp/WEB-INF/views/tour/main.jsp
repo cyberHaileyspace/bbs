@@ -14,7 +14,7 @@
         <div class="main_content_container">
             <div class="main_content">
                 <%-- 뉴스 게시판 --%>
-                <div class="main_content_box">
+                <div class="main_content_box top_box">
                     <div class="main_board_header"><span class="main_board_header_title"
                                                          onclick="location.href='/main/news'">ニュース・お知らせ</span><span
                             class="main_board_header_plus" onclick="location.href='/main/news'">もっと見る</span></div>

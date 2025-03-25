@@ -1,5 +1,6 @@
 package com.bbs.main.mapper;
 
+import com.bbs.main.vo.LifeVO;
 import com.bbs.main.vo.TourVO;
 import com.bbs.main.vo.TourReplyVO;
 import org.apache.ibatis.annotations.*;
@@ -43,6 +44,9 @@ public interface TourMapper {
             "WHERE post_id = #{post_id}")
     int updatePost(TourVO tourVO);
 
+    @Select("select * from Life_post_DB order by post_id desc")
+    TourVO getpost(int post_id);
 
-
+    @Update("update Tour_Post_DB set post_view = post_view + 1 where post_id = #{post_id}")
+    int getCount(int postId);
 }

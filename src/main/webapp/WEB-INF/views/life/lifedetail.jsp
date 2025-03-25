@@ -44,7 +44,7 @@
         <br>
         <div class="post-button">
             <button class="like-button" onclick="likePost(${post.post_id}, this)">
-                추천수&nbsp;<span class="like-count">${post.post_like}</span>
+                いいね数 : <span class="like-count">${post.post_like}</span>
             </button>
             <c:if test="${login_nickname == post.user_nickname}">
                 <button onclick="deletePost(${post.post_id})">削除</button>

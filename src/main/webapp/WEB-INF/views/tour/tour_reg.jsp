@@ -20,14 +20,14 @@
         <div>
             <div>地域</div>
             <select name="post_menu">
-                <option value="서울">ソウル</option>
-                <option value="경기/인천">京畿／仁川</option>
-                <option value="충청/대전">忠清／大田</option>
-                <option value="전라/광주">全羅／光州</option>
-                <option value="경북/대구">慶北／大邱</option>
-                <option value="경남/부산/울산">慶南／釜山／蔚山</option>
-                <option value="강원">江原</option>
-                <option value="제주">済州</option>
+                <option value="ソウル">ソウル</option>
+                <option value="京畿／仁川">京畿／仁川</option>
+                <option value="忠清／大田">忠清／大田</option>
+                <option value="全羅／光州">全羅／光州</option>
+                <option value="慶北／大邱">慶北／大邱</option>
+                <option value="慶南／釜山／蔚山">慶南／釜山／蔚山</option>
+                <option value="江原">江原</option>
+                <option value="済州">済州</option>
             </select>
         </div>
     </div>

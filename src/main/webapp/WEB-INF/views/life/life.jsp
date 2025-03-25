@@ -15,11 +15,11 @@
 </head>
 <body>
 <div class="category">
-    <div><span class="menu" name="category" data-val="전체">すべて</span></div>
-    <div><span class="menu" name="category" data-val="생활 정보">生活情報</span></div>
-    <div><span class="menu" name="category" data-val="건강 정보">健康情報</span></div>
-    <div><span class="menu" name="category" data-val="질문">質問</span></div>
-    <div><span class="menu" name="category" data-val="후기">レビュー</span></div>
+    <div><span class="menu" name="category" data-val="すべて">すべて</span></div>
+    <div><span class="menu" name="category" data-val="生活情報">生活情報</span></div>
+    <div><span class="menu" name="category" data-val="健康情報">健康情報</span></div>
+    <div><span class="menu" name="category" data-val="質問">質問</span></div>
+    <div><span class="menu" name="category" data-val="レビュー">レビュー</span></div>
 </div>
 <hr>
 <div class="sort">

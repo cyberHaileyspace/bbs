@@ -12,6 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RequestMapping("/main/tourBoard")
 @Controller
 public class Tour_boardC {
@@ -40,7 +43,16 @@ public class Tour_boardC {
     }
 
     @GetMapping("/{post_id}")
-    public String detail(@PathVariable int post_id, Model model, HttpSession session, HttpServletRequest req) {
+    public String detail(@PathVariable int post_id, Model model, HttpSession session, String token) {
+
+        String sessionKey = "view_token_" + post_id;
+        String lastToken = (String) session.getAttribute(sessionKey);
+
+        if (lastToken == null || !lastToken.equals(token)) {
+            tourService.getCount(post_id);  // 조회수 증가
+            session.setAttribute(sessionKey, token);  // 새로운 토큰 저장
+        }
+
         UserVO user = (UserVO) session.getAttribute("user");
         String nickname = (user != null) ? user.getUser_nickname() : "";
         System.out.println(nickname);
@@ -69,6 +81,23 @@ public class Tour_boardC {
         tourService.updatePost(tourVO, post_file);
         return "redirect:/main/tourBoard/" + post_id;
     }
+
+//    @PostMapping("/like/{post_id}")
+//    @ResponseBody // JSON 응답을 위한 애너테이션
+//    public Map<String, Object> lifelike(@PathVariable("post_id") int no, HttpSession session) {
+//        Map<String, Object> response = new HashMap<>();
+//
+//        if (userService.loginChk(session)) {
+//            lifeService.updateLike(no); // 추천수 업데이트
+//            int newLikeCount = lifeService.getLikeCount(no); // 새로운 추천수 가져오기
+//            response.put("success", true);
+//            response.put("newLikeCount", newLikeCount);
+//        } else {
+//            response.put("success", false);
+//        }
+//
+//        return response; // JSON 형태로 반환
+//    }
 
 
 

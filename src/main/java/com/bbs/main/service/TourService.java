@@ -341,8 +341,7 @@ public class TourService {
     }
 
 
-
-
-
-
+    public int getCount(int postId) {
+        return tourMapper.getCount(postId);
+    }
 }
