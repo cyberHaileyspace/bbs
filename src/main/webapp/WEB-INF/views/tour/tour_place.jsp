@@ -19,9 +19,9 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
             </div>
             <div style="width: 55%">
               <div style="margin-bottom: 40px; font-size: large">
-                <p style="margin-top: 0">주소 : ${common.addr1}</p>
-                <p>우편번호 : ${common.zipcode}</p>
-                <p>연락 및 문의 : ${intro.infocenter}</p>
+                <p style="margin-top: 0">住所 : ${common.addr1}</p>
+                <p>郵便番号 : ${common.zipcode}</p>
+                <p>連絡先・お問い合わせ : ${intro.infocenter}</p>
               </div>
               <span class="overview"> ${common.overview} </span>
             </div>
@@ -63,14 +63,6 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
         </div>
       </div>
       <div style="text-align: center; padding: 50px">
-        <%--
-        <form
-          id="backForm"
-          action="/main/tour/loc"
-          method="post"
-          style="display: inline"
-        >
-          --%>
           <button
             type="button"
             onclick="history.back()"
@@ -84,15 +76,12 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
               width: 230px;
             "
           >
-            리스트로 돌아가기
+            リストに戻る
           </button>
-          <%--
-        </form>
-        --%>
       </div>
       <div>
         <div class="comment-section">
-          <div class="comment-header">댓글 쓰기</div>
+          <div class="comment-header">コメントを書く</div>
           <div hidden="hidden">
             닉네임 :
             <input
@@ -103,20 +92,18 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
               readonly
             />
           </div>
-
           <div class="comment-ta">
             <textarea
               id="replyContent"
-              placeholder="댓글을 입력하세요..."
+              placeholder="コメントを入力してください..."
               style="resize: none"
             ></textarea>
           </div>
-
           <button
             id="commentButton"
             onclick="handleTourReplySubmit('${sessionScope.user.user_nickname}')"
           >
-            댓글 쓰기
+            コメント投稿
           </button>
         </div>
         <div id="replySection"></div>
@@ -130,7 +117,7 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
       console.log(post_id, user_nickname);
       // 페이지 로드 시 댓글을 비동기적으로 가져오는 함수
       function loadReplies() {
-          fetch('/main/tour/reply/' + post_id)
+          fetch('/main/locReply/' + post_id)
               .then(response => response.json())
               .then(data => {
                   console.log("Fetched Replies:", data)
@@ -138,25 +125,25 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
                   replySection.innerHTML = ""; // 기존 댓글 삭제
 
                   if (data.length === 0) {
-                      replySection.innerHTML = "<p>댓글이 없습니다. 댓글을 작성해 보세요!</p>";
+                      replySection.innerHTML = "<p>コメントはまだありません。ぜひ最初のコメントを投稿してください！</p>";
                   } else {
                       data.forEach(reply => {
                           const replyDiv = document.createElement("div");
                           replyDiv.classList.add("reply")
-                          replyDiv.id = "reply-" + reply.c_id;
+                          replyDiv.id = "reply-" + reply.r_id;
                           // 댓글 작성자와 로그인한 사용자가 동일한 경우 삭제 및 수정 버튼을 추가
                           let replytHTML =
                               "<div>" +
-                              "<span>작성자 : " + reply.c_writer + "</span>" + "<br>" +
-                              "<span> 작성일 : "  + reply.c_date + "</span>" +
-                              "<p>"+ reply.c_context +"</p>"
+                              "<span>投稿者 : " + reply.r_writer + "</span>" + "<br>" +
+                              "<span>投稿日 : "  + reply.r_date + "</span>" +
+                              "<p>"+ reply.r_context +"</p>"
                               + "</div>"
                           ;
 
-                          if (user_nickname === reply.c_writer) {
-                              replytHTML += "<button onclick=\"editReply('" + reply.c_id + "', '" + reply.c_writer + "', '" + reply.c_date + "', '" + reply.c_context + "')\">수정</button>"
+                          if (user_nickname === reply.r_writer) {
+                              replytHTML += "<button onclick=\"editReply('" + reply.r_id + "', '" + reply.r_writer + "', '" + reply.r_date + "', '" + reply.r_context + "')\">修正</button>"
                                   +
-                                  "<button onclick=\"deleteReply('" + reply.c_id + "')\">삭제</button>" ;
+                                  "<button onclick=\"deleteReply('" + reply.r_id + "')\">削除</button>" ;
                           }
                           replyDiv.innerHTML = replytHTML;
                           replySection.appendChild(replyDiv);
@@ -167,34 +154,7 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
                   console.error("댓글 로드 실패:", error);
               });
       }
-
-
-      // 페이지가 로드되면 댓글을 비동기적으로 불러오는 함수 호출
-
-      document.addEventListener("DOMContentLoaded", loadReplies);
-
-      window.addEventListener("load", function() {
-          const slider = document.getElementById("imageSlider");
-          if (!slider) return;
-          const images = slider.querySelectorAll("img");
-          if (images.length <= 1) return; // 이미지가 1장 이하이면 슬라이더 작동 안 함
-
-          // 모든 이미지가 같은 너비라고 가정 (최대 600px)
-          // slider의 현재 translateX 값을 관리할 변수
-          let currentIndex = 0;
-
-          // 다음 슬라이드로 전환하는 함수
-          function nextSlide() {
-              currentIndex = (currentIndex + 1) % images.length;
-              // 슬라이더의 너비(또는 이미지의 너비)를 기준으로 이동
-              // 이미지가 inline-block으로 나열되어 있으므로, 각 이미지의 너비를 사용합니다.
-              const imageWidth = images[0].offsetWidth;
-              slider.style.transform = "translateX(-" + (currentIndex * imageWidth) + "px)";
-          }
-
-          // 3초마다 nextSlide 함수 호출
-          setInterval(nextSlide, 3000);
-      });
     </script>
+  <script src="/resources/js/tour.js"></script>
   </body>
 </html>

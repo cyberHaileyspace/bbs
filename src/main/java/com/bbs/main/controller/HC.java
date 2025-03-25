@@ -24,14 +24,11 @@ public class HC {
 
     @GetMapping("/")
     public String home(Model model) {
-
-
         model.addAttribute("free", freeService.getposts());
-        model.addAttribute("tour", tourService.getAllLocation("1", null, "R"));
-
+        model.addAttribute("tour", tourService.getAllLocation("1", null, "O"));
+        model.addAttribute("tourPosts", tourService.getposts());
         model.addAttribute("life", lifeService.getposts());
-
-        model.addAttribute("content", "wh/main.jsp");
+        model.addAttribute("content", "tour/main.jsp");
         return "index";
     }
 

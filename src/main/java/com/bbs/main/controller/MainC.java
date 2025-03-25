@@ -2,6 +2,7 @@ package com.bbs.main.controller;
 
 import com.bbs.main.service.FreeService;
 import com.bbs.main.service.LifeService;
+import com.bbs.main.service.TourService;
 import com.bbs.main.service.UserService;
 import com.bbs.main.vo.LifeVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,12 @@ public class MainC {
     @Autowired
     private FreeService freeService;
 
+    @Autowired
+    private TourService tourService;
+
     @GetMapping
     public String main(Model model) {
-        model.addAttribute("content", "wh/main.jsp");
+        model.addAttribute("content", "tour/main.jsp");
         return "index";
     }
 
@@ -48,7 +52,8 @@ public class MainC {
 
     @GetMapping("/tour")
     public String tour(Model model) {
-        model.addAttribute("content", "wh/tour.jsp");
+        model.addAttribute("posts", tourService.getposts());
+        model.addAttribute("content", "tour/tour_board.jsp");
         return "index";
     }
 

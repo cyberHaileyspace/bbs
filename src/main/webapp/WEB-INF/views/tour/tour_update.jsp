@@ -12,25 +12,16 @@
     <link rel="stylesheet" href="/resources/css/sample.css">
 </head>
 <body>
-<form id="writereg" action="/main/free/update" method="post" enctype="multipart/form-data">
+<form id="writereg" action="/main/tourBoard/update" method="post" enctype="multipart/form-data">
     <input type="hidden" name="post_id" value="${post.post_id}">  <!-- 여기에 post_id 추가 -->
     <div>
         <div hidden="hidden">
             ニックネーム : <input name="user_nickname" value="${user.user_nickname}" type="text"
                          placeholder="${user.user_nickname}" readonly></div>
-        <div>カテゴリー</div>
+
         ${post.post_id}
         <div>
-
-            <select name="post_category">
-                <option value="生活情報">生活情報</option>
-                <option value="健康情報">健康情報</option>
-                <option value="質問">質問</option>
-                <option value="レビュー">レビュー</option>
-            </select>
-        </div>
-        <div>
-            <div>지역</div>
+            <div>地域</div>
 
             <select name="post_menu">
                 <option value="ソウル">ソウル</option>
@@ -75,7 +66,7 @@
     </div>
     <div>
         <button class="reg-cancel" type="button" onclick="history.back()">キャンセル</button>
-        <button class="reg-post" type="submit" name="post_id" value="${post.post_id}">投稿</button>
+        <button class="reg-post" type="submit" name="post_id" value="${post.post_id}">更新する</button>
     </div>
 </form>
 </body>

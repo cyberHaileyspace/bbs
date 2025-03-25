@@ -14,7 +14,7 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %> <%--<link
   </head>
   <body>
   <div class="container-cm-post">
-    <div class="life-back" onclick="location.href='/main/free'">생활게시판 ></div>
+    <div class="life-back" onclick="location.href='/main/free'">生活掲示板 ></div>
     <div class="post-title"><span> ${post.post_title } </span></div>
     <div class="post-info">
       <div class="post-profile"><img alt="" src="file/${user.user_image }"></div>
@@ -44,29 +44,29 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %> <%--<link
       <br>
       <div class="post-button">
         <button class="like-button" onclick="location.href='like/' + ${post.post_id}">
-          추천수 : ${post.post_like}
+          いいね数 : ${post.post_like}
         </button>
         <c:if test="${login_nickname == post.user_nickname}">
-          <button onclick="deletePost(${post.post_id})">삭제</button>
-          <button onclick="location.href='update/${post.post_id}'">수정</button>
+          <button onclick="deletePost(${post.post_id})">削除</button>
+          <button onclick="location.href='update/${post.post_id}'">修正</button>
         </c:if>
-        <button onclick="location.href='/main/free'">목록</button>
+        <button onclick="location.href='/main/free'">リスト</button>
       </div>
     </div>
   </div>
   <div>
     <div>
       <div class="comment-section">
-        <div class="comment-header">댓글 쓰기</div>
-        <div hidden="hidden">닉네임 : <input name="user_nickname" value="${user.user_nickname}" type="text"
+        <div class="comment-header">コメントを書く</div>
+        <div hidden="hidden">ニックネーム : <input name="user_nickname" value="${user.user_nickname}" type="text"
                                           placeholder="${user.user_nickname}" readonly></div>
 
         <div class="comment-ta">
-          <textarea id="replyContent" placeholder="댓글을 입력하세요..." style="resize: none"></textarea>
+          <textarea id="replyContent" placeholder="コメントを入力してください..." style="resize: none"></textarea>
         </div>
 
         <button id="commentButton"
-                onclick="handleFreeReplySubmit('${user.user_nickname}')">댓글 쓰기
+                onclick="handleFreeReplySubmit('${user.user_nickname}')">コメント投稿
         </button>
       </div>
       <div id="replySection">
@@ -88,7 +88,7 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %> <%--<link
                           replySection.innerHTML = ""; // 기존 댓글 삭제
 
                           if (data.length === 0) {
-                              replySection.innerHTML = "<p>댓글이 없습니다. 댓글을 작성해 보세요!</p>";
+                              replySection.innerHTML = "<p>コメントがありません。ぜひ最初のコメントをしてください！</p>";
                           } else {
                               data.forEach(reply => {
                                   const replyDiv = document.createElement("div");
@@ -97,15 +97,15 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %> <%--<link
                                   // 댓글 작성자와 로그인한 사용자가 동일한 경우 삭제 및 수정 버튼을 추가
                                   let replytHTML =
                               "<div>" +
-                              "<span>작성자 : " + reply.r_writer + "</span>" + "<br>" +
-                              "<span> 작성일 : "  + reply.r_date + "</span>" +
+                              "<span>投稿者 : " + reply.r_writer + "</span>" + "<br>" +
+                              "<span>投稿日 : "  + reply.r_date + "</span>" +
                               "<p>"+ reply.r_context +"</p>"
                             + "</div>"
                           ;
 
                                   if (user_nickname === reply.r_writer) {
-                                      replytHTML += "<button onclick=\"editReply('" + reply.r_id + "', '" + reply.r_writer + "', '" + reply.r_date + "', '" + reply.r_context + "')\">수정</button>" +
-                                              "<button onclick=\"deleteReply('" + reply.r_id + "')\">삭제</button>";
+                                      replytHTML += "<button onclick=\"editReply('" + reply.r_id + "', '" + reply.r_writer + "', '" + reply.r_date + "', '" + reply.r_context + "')\">修正</button>" +
+                                              "<button onclick=\"deleteReply('" + reply.r_id + "')\">削除</button>";
                                   }
                                   replyDiv.innerHTML = replytHTML;
                                   replySection.appendChild(replyDiv);
