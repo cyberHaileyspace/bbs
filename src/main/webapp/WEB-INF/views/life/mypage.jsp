@@ -19,33 +19,33 @@
             </div>
         </c:if>
         <div>
-            프로필 사진 변경
+            プロフィール写真の変更
         </div>
         <div>
             ${user.user_nickname}
         </div>
         <div>
-            아이디 : ${user.user_id}
+            ユーザーID : ${user.user_id}
         </div>
         <div>
-            가입일 : <fmt:formatDate value="${user.user_date}" pattern="yyyy-MM-dd"/>
+            登録日 : <fmt:formatDate value="${user.user_date}" pattern="yyyy-MM-dd"/>
         </div>
         <div class="mypage-btn">
-            <div onclick="location.href='/update'" style="cursor: pointer">내 정보 수정</div>
-            <div onclick="location.href='/pwreset'" class="pw" style="cursor: pointer">비밀번호 변경</div>
-            <div onclick="location.href='/logout'" style="cursor: pointer">로그아웃</div>
+            <div onclick="location.href='/update'" style="cursor: pointer">マイ情報の修正</div>
+            <div onclick="location.href='/pwreset'" class="pw" style="cursor: pointer">パスワードを再設定</div>
+            <div onclick="location.href='/logout'" style="cursor: pointer">ログアウト</div>
         </div>
     </div>
 
     <div class="mypage-content">
-        <div class="tab-button active" data-target="posts">작성 글 목록</div>
-        <div class="tab-button" data-target="comments">작성 댓글 목록</div>
+        <div class="tab-button active" data-target="posts">投稿した掲示物一覧</div>
+        <div class="tab-button" data-target="comments">投稿したコメント一覧</div>
     </div>
 
 
     <div class="tab-content show" id="posts">
         <div style="width: 45%; margin: 20px">
-            <h3>자유게시판</h3>
+            <h3>自由掲示板</h3>
             <c:forEach items="${freePosts}" var="p">
                 <div class="item" <%--onclick="goToPost(${p.post_id})"--%>>
                         <%--<div>번호 : ${l.post_id}</div>
@@ -57,9 +57,9 @@
                         </div>--%>
                     <div class="post-life" onclick="goTofreePost(${p.post_id})">
                         <div class="life-kind">
-                            <div class="life-no">번호 : ${p.post_id }</div>&nbsp;/&nbsp;
-                            <div class="life-cate">카테고리 : ${p.post_category }</div>&nbsp;/&nbsp;
-                            <div class="life-menu">지역 : ${p.post_menu }</div>
+                            <div class="life-no">番号 : ${p.post_id }</div>&nbsp;/&nbsp;
+                            <div class="life-cate">カテゴリー : ${p.post_category }</div>&nbsp;/&nbsp;
+                            <div class="life-menu">地域 : ${p.post_menu }</div>
                         </div>
                         <div class="life-title">${p.post_title }</div>
                         <div class="life-context">
@@ -68,12 +68,12 @@
                         </div>
                         <div class="life-info">
                             <div style="display: flex">
-                                <div class="info-name">작성자 : ${p.user_nickname }</div>&nbsp;/&nbsp;
-                                <div class="info-date">작성일 : <fmt:formatDate value="${p.post_date}" pattern="yyyy-MM-dd HH:mm"/> </div>
+                                <div class="info-name">投稿者 : ${p.user_nickname }</div>&nbsp;/&nbsp;
+                                <div class="info-date">投稿日 : <fmt:formatDate value="${p.post_date}" pattern="yyyy-MM-dd HH:mm"/> </div>
                             </div>
                             <div style="display: flex">
-                                <div class="info-view">조회수 : ${p.post_view }</div>&nbsp;/&nbsp;
-                                <div class="info-like">좋아요 : ${p.post_like }</div>
+                                <div class="info-view">閲覧数 : ${p.post_view }</div>&nbsp;/&nbsp;
+                                <div class="info-like">いいね : ${p.post_like }</div>
                             </div>
                         </div>
                     </div>
@@ -92,7 +92,7 @@
             </div>--%>
         </div>
         <div style="width: 45%; margin: 20px">
-            <h3>생활게시판</h3>
+            <h3>生活掲示板</h3>
             <c:forEach items="${lifePosts}" var="p">
                 <div class="item">
                         <%--<div>번호 : ${l.post_id}</div>
@@ -104,9 +104,9 @@
                         </div>--%>
                     <div class="post-life" onclick="goTolifePost(${p.post_id})">
                         <div class="life-kind">
-                            <div class="life-no">번호 : ${p.post_id }</div>&nbsp;/&nbsp;
-                            <div class="life-cate">카테고리 : ${p.post_category }</div>&nbsp;/&nbsp;
-                            <div class="life-menu">지역 : ${p.post_menu }</div>
+                            <div class="life-no">番号 : ${p.post_id }</div>&nbsp;/&nbsp;
+                            <div class="life-cate">カテゴリー : ${p.post_category }</div>&nbsp;/&nbsp;
+                            <div class="life-menu">地域 : ${p.post_menu }</div>
                         </div>
                         <div class="life-title">${p.post_title }</div>
                         <div class="life-context">
@@ -115,12 +115,12 @@
                         </div>
                         <div class="life-info">
                             <div style="display: flex">
-                                <div class="info-name">작성자 : ${p.user_nickname }</div>&nbsp;/&nbsp;
-                                <div class="info-date">작성일 : <fmt:formatDate value="${p.post_date}" pattern="yyyy-MM-dd HH:mm"/></div>
+                                <div class="info-name">投稿者 : ${p.user_nickname }</div>&nbsp;/&nbsp;
+                                <div class="info-date">投稿日 : <fmt:formatDate value="${p.post_date}" pattern="yyyy-MM-dd HH:mm"/></div>
                             </div>
                             <div style="display: flex">
-                                <div class="info-view">조회수 : ${p.post_view }</div>&nbsp;/&nbsp;
-                                <div class="info-like">좋아요 : ${p.post_like }</div>
+                                <div class="info-view">閲覧数 : ${p.post_view }</div>&nbsp;/&nbsp;
+                                <div class="info-like">いいね : ${p.post_like }</div>
                             </div>
                         </div>
                     </div>
@@ -130,7 +130,7 @@
     </div>
     <div class="tab-content" id="comments">
         <div style="width: 45%; margin: 20px">
-            <h3>자유게시판</h3>
+            <h3>自由掲示板</h3>
             <c:forEach items="${freePostReplies}" var="fr">
                 <%--<div>${fr}</div>--%>
                 <div class="free-context">
@@ -182,7 +182,7 @@
             </div>--%>
         </div>
         <div style="width: 45%; margin: 20px">
-            <h3>생활게시판</h3>
+            <h3>生活掲示板</h3>
             <c:forEach items="${lifePostReplies}" var="lr">
                 <div class="life-context">
                     <div class="life-reply-text">${lr.r_context}&nbsp;/&nbsp;${lr.r_date}</div>

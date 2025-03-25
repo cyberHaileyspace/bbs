@@ -57,7 +57,7 @@ function submitReply() {
         .then(data => {
             if (data) {
                 alert("댓글이 등록되었습니다.");
-                loadReplies(); // 댓글을 성공적으로 등록한 후 댓글을 다시 불러옴
+                loadLifeReplies(); // 댓글을 성공적으로 등록한 후 댓글을 다시 불러옴
                 document.getElementById("replyContent").value = "";
             } else {
                 alert("댓글 등록 실패. 다시 시도해주세요.");
@@ -78,12 +78,12 @@ function editReply(r_id, r_writer, r_date, r_context) {
     // 댓글을 textarea로 변경
     commentDiv.innerHTML = `
         <div>
-        <span>작성자 : ${r_writer}</span> <br>
-        <span>작성일 : ${r_date}</span> <br>
+        <span>投稿者 : ${r_writer}</span> <br>
+        <span>投稿日 : ${r_date}</span> <br>
         <textarea id="edit-text-${r_id}" class="edit-textarea">${originalContent}</textarea>
         </div>
-        <button onclick="saveEdit('${r_id}', '${r_writer}', '${r_date}', '${originalContent}')">수정완료</button>
-        <button onclick="cancelEdit()">수정취소</button>
+        <button onclick="saveEdit('${r_id}', '${r_writer}', '${r_date}', '${originalContent}')">完了</button>
+        <button onclick="cancelEdit()">取消</button>
     `;
 }
 
@@ -132,7 +132,7 @@ function saveEdit(r_id, r_writer, r_date, originalContent) {
 
             if (!data || !data.success) {
                 alert("댓글이 수정되었습니다.");
-                loadReplies(); // 수정 성공 후 댓글 목록 갱신
+                loadLifeReplies(); // 수정 성공 후 댓글 목록 갱신
             } else {
                 alert("수정 실패! 서버 응답: " + JSON.stringify(data));
                 loadReplies(); // 수정 실패 후 댓글 목록 갱신
@@ -187,7 +187,7 @@ function logincheck(user) {
     if (user)
         location.href = "life/reg";
     else {
-        alert("먼저 로그인을 해주세요.");
+        alert("先にログインしてください。");
         location.href = "/login"
     }
 }
@@ -222,7 +222,7 @@ function paging(data) {
 
     if (totalItems === 0) {
         console.log("게시글 없음. 페이지네이션 숨김.");
-        $("#post-container").html("<p>게시글이 없습니다.</p>");  // 게시글 없음 메시지 표시
+        $("#post-container").html("<p>投稿がありません。</p>");  // 게시글 없음 메시지 표시
         return;  // ⛔ 데이터가 없으면 페이지네이션 생성 X
     }
 
@@ -255,9 +255,9 @@ function renderPosts(posts) {
             "<div class='item'>" +
             "<div class='post-life' onclick='goToPost(" + p.post_id + ")'>" +
             "<div class='life-kind'>" +
-            "<div class='life-no'>번호: " + p.post_id + "</div>&nbsp;/&nbsp;" +
-            "<div class='life-cate'>카테고리: " + p.post_category + "</div>&nbsp;/&nbsp;" +
-            "<div class='life-menu'>지역: " + p.post_menu + "</div>" +
+            "<div class='life-no'>番号 : " + p.post_id + "</div>&nbsp;/&nbsp;" +
+            "<div class='life-cate'>カテゴリー : " + p.post_category + "</div>&nbsp;/&nbsp;" +
+            "<div class='life-menu'>地域 : " + p.post_menu + "</div>" +
             "</div>" +
             "<div class='life-title'>" + p.post_title + "</div>" +
             "<div class='life-context'>" +
@@ -266,12 +266,12 @@ function renderPosts(posts) {
             "</div>" +
             "<div class='life-info'>" +
             "<div style='display: flex'>" +
-            "<div class='info-name'>작성자: " + p.user_nickname + "</div>&nbsp;/&nbsp;" +
-            "<div class='info-date'>작성일: " + formattedDate + "</div>" +
+            "<div class='info-name'>投稿者 : " + p.user_nickname + "</div>&nbsp;/&nbsp;" +
+            "<div class='info-date'>投稿日 : " + formattedDate + "</div>" +
             "</div>" +
             "<div style='display: flex'>" +
-            "<div class='info-view'>조회수: " + p.post_view + "</div>&nbsp;/&nbsp;" +
-            "<div class='info-like'>추천수: " + p.post_like + "</div>" +
+            "<div class='info-view'>閲覧数 : " + p.post_view + "</div>&nbsp;/&nbsp;" +
+            "<div class='info-like'>いいね数 : " + p.post_like + "</div>" +
             "</div>" +
             "</div>" +
             "</div>" +
@@ -285,7 +285,7 @@ function renderPosts(posts) {
 function optionHandler() {
     $("input[name='option']").change(function () {
         let option = $("input[name='option']:checked").val();
-        console.log("선택된 정렬 옵션:", option);
+        console.log("選択されたソートオプション:", option);
 
         $.ajax({
             url: 'life/option',
@@ -294,13 +294,13 @@ function optionHandler() {
             async: true,
         })
             .done(function (resData) {
-                console.log("응답 데이터:", resData);
+                console.log("受信データ:", resData);
                 if (resData.length !== 0) {
                     paging(resData);
                 }
             })
             .fail(function (xhr) {
-                console.error("요청 실패:", xhr);
+                console.error("リクエスト失敗:", xhr);
             });
     });
 }
@@ -322,7 +322,7 @@ function categoryHandler() {
                 if (resData.length !== 0) {
                     paging(resData);
                 } else {
-                    $("#post-container").text("게시글이 없습니다.");
+                    $("#post-container").text("投稿がありません。");
                 }
             })
             .fail(function (xhr) {

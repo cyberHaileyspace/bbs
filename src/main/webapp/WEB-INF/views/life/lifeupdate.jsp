@@ -16,41 +16,41 @@
     <input type="hidden" name="post_id" value="${post.post_id}">  <!-- 여기에 post_id 추가 -->
     <div>
         <div hidden="hidden">
-            닉네임 : <input name="user_nickname" value="${user.user_nickname}" type="text"
+            ニックネーム : <input name="user_nickname" value="${user.user_nickname}" type="text"
                          placeholder="${user.user_nickname}" readonly></div>
-        <div>카테고리</div>
+        <div>カテゴリー</div>
         <div>
             <select name="post_category">
-                <option value="생활 정보">생활 정보</option>
-                <option value="건강 정보">건강 정보</option>
-                <option value="질문">질문</option>
-                <option value="후기">후기</option>
+                <option value="生活情報">生活情報</option>
+                <option value="健康情報">健康情報</option>
+                <option value="質問">質問</option>
+                <option value="レビュー">レビュー</option>
             </select>
         </div>
         <div>
-            <div>지역</div>
+            <div>地域</div>
             <select name="post_menu">
-                <option value="서울">서울</option>
-                <option value="경기/인천">경기/인천</option>
-                <option value="충청/대전">충청/대전</option>
-                <option value="전라/광주">전라/광주</option>
-                <option value="경북/대구">경북/대구</option>
-                <option value="경남/부산/울산">경남/부산/울산</option>
-                <option value="강원">강원</option>
-                <option value="제주">제주</option>
+                <option value="ソウル">ソウル</option>
+                <option value="京畿／仁川">京畿／仁川</option>
+                <option value="忠清／大田">忠清／大田</option>
+                <option value="全羅／光州">全羅／光州</option>
+                <option value="慶北／大邱">慶北／大邱</option>
+                <option value="慶南／釜山／蔚山">慶南／釜山／蔚山</option>
+                <option value="江原">江原</option>
+                <option value="済州">済州</option>
             </select>
         </div>
     </div>
 
     <div>
-        <div>제목</div>
+        <div>タイトル</div>
         <div><textarea name="post_title" rows="5" cols="100" style="resize: none;">${post.post_title}
         </textarea>
         </div>
     </div>
 
     <div>
-        <div>내용</div>
+        <div>内容</div>
         <div>
             <textarea name="post_context" id="writearea" value="post_context" rows="25" cols="100">${post.post_context}
             </textarea>
@@ -63,8 +63,8 @@
         </div>
     </div>
     <div>
-        <button class="reg-cancel" type="button" onclick="history.back()">취소</button>
-        <button class="reg-post" type="submit" name="post_id" value="${post.post_id}">등록</button>
+        <button class="reg-cancel" type="button" onclick="history.back()">キャンセル</button>
+        <button class="reg-post" type="submit" name="post_id" value="${post.post_id}">登録</button>
     </div>
 </form>
 </body>

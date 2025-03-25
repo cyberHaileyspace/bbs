@@ -78,16 +78,16 @@ public interface LifeMapper {
     @Select("SELECT * FROM Life_Post_DB ORDER BY post_date DESC")
     List<LifeVO> getAll(String category);
 
-    @Select("SELECT * FROM Life_Post_DB where post_category = '생활 정보' ORDER BY post_date DESC")
+    @Select("SELECT * FROM Life_Post_DB where post_category = '生活情報' ORDER BY post_date DESC")
     List<LifeVO> getLife(String category);
 
-    @Select("SELECT * FROM Life_Post_DB where post_category = '건강 정보' ORDER BY post_date DESC")
+    @Select("SELECT * FROM Life_Post_DB where post_category = '健康情報' ORDER BY post_date DESC")
     List<LifeVO> getHealth(String category);
 
-    @Select("SELECT * FROM Life_Post_DB where post_category = '질문' ORDER BY post_date DESC")
+    @Select("SELECT * FROM Life_Post_DB where post_category = '質問' ORDER BY post_date DESC")
     List<LifeVO> getQNA(String category);
 
-    @Select("SELECT * FROM Life_Post_DB where post_category = '후기' ORDER BY post_date DESC")
+    @Select("SELECT * FROM Life_Post_DB where post_category = 'レビュー' ORDER BY post_date DESC")
     List<LifeVO> getAft(String category);
 }
 

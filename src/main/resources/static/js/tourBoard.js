@@ -1,7 +1,7 @@
 function deletePost(no) {
     if (confirm('本当に削除しますか？')) {
         // DELETE 요청으로 데이터를 보냄
-        fetch('/main/free/' + no, {
+        fetch('/main/tourBoard/' + no, {
             method: 'DELETE',  // HTTP method를 DELETE로 설정
             headers: {
                 'Content-Type': 'application/json',  // JSON 형식으로 데이터 전송
@@ -10,7 +10,7 @@ function deletePost(no) {
             .then(response => response.json())  // 서버에서 응답을 JSON 형태로 받음
             .then(data => {
                 alert('削除されました。');
-                location.href = '/main/free';  // 삭제 후 페이지를 리다이렉트
+                location.href = '/main/tour';  // 삭제 후 페이지를 리다이렉트
             })
             .catch(error => {
                 console.error('Error:', error);  // 에러 처리
@@ -18,7 +18,7 @@ function deletePost(no) {
     }
 }
 
-function handleReplySubmit(user_nickname) {
+function handleFreeReplySubmit(user_nickname) {
     if (user_nickname) {
         // 사용자가 로그인된 경우, 댓글을 등록하는 함수 호출
         submitReply();
@@ -39,7 +39,7 @@ function submitReply() {
     }
     // console.log(post_id)
     // 댓글을 서버로 전송하는 fetch 요청 (서버 경로는 실제 경로로 수정해야 합니다)
-    fetch(`/main/free/reply`, {
+    fetch(`/main/tourBoard/reply`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -85,35 +85,15 @@ function editReply(r_id, r_writer, r_date, r_context) {
 }
 
 function cancelEdit(r_id, r_writer, r_date, originalContent) {
-<<<<<<< HEAD
-    if (confirm("수정을 취소하시겠습니까?")) {
+    if (confirm("修正をキャンセルしますか？")){
         loadReplies();
     }
-=======
-   if (confirm("修正をキャンセルしますか？")){
-      loadReplies();
-   }
->>>>>>> 55bc51adf42d42ceefae6d154d5651b706bb1f93
 
-    // const commentDiv = document.getElementById(`reply-${r_id}`);
-    //
-    // // 원래 댓글로 복원
-    // commentDiv.innerHTML = `
-    //     <div>
-    //     <span>작성자 : ${r_writer}</span> <br>
-    //     <span>작성일 : ${r_date}</span> <br>
-    //     <p id="reply-context" class="edit-textarea">${originalContent}</p>
-    //     </div>
-    //     <button onclick="editReply('${r_id}', '${r_writer}', '${r_date}', '${originalContent}')">수정</button>
-    //     <button onclick="deleteReply(${r_id})">삭제</button>
-    //
-    // `;
 }
-
 function saveEdit(r_id, r_writer, r_date, originalContent) {
     const newText = document.getElementById(`edit-text-${r_id}`).value;
 
-    console.log("saveEdit 실행됨", r_id, r_writer, newText); // 실행 여부 확인
+    // console.log("saveEdit 실행됨", r_id, r_writer, newText); // 실행 여부 확인
 
     // 텍스트 영역이 비어있는지 확인
     if (!newText.trim()) {
@@ -121,9 +101,9 @@ function saveEdit(r_id, r_writer, r_date, originalContent) {
         return;  // 텍스트가 비어 있으면 수정하지 않음
     }
 
-    fetch(`/main/free/reply`, {
+    fetch(`/main/tourBoard/reply`, {
         method: "PUT",
-        headers: {"Content-Type": "application/json"},
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
             r_id: r_id, // 수정할 댓글의 ID 포함
             r_context: newText // 새로운 댓글 내용
@@ -131,7 +111,7 @@ function saveEdit(r_id, r_writer, r_date, originalContent) {
     })
         .then(response => response.json())
         .then(data => {
-            console.log("서버 응답 데이터", data); // 응답 데이터 확인
+            // console.log("서버 응답 데이터", data); // 응답 데이터 확인
 
             if (data === 1) {
                 alert("コメントが修正されました。");
@@ -151,7 +131,7 @@ function saveEdit(r_id, r_writer, r_date, originalContent) {
 function deleteReply(r_id) {
     if (confirm('本当にこのコメントを削除しますか？')) {
         // DELETE 요청으로 데이터를 보냄
-        fetch(`/main/free/reply/${r_id}`, {
+        fetch(`/main/tourBoard/reply/${r_id}`, {
             method: 'DELETE',  // HTTP method를 DELETE로 설정
             headers: {
                 'Content-Type': 'application/json',  // JSON 형식으로 데이터 전송
@@ -163,11 +143,7 @@ function deleteReply(r_id) {
                     alert("コメントが削除されました。");
                     loadReplies();  // 댓글 삭제 후 댓글 목록 갱신
                 } else {
-<<<<<<< HEAD
-                    alert("댓글 삭제 실패! 서버 응답: " + JSON.stringify(data));
-=======
-                   alert("コメント削除に失敗しました。サーバー応答: " + JSON.stringify(data));
->>>>>>> 55bc51adf42d42ceefae6d154d5651b706bb1f93
+                    alert("コメント削除に失敗しました。サーバー応答: " + JSON.stringify(data));
                 }
             })
             .catch(error => {
@@ -176,3 +152,4 @@ function deleteReply(r_id) {
             });
     }
 }
+

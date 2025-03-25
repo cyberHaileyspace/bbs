@@ -7,24 +7,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="/resources/css/board.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<div class="category">
-    <div><span class="menu">すべて</span></div>
-    <div><span class="menu" data-val="생활 정보">生活情報</span></div>
-    <div><span class="menu" data-val="건강 정보">健康情報</span></div>
-    <div><span class="menu" data-val="질문">質問</span></div>
-    <div><span class="menu" data-val="후기">レビュー</span></div>
-</div>
-<hr>
-<div class="sort">
-    <input type="radio" name="option" value="new" checked="checked"/> 最新順
-    <input type="radio" name="option" value="like"/> おすすめ順
-    <input type="radio" name="option" value="view"/> 閲覧数順
-</div>
-<br>
+
+<div style="width: 100%">
+    <div class="travel">
+        <div>観光掲示板</div>
+        <div onclick="document.getElementById('defaultTourForm').submit()">
+            観光情報
+        </div>
+    </div>
+    <form id="defaultTourForm" action="/main/tourInfo/loc" method="get">
+        <input type="hidden" name="areaCode" value="6"/>
+        <input type="hidden" name="sigungu" value=""/>
+        <input type="hidden" name="sort" value="R"/>
+        <input type="hidden" name="pageNo" value="1"/>
+    </form>
+    <br>
 <button class="write-btn" onclick="logincheck('${sessionScope.user}')"><img class="write-btn-img"
                                                                             alt=""
                                                                             src="https://cdn-icons-png.flaticon.com/512/117/117476.png"/>投稿</button>
@@ -32,18 +32,11 @@
     <c:when test="${not empty posts}">
         <c:forEach items="${posts}" var="p">
             <div class="item">
-                    <%--<div>번호 : ${l.post_id}</div>
-                    <div>제목 : ${l.post_title}</div>
-                    <div>작성자 : ${l.user_nickname}</div>
-                    <div>작성일 : <fmt:formatDate value="${l.post_date}" pattern="yyyy-MM-dd"/></div>--%>
-                    <%--<div>
-                        <button onclick="location.href='delete?pk=${p.p_no}'">삭제</button>
-                    </div>--%>
-                <div class="post-life" onclick="goToPost(${p.post_id})">
+
+                <div class="post-life" onclick="gotoTour(${p.post_id})">
                     <div class="life-kind">
-                        <div class="life-no">번호 : ${p.post_id }</div>&nbsp;/&nbsp;
-                        <div class="life-cate">카테고리 : ${p.post_category }</div>&nbsp;/&nbsp;
-                        <div class="life-menu">지역 : ${p.post_menu }</div>
+                        <div class="life-no">番号 : ${p.post_id }</div>&nbsp;/&nbsp;
+                        <div class="life-menu">地域 : ${p.post_menu }</div>
                     </div>
                     <div class="life-title">${p.post_title }</div>
                     <div class="life-context">
@@ -52,13 +45,13 @@
                     </div>
                     <div class="life-info">
                         <div style="display: flex">
-                            <div class="info-name">작성자 : ${p.user_nickname }</div>&nbsp;/&nbsp;
-                            <div class="info-date">작성일 : <fmt:formatDate value="${p.post_date}"
+                            <div class="info-name">投稿者 : ${p.user_nickname }</div>&nbsp;/&nbsp;
+                            <div class="info-date">投稿日 : <fmt:formatDate value="${p.post_date}"
                                                                          pattern="yyyy-MM-dd HH:mm"/></div>
                         </div>
                         <div style="display: flex">
-                            <div class="info-view">조회수 : ${p.post_view }</div>&nbsp;/&nbsp;
-                            <div class="info-like">좋아요 : ${p.post_like }</div>
+                            <div class="info-view">閲覧数 : ${p.post_view }</div>&nbsp;/&nbsp;
+                            <div class="info-like">いいね : ${p.post_like }</div>
                         </div>
                     </div>
                 </div>
@@ -69,6 +62,7 @@
         <p>投稿がありません。ぜひ最初の投稿をしてみてください！</p>
     </c:otherwise>
 </c:choose>
+</div>
 </body>
 <script>
     function generateToken() {
@@ -77,15 +71,15 @@
         return token;
     }
 
-    function goToPost(postId) {
+    function gotoTour(postId) {
         const token = generateToken();
         sessionStorage.setItem("viewToken", token);
-        location.href = "free/" + postId + "?token=" + token;
+        location.href = "tourBoard/" + postId + "?token=" + token;
     }
 
     function logincheck(user) {
         if (user)
-            location.href = "free/reg";
+            location.href = "/main/tourBoard/reg";
         else {
             alert("先にログインしてください。");
             location.href = "/login"

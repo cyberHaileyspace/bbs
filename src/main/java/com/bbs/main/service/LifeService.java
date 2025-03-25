@@ -148,15 +148,15 @@ public class LifeService {
 
     public List<LifeVO> getcategory(String category) {
         switch (category) {
-            case "전체":
+            case "すべて":
                 return lifeMapper.getAll(category);
-            case "생활 정보":
+            case "生活情報":
                 return lifeMapper.getLife(category);
-            case "건강 정보":
+            case "健康情報":
                 return lifeMapper.getHealth(category);
-            case "질문":
+            case "質問":
                 return lifeMapper.getQNA(category);
-            case "후기":
+            case "レビュー":
                 return lifeMapper.getAft(category);
             default:
                 return new ArrayList<>();

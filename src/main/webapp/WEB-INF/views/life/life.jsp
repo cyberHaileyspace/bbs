@@ -14,28 +14,28 @@
 </head>
 <body>
 <div class="category">
-    <div><span class="menu" name="category" data-val="전체">전체</span></div>
-    <div><span class="menu" name="category" data-val="생활 정보">생활 정보</span></div>
-    <div><span class="menu" name="category" data-val="건강 정보">건강 정보</span></div>
-    <div><span class="menu" name="category" data-val="질문">질문</span></div>
-    <div><span class="menu" name="category" data-val="후기">후기</span></div>
+    <div><span class="menu" name="category" data-val="すべて">すべて</span></div>
+    <div><span class="menu" name="category" data-val="生活情報">生活情報</span></div>
+    <div><span class="menu" name="category" data-val="健康情報">健康情報</span></div>
+    <div><span class="menu" name="category" data-val="質問">質問</span></div>
+    <div><span class="menu" name="category" data-val="レビュー">レビュー</span></div>
 </div>
 <hr>
 <div class="sort">
     <div>
         <div>
-            <label><input type="radio" name="option" value="new" checked="checked"/> 최신순</label>
-            <label><input type="radio" name="option" value="like"/> 추천순</label>
-            <label><input type="radio" name="option" value="view"/> 조회순</label>
+            <label><input type="radio" name="option" value="new" checked="checked"/> 最新順</label>
+            <label><input type="radio" name="option" value="like"/> おすすめ順</label>
+            <label><input type="radio" name="option" value="view"/> 閲覧数順</label>
         </div>
         <div style="display: flex; justify-content: flex-end">
             <button class="write-btn" onclick="logincheck('${sessionScope.user}')">
-                <img class="write-btn-img" alt="" src="https://cdn-icons-png.flaticon.com/512/117/117476.png"/> 작성
+                <img class="write-btn-img" alt="" src="https://cdn-icons-png.flaticon.com/512/117/117476.png"/> 投稿
             </button>
         </div>
         <div class="search-btn">
-            <input type="text" placeholder="검색할 내용을 입력하세요." id="search-input">
-            <button id="search-btn"><img class="search-btn-img" alt="" src="https://cdn-icons-png.flaticon.com/256/25/25313.png"/> 검색
+            <input type="text" placeholder="検索内容を入力してください。" id="search-input">
+            <button id="search-btn"><img class="search-btn-img" alt="" src="https://cdn-icons-png.flaticon.com/256/25/25313.png"/> 検索
             </button>
         </div>
     </div>

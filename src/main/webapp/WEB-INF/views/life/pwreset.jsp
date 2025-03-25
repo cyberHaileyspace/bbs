@@ -34,26 +34,25 @@
 <div class="content">
     <div class="main02">
         <form action="pwreset" method="post">
-            <div class="title"><h1>패스워드 재설정 페이지</h1></div>
-
+            <div class="title"><h1>パスワード再設定ページ</h1></div>
             <div class="center">
                 <div class="id">
-                    <div>ID</div>
+                    <div>ユーザーID</div>
                     <div><input name="user_id" type="text" required></div>
                 </div>
                 <div class="pw">
-                    <div>패스워드</div>
+                    <div>新しいパスワード</div>
                     <div><input name="user_pw" type="password" required></div>
                 </div>
                 <div class="pw">
-                    <div>패스워드 재입력</div>
+                    <div>パスワード再入力</div>
                     <div><input name="pw02" type="password" required></div>
                 </div>
                 <div class="login-button">
                     <%--<button onclick="location.href='/'" class="back">
                         閉じる
                     </button>--%>
-                    <button type="submit">재설정</button>
+                    <button type="submit">再設定</button>
                 </div>
 
                 <%--<div class="two_box">

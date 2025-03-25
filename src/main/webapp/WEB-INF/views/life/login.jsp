@@ -14,29 +14,29 @@
 <body>
 <div class="content">
     <div class="main02">
-        <div class="title"><h1>로그인 페이지</h1></div>
+        <div class="title"><h1>ログインページ</h1></div>
         <div>
             <form action="login" method="post" class="center">
                 <div class="id">
                     <br>
-                    <div>ID</div>
+                    <div>ユーザーID</div>
                     <div><input name="user_id" type="text" required></div>
                 </div>
                 <div class="pw">
-                    <div>패스워드</div>
+                    <div>パスワード</div>
                     <div><input name="user_pw" type="password" required></div>
                 </div>
                 <div class="login-button">
-                    <button type="submit">로그인</button>
+                    <button type="submit">ログイン</button>
                     <button onclick="location.href='/'" class="back">
-                        뒤로가기
+                        戻る
                     </button>
                 </div>
                 <br>
             </form>
             <div class="login-button02">
-                <div onclick="location.href='user'">회원가입</div>
-                <div onclick="location.href='pwreset'">패스워드 재설정</div>
+                <div onclick="location.href='user'">新規登録</div>
+                <div onclick="location.href='pwreset'">パスワード再設定</div>
             </div>
             <%--<div class="two_box">
                 <div>Add</div>
