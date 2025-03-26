@@ -7,7 +7,8 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Diaspora - ディアスポラ</title>
-    <link rel="stylesheet" href="/resources/css/sample.css"/>
+    <link rel="stylesheet" href="/resources/css/default.css"/>
+    <link rel="stylesheet" href="/resources/css/user_info.css"/>
     <link rel="stylesheet" href="/resources/css/board.css"/>
     <link rel="stylesheet" href="/resources/css/main.css"/>
     <link rel="stylesheet" href="/resources/css/tour.css"/>
@@ -17,7 +18,7 @@
     <script src="/resources/js/sample.js"></script>
 </head>
 <body>
-<div style="max-width: 1300px; margin: 0 auto">
+<div style="margin: 0 auto">
     <div class="header">
         <div style="display: flex; flex-direction: row; align-items: center">
           <img
@@ -50,7 +51,7 @@
             >
                     &nbsp;|&nbsp;
                     <span onclick="location.href='/user'" style="cursor: pointer"
-                    >ユーザー登録</span
+                    >新規登録</span
                     >
                 </div>
             </c:otherwise>

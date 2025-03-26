@@ -37,7 +37,6 @@ public class TourService {
         url += "serviceKey=" + serviceKey;
         url += "&numOfRows=300&pageNo=1&MobileOS=ETC&MobileApp=AppTest&_type=json&listYN=Y&contentTypeId=76";
         url += "&areaCode=" + areaCode;
-//        System.out.print(sort + ">>>>>>>>>>>>>>>>>>>>>>>>>");
         if (sort == "" || sort == null) {
             sort = "O";
         }
@@ -50,23 +49,30 @@ public class TourService {
             HttpsURLConnection huc = (HttpsURLConnection) u.openConnection();
             InputStream is = huc.getInputStream();
             InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
-            BufferedReader br = new BufferedReader(isr);
+//            BufferedReader br = new BufferedReader(isr);
 
             JsonReader reader = new JsonReader(isr);
             reader.setLenient(true); // lenient 모드 활성화
-            JsonObject rootObj = JsonParser.parseReader(reader).getAsJsonObject()
-                    .getAsJsonObject("response")
-                    .getAsJsonObject("body");
-            // 이후 rootObj에서 원하는 데이터를 추출
-            // "response" -> "body" -> "items" -> "item" 으로 접근
+            JsonObject rootObj = JsonParser.parseReader(reader).getAsJsonObject();
+            System.out.println("rootObj = " + rootObj);
+            JsonObject responseObj = rootObj.getAsJsonObject("response");
+            JsonObject body = responseObj.getAsJsonObject("body");
+
+//            // 이후 rootObj에서 원하는 데이터를 추출
+//            // "response" -> "body" -> "items" -> "item" 으로 접근
             JsonElement itemsElement;
+            int totalCount = body.get("totalCount").getAsInt();
+            System.out.println("totalCount = " + totalCount);
+            if (totalCount == 0) {
+                return null;
+            }
             if (sigungu != null) {
-                itemsElement = rootObj.getAsJsonObject("items").get("item");
+                itemsElement = body.getAsJsonObject("items").get("item");
             } else {
-                itemsElement = rootObj.get("items")
+                itemsElement = body.get("items")
                         .getAsJsonObject().get("item");
             }
-            // TourVO 리스트로 변환 (VO 클래스는 아래와 같이 정의된 것으로 가정)
+//            // TourVO 리스트로 변환 (VO 클래스는 아래와 같이 정의된 것으로 가정)
             Gson gson = new Gson();
             List<Tour_API_VO> tourList = new ArrayList<>();
             // itemsElement가 배열인지 객체인지 확인 후 처리
@@ -113,6 +119,7 @@ public class TourService {
             System.out.println(json);
             JsonObject rootObj = JsonParser.parseString(json).getAsJsonObject();
             JsonObject responseObj = rootObj.getAsJsonObject("response");
+
             JsonObject bodyObj = responseObj.getAsJsonObject("body");
             JsonObject itemObj = bodyObj.getAsJsonObject("items");
             JsonArray itemElement = itemObj.getAsJsonArray("item");
@@ -256,12 +263,15 @@ public class TourService {
     public List<TourReplyVO> getComment(int post_id) {
         return tourMapper.getComment(post_id);
     }
+
     public int addComment(TourReplyVO comment) {
         return tourMapper.insertComment(comment);
     }
+
     public int updateReply(TourReplyVO tourReplyVO) {
         return tourMapper.updateReply(tourReplyVO);
     }
+
     public int deleteReply(int r_id) {
         return tourMapper.deleteReply(r_id);
     }

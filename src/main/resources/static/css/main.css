@@ -15,10 +15,6 @@
 
 }
 
-.main02 {
-    width: 35%;
-}
-
 .header_title {
     cursor: pointer;
     display: flex;
@@ -48,7 +44,7 @@ a {
 .main_content {
     display: flex;
     justify-content: center;
-    padding: 40px 0;
+    padding: 20px 0;
     gap: 30px;
 }
 

@@ -1,8 +1,3 @@
-.title {
-    border-bottom: 1px solid grey;
-    text-align: center;
-    width: 100%;
-}
 
 .id.pw.name.nickname.email.file {
     display: flex;
@@ -25,44 +20,13 @@
 .login-button02 {
     display: flex;
     width: 100%;
-    height: 32px;
+    height: 30px;
     justify-content: space-evenly;
     border: 1px solid lightgrey;
     align-items: center;
     text-align: center;
 }
 
-/* hr과 ID 입력 필드 사이 여백 추가 */
-hr {
-    margin-bottom: 20px;
-}
-
-/* 공통 스타일 */
-input, button {
-    height: 32px; /* 높이를 줄임 */
-    font-size: 14px;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    padding: 0 8px;
-}
-
-/* 버튼 공통 스타일 */
-button {
-    width: 100px; /* 버튼 너비 축소 */
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    height: 40px; /* 버튼 높이 조정 */
-    width: 100px; /* 버튼 너비 조정 */
-    padding: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-}
 
 /* 가입하기 버튼 */
 .sign {
@@ -86,41 +50,6 @@ button {
     background-color: #5a6268;
 }
 
-/* 중복 확인 버튼 */
-#id_check_btn, #nick_check_btn, #email_check_btn {
-    background-color: #28a745;
-    color: white;
-    font-weight: bold;
-    margin-left: 8px;
-    width: 90px; /* 중복 확인 버튼은 조금 더 작게 */
-    height: 30px;
-    font-size: 12px;
-}
-
-#id_check_btn:hover, #nick_check_btn:hover, #email_check_btn:hover {
-    background-color: #218838;
-}
-
-/* 입력 필드와 버튼 정렬 */
-/*.id, .pw, .name, .nickname, .email {
-    display: flex;
-    align-items: center;
-    gap: 8px; !* 간격 조정 *!
-}*/
-
-/* 성별 선택 정렬 */
-.gender {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* 수평 정렬 */
-}
-
-.register-button {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    margin-top: 12px;
-}
 
 .panel {
     width: 300px;
@@ -141,6 +70,14 @@ button {
 .panel.open {
     left: 0px;
     gap: 20px;
+}
+.panel.open div {
+    margin: 10px 0 10px 0;
+    transition: all 0.3s ease;
+}
+.panel.open div:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .panel h1 {
@@ -186,98 +123,9 @@ button {
     border: lightgrey;
 }
 
-/*.mypage-content {
-    width: 400px;
-    height: 40px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    border: rgba(0, 0, 0, 0.1);
-}*/
-
-/*.mypage-container {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
-    !* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); *!
-    border-radius: 10px;
-}*/
-
 .mypage-btn {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-}
-
-.mypage-content:hover {
-
-}
-
-.category {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 10px 20px;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    gap: 20px;
-}
-
-.category div span {
-    padding: 10px 15px;
-    background-color: #fff;
-    border-radius: 10px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.category div span:hover {
-    background-color: #fff0db;
-}
-
-.write-btn {
-    display: flex;
-    align-items: center;
-    background-color: #ffa07a;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
-}
-
-.write-btn:hover {
-    background-color: #ff7f50;
-}
-
-.write-btn-img {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-}
-
-.search-btn {
-    display: flex;
-    margin: 20px;
-    gap: 20px;
-}
-
-.search-btn input {
-    width: 100%;
-    border-radius: 10px;
-}
-
-.search-btn button {
-    border-radius: 20px;
-}
-
-.search-btn-img {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
 }
 
 /* 게시글 리스트 스타일 */
@@ -298,20 +146,6 @@ button {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/*!* 제목 스타일 *!
-.item div:nth-child(2) {
-    font-size: 1.4em;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 10px;
-}
-
-!* 작성자 & 날짜 스타일 *!
-.item div:nth-child(3),
-.item div:nth-child(4) {
-    font-size: 0.8em;
-    color: #777;
-}*/
 
 .life-kind {
     display: flex;
@@ -331,15 +165,6 @@ button {
     color: #777;
 }
 
-/* 구분선 */
-hr {
-    width: 80%;
-    max-width: 800px;
-    border: none;
-    height: 1px;
-    background: #ddd;
-    margin: 10px auto;
-}
 
 /* 반응형 디자인 */
 @media (max-width: 600px) {
@@ -383,20 +208,6 @@ hr {
     align-items: center;
 }
 
-/*.write-btn {
-    padding: 5px 10px;
-    font-size: 14px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.write-btn:hover {
-    background-color: #45a049;
-}*/
 
 .post-mini-wrapper {
     display: flex;

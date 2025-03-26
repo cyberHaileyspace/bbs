@@ -12,45 +12,53 @@
 <div class="content">
     <div class="main02">
         <div>
-            <div class="title"><h1>新規会員登録ページ</h1></div>
-            <form action="user" method="post" class="center" onsubmit="return validateForm()" enctype="multipart/form-data">
-                <div class="id">
-                    <br>
+            <div class="title"><h1>新規登録ページ</h1></div>
+            <form action="user" method="post" class="center" onsubmit="return validateForm()" enctype="multipart/form-data" id="reg_form">
+                <div class="id reg_input">
                     <div>ユーザーID</div>
-                    <div><input name="user_id" id="user_id" type="text" placeholder="※半角英数字6～16文字。"></div>
+                    <div class="duplicate">
+                        <input name="user_id" id="user_id" type="text" placeholder="※半角英数字6～16文字。">
+                        <button type="button" id="id_check_btn">重複確認</button>
+                    </div>
                     <span id="id_check" style="color: red; font-size: 12px"></span>
-                    <button type="button" id="id_check_btn">重複確認</button>
                 </div>
                 <div class="pw">
                     <div>パスワード</div>
-                    <div><input name="user_pw" type="password" placeholder="※半角英数字6～16文字。"></div>
+                    <div style="margin-bottom: 5px"><input name="user_pw" type="password" placeholder="※半角英数字6～16文字。"></div>
+                    <div>パスワード確認</div>
                     <div><input name="pw02" type="password" placeholder="パスワード再入力"></div>
                 </div>
-                <div class="name">
+                <div class="name reg_input">
                     <div>氏名</div>
                     <div><input name="user_name" type="text"></div>
                 </div>
-                <div class="nickname">
+                <div class="nickname reg_input">
                     <div>ニックネーム</div>
-                    <div><input name="user_nickname" id="user_nickname" type="text" placeholder="※半角英数字6～16文字。"></div>
+                    <div class="duplicate">
+                        <input name="user_nickname" id="user_nickname" type="text" placeholder="※半角英数字6～16文字。">
+                        <button type="button" id="nick_check_btn">重複確認</button>
+                    </div>
                     <span id="nick_check" style="color: red; font-size: 12px"></span>
-                    <button type="button" id="nick_check_btn">重複確認</button>
+
                 </div>
-                <div class="email">
+                <div class="email reg_input">
                     <div>メールアドレス</div>
-                    <div><input name="user_email" id="user_email" type="text"></div>
+                    <div class="duplicate">
+                        <input name="user_email" id="user_email" type="text">
+                        <button type="button" id="email_check_btn">重複確認</button>
+                    </div>
                     <span id="email_check" style="color: red; font-size: 12px"></span>
-                    <button type="button" id="email_check_btn">重複確認</button>
+
                 </div>
-                <div class="gender" style="display: flex; justify-content: space-evenly;">
-                    <div>性別</div>
-                    &nbsp;|&nbsp;
+                <div class="gender reg_input" style="display: flex">
+                    <div><span>性別</span></div>
+                    |
                     <div>
-                        <label>男性<input type="radio" name="user_gender" value="male" checked="checked"></label>
-                        <label>女性<input type="radio" name="user_gender" value="female"></label>
+                        <label><span>男性</span><input type="radio" name="user_gender" value="male" checked="checked"></label>
+                        <label><span>女性</span><input type="radio" name="user_gender" value="female"></label>
                     </div>
                 </div>
-                <div class="file">
+                <div class="file reg_input">
                     プロフィール画像 : <input type="file" name="user_file">
                 </div>
 
