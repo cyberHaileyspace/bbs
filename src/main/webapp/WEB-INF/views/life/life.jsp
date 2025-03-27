@@ -33,7 +33,7 @@
                 src="https://cdn-icons-png.flaticon.com/256/25/25313.png"/> <span>検索</span>
             </button>
         </div>
-        <div style="display: flex">
+        <div style="display: flex; padding: 0 50px; width: 90%">
             <div style="display: flex">
                 <label class="cate_radio">
                     <input type="radio" name="option" value="new" checked="checked"/><span>最新順</span>

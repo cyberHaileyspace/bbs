@@ -59,7 +59,8 @@
                     </div>
                 </div>
                 <div class="file reg_input">
-                    プロフィール画像 : <input type="file" name="user_file">
+                    <span>プロフィール画像</span>
+                    <input type="file" name="user_file">
                 </div>
 
                 <%--.login-button {
