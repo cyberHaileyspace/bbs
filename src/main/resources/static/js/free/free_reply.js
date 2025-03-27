@@ -160,36 +160,31 @@ function deleteReply(r_id) {
 }
 
 function toggleReplyLike(r_id, button) {
-    // 현재 좋아요 상태 확인 ("true"/"false" 문자열)
-    var isLiked = button.getAttribute("data-liked") === "true";
-    // 좋아요 또는 좋아요 취소에 따른 API 엔드포인트 선택
-    var url = isLiked ? "/main/free/reply/unlike/" + r_id : "/main/free/reply/like/" + r_id;
-
-    fetch(url, {
+    fetch("/main/free/reply/toggle/" + r_id, {
         method: "POST"
     })
-        .then(function(response) {
-            return response.json();
-        })
-        .then(function(data) {
+        .then(response => response.json())
+        .then(data => {
             if (data.success) {
-                // 새로운 추천 수 업데이트
-                button.querySelector(".like-count").textContent = data.newReplyLikeCount;
-                // 현재 상태에 따라 버튼 텍스트와 data-liked 값 변경
-                if (isLiked) {
-                    button.innerHTML = "추천수&nbsp;<span class='like-count'>" + data.newReplyLikeCount + "</span>";
-                    button.setAttribute("data-liked", "false");
-                } else {
+                // 새로운 추천 수 갱신
+                const likeSpan = button.querySelector(".like-count");
+                likeSpan.textContent = data.newReplyLikeCount;
+
+                // 버튼 텍스트 및 속성 변경
+                if (data.nowReplyLiked) {
                     button.innerHTML = "추천취소&nbsp;<span class='like-count'>" + data.newReplyLikeCount + "</span>";
                     button.setAttribute("data-liked", "true");
+                } else {
+                    button.innerHTML = "추천수&nbsp;<span class='like-count'>" + data.newReplyLikeCount + "</span>";
+                    button.setAttribute("data-liked", "false");
                 }
             } else {
-                alert("로그인이 필요합니다.");
+                alert(data.message || "로그인이 필요합니다.");
                 window.location.href = "/login";
             }
         })
-        .catch(function(error) {
-            console.error("Error:", error);
+        .catch(error => {
+            console.error("댓글 추천 처리 중 오류:", error);
         });
 }
 

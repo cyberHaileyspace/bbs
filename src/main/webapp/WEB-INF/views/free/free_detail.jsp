@@ -44,15 +44,21 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
       <br>
       <div class="post-button">
 
-        <button class="like-button" data-liked="false" onclick="toggleLike(${post.post_id}, this)">
-          추천수&nbsp;<span class="like-count">${post.post_like}</span>
+        <button class="like-button" data-liked="${isLiked}" onclick="toggleLike(${post.post_id}, this)">
+          <c:choose>
+            <c:when test="${isLiked}">
+              추천취소&nbsp;<span class="like-count">${post.post_like}</span>
+            </c:when>
+            <c:otherwise>
+              추천수&nbsp;<span class="like-count">${post.post_like}</span>
+            </c:otherwise>
+          </c:choose>
         </button>
 
         <c:if test="${login_nickname == post.user_nickname}">
           <button onclick="deletePost(${post.post_id})">削除</button>
           <button onclick="location.href='update/${post.post_id}'">修正</button>
         </c:if>
-        <button onclick="location.href='/main/free'">リスト</button>
       </div>
     </div>
   </div>
@@ -140,10 +146,10 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
                                     "<span>작성자 : " + reply.r_writer + "</span><br>" +
                                     "<span>작성일 : " + reply.r_date + "</span>" +
                                     "<p>" + reply.r_context + "</p>" +
-                                    // data-liked 속성을 기본 false로 설정하고 toggleReplyLike 함수를 호출하도록 변경
-                                    "<button class='like-button' data-liked='false' onclick='toggleReplyLike(" + reply.r_id + ", this)'>" +
-                                    "추천수&nbsp;<span class='like-count'>" + reply.r_like + "</span>" +
+                                    "<button class='like-button' data-liked='" + reply.likedByCurrentUser + "' onclick='toggleReplyLike(" + reply.r_id + ", this)'>" +
+                                    (reply.likedByCurrentUser ? "추천취소" : "추천수") + "&nbsp;<span class='like-count'>" + reply.r_like + "</span>" +
                                     "</button>";
+
 
                             if (user_nickname === reply.r_writer) {
                               replyHTML +=
@@ -206,31 +212,30 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
     </script>
   <script>
     function toggleLike(postId, button) {
-      // 현재 추천 여부 확인 ("true"/"false" 문자열)
-      var isLiked = button.getAttribute("data-liked") === "true";
-      // 추천 또는 추천취소에 따른 API 엔드포인트 선택
-      var url = isLiked ? "/main/free/unlike/" + postId : "/main/free/like/" + postId;
-
-      fetch(url, {
+      // 단일 토글 API를 호출합니다.
+      fetch("/main/free/toggle/" + postId, {
         method: "POST"
       })
               .then(function(response) {
                 return response.json();
               })
               .then(function(data) {
+                console.log(data)
                 if (data.success) {
-                  // 추천 합계 업데이트
+                  // 새로운 추천 수 업데이트
                   button.querySelector(".like-count").textContent = data.newLikeCount;
-                  // 상태에 따라 버튼 텍스트와 data attribute 변경
-                  if (isLiked) {
-                    button.innerHTML = "추천수&nbsp;<span class='like-count'>" + data.newLikeCount + "</span>";
-                    button.setAttribute("data-liked", "false");
-                  } else {
+                  // 서버에서 반환한 nowLiked 값에 따라 버튼 상태 변경
+                  if (data.nowLiked) {
+                    // nowLiked가 true이면 추천된 상태 -> 버튼을 "추천취소"로 변경
                     button.innerHTML = "추천취소&nbsp;<span class='like-count'>" + data.newLikeCount + "</span>";
                     button.setAttribute("data-liked", "true");
+                  } else {
+                    // false이면 추천 취소된 상태 -> 버튼을 "추천"으로 변경
+                    button.innerHTML = "추천&nbsp;<span class='like-count'>" + data.newLikeCount + "</span>";
+                    button.setAttribute("data-liked", "false");
                   }
                 } else {
-                  alert("로그인이 필요합니다.");
+                  alert(data.message || "로그인이 필요합니다.");
                   window.location.href = "/login";
                 }
               })
@@ -238,6 +243,7 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
                 console.error("Error:", error);
               });
     }
+
   </script>
   <script src="/resources/js/free/free_reply.js"></script>
   </body>
