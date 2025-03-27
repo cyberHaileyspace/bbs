@@ -16,7 +16,7 @@
         <form id="profile" action="updatepfp" method="post" enctype="multipart/form-data">
             <c:if test="${not empty user.user_image}">
                 <div>
-                    <img src="/file/${user.user_image}" style="width: 100px; height: 100px">
+                    <img src="/img/upload/${user.user_image}" style="width: 100px; height: 100px">
                 </div>
             </c:if>
 
@@ -24,22 +24,36 @@
 
             <div class="pfp">
                 <button type="submit" name="user_id" value="${user.user_id}">プロフィール写真の変更</button>
-                <button type="button" name="user_id" onclick="deletepfp()">プロフィール写真の削除</button>
+                <%--<button type="button" name="user_id" onclick="deletepfp()">プロフィール写真の削除</button>--%>
             </div>
         </form>
-        <div>
-            ${user.user_nickname}
+        <div class="myPage_info">
+            <span class="left">ニックネーム</span>
+            <span class="center_colon">:</span>
+            <span class="right">${user.user_nickname}</span>
         </div>
-        <div>
-            ユーザーID : ${user.user_id}
+        <div class="myPage_info">
+            <span class="left">ユーザーID</span>
+            <span class="center_colon">:</span>
+            <span class="right">${user.user_id}</span>
         </div>
-        <div>
-            登録日 : <fmt:formatDate value="${user.user_date}" pattern="yyyy-MM-dd"/>
+        <div class="myPage_info">
+            <span class="left">登録日</span>
+            <span class="center_colon">:</span>
+            <span class="right"><fmt:formatDate value="${user.user_date}" pattern="yyyy-MM-dd"/></span>
         </div>
-        <div class="mypage-btn">
-            <div onclick="location.href='/update'" style="cursor: pointer">マイ情報の修正</div>
-            <div onclick="location.href='/pwreset'" class="pw" style="cursor: pointer">パスワードを再設定</div>
-            <div onclick="location.href='/logout'" style="cursor: pointer">ログアウト</div>
+        <div class="mypage-box">
+            <span onclick="location.href='/update'" class="menu-btn">
+                マイ情報の修正
+            </span>
+            <span>|</span>
+            <span onclick="location.href='/pwreset'" class="menu-btn">
+                パスワードを再設定
+            </span>
+            <span>|</span>
+            <span onclick="location.href='/logout'" class="menu-btn">
+                ログアウト
+            </span>
         </div>
     </div>
 

@@ -32,6 +32,7 @@
                 src="https://cdn-icons-png.flaticon.com/256/25/25313.png"/> <span>検索</span>
             </button>
         </div>
+        <hr style="width: 2000px">
         <div style="display: flex; padding: 0 50px; width: 90%">
             <div style="display: flex">
                 <label class="cate_radio">
@@ -46,7 +47,8 @@
             </div>
             <div style="margin-left: auto">
                 <button class="write-btn" onclick="logincheck('${sessionScope.user}')">
-                    <img class="write-btn-img" alt="" src="https://cdn-icons-png.flaticon.com/512/117/117476.png"/> 投稿
+                    <img class="write-btn-img" alt="" src="https://cdn-icons-png.flaticon.com/512/117/117476.png"/>
+                    <span>投稿</span>
                 </button>
             </div>
         </div>

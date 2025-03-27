@@ -79,3 +79,21 @@
     justify-content: center;
     margin-top: 12px;
 }
+
+.myPage_info {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr; /* 왼쪽-콜론-오른쪽 */
+    align-items: center; /* 수직 정렬 */
+    gap: 10px;
+}
+
+.center_colon {
+    text-align: center;
+    min-width: 20px;
+}
+.left {
+    text-align: right;
+}
+.right {
+    text-align: left;
+}

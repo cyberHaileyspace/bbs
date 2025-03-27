@@ -53,7 +53,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 
     <div class="panel">
         <div onclick="location.href='/main/news'" style="cursor: pointer">
-            ニュース・お知らせ
+            海外ニュース
         </div>
         <div onclick="location.href='/main/free'" style="cursor: pointer">
             自由掲示板
@@ -72,7 +72,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         </div>
         <div onclick="location.href='/login'" style="cursor: pointer">ログイン</div>
         <div onclick="location.href='/user'" style="cursor: pointer">
-            会員登録
+            新規登録
         </div>
         <div
                 onclick="location.href='https://www.kr.emb-japan.go.jp/itprtop_ko/index.html'"

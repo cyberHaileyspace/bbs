@@ -18,7 +18,7 @@
                     <div>ユーザーID</div>
                     <div class="duplicate">
                         <input name="user_id" id="user_id" type="text" placeholder="※半角英数字6～16文字。">
-                        <button type="button" id="id_check_btn">重複確認</button>
+                        <button type="button" id="id_check_btn">重複チェック</button>
                     </div>
                     <span id="id_check" style="color: red; font-size: 12px"></span>
                 </div>
@@ -36,7 +36,7 @@
                     <div>ニックネーム</div>
                     <div class="duplicate">
                         <input name="user_nickname" id="user_nickname" type="text" placeholder="※半角英数字6～16文字。">
-                        <button type="button" id="nick_check_btn">重複確認</button>
+                        <button type="button" id="nick_check_btn">重複チェック</button>
                     </div>
                     <span id="nick_check" style="color: red; font-size: 12px"></span>
 
@@ -45,7 +45,7 @@
                     <div>メールアドレス</div>
                     <div class="duplicate">
                         <input name="user_email" id="user_email" type="text">
-                        <button type="button" id="email_check_btn">重複確認</button>
+                        <button type="button" id="email_check_btn">重複チェック</button>
                     </div>
                     <span id="email_check" style="color: red; font-size: 12px"></span>
 
@@ -226,7 +226,7 @@
         }
 
         if (idCheckMsg !== "使用可能なユーザーIDです。" || nickCheckMsg !== "使用可能なニックネームです。" || emailCheckMsg !== "使用可能なメールアドレスです。") {
-            alert("ユーザーID・ニックネーム・メールアドレスの重複確認を完了してください。");
+            alert("ユーザーID・ニックネーム・メールアドレスの重複チェックを完了してください。");
             return false;
         }
         return true;

@@ -93,7 +93,7 @@
 }
 
 .mypage-container {
-    width: 400px;
+    width: 500px;
     height: 400px;
     box-shadow: 3px 3px 3px 3px lightgrey;
     display: flex;
@@ -105,45 +105,32 @@
     border: lightgrey;
 }
 
-.mypage-btn {
-    width: 340px;
+.mypage-box {
+    width: 440px;
     height: 40px;
-    box-shadow: 1px 1px 1px 1px lightgrey;
     display: flex;
-    gap: 20px;
+    gap: 10px;
     justify-content: center;
     align-items: center;
     text-align: center;
     border: lightgrey;
-}
-
-/*.mypage-content {
-    width: 400px;
-    height: 40px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    border: rgba(0, 0, 0, 0.1);
-}*/
-
-/*.mypage-container {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
-    !* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); *!
-    border-radius: 10px;
-}*/
-
-.mypage-btn {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
 }
 
-.mypage-content:hover {
-
+.mypage-box > .menu-btn {
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
+
+.mypage-box > .menu-btn:hover {
+    background-color: #e0edff; /* 연한 보라색 */
+    color: #333;
+    transform: translateY(-2px); /* 살짝 떠오르는 느낌 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+
 
 .pfp {
     display: flex;
@@ -155,15 +142,15 @@
     justify-content: space-around;
     align-items: center;
     padding: 10px 20px;
-    border-radius: 10px;
-    margin-bottom: 15px;
+    border-radius: 0px 0px 50px 50px;
+    margin-bottom: 10px;
     gap: 20px;
+    background-color: #00bfff;
+
 }
 
 .category div span {
     padding: 10px 15px;
-    background-color: #fff;
-    border-radius: 10px;
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -191,13 +178,15 @@
 .write-btn {
     display: flex;
     align-items: center;
+    justify-content: center;
     background-color: #ffa07a;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 0;
     border-radius: 20px;
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease;
+    width: 100px;
 }
 
 .write-btn:hover {
@@ -208,6 +197,10 @@
     width: 20px;
     height: 20px;
     margin-right: 10px;
+}
+
+.write-btn > span {
+
 }
 
 .search-btn {
@@ -240,6 +233,7 @@
     gap: 10px;
     align-items: center;
     text-align: center;
+    justify-content: center;
 }
 
 #search-btn span {
@@ -248,5 +242,4 @@
 .search-btn-img {
     width: 20px;
     height: 20px;
-    margin-right: 10px;
 }
