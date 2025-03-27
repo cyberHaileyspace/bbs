@@ -14,45 +14,39 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <link rel="stylesheet" href="/resources/css/board.css" />
     <link rel="stylesheet" href="/resources/css/tourBoard.css" />
     <script src="/resources/js/sample.js"></script>
-  </head>
-  <body>
-    <div style="max-width: 1300px; margin: 0 auto">
-      <div class="header">
-        <div style="display: flex; flex-direction: row; align-items: center">
-          <img
-            width="50px"
-            src="/resources/css/Diaspora.png"
-            class="panel-btn"
-          />
+</head>
+<body>
+<div style="margin: 0 auto">
+    <div class="header">
+        <div style="display: flex; flex-direction: row; align-items: center; position: absolute; left: 5%;">
+            <img width="50px" src="/resources/css/Diaspora.png" class="panel-btn"/>
         </div>
-        <div onclick="location.href='/'" style="cursor: pointer">
-          Diaspora - ディアスポラ
+        <div onclick="location.href='/'" style="cursor: pointer; position: absolute; left: 40%;">
+            Diaspora - ディアスポラ
         </div>
         <c:choose>
-          <c:when test="${user ne null}">
-            <div style="font-size: 20px">
-              <span onclick="location.href='/mypage'" style="cursor: pointer"
-                >${user.user_nickname} 様のマイページ</span
-              >
-
-              &nbsp;|&nbsp; <%--
-              <span onclick="location.href='/register'">会員登録</span> --%>
-              <span onclick="location.href='/logout'" style="cursor: pointer"
-                >ログアウト</span
-              >
-            </div>
-          </c:when>
-          <c:otherwise>
-            <div style="font-size: 20px">
-              <span onclick="location.href='/login'" style="cursor: pointer"
-                >ログイン</span
-              >
-              &nbsp;|&nbsp;
-              <span onclick="location.href='/user'" style="cursor: pointer"
-                >ユーザー登録</span
-              >
-            </div>
-          </c:otherwise>
+            <c:when test="${user ne null}">
+                <div style="font-size: 20px; position: absolute; right: 5%;">
+            <span onclick="location.href='/mypage'" style="cursor: pointer"
+            >${user.user_nickname} 様のマイページ</span
+            >
+                    &nbsp;|&nbsp;
+                    <span onclick="location.href='/logout'" style="cursor: pointer"
+                    >ログアウト</span
+                    >
+                </div>
+            </c:when>
+            <c:otherwise>
+                <div style="font-size: 20px; position: absolute; right: 5%;">
+            <span onclick="location.href='/login'" style="cursor: pointer"
+            >ログイン</span
+            >
+                    &nbsp;|&nbsp;
+                    <span onclick="location.href='/user'" style="cursor: pointer"
+                    >新規登録</span
+                    >
+                </div>
+            </c:otherwise>
         </c:choose>
       </div>
 

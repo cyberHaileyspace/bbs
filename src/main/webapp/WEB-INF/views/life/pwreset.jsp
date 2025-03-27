@@ -35,7 +35,6 @@
     <div class="main02">
         <form action="pwreset" method="post">
             <div class="title"><h1>パスワード再設定ページ</h1></div>
-
             <div class="center">
                 <div class="id">
                     <div>ユーザーID</div>

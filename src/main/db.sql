@@ -21,7 +21,7 @@ CREATE TABLE Free_Post_DB
     post_title    varchar2(100 char) not null,
     post_context  clob               not null,
     post_image    varchar2(555 char) default null,
-    post_view     number             default 0,
+    post_view number             default 0,
     post_like     number             default 0,
     post_date     timestamp          default SYSTIMESTAMP,
     post_update   timestamp          default SYSTIMESTAMP,
@@ -236,6 +236,10 @@ values ('user02', 'password03', 'Taro', 'taro_nick02', 'sh04070@email.com', 'mal
 select *
 from User_DB;
 
+update User_DB
+set user_image = null
+where user_id = '11';
+
 ALTER TABLE User_DB
     MODIFY user_date TIMESTAMP WITH TIME ZONE DEFAULT SYSTIMESTAMP AT TIME ZONE 'Asia/Seoul';
 
@@ -260,7 +264,7 @@ CREATE TABLE Life_Post_DB
 
 drop table Life_Post_DB cascade constraints purge;
 
-CREATE OR REPLACE TRIGGER update_nickname_trigger
+/*CREATE OR REPLACE TRIGGER update_nickname_trigger
     BEFORE UPDATE OF user_nickname
     ON User_DB
     FOR EACH ROW
@@ -268,7 +272,57 @@ BEGIN
     UPDATE ADMIN.LIFE_POST_DB
     SET user_nickname = :NEW.user_nickname
     WHERE user_nickname = :OLD.user_nickname;
+END;*/
+
+-- CREATE OR REPLACE TRIGGER update_nickname_trigger
+--     BEFORE UPDATE OF user_nickname
+--     ON User_DB
+--     FOR EACH ROW
+-- BEGIN
+--     -- user_image가 변경되지 않은 경우에만 트리거 실행
+--     IF :OLD.user_nickname != :NEW.user_nickname THEN
+--         UPDATE ADMIN.LIFE_POST_DB
+--         SET user_nickname = :NEW.user_nickname
+--         WHERE user_nickname = :OLD.user_nickname;
+--     END IF;
+-- END;
+
+CREATE OR REPLACE TRIGGER update_nickname_trigger
+    BEFORE UPDATE OF user_nickname
+    ON User_DB
+    FOR EACH ROW
+BEGIN
+    -- user_nickname이 변경된 경우에만 트리거 실행
+    IF :OLD.user_nickname != :NEW.user_nickname THEN
+        UPDATE ADMIN.LIFE_POST_DB
+        SET user_nickname = :NEW.user_nickname
+        WHERE user_nickname = :OLD.user_nickname;
+
+        UPDATE ADMIN.FREE_POST_DB
+        SET user_nickname = :NEW.user_nickname
+        WHERE user_nickname = :OLD.user_nickname;
+
+        -- life_reply 테이블 업데이트
+        UPDATE ADMIN.life_reply
+        SET r_writer = :NEW.user_nickname
+        WHERE r_writer = :OLD.user_nickname;
+
+        -- free_reply 테이블 업데이트
+        UPDATE ADMIN.free_reply
+        SET r_writer = :NEW.user_nickname
+        WHERE r_writer = :OLD.user_nickname;
+
+        UPDATE ADMIN.TOUR_BOARD_REPLY
+        SET r_writer = :NEW.user_nickname
+        WHERE r_writer = :OLD.user_nickname;
+
+        UPDATE ADMIN.TOUR_POST_DB
+        SET user_nickname = :NEW.user_nickname
+        WHERE user_nickname = :OLD.user_nickname;
+    END IF;
 END;
+
+DROP TRIGGER ADMIN.UPDATE_NICKNAME_TRIGGER;
 
 ALTER TABLE Life_Post_DB
     MODIFY post_date TIMESTAMP WITH TIME ZONE DEFAULT SYSTIMESTAMP AT TIME ZONE 'Asia/Seoul';
@@ -371,6 +425,4 @@ select  * from like_tbl;
 
 select * from like_tbl where l_user_id = 'test' and l_post_id = 11;
 
-SELECT COUNT(*) FROM free_post_like WHERE l_user_nickname = 'kim' AND l_post_id = 122;
 
-select * from free_Post_Like;

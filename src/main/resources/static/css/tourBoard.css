@@ -91,7 +91,7 @@ button {
     background-color: #28a745;
     color: white;
     font-weight: bold;
-    margin-left: 8px;
+    /*margin-left: 8px;*/
     width: 90px; /* 중복 확인 버튼은 조금 더 작게 */
     height: 30px;
     font-size: 12px;

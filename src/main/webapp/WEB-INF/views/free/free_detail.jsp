@@ -1,35 +1,38 @@
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> <%@ taglib
-uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <%@ page language="java"
-contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib
+        uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java"
+         contentType="text/html; charset=utf-8" pageEncoding="utf-8" %> <%--<link
+  rel="stylesheet"
+  href="/resources/css/free/free.css"
+/>--%>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8"/>
     <title>Title</title>
+    <script src="/resources/js/free/free.js"></script>
     <link rel="stylesheet" href="/resources/css/board.css" />
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.min.js"></script>
-
   </head>
   <body>
   <div class="container-cm-post">
-    <div class="life-back" onclick="location.href='/main/free'">자유게시판 ></div>
+    <div class="life-back" onclick="location.href='/main/free'">自由掲示板 ></div>
 
     <div class="post-title"><span> ${post.post_title } </span></div>
     <div class="post-info">
-      <div class="post-profile"><img alt="" src="file/${user.user_image }"></div>
-      <div class="post-mini-wrapper">
-        <div class="post-string">
-          <div class="post-name">${post.user_nickname }</div>
-          <div class="post-date"><fmt:formatDate value="${post.post_date}" pattern="yyyy-MM-dd"/></div>
+        <div class="post-profile"><img alt="" src="file/${user.user_image }"></div>
+        <div class="post-mini-wrapper">
+            <div class="post-string">
+                <div class="post-name">${post.user_nickname }</div>
+                <div class="post-date"><fmt:formatDate value="${post.post_date}" pattern="yyyy-MM-dd"/></div>
+            </div>
+            <div class="post-items">
+                <div class="post-view"><img
+                        src="https://cdn-icons-png.flaticon.com/512/7835/7835667.png">${post.post_view }</div>
+                <div class="post-like"><img
+                        src="https://cdn-icons-png.flaticon.com/512/833/833234.png">${post.post_like }</div>
+            </div>
         </div>
-        <div class="post-items">
-          <div class="post-view"><img
-                  src="https://cdn-icons-png.flaticon.com/512/7835/7835667.png">${post.post_view }</div>
-          <div class="post-like"><img
-                  src="https://cdn-icons-png.flaticon.com/512/833/833234.png">${post.post_like }</div>
-        </div>
-      </div>
     </div>
 
     <div class="post-content">
@@ -43,7 +46,6 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
       </div>
       <br>
       <div class="post-button">
-
         <button class="like-button" data-liked="${isLiked}" onclick="toggleLike(${post.post_id}, this)">
           <c:choose>
             <c:when test="${isLiked}">
@@ -61,42 +63,40 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
         </c:if>
       </div>
     </div>
-  </div>
-  <div>
+</div>
+<div>
     <div>
-      <div class="comment-section">
-        <div class="comment-header">コメントを書く</div>
-        <div hidden="hidden">ニックネーム : <input name="user_nickname" value="${user.user_nickname}" type="text"
-                                          placeholder="${user.user_nickname}" readonly></div>
+        <div class="reply-section">
+            <div class="reply-header">댓글 쓰기</div>
+            <div hidden="hidden">닉네임 : <input name="user_nickname" value="${user.user_nickname}" type="text"
+                                              placeholder="${user.user_nickname}" readonly></div>
+            <div class="reply-ta">
+                <textarea id="replyContent" placeholder="댓글을 입력하세요..." style="resize: none"></textarea>
+            </div>
 
-        <div class="comment-ta">
-          <textarea id="replyContent" placeholder="コメントを入力してください..." style="resize: none"></textarea>
+            <button id="replyButton"
+                    onclick="handleReplySubmit('${user.user_nickname}')">댓글 쓰기
+            </button>
         </div>
 
-        <button id="commentButton"
-                onclick="handleFreeReplySubmit('${user.user_nickname}')">コメント投稿
-        </button>
-      </div>
-      <div id="replyCountContainer"></div>
-      <div>
-        <label><input type="radio" name="option" value="new" checked="checked"/> 최신순</label>
-        <label><input type="radio" name="option" value="like"/> 추천순</label>
-      </div>
-      <div id="replySection">
-      </div>
-      <div><button id="load-more-replies">
-        댓글 5개 더보기
-      </button></div>
+        <div id="replySection">
+            <p></p>
+        </div>
     </div>
-  </div>
-    <%----------------------------------------------------------------------------------------------------------%>
-    <script>
-              var post_id = ${post.post_id}; // JSP 변수를 JavaScript 변수에 할당
-              var user_nickname = "${login_nickname}"; // 로그인한 사용자의 닉네임을 JSP 변수로 받아옴
+</div>
+<%----------------------------------------------------------------------------------------------------------%>
+<script>
+    var post_id = ${post.post_id}; // JSP 변수를 JavaScript 변수에 할당
+    var user_nickname = "${login_nickname}"; // 로그인한 사용자의 닉네임을 JSP 변수로 받아옴
 
-              let replyPage = 0;
-              const replySize = 5;
-              let totalReplyCount = 0; // 전체 댓글 수를 저장할 전역 변수
+    // 페이지 로드 시 댓글을 비동기적으로 가져오는 함수
+    function loadReplies() {
+        fetch('/main/free/reply/'+ post_id)
+            .then(response => response.json())
+            .then(data => {
+                console.log("Fetched Replies:", data)
+                const replySection = document.getElementById("replySection");
+                replySection.innerHTML = ""; // 기존 댓글 삭제
 
               function loadReplyCount() {
                return fetch('/main/free/reply/count/' + post_id)
