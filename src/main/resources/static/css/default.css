@@ -97,6 +97,9 @@ body {
     cursor: pointer;
 }
 
+button {
+    width: 120px;
+}
 
 .login-button {
     display: flex;
@@ -139,7 +142,6 @@ body {
 .panel.open {
     left: 0px;
     gap: 20px;
-
 }
 
 .panel h1 {
@@ -246,7 +248,15 @@ body {
     color: #777;
 }
 
-
+구분선 */
+hr {
+    width: 80%;
+    max-width: 800px;
+    border: none;
+    height: 1px;
+    background: #ddd;
+    margin: 10px auto;
+}
 
 /* 반응형 디자인 */
 @media (max-width: 600px) {

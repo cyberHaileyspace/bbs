@@ -10,7 +10,7 @@ import java.util.List;
 @RestController     // @Controller + @ResponseBody
 public class ToiletAPI {
 
-    //rest API 더 예쁘게
+    // rest API 더 예쁘게
     // Get     /products
     // Get     /products/{id}
     // Post    /products

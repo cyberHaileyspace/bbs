@@ -1,4 +1,3 @@
-
 function generateToken() {
     const now = new Date();
     return now.getMinutes() + ":" + now.getSeconds();  // "mm:ss" 형식
@@ -196,4 +195,3 @@ function searchHandler() {
 }
 
 /* -------------------- 검색 -------------------- */
-

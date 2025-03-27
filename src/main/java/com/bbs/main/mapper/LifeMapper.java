@@ -1,7 +1,5 @@
 package com.bbs.main.mapper;
 
-import com.bbs.main.vo.FreeReplyVO;
-import com.bbs.main.vo.FreeVO;
 import com.bbs.main.vo.LifeReplyVO;
 import com.bbs.main.vo.LifeVO;
 import org.apache.ibatis.annotations.*;
@@ -50,7 +48,7 @@ public interface LifeMapper {
     @Select("SELECT post_like FROM Life_Post_DB WHERE post_id = #{post_id}")
     int getLikeCount(int post_id);
 
-    @Select("select * from Life_post_DB where post_id = #{post_id}")
+    @Select("SELECT * FROM Life_post_DB WHERE post_id = #{post_id}")
     LifeVO detailPost(int post_id);
 
     @Update("UPDATE LIFE_POST_DB " +
@@ -67,23 +65,29 @@ public interface LifeMapper {
             "ORDER BY r_id DESC")
     List<LifeReplyVO> getReplys(int post_id);
 
-    @Insert("INSERT INTO Free_Reply (post_id, r_writer, r_context) " +
+    @Insert("INSERT INTO Life_Reply (post_id, r_writer, r_context) " +
             "VALUES (#{post_id}, #{r_writer}, #{r_context})")
     int addReply(LifeReplyVO lifeReplyVO);
+
+    @Update("UPDATE Life_Reply set r_context = #{r_context} where r_id = #{r_id}")
+    int updateReply(LifeReplyVO lifeReplyVO);
+
+    @Delete("DELETE LIFE_REPLY WHERE R_ID = #{r_id}")
+    int deleteReply(int r_id);
 
     @Select("SELECT * FROM Life_Post_DB ORDER BY post_date DESC")
     List<LifeVO> getAll(String category);
 
-    @Select("SELECT * FROM Life_Post_DB where post_category = '생활 정보' ORDER BY post_date DESC")
+    @Select("SELECT * FROM Life_Post_DB where post_category = '生活情報' ORDER BY post_date DESC")
     List<LifeVO> getLife(String category);
 
-    @Select("SELECT * FROM Life_Post_DB where post_category = '건강 정보' ORDER BY post_date DESC")
+    @Select("SELECT * FROM Life_Post_DB where post_category = '健康情報' ORDER BY post_date DESC")
     List<LifeVO> getHealth(String category);
 
-    @Select("SELECT * FROM Life_Post_DB where post_category = '질문' ORDER BY post_date DESC")
+    @Select("SELECT * FROM Life_Post_DB where post_category = '質問' ORDER BY post_date DESC")
     List<LifeVO> getQNA(String category);
 
-    @Select("SELECT * FROM Life_Post_DB where post_category = '후기' ORDER BY post_date DESC")
+    @Select("SELECT * FROM Life_Post_DB where post_category = 'レビュー' ORDER BY post_date DESC")
     List<LifeVO> getAft(String category);
 }
 

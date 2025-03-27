@@ -1,36 +1,37 @@
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> <%@ taglib
-uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <%@ page language="java"
-contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib
+        uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java"
+         contentType="text/html; charset=utf-8" pageEncoding="utf-8" %> <%--<link
+  rel="stylesheet"
+  href="/resources/css/free/free.css"
+/>--%>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8"/>
     <title>Title</title>
+    <script src="/resources/js/free/free.js"></script>
     <link rel="stylesheet" href="/resources/css/board.css" />
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.min.js"></script>
-
   </head>
   <body>
   <div class="container-cm-post">
-
-    <div class="life-back" onclick="location.href='/main/free'">자유게시판 ></div>
-
+    <div class="life-back" onclick="location.href='/main/free'">自由掲示板 ></div>
     <div class="post-title"><span> ${post.post_title } </span></div>
     <div class="post-info">
-      <div class="post-profile"><img alt="" src="file/${user.user_image }"></div>
-      <div class="post-mini-wrapper">
-        <div class="post-string">
-          <div class="post-name">${post.user_nickname }</div>
-          <div class="post-date"><fmt:formatDate value="${post.post_date}" pattern="yyyy-MM-dd"/></div>
+        <div class="post-profile"><img alt="" src="file/${user.user_image }"></div>
+        <div class="post-mini-wrapper">
+            <div class="post-string">
+                <div class="post-name">${post.user_nickname }</div>
+                <div class="post-date"><fmt:formatDate value="${post.post_date}" pattern="yyyy-MM-dd"/></div>
+            </div>
+            <div class="post-items">
+                <div class="post-view"><img
+                        src="https://cdn-icons-png.flaticon.com/512/7835/7835667.png">${post.post_view }</div>
+                <div class="post-like"><img
+                        src="https://cdn-icons-png.flaticon.com/512/833/833234.png">${post.post_like }</div>
+            </div>
         </div>
-        <div class="post-items">
-          <div class="post-view"><img
-                  src="https://cdn-icons-png.flaticon.com/512/7835/7835667.png">${post.post_view }</div>
-          <div class="post-like"><img
-                  src="https://cdn-icons-png.flaticon.com/512/833/833234.png">${post.post_like }</div>
-        </div>
-      </div>
     </div>
 
     <div class="post-content">
@@ -44,10 +45,8 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
       </div>
       <br>
       <div class="post-button">
-
-        <button class="like-button" onclick="likePost(${post.post_id}, this)">
-          추천수&nbsp;<span class="like-count">${post.post_like}</span>
-
+        <button class="like-button" onclick="location.href='like/' + ${post.post_id}">
+          いいね数 : ${post.post_like}
         </button>
         <c:if test="${login_nickname == post.user_nickname}">
           <button onclick="deletePost(${post.post_id})">削除</button>
@@ -56,170 +55,78 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
         <button onclick="location.href='/main/free'">リスト</button>
       </div>
     </div>
-  </div>
-  <div>
+</div>
+<div>
     <div>
-      <div class="comment-section">
-        <div class="comment-header">コメントを書く</div>
-        <div hidden="hidden">ニックネーム : <input name="user_nickname" value="${user.user_nickname}" type="text"
-                                          placeholder="${user.user_nickname}" readonly></div>
+        <div class="reply-section">
+            <div class="reply-header">댓글 쓰기</div>
+            <div hidden="hidden">닉네임 : <input name="user_nickname" value="${user.user_nickname}" type="text"
+                                              placeholder="${user.user_nickname}" readonly></div>
 
-        <div class="comment-ta">
-          <textarea id="replyContent" placeholder="コメントを入力してください..." style="resize: none"></textarea>
+            <div class="reply-ta">
+                <textarea id="replyContent" placeholder="댓글을 입력하세요..." style="resize: none"></textarea>
+            </div>
+
+            <button id="replyButton"
+                    onclick="handleReplySubmit('${user.user_nickname}')">댓글 쓰기
+            </button>
         </div>
 
-        <button id="commentButton"
-                onclick="handleFreeReplySubmit('${user.user_nickname}')">コメント投稿
-        </button>
-      </div>
-      <div id="replyCountContainer"></div>
-      <div>
-        <label><input type="radio" name="option" value="new" checked="checked"/> 최신순</label>
-        <label><input type="radio" name="option" value="like"/> 추천순</label>
-      </div>
-      <div id="replySection">
-      </div>
-      <div><button id="load-more-replies">
-        댓글 5개 더보기
-      </button></div>
+        <div id="replySection">
+            <p></p>
+        </div>
     </div>
-  </div>
-    <%----------------------------------------------------------------------------------------------------------%>
-    <script>
-              var post_id = ${post.post_id}; // JSP 변수를 JavaScript 변수에 할당
-              var user_nickname = "${login_nickname}"; // 로그인한 사용자의 닉네임을 JSP 변수로 받아옴
+</div>
+<%----------------------------------------------------------------------------------------------------------%>
+<script>
+    var post_id = ${post.post_id}; // JSP 변수를 JavaScript 변수에 할당
+    var user_nickname = "${login_nickname}"; // 로그인한 사용자의 닉네임을 JSP 변수로 받아옴
 
-              let replyPage = 0;
-              const replySize = 5;
-              let totalReplyCount = 0; // 전체 댓글 수를 저장할 전역 변수
+    // 페이지 로드 시 댓글을 비동기적으로 가져오는 함수
+    function loadReplies() {
+        fetch('/main/free/reply/'+ post_id)
+            .then(response => response.json())
+            .then(data => {
+                console.log("Fetched Replies:", data)
+                const replySection = document.getElementById("replySection");
+                replySection.innerHTML = ""; // 기존 댓글 삭제
 
-              function loadReplyCount() {
-               return fetch('/main/free/reply/count/' + post_id)
-                        .then(response => response.text())
-                        .then(count => {
-                          totalReplyCount = Number(count);
-                          console.log(count);
-                          const countContainer = document.getElementById("replyCountContainer");
-                          if(Number(count) === 0 ){
-                            countContainer.innerHTML = ""
-                          }else {
-                            countContainer.innerHTML = "<p>전체 댓글 : " + count + "개</p>"
-                          }
-                        })
-                        .catch(error => {
-                          console.error("댓글 수 불러오기 실패:", error);
-                        });
-              }
-
-
-              function loadRepliesPaged() {
-                replySortOption = document.querySelector("input[name='option']:checked").value;
-
-                fetch("/main/free/reply/" + post_id + "?page=" + replyPage + "&size=" + replySize + "&option=" + replySortOption)
-                        .then(response => response.json())
-                        .then(data => {
-                          loadReplyCount();
-                          const replySection = document.getElementById("replySection");
-
-                          if (data.length === 0) {
-
-                            if (replyPage === 0) {
-                              replySection.innerHTML = "<p>댓글이 없습니다. 첫 댓글을 남겨보세요!</p>";
-                            }
-                            document.getElementById("load-more-replies").style.display = "none";
-                            return;
-                          }
-
-                          data.forEach(reply => {
-                            const replyDiv = document.createElement("div");
-                            replyDiv.classList.add("reply");
-                            replyDiv.id = "reply-" + reply.r_id;
-
-                            let replyHTML =
-                                    "<div>" +
-                                    "<span>작성자 : " + reply.r_writer + "</span><br>" +
-                                    "<span>작성일 : " + reply.r_date + "</span>" +
-                                    "<p>" + reply.r_context + "</p>" +
-                                    "<button class='like-button' onclick='likeReply(" + reply.r_id + ", this)'>" +
-                                    "추천수&nbsp;<span class='like-count'>" + reply.r_like + "</span></button>";
-
-                            if (user_nickname === reply.r_writer) {
-                              replyHTML +=
-                                      "<button onclick=\"editReply('" + reply.r_id + "', '" + reply.r_writer + "', '" + reply.r_date + "', '" + reply.r_context + "')\">수정</button>" +
-                                      "<button onclick=\"deleteReply('" + reply.r_id + "')\">삭제</button>";
-                            }
-
-                            replyDiv.innerHTML = replyHTML;
-                            replySection.appendChild(replyDiv);
-                          });
-
-                          if (data.length < replySize) {
-                            document.getElementById("load-more-replies").style.display = "none";
-                          }
-
-                          replyPage++;
-
-                          loadReplyCount().then(() => {
-                            let loadedCount = replyPage * replySize;
-                            let remaining = totalReplyCount - loadedCount;
-                            const loadMoreButton = document.getElementById("load-more-replies");
-                            if (remaining <= 0) {
-                              loadMoreButton.style.display = "none";
-                            } else if (remaining < replySize) {
-                              loadMoreButton.textContent = "댓글 " + remaining + "개 더보기";
-                            } else {
-                              loadMoreButton.textContent = "댓글 " + replySize + "개 더보기";
-                            }
-                          });
-                        })
-                        .catch(error => {
-                          console.error("댓글 로드 실패:", error);
-                        });
-              }
-
-
-
-              console.log(post_id, user_nickname)
-
-      // 페이지가 로드되면 댓글을 비동기적으로 불러오는 함수 호출
-
-              document.addEventListener("DOMContentLoaded", () => {
-                loadReplyCount().then(() => {
-                  loadRepliesPaged(); // 기본 정렬
-                  document.getElementById("load-more-replies").addEventListener("click", loadRepliesPaged);
-                });
-
-                // 정렬 옵션 변경 이벤트 핸들러
-                document.querySelectorAll("input[name='option']").forEach(radio => {
-                  radio.addEventListener("change", () => {
-                    replyPage = 0;
-                    document.getElementById("replySection").innerHTML = "";
-                    document.getElementById("load-more-replies").style.display = "block";
-                    loadRepliesPaged();  // 정렬 변경 시 새로 불러오기
-                  });
-                });
-              });
-
-
-    </script>
-  <script>
-    function likePost(postId, button) {
-      fetch(`/main/free/like/` + postId, {
-        method: "POST", // POST 요청으로 변경
-      })
-              .then(response => response.json()) // JSON 응답 처리
-              .then(data => {
-                console.log(data);
-                if (data.success) {
-                  button.querySelector(".like-count").textContent = data.newLikeCount; // 추천수 업데이트
+                if (data.length === 0) {
+                    replySection.innerHTML = "<p>댓글이 없습니다. 댓글을 작성해 보세요!</p>";
                 } else {
-                  alert("로그인이 필요합니다.");
-                  window.location.href = "/login"; // 로그인 페이지로 이동
+                    data.forEach(reply => {
+                        const replyDiv = document.createElement("div");
+                        replyDiv.classList.add("reply")
+                        replyDiv.id = "reply-" + reply.r_id;
+                        // 댓글 작성자와 로그인한 사용자가 동일한 경우 삭제 및 수정 버튼을 추가
+                        let replytHTML =
+                            "<div>" +
+                            "<span>작성자 : " + reply.r_writer + "</span>" + "<br>" +
+                            "<span> 작성일 : " + reply.r_date + "</span>" +
+                            "<p>" + reply.r_context + "</p>"
+                            + "</div>"
+                        ;
+
+                        if (user_nickname === reply.r_writer) {
+                            replytHTML += "<button onclick=\"editReply('" + reply.r_id + "', '" + reply.r_writer + "', '" + reply.r_date + "', '" + reply.r_context + "')\">수정</button>"
+                                +
+                                "<button onclick=\"deleteReply('" + reply.r_id + "')\">삭제</button>";
+                        }
+                        replyDiv.innerHTML = replytHTML;
+                        replySection.appendChild(replyDiv);
+                    });
                 }
-              })
-              .catch(error => console.error("Error:", error));
+            })
+            .catch(error => {
+                console.error("댓글 로드 실패:", error);
+            });
     }
-  </script>
-  <script src="/resources/js/free/free_reply.js"></script>
-  </body>
+
+    console.log(post_id, user_nickname)
+
+    // 페이지가 로드되면 댓글을 비동기적으로 불러오는 함수 호출
+
+    document.addEventListener("DOMContentLoaded", loadReplies);
+</script>
+</body>
 </html>

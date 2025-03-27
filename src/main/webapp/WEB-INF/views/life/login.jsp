@@ -36,7 +36,7 @@
             </form>
             <div class="login-button02">
                 <div onclick="location.href='user'">新規登録</div>
-                <div onclick="location.href='pwreset'">パスワードを再設定</div>
+                <div onclick="location.href='pwreset'">パスワード再設定</div>
             </div>
             <%--<div class="two_box">
                 <div>Add</div>
