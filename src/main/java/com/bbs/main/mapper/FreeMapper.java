@@ -2,14 +2,12 @@ package com.bbs.main.mapper;
 
 import com.bbs.main.vo.FreeReplyVO;
 import com.bbs.main.vo.FreeVO;
-import com.bbs.main.vo.LifeVO;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
 @Mapper
 public interface FreeMapper {
-
 
     @Insert("insert into FREE_POST_DB" +
             "(user_nickname, post_category, post_menu, post_title, post_context, post_image)" +
@@ -50,13 +48,6 @@ public interface FreeMapper {
    @Delete("DELETE FREE_REPLY WHERE R_ID = #{r_id}")
     int deleteReply(int r_id);
 
-    @Update("UPDATE Free_POST_DB SET post_like = post_like + 1 WHERE post_id = #{post_id}")
-    void incrementLike(int post_id);
-
-    @Select("SELECT post_like FROM Free_POST_DB WHERE post_id = #{post_id}")
-    int getLikeCount(int post_id);
-
-
     @Select("SELECT * FROM Free_POST_DB ORDER BY post_id DESC")
     List<FreeVO> getSortsNew();  // 최신순
 
@@ -90,12 +81,6 @@ public interface FreeMapper {
     @Update("update Free_POST_DB set post_view = post_view + 1 where post_id = #{post_id}")
     int getCount(int postId);
 
-    @Update("UPDATE Free_Reply SET r_like = r_like + 1 WHERE r_id = #{r_id}")
-    void incrementReplyLike(int r_id);
-
-    @Select("SELECT r_like FROM Free_Reply WHERE r_id = #{r_id}")
-    int getReplyLikeCount(int r_id);
-
     @Select("SELECT r_id, post_id, r_writer, r_context, r_like, " +
             "TO_CHAR(r_date, 'YYYY.MM.DD HH24:MI') AS r_date, " +
             "TO_CHAR(r_update, 'YYYY.MM.DD HH24:MI') AS r_update " +
@@ -108,4 +93,45 @@ public interface FreeMapper {
                                                   @Param("offset") int offset,
                                                   @Param("size") int size);
 
+    // 게시글 추천수 관리
+
+    @Update("UPDATE Free_POST_DB SET post_like = post_like + 1 WHERE post_id = #{post_id}")
+    void incrementLike(int post_id);
+
+    @Update("UPDATE Free_POST_DB SET post_like = post_like - 1 WHERE post_id = #{post_id}")
+    void updateUnlike(int post_id);
+
+    @Select("SELECT post_like FROM Free_POST_DB WHERE post_id = #{post_id}")
+    int getLikeCount(int post_id);
+
+    @Select("SELECT COUNT(*) FROM free_post_like WHERE l_user_nickname = #{userNickname} AND l_post_id = #{postId}")
+    int existsLike(@Param("userNickname") String userNickname, @Param("postId") int postId);
+
+    @Delete("DELETE FROM free_post_like WHERE l_user_nickname = #{userNickname} AND l_post_id = #{postId}")
+    void deleteLike(@Param("userNickname") String userId, @Param("postId") int postId);
+
+    @Insert("INSERT INTO free_post_like (l_id, l_user_nickname, l_post_id) " +
+            "VALUES (free_post_like_seq.nextval, #{userNickname}, #{postId})")
+    void insertLike(@Param("userNickname") String userNickname, @Param("postId") int postId);
+
+    // 댓글 추천수 관리
+
+    @Update("UPDATE Free_Reply SET r_like = r_like + 1 WHERE r_id = #{r_id}")
+    void incrementReplyLike(int r_id);
+
+    @Update("UPDATE Free_Reply SET r_like = r_like - 1 WHERE r_id = #{r_id}")
+    void updateReplyUnlike(int r_id);
+
+    @Select("SELECT r_like FROM Free_Reply WHERE r_id = #{r_id}")
+    int getReplyLikeCount(int r_id);
+
+    @Select("SELECT COUNT(*) FROM free_reply_like WHERE l_user_nickname = #{userNickname} AND l_reply_id = #{replyId}")
+    int existsReplyLike(@Param("userNickname") String userNickname, @Param("replyId") int replyId);
+
+    @Delete("DELETE FROM free_reply_like WHERE l_user_nickname = #{userNickname} AND l_reply_id = #{replyId}")
+    void deleteReplyLike(@Param("userNickname") String userId, @Param("replyId") int replyId);
+
+    @Insert("INSERT INTO free_reply_like (l_id, l_user_nickname, l_reply_id) " +
+            "VALUES (free_reply_like_seq.nextval, #{userNickname}, #{replyId})")
+    void insertReplyLike(@Param("userNickname") String userNickname, @Param("replyId") int replyId);
 }
