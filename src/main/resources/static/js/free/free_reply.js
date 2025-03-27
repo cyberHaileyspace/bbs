@@ -64,28 +64,26 @@ function editReply(r_id, r_writer, r_date, r_context) {
         <textarea id="edit-text-${r_id}" class="edit-textarea">${originalContent}</textarea>
         </div>
         <button onclick="saveEdit('${r_id}', '${r_writer}', '${r_date}', '${originalContent}')">수정완료</button>
-        <button onclick="cancelEdit()">수정취소</button>
+        <button onclick="cancelEdit('${r_id}', '${r_writer}', '${r_date}', '${originalContent}')">수정취소</button>
     `;
 }
 
 function cancelEdit(r_id, r_writer, r_date, originalContent) {
     if (confirm("수정을 취소하시겠습니까?")) {
- loadRepliesPaged();
- //
-        //const commentDiv = document.getElementById(`reply-${r_id}`);
+        const commentDiv = document.getElementById(`reply-${r_id}`);
 
-        // // 원래 댓글로 복원
-        // commentDiv.innerHTML = `
-        //     <div>
-        //     <span>작성자 : ${r_writer}</span> <br>
-        //     <span>작성일 : ${r_date}</span> <br>
-        //     <p id="reply-context" class="edit-textarea">${originalContent}</p>
-        //     </div>
-        //     <button onclick="editReply('${r_id}', '${r_writer}', '${r_date}', '${originalContent}')">수정</button>
-        //     <button onclick="deleteReply(${r_id})">삭제</button>
-        //
-        // `;
+        // 원래 댓글로 복원
+        commentDiv.innerHTML = `
+            <div>
+            <span>작성자 : ${r_writer}</span> <br>
+            <span>작성일 : ${r_date}</span> <br>
+            <p id="reply-context" class="edit-textarea">${originalContent}</p>
+            </div>
+            <button onclick="editReply('${r_id}', '${r_writer}', '${r_date}', '${originalContent}')">수정</button>
+            <button onclick="deleteReply(${r_id})">삭제</button>
+        `;
     }
+    loadRepliesPaged();
 }
 function saveEdit(r_id, r_writer, r_date, originalContent) {
     const newText = document.getElementById(`edit-text-${r_id}`).value;
@@ -124,9 +122,7 @@ function saveEdit(r_id, r_writer, r_date, originalContent) {
         .catch(error => {
             console.error("수정 중 오류 발생:", error);
             alert("수정 실패! 네트워크 오류.");
-            loadRepliesPaged
-
-            (); // 오류 발생 시에도 댓글 목록 갱신
+            loadRepliesPaged(); // 오류 발생 시에도 댓글 목록 갱신
         });
 }
 
