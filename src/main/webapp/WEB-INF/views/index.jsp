@@ -22,7 +22,7 @@
         <div style="display: flex; flex-direction: row; align-items: center; position: absolute; left: 5%;">
             <img width="50px" src="/resources/css/Diaspora.png" class="panel-btn"/>
         </div>
-        <div onclick="location.href='/'" style="cursor: pointer; position: absolute; left: 40%;">
+        <div onclick="location.href='/'" style="cursor: pointer; position: absolute; left: 42.5%;">
             Diaspora - ディアスポラ
         </div>
         <c:choose>
