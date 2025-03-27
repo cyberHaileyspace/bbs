@@ -42,17 +42,17 @@
                 </div>
                 <div class="name">
                     <div>氏名</div>
-                    <div><input name="user_name" id="user_name" type="text" placeholder="${user.user_name}"></div>
+                    <div><input name="user_name" id="user_name" value="${user.user_name}" type="text" placeholder="${user.user_name}"></div>
                 </div>
                 <div class="nickname">
                     <div>ニックネーム</div>
-                    <div><input name="user_nickname" id="user_nickname" type="text" placeholder="${user.user_nickname}"></div>
+                    <div><input name="user_nickname" id="user_nickname" value="${user.user_nickname}" type="text" placeholder="${user.user_nickname}"></div>
                     <span id="nick_check" style="color: red; font-size: 12px"></span>
                     <button type="button" id="nick_check_btn">重複チェック</button>
                 </div>
                 <div class="email">
                     <div>メールアドレス</div>
-                    <div><input name="user_email" id="user_email" type="text" placeholder="${user.user_email}"></div>
+                    <div><input name="user_email" id="user_email" value="${user.user_email}" type="text" placeholder="${user.user_email}"></div>
                     <span id="email_check" style="color: red; font-size: 12px"></span>
                     <button type="button" id="email_check_btn">重複チェック</button>
                 </div>

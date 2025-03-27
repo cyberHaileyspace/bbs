@@ -110,6 +110,8 @@ public class LifeService {
                 return lifeMapper.getSortsLike();
             case "view":
                 return lifeMapper.getSortsView();
+            case "reply":
+                return lifeMapper.getSortsReply();
             default:
                 return new ArrayList<>();
         }

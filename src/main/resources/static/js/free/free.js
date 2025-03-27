@@ -101,8 +101,8 @@ function renderPosts(posts) {
             "<div style='display: flex'>" +
             "<div class='info-view'>조회수: " + p.post_view + "</div>&nbsp;/&nbsp;" +
             "<div class='info-like'>추천수: " + p.post_like + "</div>&nbsp;/&nbsp;" +
-            "<div class='info-reply'>댓글수: " + p.reply_count + "</div>"
-            +
+            "<div class='info-reply'>댓글수: " + p.reply_count + "</div>" +
+            "</div>" +
             "</div>" +
             "</div>" +
             "</div>" +

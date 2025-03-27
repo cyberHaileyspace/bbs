@@ -28,7 +28,7 @@
             <label><input type="radio" name="option" value="new" checked="checked"/> 최신순</label>
             <label><input type="radio" name="option" value="like"/> 추천순</label>
             <label><input type="radio" name="option" value="view"/> 조회순</label>
-            <label><input type="radio" name="option" value="reply"/> 댓글순</label>
+            <label><input type="radio" name="option" value="reply"/>댓글순</label>
         </div>
         <div style="display: flex; justify-content: flex-end">
             <button class="write-btn" onclick="logincheck('${sessionScope.user}')">

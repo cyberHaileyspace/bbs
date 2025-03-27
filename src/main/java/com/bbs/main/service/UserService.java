@@ -100,12 +100,20 @@ public class UserService {
         return userMapper.getMyLifePosts(user_id);
     }
 
+    public List<LifeVO> getMyTourPosts(String user_id) {
+        return userMapper.getMyTourPosts(user_id);
+    }
+
     public List<FreeReplyVO> getMyFreePostReplies(String user_nickname) {
         return userMapper.getMyFreePostReplies(user_nickname);
     }
 
     public List<LifeReplyVO> getMyLifePostReplies(String user_nickname) {
         return userMapper.getMyLifePostReplies(user_nickname);
+    }
+
+    public List<LifeReplyVO> getMyTourPostReplies(String user_nickname) {
+        return userMapper.getMyTourPostReplies(user_nickname);
     }
 
     public UserVO getUserById(String user_id) {
@@ -160,7 +168,7 @@ public class UserService {
                 oldFile.delete();
             }
         }
-
+        System.out.println("111");
         // user_image를 null로 설정
         user.setUser_image(null);
 

@@ -130,17 +130,6 @@ public class LifeC {
         return lifeService.getsorts(option);
     }
 
-    /*@GetMapping("/like/{post_id}")
-    public String lifelike(@PathVariable("post_id") int no, Model model, HttpSession session) {
-        System.out.println("-----");
-        if (userService.loginChk(session)) {
-            lifeService.getCountLike(no);
-            model.addAttribute("content", "life/lifedetail.jsp");
-            return "index";
-        }
-        return "redirect:/login";
-    }*/
-
     @PostMapping("/like/{post_id}")
     @ResponseBody // JSON 응답을 위한 애너테이션
     public Map<String, Object> lifelike(@PathVariable("post_id") int no, HttpSession session) {

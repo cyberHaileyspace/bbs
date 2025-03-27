@@ -86,7 +86,6 @@ public class FreeC {
         return "redirect:/main/free/" + post_id;
     }
 
-
     @GetMapping("/option")
     @ResponseBody
     public List<FreeVO> getsorts(@RequestParam("option") String option) {

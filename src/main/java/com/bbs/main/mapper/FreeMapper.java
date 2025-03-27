@@ -56,7 +56,6 @@ public interface FreeMapper {
     @Select("SELECT post_like FROM Free_POST_DB WHERE post_id = #{post_id}")
     int getLikeCount(int post_id);
 
-
     @Select("SELECT * FROM Free_POST_DB ORDER BY post_id DESC")
     List<FreeVO> getSortsNew();  // 최신순
 

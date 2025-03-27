@@ -104,8 +104,10 @@ public class UserC {
         if (userService.loginChk(session)) {
             model.addAttribute("freePosts", userService.getMyFreePosts(user.getUser_nickname()));
             model.addAttribute("lifePosts", userService.getMyLifePosts(user.getUser_nickname()));
+            model.addAttribute("tourPosts", userService.getMyTourPosts(user.getUser_nickname()));
             model.addAttribute("freePostReplies", userService.getMyFreePostReplies(user.getUser_nickname()));
             model.addAttribute("lifePostReplies", userService.getMyLifePostReplies(user.getUser_nickname()));
+            model.addAttribute("tourPostReplies", userService.getMyTourPostReplies(user.getUser_nickname()));
             model.addAttribute("content", "life/mypage.jsp");
         } else {
             return "redirect:login";
@@ -148,7 +150,7 @@ public class UserC {
             /*RegisterVO user = registerMapper.login(registerVO);
             session.setAttribute("user", user);*/
             model.addAttribute("content", "index.jsp");
-            return "redirect:/update";
+            return "redirect:/mypage";
         } else {
             redirectAttributes.addFlashAttribute("error", "IDを確認してください。");
             return "redirect:/login";
@@ -162,8 +164,8 @@ public class UserC {
 
     @PostMapping("/updatepfp")
     public String updatepfp(@RequestParam("user_id") String user_id,
-                                       @RequestParam(value = "profileImage", required = false) MultipartFile profileImage,
-                                       HttpSession session, RedirectAttributes redirectAttributes) {
+                            @RequestParam(value = "profileImage", required = false) MultipartFile profileImage,
+                            HttpSession session, RedirectAttributes redirectAttributes) {
         UserVO user = userService.getUserById(user_id); // 기존 사용자 정보 조회
         if (user == null) {
             redirectAttributes.addFlashAttribute("error", "ユーザー情報が見つかりません。");
@@ -180,13 +182,13 @@ public class UserC {
 
     @PostMapping("/deletepfp")
     public String deletepfp(@RequestParam("user_id") String user_id,
-                                       HttpSession session, RedirectAttributes redirectAttributes) {
+                            HttpSession session, RedirectAttributes redirectAttributes) {
         UserVO user = userService.getUserById(user_id); // 사용자 정보 조회
         if (user == null) {
             redirectAttributes.addFlashAttribute("error", "ユーザー情報が見つかりません。");
             return "redirect:/mypage";
         }
-
+        System.out.println("111");
         // 프로필 사진 삭제 (user_image를 null로 업데이트)
         userService.deletepfp(user);
 
