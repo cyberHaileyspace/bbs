@@ -1,7 +1,5 @@
 package com.bbs.main.controller;
-
 import com.bbs.main.service.UserService;
-import com.bbs.main.vo.FreeReplyVO;
 import com.bbs.main.vo.FreeVO;
 import com.bbs.main.vo.LifeVO;
 import com.bbs.main.vo.UserVO;
@@ -13,11 +11,9 @@ import com.bbs.main.service.FreeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 @RequestMapping("/main/free")
 @Controller
 public class FreeC {
@@ -164,8 +160,3 @@ public class FreeC {
 
 
 }
-
-
-
-
-
