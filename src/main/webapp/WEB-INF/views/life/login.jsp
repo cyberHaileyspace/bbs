@@ -28,7 +28,7 @@
                 </div>
                 <div class="login-button">
                     <button type="submit">ログイン</button>
-                    <button onclick="location.href='/'" class="back">
+                    <button type="button" onclick="location.href='/'" class="back">
                         戻る
                     </button>
                 </div>

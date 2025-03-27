@@ -255,9 +255,9 @@ function renderPosts(posts) {
             "<div class='item'>" +
             "<div class='post-life' onclick='goToPost(" + p.post_id + ")'>" +
             "<div class='life-kind'>" +
-            "<div class='life-no'>番号 : " + p.post_id + "</div>&nbsp;/&nbsp;" +
-            "<div class='life-cate'>カテゴリー : " + p.post_category + "</div>&nbsp;/&nbsp;" +
-            "<div class='life-menu'>地域 : " + p.post_menu + "</div>" +
+            "<div class='life-no'>番号: " + p.post_id + "</div>&nbsp;/&nbsp;" +
+            "<div class='life-cate'>カテゴリー: " + p.post_category + "</div>&nbsp;/&nbsp;" +
+            "<div class='life-menu'>地域: " + p.post_menu + "</div>" +
             "</div>" +
             "<div class='life-title'>" + p.post_title + "</div>" +
             "<div class='life-context'>" +
@@ -266,12 +266,12 @@ function renderPosts(posts) {
             "</div>" +
             "<div class='life-info'>" +
             "<div style='display: flex'>" +
-            "<div class='info-name'>投稿者 : " + p.user_nickname + "</div>&nbsp;/&nbsp;" +
-            "<div class='info-date'>投稿日 : " + formattedDate + "</div>" +
+            "<div class='info-name'>投稿者: " + p.user_nickname + "</div>&nbsp;/&nbsp;" +
+            "<div class='info-date'>投稿日: " + formattedDate + "</div>" +
             "</div>" +
             "<div style='display: flex'>" +
-            "<div class='info-view'>閲覧数 : " + p.post_view + "</div>&nbsp;/&nbsp;" +
-            "<div class='info-like'>いいね数 : " + p.post_like + "</div>" +
+            "<div class='info-view'>閲覧数: " + p.post_view + "</div>&nbsp;/&nbsp;" +
+            "<div class='info-like'>いいね数: " + p.post_like + "</div>" +
             "</div>" +
             "</div>" +
             "</div>" +

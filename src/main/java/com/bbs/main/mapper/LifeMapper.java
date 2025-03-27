@@ -48,7 +48,7 @@ public interface LifeMapper {
     @Select("SELECT post_like FROM Life_Post_DB WHERE post_id = #{post_id}")
     int getLikeCount(int post_id);
 
-    @Select("select * from Life_post_DB where post_id = #{post_id}")
+    @Select("SELECT * FROM Life_post_DB WHERE post_id = #{post_id}")
     LifeVO detailPost(int post_id);
 
     @Update("UPDATE LIFE_POST_DB " +

@@ -161,7 +161,7 @@ button {
 }
 
 .mypage-container {
-    width: 400px;
+    width: 500px;
     height: 400px;
     box-shadow: 3px 3px 3px 3px lightgrey;
     display: flex;
@@ -174,7 +174,7 @@ button {
 }
 
 .mypage-btn {
-    width: 340px;
+    width: 440px;
     height: 40px;
     box-shadow: 1px 1px 1px 1px lightgrey;
     display: flex;
@@ -211,6 +211,11 @@ button {
 
 .mypage-content:hover {
 
+}
+
+.pfp {
+    display: flex;
+    justify-content: center;
 }
 
 .category {

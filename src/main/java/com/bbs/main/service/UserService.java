@@ -83,8 +83,8 @@ public class UserService {
         return userMapper.emailcheck(userEmail) > 0;
     }
 
-    public String updateUser(UserVO registerVO) {
-        int result = userMapper.updateUser(registerVO);
+    public String updateUser(UserVO userVO) {
+        int result = userMapper.updateUser(userVO);
         if (result == 1) {
             return "내 정보가 변경되었습니다.";
         } else {
@@ -107,4 +107,65 @@ public class UserService {
     public List<LifeReplyVO> getMyLifePostReplies(String user_nickname) {
         return userMapper.getMyLifePostReplies(user_nickname);
     }
+
+    public UserVO getUserById(String user_id) {
+        return userMapper.getUserById(user_id);
+    }
+
+    public void updatepfp(UserVO user, MultipartFile profileImage) {
+        String uploadFolder = "C:\\Users\\soldesk\\Desktop\\uploadFolder";
+
+        // 기존 이미지 정보 가져오기
+        UserVO existingUser = userMapper.getUserById(user.getUser_id());
+
+        if (profileImage != null && !profileImage.isEmpty()) {
+            String originName = profileImage.getOriginalFilename();
+            String fileExtension = originName.substring(originName.lastIndexOf("."));
+            UUID uuid = UUID.randomUUID();
+            String fileName = uuid.toString().split("-")[0] + fileExtension;
+
+            File saveFile = new File(uploadFolder + "/" + fileName);
+            try {
+                // 새 파일 저장
+                profileImage.transferTo(saveFile);
+
+                // 기존 이미지 삭제
+                if (existingUser.getUser_image() != null) {
+                    File oldFile = new File(uploadFolder + "/" + existingUser.getUser_image());
+                    if (oldFile.exists()) {
+                        oldFile.delete();
+                    }
+                }
+
+                // 새 이미지 이름 업데이트
+                user.setUser_image(fileName);
+            } catch (IOException e) {
+                throw new RuntimeException("ファイル保存に失敗しました。", e);
+            }
+        } else {
+            // 이미지 변경이 없을 경우 기존 이미지 유지
+            user.setUser_image(existingUser.getUser_image());
+        }
+
+        // DB 업데이트 실행
+        userMapper.updatepfp(user);
+    }
+
+    public void deletepfp(UserVO user) {
+        // 기존 이미지 파일 삭제 (파일이 존재하면 삭제)
+        String uploadFolder = "C:\\Users\\soldesk\\Desktop\\uploadFolder";
+        if (user.getUser_image() != null) {
+            File oldFile = new File(uploadFolder + "/" + user.getUser_image());
+            if (oldFile.exists()) {
+                oldFile.delete();
+            }
+        }
+
+        // user_image를 null로 설정
+        user.setUser_image(null);
+
+        // DB 업데이트
+        userMapper.deletepfp(user);
+    }
+
 }
