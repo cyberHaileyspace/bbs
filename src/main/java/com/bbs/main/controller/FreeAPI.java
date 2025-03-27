@@ -22,7 +22,6 @@ public class FreeAPI {
     @Autowired
     private HttpSession session;
 
-
     @GetMapping("/{post_id}")
     public List<FreeReplyVO> list(
             @PathVariable("post_id") int post_id,

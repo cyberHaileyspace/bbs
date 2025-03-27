@@ -13,14 +13,20 @@
 <body>
 <div class="mypage">
     <div class="mypage-container">
-        <c:if test="${user.user_image ne null}">
-            <div>
-                <img src="/file/${user.user_image}" style="width: 100px; height: 100px">
+        <form id="profile" action="updatepfp" method="post" enctype="multipart/form-data">
+            <c:if test="${not empty user.user_image}">
+                <div>
+                    <img src="/file/${user.user_image}" style="width: 100px; height: 100px">
+                </div>
+            </c:if>
+
+            <input type="file" name="profileImage">
+
+            <div class="pfp">
+                <button type="submit" name="user_id" value="${user.user_id}">プロフィール写真の変更</button>
+                <button type="button" name="user_id" onclick="deletepfp()">プロフィール写真の削除</button>
             </div>
-        </c:if>
-        <div>
-            プロフィール写真の変更
-        </div>
+        </form>
         <div>
             ${user.user_nickname}
         </div>
@@ -32,7 +38,7 @@
         </div>
         <div class="mypage-btn">
             <div onclick="location.href='/update'" style="cursor: pointer">マイ情報の修正</div>
-            <div onclick="location.href='/pwreset'" class="pw" style="cursor: pointer">パスワードの変更</div>
+            <div onclick="location.href='/pwreset'" class="pw" style="cursor: pointer">パスワードを再設定</div>
             <div onclick="location.href='/logout'" style="cursor: pointer">ログアウト</div>
         </div>
     </div>
@@ -254,5 +260,20 @@
         sessionStorage.setItem("viewToken", token);
         location.href = "main/life/" + postId + "?token=" + token;
     }
+</script>
+<script>
+    function deletepfp() {
+        if (confirm("本当にプロフィール写真を削除しますか？")) {
+            fetch('/deletepfp', {
+                method: 'POST',
+                body: new FormData(document.getElementById('profile'))
+            }).then(response => {
+                if (response.redirected) {
+                    window.location.href = response.url;
+                }
+            });
+        }
+    }
+</script>
 </script>
 </html>

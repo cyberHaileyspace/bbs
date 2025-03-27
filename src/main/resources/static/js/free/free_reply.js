@@ -1,4 +1,3 @@
-
 function handleFreeReplySubmit(user_nickname) {
     if (user_nickname) {
         // 사용자가 로그인된 경우, 댓글을 등록하는 함수 호출
@@ -70,8 +69,8 @@ function editReply(r_id, r_writer, r_date, r_context) {
 
 function cancelEdit(r_id, r_writer, r_date, originalContent) {
     if (confirm("수정을 취소하시겠습니까?")) {
- loadRepliesPaged();
- //
+        loadRepliesPaged();
+        //
         //const commentDiv = document.getElementById(`reply-${r_id}`);
 
         // // 원래 댓글로 복원
@@ -159,23 +158,40 @@ function deleteReply(r_id) {
     }
 }
 
-function likeReply(r_id, button) {
-    fetch(`/main/free/reply/like/${r_id}`, {
-        method: "POST", // POST 요청으로 변경
+function toggleReplyLike(r_id, button) {
+    // 현재 좋아요 상태 확인 ("true"/"false" 문자열)
+    var isLiked = button.getAttribute("data-liked") === "true";
+    // 좋아요 또는 좋아요 취소에 따른 API 엔드포인트 선택
+    var url = isLiked ? "/main/free/reply/unlike/" + r_id : "/main/free/reply/like/" + r_id;
+
+    fetch(url, {
+        method: "POST"
     })
-        .then(response => response.json()) // JSON 응답 처리
-        .then(data => {
-            console.log(data);
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
             if (data.success) {
-                button.querySelector(".like-count").textContent = data.newReplyLikeCount; // 추천수 업데이트
+                // 새로운 추천 수 업데이트
+                button.querySelector(".like-count").textContent = data.newReplyLikeCount;
+                // 현재 상태에 따라 버튼 텍스트와 data-liked 값 변경
+                if (isLiked) {
+                    button.innerHTML = "추천수&nbsp;<span class='like-count'>" + data.newReplyLikeCount + "</span>";
+                    button.setAttribute("data-liked", "false");
+                } else {
+                    button.innerHTML = "추천취소&nbsp;<span class='like-count'>" + data.newReplyLikeCount + "</span>";
+                    button.setAttribute("data-liked", "true");
+                }
             } else {
                 alert("로그인이 필요합니다.");
-                window.location.href = "/login"; // 로그인 페이지로 이동
-
+                window.location.href = "/login";
             }
         })
-        .catch(error => console.error("Error:", error));
+        .catch(function(error) {
+            console.error("Error:", error);
+        });
 }
+
 
 function optionReplyHandler() {
     $("input[name='option']").change(function () {

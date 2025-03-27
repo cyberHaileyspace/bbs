@@ -28,15 +28,15 @@
                 </div>
                 <div class="login-button">
                     <button type="submit">ログイン</button>
-                    <button onclick="location.href='/'" class="back">
+                    <button type="button" onclick="location.href='/'" class="back">
                         戻る
                     </button>
                 </div>
                 <br>
             </form>
             <div class="login-button02">
-                <div onclick="location.href='user'">新規会員登録</div>
-                <div onclick="location.href='pwreset'">パスワードを再設定</div>
+                <div onclick="location.href='user'">新規登録</div>
+                <div onclick="location.href='pwreset'">パスワード再設定</div>
             </div>
             <%--<div class="two_box">
                 <div>Add</div>

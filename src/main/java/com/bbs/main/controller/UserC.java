@@ -2,21 +2,23 @@ package com.bbs.main.controller;
 
 import com.bbs.main.service.LifeService;
 import com.bbs.main.service.UserService;
+import com.bbs.main.vo.LifeVO;
 import com.bbs.main.vo.UserVO;
 import jakarta.servlet.http.HttpSession;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 @Controller
 public class UserC {
@@ -139,8 +141,8 @@ public class UserC {
     }
 
     @PostMapping("update")
-    public String updatepage(UserVO registerVO, RedirectAttributes redirectAttributes, Model model) {
-        String msg = userService.updateUser(registerVO);
+    public String updatepage(UserVO userVO, RedirectAttributes redirectAttributes, Model model) {
+        String msg = userService.updateUser(userVO);
         System.out.println(111);
         if (msg.equals("내 정보가 변경되었습니다.")) {
             /*RegisterVO user = registerMapper.login(registerVO);
@@ -157,6 +159,42 @@ public class UserC {
     public List<Post> getUserPosts(@AuthenticationPrincipal User user) {
         return postService.getPostsByUser(user.getUserId());
     }*/
+
+    @PostMapping("/updatepfp")
+    public String updatepfp(@RequestParam("user_id") String user_id,
+                                       @RequestParam(value = "profileImage", required = false) MultipartFile profileImage,
+                                       HttpSession session, RedirectAttributes redirectAttributes) {
+        UserVO user = userService.getUserById(user_id); // 기존 사용자 정보 조회
+        if (user == null) {
+            redirectAttributes.addFlashAttribute("error", "ユーザー情報が見つかりません。");
+            return "redirect:/mypage";
+        }
+
+        userService.updatepfp(user, profileImage);
+
+        session.setAttribute("user", user); // 세션 업데이트
+        redirectAttributes.addFlashAttribute("success", "プロフィール写真を更新しました。");
+
+        return "redirect:/mypage";
+    }
+
+    @PostMapping("/deletepfp")
+    public String deletepfp(@RequestParam("user_id") String user_id,
+                                       HttpSession session, RedirectAttributes redirectAttributes) {
+        UserVO user = userService.getUserById(user_id); // 사용자 정보 조회
+        if (user == null) {
+            redirectAttributes.addFlashAttribute("error", "ユーザー情報が見つかりません。");
+            return "redirect:/mypage";
+        }
+
+        // 프로필 사진 삭제 (user_image를 null로 업데이트)
+        userService.deletepfp(user);
+
+        session.setAttribute("user", user); // 세션 업데이트
+        redirectAttributes.addFlashAttribute("success", "プロフィール写真を削除しました。");
+
+        return "redirect:/mypage";
+    }
 
 
 }

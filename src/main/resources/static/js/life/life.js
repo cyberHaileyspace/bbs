@@ -57,7 +57,7 @@ function submitReply() {
         .then(data => {
             if (data) {
                 alert("댓글이 등록되었습니다.");
-                loadReplies(); // 댓글을 성공적으로 등록한 후 댓글을 다시 불러옴
+                loadLifeReplies(); // 댓글을 성공적으로 등록한 후 댓글을 다시 불러옴
                 document.getElementById("replyContent").value = "";
             } else {
                 alert("댓글 등록 실패. 다시 시도해주세요.");
@@ -78,12 +78,12 @@ function editReply(r_id, r_writer, r_date, r_context) {
     // 댓글을 textarea로 변경
     commentDiv.innerHTML = `
         <div>
-        <span>작성자 : ${r_writer}</span> <br>
-        <span>작성일 : ${r_date}</span> <br>
+        <span>投稿者 : ${r_writer}</span> <br>
+        <span>投稿日 : ${r_date}</span> <br>
         <textarea id="edit-text-${r_id}" class="edit-textarea">${originalContent}</textarea>
         </div>
-        <button onclick="saveEdit('${r_id}', '${r_writer}', '${r_date}', '${originalContent}')">수정완료</button>
-        <button onclick="cancelEdit()">수정취소</button>
+        <button onclick="saveEdit('${r_id}', '${r_writer}', '${r_date}', '${originalContent}')">完了</button>
+        <button onclick="cancelEdit()">取消</button>
     `;
 }
 
@@ -132,7 +132,7 @@ function saveEdit(r_id, r_writer, r_date, originalContent) {
 
             if (!data || !data.success) {
                 alert("댓글이 수정되었습니다.");
-                loadReplies(); // 수정 성공 후 댓글 목록 갱신
+                loadLifeReplies(); // 수정 성공 후 댓글 목록 갱신
             } else {
                 alert("수정 실패! 서버 응답: " + JSON.stringify(data));
                 loadReplies(); // 수정 실패 후 댓글 목록 갱신
