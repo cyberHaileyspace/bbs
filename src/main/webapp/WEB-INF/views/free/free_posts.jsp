@@ -16,7 +16,7 @@
 <body>
 <div class="category">
     <div><span class="menu">すべて</span></div>
-    <div><span class="menu" data-val="생활 정보">生活情報</span></div>
+    <div><span class="menu" data-val="생활 정보">日常話史</span></div>
     <div><span class="menu" data-val="건강 정보">健康情報</span></div>
     <div><span class="menu" data-val="질문">質問</span></div>
     <div><span class="menu" data-val="후기">レビュー</span></div>

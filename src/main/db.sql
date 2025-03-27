@@ -73,7 +73,7 @@ CREATE TABLE Free_reply (
                               FOREIGN KEY (r_writer) REFERENCES User_DB (user_nickname) ON DELETE CASCADE
 );
 
-create sequence Free_reply;
+create sequence Free_reply_seq;
 
 insert into Free_reply (post_id, r_writer, r_context, r_date)values (2,'kim', '좋은글입니다.', systimestamp);
 
@@ -87,6 +87,103 @@ ALTER TABLE Free_reply
 
 drop table Free_reply;
 
+
+-- 추천 내역 테이블 생성
+create table free_Post_Like(
+                               l_id number(3) primary key,
+                               l_user_nickname varchar2(20 char),
+                               l_post_id number(3)
+);
+
+-- 외래 키 제약 조건 추가 (l_post_id는 Free_Post_DB의 post_id 참조)
+ALTER TABLE free_Post_Like
+    ADD CONSTRAINT fk_free_post
+        FOREIGN KEY (l_post_id)
+            REFERENCES Free_Post_DB (post_id)
+                ON DELETE CASCADE;
+
+
+-- 한 유저당 한 번만 추천하도록 유니크 제약 조건 추가
+ALTER TABLE free_Post_Like
+    ADD CONSTRAINT unique_user_post_like UNIQUE (l_user_nickname, l_post_id);
+
+-- 시퀀스 생성
+create sequence free_Post_Like_seq;
+
+-- 제약조건 먼저 삭제 (선택 사항이지만, 오류 방지를 위해 추천)
+ALTER TABLE free_Post_Like DROP CONSTRAINT fk_free_post;
+ALTER TABLE free_Post_Like DROP CONSTRAINT unique_user_post_like;
+
+-- 테이블 삭제
+DROP TABLE free_Post_Like;
+
+-- 시퀀스 삭제
+DROP SEQUENCE free_Post_Like_seq;
+
+-- 외래 키 제약 조건 추가 (l_post_id는 Free_Post_DB의 post_id 참조)
+ALTER TABLE free_Post_Like
+    ADD CONSTRAINT fk_free_post
+        FOREIGN KEY (l_post_id)
+            REFERENCES Free_Post_DB (post_id)
+                ON DELETE CASCADE;
+
+
+-- 한 유저당 한 번만 추천하도록 유니크 제약 조건 추가
+ALTER TABLE free_Post_Like
+    ADD CONSTRAINT unique_user_post_like UNIQUE (l_user_nickname, l_post_id);
+
+-- 시퀀스 생성
+create sequence free_Post_Like_seq;
+
+-- 제약조건 먼저 삭제 (선택 사항이지만, 오류 방지를 위해 추천)
+ALTER TABLE free_Post_Like DROP CONSTRAINT fk_free_post;
+ALTER TABLE free_Post_Like DROP CONSTRAINT unique_user_post_like;
+
+-- 테이블 삭제
+DROP TABLE free_Post_Like;
+
+-- 시퀀스 삭제
+DROP SEQUENCE free_Post_Like_seq;
+
+-- 추천 내역 테이블 생성
+CREATE TABLE free_Reply_Like (
+                                 l_id NUMBER(3) PRIMARY KEY,
+                                 l_user_nickname VARCHAR2(20 CHAR),
+                                 l_reply_id NUMBER(3)
+);
+
+-- 외래 키 제약 조건 추가 (l_reply_id는 Free_Reply의 r_id 참조)
+ALTER TABLE free_Reply_Like
+    ADD CONSTRAINT fk_free_reply
+        FOREIGN KEY (l_reply_id) REFERENCES Free_Reply(r_id)
+                ON DELETE CASCADE;
+
+-- 한 유저당 한 댓글에 한 번만 추천하도록 유니크 제약 조건 추가
+ALTER TABLE free_Reply_Like
+    ADD CONSTRAINT unique_user_reply_like UNIQUE (l_user_nickname, l_reply_id);
+
+-- 시퀀스 생성
+CREATE SEQUENCE free_Reply_Like_seq;
+
+SELECT constraint_name, constraint_type
+FROM user_constraints
+WHERE table_name = 'FREE_REPLY_LIKE';
+
+
+-- 제약조건 먼저 삭제
+ALTER TABLE free_Reply_Like DROP CONSTRAINT fk_free_reply;
+ALTER TABLE free_Reply_Like DROP CONSTRAINT unique_user_reply_like;
+
+-- 테이블 삭제
+DROP TABLE free_Reply_Like;
+
+-- 시퀀스 삭제
+DROP SEQUENCE free_Reply_Like_seq;
+
+delete al
+
+select * from free_Reply_Like;
+SELECT COUNT(*) FROM free_reply_like WHERE l_user_nickname =  AND l_reply_id = #{replyId}
 ----------------------------------------------------------------
 
 CREATE TABLE Life_reply (
@@ -246,6 +343,7 @@ from Life_Post_DB;
 
 update Life_Post_DB set post_view = 0 where post_id = 1;
 
+
 ----------------------------------------------------------------
 
 CREATE TABLE Tourist_Spot_DB
@@ -335,4 +433,5 @@ insert into like_tbl values (like_tbl_seq.nextval, 'test', 10);
 select  * from like_tbl;
 
 select * from like_tbl where l_user_id = 'test' and l_post_id = 11;
+
 

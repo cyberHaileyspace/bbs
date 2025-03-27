@@ -3,7 +3,8 @@ package com.bbs.main.service;
 import com.bbs.main.mapper.FreeMapper;
 import com.bbs.main.vo.FreeReplyVO;
 import com.bbs.main.vo.FreeVO;
-import com.bbs.main.vo.LifeVO;
+import com.bbs.main.vo.UserVO;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,12 +21,9 @@ public class FreeService {
 
     @Autowired
     private FreeMapper freeMapper;
+    @Autowired
+    private HttpSession session;
 
-
-    @Transactional
-    public void updateLike(int no) {
-        freeMapper.incrementLike(no);
-    }
 
     public int getLikeCount(int no) {
         return freeMapper.getLikeCount(no);
@@ -142,10 +140,23 @@ public class FreeService {
         return freeMapper.searchposts(title);
     }
 
-    public List<FreeReplyVO> getReplysPaged(int post_id, int offset, int size) {
-        List<FreeReplyVO> replies =  freeMapper.getPagedReplies(post_id, offset, size);
+
+    public List<FreeReplyVO> getReplysPaged(int postId, int offset, int size) {
+        List<FreeReplyVO> replies = freeMapper.getPagedReplies(postId, offset, size);
+        UserVO user = (UserVO) session.getAttribute("user");
+        String nickname = user != null ? user.getUser_nickname() : null;
+
+        for (FreeReplyVO reply : replies) {
+            boolean liked = false;
+            if (nickname != null) {
+                liked = freeMapper.existsReplyLike(nickname, reply.getR_id()) > 0;
+            }
+            reply.setLikedByCurrentUser(liked);
+        }
+
         return replies;
     }
+
 
     public int getTotalReplyCount(int post_id) {
         return freeMapper.countByPostId(post_id);
@@ -155,19 +166,78 @@ public class FreeService {
         return freeMapper.getCount(postId);
     }
 
-    @Transactional
-    public void updateReplyLike(int no) {
-        freeMapper.incrementReplyLike(no);
-    }
-
     public int getReplyLikeCount(int no) {
         return freeMapper.getReplyLikeCount(no);
     }
-
 
     public List<FreeReplyVO> getReplysSortedByLike(int postId, int offset, int size) {
         return freeMapper.getPagedRepliesSortedByLike(postId, offset, size);
     }
 
-//
+    @Transactional
+    public void updateLike(int no) {
+        freeMapper.incrementLike(no);
+    }
+
+    public void updateUnlike(int no) { freeMapper.updateUnlike(no);
+
+    }
+    public boolean toggleLike(int postId, String userNickname) {
+        // 현재 해당 유저가 이 게시글에 추천 기록이 있는지 확인합니다.
+        int count = freeMapper.existsLike(userNickname, postId);
+        if (count > 0) {
+            // 이미 추천한 상태라면, 추천 기록을 삭제(좋아요 취소)
+            freeMapper.deleteLike(userNickname, postId);
+            // 게시글의 추천 수를 감소시킵니다.
+            updateUnlike(postId);  // 내부적으로 freeMapper.updateUnlike(no)를 호출
+            return false; // 추천 취소 상태 반환
+        } else {
+            // 추천한 기록이 없다면, 추천 기록을 추가
+            freeMapper.insertLike(userNickname, postId);
+            // 게시글의 추천 수를 증가시킵니다.
+            updateLike(postId);  // 내부적으로 freeMapper.incrementLike(no)를 호출
+            return true; // 추천된 상태 반환
+        }
+    }
+
+    public boolean hasUserLiked(int postId, String nickname) {
+        System.out.println(postId);
+        System.out.println(nickname);
+        return freeMapper.existsLike(nickname, postId) > 0;
+    }
+
+
+    @Transactional
+    public void updateReplyLike(int no) {
+        freeMapper.incrementReplyLike(no);
+    }
+
+    public void updateReplyUnlike(int no) {
+        freeMapper.updateReplyUnlike(no);
+    }
+
+    public boolean toggleReplyLike(int rId, String userNickname) {
+        // 현재 해당 유저가 이 게시글에 추천 기록이 있는지 확인합니다.
+        int count = freeMapper.existsReplyLike(userNickname, rId);
+        if (count > 0) {
+            // 이미 추천한 상태라면, 추천 기록을 삭제(좋아요 취소)
+            freeMapper.deleteReplyLike(userNickname, rId);
+            // 게시글의 추천 수를 감소시킵니다.
+            updateReplyUnlike(rId);  // 내부적으로 freeMapper.updateUnlike(no)를 호출
+            return false; // 추천 취소 상태 반환
+        } else {
+            // 추천한 기록이 없다면, 추천 기록을 추가
+            freeMapper.insertReplyLike(userNickname, rId);
+            // 게시글의 추천 수를 증가시킵니다.
+            updateReplyLike(rId);  // 내부적으로 freeMapper.incrementLike(no)를 호출
+            return true; // 추천된 상태 반환
+        }
+    }
+
+    public boolean
+    hasUserReplyLiked(int rId, String nickname) {
+        System.out.println(rId);
+        System.out.println(nickname);
+        return freeMapper.existsReplyLike(nickname, rId) > 0;
+    }
 }
