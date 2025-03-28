@@ -5,6 +5,7 @@ import com.bbs.main.vo.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -49,6 +50,7 @@ public class UserService {
 
     public String loginuser(UserVO registerVO, HttpSession httpSession) {
         UserVO user = userMapper.login(registerVO);
+
         if (user != null) {
             if (registerVO.getUser_pw().equals(user.getUser_pw())) {
                 httpSession.setAttribute("user", user);
@@ -100,12 +102,20 @@ public class UserService {
         return userMapper.getMyLifePosts(user_id);
     }
 
+    public List<LifeVO> getMyTourPosts(String user_id) {
+        return userMapper.getMyTourPosts(user_id);
+    }
+
     public List<FreeReplyVO> getMyFreePostReplies(String user_nickname) {
         return userMapper.getMyFreePostReplies(user_nickname);
     }
 
     public List<LifeReplyVO> getMyLifePostReplies(String user_nickname) {
         return userMapper.getMyLifePostReplies(user_nickname);
+    }
+
+    public List<LifeReplyVO> getMyTourPostReplies(String user_nickname) {
+        return userMapper.getMyTourPostReplies(user_nickname);
     }
 
     public UserVO getUserById(String user_id) {
@@ -160,7 +170,7 @@ public class UserService {
                 oldFile.delete();
             }
         }
-
+        System.out.println("111");
         // user_image를 null로 설정
         user.setUser_image(null);
 

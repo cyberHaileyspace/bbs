@@ -64,7 +64,7 @@
 
 
     <div class="tab-content show" id="posts">
-        <div style="width: 45%; margin: 20px">
+        <div style="width: 30%; margin: 20px">
             <h3>自由掲示板</h3>
             <c:forEach items="${freePosts}" var="p">
                 <div class="item" <%--onclick="goToPost(${p.post_id})"--%>>
@@ -83,7 +83,7 @@
                         </div>
                         <div class="life-title">${p.post_title }</div>
                         <div class="life-context">
-                            <div class="life-text"><span>${p.post_context }</span></div>
+                            <%--<div class="life-text"><span>${p.post_context }</span></div>--%>
                             <div class="life-image"><img alt="" src="img/post/${p.post_image }"></div>
                         </div>
                         <div class="life-info">
@@ -111,7 +111,7 @@
                 </div>
             </div>--%>
         </div>
-        <div style="width: 45%; margin: 20px">
+        <div style="width: 30%; margin: 20px">
             <h3>生活掲示板</h3>
             <c:forEach items="${lifePosts}" var="p">
                 <div class="item">
@@ -130,7 +130,43 @@
                         </div>
                         <div class="life-title">${p.post_title }</div>
                         <div class="life-context">
-                            <div class="life-text"><span>${p.post_context }</span></div>
+                            <%--<div class="life-text"><span>${p.post_context }</span></div>--%>
+                            <div class="life-image"><img alt="" src="img/post/${p.post_image }"></div>
+                        </div>
+                        <div class="life-info">
+                            <div style="display: flex">
+                                <div class="info-name">投稿者 : ${p.user_nickname }</div>&nbsp;/&nbsp;
+                                <div class="info-date">投稿日 : <fmt:formatDate value="${p.post_date}" pattern="yyyy-MM-dd HH:mm"/></div>
+                            </div>
+                            <div style="display: flex">
+                                <div class="info-view">閲覧数 : ${p.post_view }</div>&nbsp;/&nbsp;
+                                <div class="info-like">いいね : ${p.post_like }</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+        <div style="width: 30%; margin: 20px">
+            <h3>観光掲示板</h3>
+            <c:forEach items="${tourPosts}" var="p">
+                <div class="item">
+                        <%--<div>번호 : ${l.post_id}</div>
+                        <div>제목 : ${l.post_title}</div>
+                        <div>작성자 : ${l.user_nickname}</div>
+                        <div>작성일 : <fmt:formatDate value="${l.post_date}" pattern="yyyy-MM-dd"/></div>--%>
+                        <%--<div>
+                            <button onclick="location.href='delete?pk=${p.p_no}'">삭제</button>
+                        </div>--%>
+                    <div class="post-life" onclick="goTotourPost(${p.post_id})">
+                        <div class="life-kind">
+                            <div class="life-no">番号 : ${p.post_id }</div>&nbsp;/&nbsp;
+                            <%--<div class="life-cate">カテゴリー : ${p.post_category }</div>&nbsp;/&nbsp;--%>
+                            <div class="life-menu">地域 : ${p.post_menu }</div>
+                        </div>
+                        <div class="life-title">${p.post_title }</div>
+                        <div class="life-context">
+                            <%--<div class="life-text"><span>${p.post_context }</span></div>--%>
                             <div class="life-image"><img alt="" src="img/post/${p.post_image }"></div>
                         </div>
                         <div class="life-info">
@@ -149,7 +185,7 @@
         </div>
     </div>
     <div class="tab-content" id="comments">
-        <div style="width: 45%; margin: 20px">
+        <div style="width: 30%; margin: 20px">
             <h3>自由掲示板</h3>
             <c:forEach items="${freePostReplies}" var="fr">
                 <%--<div>${fr}</div>--%>
@@ -201,11 +237,19 @@
                 </div>
             </div>--%>
         </div>
-        <div style="width: 45%; margin: 20px">
+        <div style="width: 30%; margin: 20px">
             <h3>生活掲示板</h3>
             <c:forEach items="${lifePostReplies}" var="lr">
                 <div class="life-context">
                     <div class="life-reply-text">${lr.r_context}&nbsp;/&nbsp;${lr.r_date}</div>
+                </div>
+            </c:forEach>
+        </div>
+        <div style="width: 30%; margin: 20px">
+            <h3>観光掲示板</h3>
+            <c:forEach items="${tourPostReplies}" var="tr">
+                <div class="tour-context">
+                    <div class="life-reply-text">${tr.r_context}&nbsp;/&nbsp;${tr.r_date}</div>
                 </div>
             </c:forEach>
         </div>
@@ -274,14 +318,22 @@
         sessionStorage.setItem("viewToken", token);
         location.href = "main/life/" + postId + "?token=" + token;
     }
+
+    function goTotourPost(postId) {
+        const token = generateToken();
+        sessionStorage.setItem("viewToken", token);
+        location.href = "main/tour/" + postId + "?token=" + token;
+    }
 </script>
 <script>
     function deletepfp() {
+
         if (confirm("本当にプロフィール写真を削除しますか？")) {
-            fetch('/deletepfp', {
+            fetch('deletepfp', {
                 method: 'POST',
                 body: new FormData(document.getElementById('profile'))
             }).then(response => {
+                console.log(response)
                 if (response.redirected) {
                     window.location.href = response.url;
                 }

@@ -33,7 +33,7 @@
 <body>
 <div class="content">
     <div class="main02">
-        <form action="update" method="post">
+        <form action="update" method="post" id="my-form">
             <div class="title"><h1>マイ情報再設定ページ</h1></div>
             <div class="center">
                 <div class="id" hidden="hidden">
@@ -42,19 +42,19 @@
                 </div>
                 <div class="name">
                     <div>氏名</div>
-                    <div><input name="user_name" id="user_name" type="text" placeholder="${user.user_name}"></div>
+                    <div><input name="user_name" id="user_name" value="${user.user_name}" type="text" placeholder="${user.user_name}"></div>
                 </div>
                 <div class="nickname">
                     <div>ニックネーム</div>
-                    <div><input name="user_nickname" id="user_nickname" type="text" placeholder="${user.user_nickname}"></div>
+                    <div><input name="user_nickname" id="user_nickname" value="${user.user_nickname}" type="text" placeholder="${user.user_nickname}"></div>
                     <span id="nick_check" style="color: red; font-size: 12px"></span>
-                    <button type="button" id="nick_check_btn">重複チェック</button>
+                    <button type="button" id="nick_check_btn" value="0">重複チェック</button>
                 </div>
                 <div class="email">
                     <div>メールアドレス</div>
-                    <div><input name="user_email" id="user_email" type="text" placeholder="${user.user_email}"></div>
+                    <div><input name="user_email" id="user_email" value="${user.user_email}" type="text" placeholder="${user.user_email}"></div>
                     <span id="email_check" style="color: red; font-size: 12px"></span>
-                    <button type="button" id="email_check_btn">重複チェック</button>
+                    <button type="button" id="email_check_btn" value="0">重複チェック</button>
                 </div>
                 <div class="login-button">
                     <%--<button onclick="location.href='/'" class="back">
@@ -97,42 +97,16 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
-        $("#id_check_btn").click(function() {
-            let userId = $("#user_id").val().trim();
-            let msgBox = $("#id_check");
+        $("#my-form").submit((e)=>{
+           e.preventDefault();
+           console.log($("#nick_check_btn").val())
+           console.log($("#email_check_btn").val())
 
-            // 정규식: 영문 대소문자 + 숫자 6~16자
-            let idPattern = /^[a-zA-Z0-9]{6,16}$/;
+           if ($("#nick_check_btn").val() == 0) {alert('nick name check plz'); return;}
+           if ($("#email_check_btn").val() == 0) {alert('email check plz'); return;}
+            $("#my-form").unbind("submit").submit();
 
-            // 입력값이 없는 경우
-            if (userId === "") {
-                msgBox.text("ユーザーIDを入力してください。");
-                return;
-            }
 
-            // 정규식 검사 실패
-            if (!idPattern.test(userId)) {
-                msgBox.text("ユーザーIDは半角英数字6～16文字で入力してください。");
-                return;
-            }
-
-            // AJAX를 이용한 중복 검사
-            $.ajax({
-                url: "/idcheck",  // Spring Boot 컨트롤러와 매핑된 URL
-                type: "POST",
-                contentType: "application/json",
-                data: JSON.stringify({ user_id: userId }),
-                success: function(response) {
-                    if (response.exists) {
-                        msgBox.text("すでに使用されているIDです。");
-                    } else {
-                        msgBox.css("color", "blue").text("使用可能なIDです。");
-                    }
-                },
-                error: function() {
-                    msgBox.text("サーバーエラーが発生しました。");
-                }
-            });
         });
     });
 
@@ -166,6 +140,7 @@
                     if (response.exists) {
                         msgBox.text("すでに使用されているニックネームです。");
                     } else {
+                        $("#nick_check_btn").val(1);
                         msgBox.css("color", "blue").text("使用可能なニックネームです。");
                     }
                 },
@@ -206,6 +181,7 @@
                     if (response.exists) {
                         msgBox.text("すでに使用されているメールアドレスです。");
                     } else {
+                        $("#email_check_btn").val(1);
                         msgBox.css("color", "blue").text("使用可能なメールアドレスです。");
                     }
                 },

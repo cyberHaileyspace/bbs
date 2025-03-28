@@ -1,3 +1,26 @@
+function deletePost(no) {
+    if (confirm('本当に削除しますか？')) {
+        fetch('/main/free/' + no, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(response => response.json())  // JSON 응답을 받음
+            .then(data => {
+                if (data.success) {
+                    alert('削除されました.');
+                    location.href = '/main/free';
+                } else {
+                    alert('로그인이 필요합니다.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+}
+
 function generateToken() {
     const now = new Date();
     return now.getMinutes() + ":" + now.getSeconds();  // "mm:ss" 형식
@@ -15,7 +38,7 @@ function logincheck(user) {
     if (user)
         location.href = "free/reg";
     else {
-        alert("먼저 로그인을 해주세요.");
+        alert("先にログインしてください。");
         location.href = "/login"
     }
 }
@@ -50,7 +73,7 @@ function paging(data) {
 
     if (totalItems === 0) {
         console.log("게시글 없음. 페이지네이션 숨김.");
-        $("#post-container").html("<p>게시글이 없습니다.</p>");  // 게시글 없음 메시지 표시
+        $("#post-container").html("<p>まだ投稿がありません。</p>");  // 게시글 없음 메시지 표시
         return;  // ⛔ 데이터가 없으면 페이지네이션 생성 X
     }
 
@@ -84,9 +107,9 @@ function renderPosts(posts) {
             "<div class='item'>" +
             "<div class='post-life' onclick='goToPost(" + p.post_id + ")'>" +
             "<div class='life-kind'>" +
-            "<div class='life-no'>번호: " + p.post_id + "</div>&nbsp;/&nbsp;" +
-            "<div class='life-cate'>카테고리: " + p.post_category + "</div>&nbsp;/&nbsp;" +
-            "<div class='life-menu'>지역: " + p.post_menu + "</div>" +
+            "<div class='life-no'>掲示番号：" + p.post_id + "</div>&nbsp;/&nbsp;" +
+            "<div class='life-cate'>カテゴリ：" + p.post_category + "</div>&nbsp;/&nbsp;" +
+            "<div class='life-menu'>地域：" + p.post_menu + "</div>" +
             "</div>" +
             "<div class='life-title'>" + p.post_title + "</div>" +
             "<div class='life-context'>" +
@@ -95,13 +118,13 @@ function renderPosts(posts) {
             "</div>" +
             "<div class='life-info'>" +
             "<div style='display: flex'>" +
-            "<div class='info-name'>작성자: " + p.user_nickname + "</div>&nbsp;/&nbsp;" +
-            "<div class='info-date'>작성일: " + formattedDate + "</div>" +
+            "<div class='info-name'>投稿者：" + p.user_nickname + "</div>&nbsp;/&nbsp;" +
+            "<div class='info-date'>作成日：" + formattedDate + "</div>" +
             "</div>" +
             "<div style='display: flex'>" +
-            "<div class='info-view'>조회수: " + p.post_view + "</div>&nbsp;/&nbsp;" +
-            "<div class='info-like'>추천수: " + p.post_like + "</div>&nbsp;/&nbsp;" +
-            "<div class='info-reply'>댓글수: " + p.reply_count + "</div>"
+            "<div class='info-view'>閲覧数：" + p.post_view + "</div>&nbsp;/&nbsp;" +
+            "<div class='info-like'>いいね：" + p.post_like + "</div>&nbsp;/&nbsp;" +
+            "<div class='info-reply'>コメント：" + p.reply_count + "</div>"
             +
             "</div>" +
             "</div>" +
@@ -154,7 +177,7 @@ function categoryHandler() {
                 if (resData.length !== 0) {
                     paging(resData);
                 } else {
-                    $("#post-container").text("게시글이 없습니다.");
+                    $("#post-container").text("投稿がありません。");
                 }
             })
             .fail(function (xhr) {

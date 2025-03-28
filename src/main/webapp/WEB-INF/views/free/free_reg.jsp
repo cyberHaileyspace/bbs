@@ -70,8 +70,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
           </select>
         </div>
         <div>
-          <div>지역</div>
-
+          <div>地域</div>
           <select name="post_menu">
             <option value="ソウル">ソウル</option>
             <option value="京畿／仁川">京畿／仁川</option>
@@ -126,30 +125,44 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
   </body>
   <script type="text/javascript" id="smartEditor">
     var oEditors = [];
-    //스마트에디터 프레임 생성
+
+    // 스마트에디터 프레임 생성
     nhn.husky.EZCreator.createInIFrame({
       oAppRef: oEditors,
-      elPlaceHolder: "writearea", //<textarea> ID 값 입력.
+      elPlaceHolder: "writearea",
       sSkinURI: "/resources/nse_files/SmartEditor2Skin.html",
       fCreator: "creatorSEditor2",
       htParams: {
-        // toolbar 사용 여부
         bUseToolbar: true,
-        // 입력창 크기 조절바 사용 여부
         bUseVericalResizer: true,
-        // 모드탭 (Editor|HTML|TEXT)
         bUseModeChanger: true,
-        //변경사항이 저장 되지 않을 수 있습니다 경고창 제거
         fOnBeforeUnload: function () {},
       },
     });
 
     document.querySelector(".reg-post").addEventListener("click", function (e) {
+      // 스마트에디터 내용 → textarea로 업데이트
       oEditors.getById["writearea"].exec("UPDATE_CONTENTS_FIELD", []);
-      console.log(
-        oEditors.getById["writearea"].exec("UPDATE_CONTENTS_FILED", [])
-      );
-      $("#writereg").submit();
+
+      // 제목과 내용 가져오기
+      const title = document.querySelector("textarea[name='post_title']").value.trim();
+      const content = document.querySelector("textarea[name='post_context']").value.trim();
+
+      if (!title) {
+        alert("タイトルを入力してください。");
+        e.preventDefault(); // 폼 제출 막기
+        return;
+      }
+
+      if (!content) {
+        alert("内容を入力してください。");
+        e.preventDefault(); // 폼 제출 막기
+        return;
+      }
+
+      // 검증 통과 시 submit
+      document.getElementById("freeReg").submit();
     });
   </script>
+
 </html>

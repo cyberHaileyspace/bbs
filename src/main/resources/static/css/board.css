@@ -142,8 +142,8 @@
     justify-content: space-around;
     align-items: center;
     padding: 10px 20px;
-    border-radius: 0px 0px 50px 50px;
-    margin-bottom: 10px;
+    border-radius: 10px;
+    margin-bottom: 15px;
     gap: 20px;
     background-color: #585c5e;
     color: #fff1f1;
