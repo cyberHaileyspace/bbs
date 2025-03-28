@@ -1,6 +1,6 @@
 function handleToiletReplySubmit(user_nickname) {
     if (user_nickname) {
-        submitToiletReply();
+        submitReply();
     } else {
         alert("先にログインしてください。");
         window.location.href = "/login";
@@ -67,7 +67,7 @@ function cancelEdit(r_id, r_writer, r_date, originalContent) {
               <span>投稿日時 : ${r_date}</span> <br>
               <p id="reply-context" class="edit-textarea">${originalContent}</p>
             </div>
-            <button onclick="editToiletReply('${r_id}', '${r_writer}', '${r_date}', '${originalContent}')">修正</button>
+            <button onclick="editReply('${r_id}', '${r_writer}', '${r_date}', '${originalContent}')">修正</button>
             <button onclick="deleteReply(${r_id})">削除</button>
         `;
     }

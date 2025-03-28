@@ -1,5 +1,5 @@
 function deletePost(no) {
-    if (confirm('本当に削除しますか?')) {
+    if (confirm('本当に削除しますか？')) {
         fetch('/main/toilet/' + no, {
             method: 'DELETE',
             headers: {
@@ -68,7 +68,7 @@ function paging(data) {
     $("#pagination-container").empty();
     $("#post-container").empty();
 
-    const itemsPerPage = 5; // 한 페이지당 게시글 수
+    const itemsPerPage = 6; // 한 페이지당 게시글 수
     const totalItems = data.length;
 
     if (totalItems === 0) {
@@ -96,45 +96,84 @@ function paging(data) {
 }
 
 function renderPosts(posts) {
-
     $("#post-container").empty(); // 기존 게시글 제거
-    let postHtml = "";
+    let postHtml = '<div class="toilet-grid">';
 
     posts.forEach(p => {
         const formattedDate = new Date(p.post_date).toISOString().split('T')[0];
-        console.log(posts);
-        postHtml +=
-            "<div class='item'>" +
-            "<div class='post-life' onclick='goToPost(" + p.post_id + ")'>" +
-            "<div class='life-kind'>" +
-            "<div class='life-no'>掲示番号：" + p.post_id + "</div>&nbsp;/&nbsp;" +
-            "<div class='life-cate'>カテゴリ：" + p.post_category + "</div>&nbsp;/&nbsp;" +
-            "<div class='life-menu'>地域：" + p.post_menu + "</div>" +
-            "</div>" +
-            "<div class='life-title'>" + p.post_title + "</div>" +
-            "<div class='life-context'>" +
-            "<div class='life-text'><span>" + p.post_context + "</span></div>" +
-            "<div class='life-image'><img alt='' src='img/post/" + p.post_image + "'></div>" +
-            "</div>" +
-            "<div class='life-info'>" +
-            "<div style='display: flex'>" +
-            "<div class='info-name'>投稿者：" + p.user_nickname + "</div>&nbsp;/&nbsp;" +
-            "<div class='info-date'>作成日：" + formattedDate + "</div>" +
-            "</div>" +
-            "<div style='display: flex'>" +
-            "<div class='info-view'>閲覧数：" + p.post_view + "</div>&nbsp;/&nbsp;" +
-            "<div class='info-like'>いいね：" + p.post_like + "</div>&nbsp;/&nbsp;" +
-            "<div class='info-reply'>コメント：" + p.reply_count + "</div>"
-            +
-            "</div>" +
-            "</div>" +
-            "</div>" +
-            "</div>";
-    });
-    console.log("새로운 데이터 추가 완료");
-    return postHtml;
+        const postData = encodeURIComponent(JSON.stringify(p));  // 안전하게 인코딩
 
+        postHtml += `
+        <div class="toilet-item">
+            <div class="toilet-card" data-post='${postData}'>
+                <div class="toilet-meta">
+                    <div class="toilet-id">掲示番号：${p.post_id}</div>
+                    <div class="toilet-category">カテゴリ：${p.post_category}</div>
+                    <div class="toilet-region">地域：${p.post_menu}</div>
+                </div>
+                <div class="toilet-title">${p.post_title}</div>
+                <div class="toilet-body">
+                    <div class="toilet-text"><span>${p.post_context}</span></div>
+                    <div class="toilet-image">
+                        ${p.post_image ? `<img src='img/post/${p.post_image}' alt=''>` : ""}
+                    </div>
+                </div>
+                <div class="toilet-info">
+                    <div class="toilet-writer">投稿者：${p.user_nickname}</div>
+                    <div class="toilet-date">作成日：${formattedDate}</div>
+                    <div class="toilet-stats">
+                        閲覧数：${p.post_view} ／ いいね：${p.post_like} ／ コメント：${p.reply_count}
+                    </div>
+                </div>
+            </div>
+        </div>`;
+    });
+
+    postHtml += '</div>';
+    return postHtml;
 }
+
+document.addEventListener("click", function (e) {
+    const card = e.target.closest(".toilet-card");
+    console.log("카드 요소:", card); // ✅ 디버깅용
+
+    if (card && card.dataset.post) {
+        try {
+            const postData = JSON.parse(decodeURIComponent(card.dataset.post));
+            openToiletModal(postData);
+        } catch (err) {
+            console.error("모달 데이터 파싱 실패:", err);
+        }
+    }
+});
+
+
+
+function openToiletModal(p) {
+    const formattedDate = new Date(p.post_date).toISOString().split('T')[0];
+
+    const modalHtml = `
+        <div class="toilet-modal-overlay" onclick="closeToiletModal()"></div>
+        <div class="toilet-modal">
+            <h2>${p.post_title}</h2>
+            <p class="toilet-modal-meta">${p.user_nickname} ・ ${formattedDate}</p>
+            <div class="toilet-modal-content">${p.post_context}</div>
+            <div class="toilet-modal-actions">
+                <button onclick="toggleLike(${p.post_id}, this)">❤️ いいね：${p.post_like}</button>
+                <button onclick="goToPost(${p.post_id})">▶ 詳しく見る</button>
+            </div>
+        </div>
+    `;
+    document.body.insertAdjacentHTML("beforeend", modalHtml);
+}
+
+
+function closeToiletModal() {
+    document.querySelector(".toilet-modal")?.remove();
+    document.querySelector(".toilet-modal-overlay")?.remove();
+}
+
+
 
 function optionHandler() {
     $("input[name='option']").change(function () {

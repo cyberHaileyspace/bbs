@@ -101,36 +101,6 @@ public class ToiletC {
         return toiletService.getsorts(option);
     }
 
-    @PostMapping("/like/{post_id}")
-    @ResponseBody
-    public Map<String, Object> like(@PathVariable("post_id") int postId, HttpSession session) {
-        Map<String, Object> response = new HashMap<>();
-        if (userService.loginChk(session)) {
-            toiletService.updateLike(postId);
-            int newLikeCount = toiletService.getLikeCount(postId);
-            response.put("success", true);
-            response.put("newLikeCount", newLikeCount);
-        } else {
-            response.put("success", false);
-        }
-        return response;
-    }
-
-    @PostMapping("/unlike/{post_id}")
-    @ResponseBody
-    public Map<String, Object> unlike(@PathVariable("post_id") int postId, HttpSession session) {
-        Map<String, Object> response = new HashMap<>();
-        if (userService.loginChk(session)) {
-            toiletService.updateUnlike(postId);
-            int newLikeCount = toiletService.getLikeCount(postId);
-            response.put("success", true);
-            response.put("newLikeCount", newLikeCount);
-        } else {
-            response.put("success", false);
-        }
-        return response;
-    }
-
     @PostMapping("/toggle/{post_id}")
     @ResponseBody
     public Map<String, Object> toggleLike(@PathVariable("post_id") int postId, HttpSession session) {

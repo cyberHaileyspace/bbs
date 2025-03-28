@@ -1,5 +1,5 @@
 function deletePost(no) {
-    if (confirm('本当に削除しますか')) {
+    if (confirm('本当に削除しますか？')) {
         fetch('/main/free/' + no, {
             method: 'DELETE',
             headers: {

@@ -65,13 +65,15 @@
         </div>
     </div>
     <div>
-        <button class="reg-cancel" type="button" onclick="history.back()">キャンセル</button>
-        <button class="reg-post" type="submit" name="post_id" value="${post.post_id}">投稿</button>
+        <button class="reg-cancel" type="button" onclick="history.back()">取り消し</button>
+        <button class="reg-post" type="submit" name="post_id" value="${post.post_id}">修正完了</button>
     </div>
 </form>
 </body>
 <script type="text/javascript" id="smartEditor">
     var oEditors = [];
+
+    // 스마트에디터 프레임 생성
     nhn.husky.EZCreator.createInIFrame({
         oAppRef: oEditors,
         elPlaceHolder: "writearea",
@@ -81,14 +83,33 @@
             bUseToolbar: true,
             bUseVericalResizer: true,
             bUseModeChanger: true,
-            fOnBeforeUnload: function () {}
-        }
+            fOnBeforeUnload: function () {},
+        },
     });
 
     document.querySelector(".reg-post").addEventListener("click", function (e) {
+        // 스마트에디터 내용 → textarea로 업데이트
         oEditors.getById["writearea"].exec("UPDATE_CONTENTS_FIELD", []);
-        console.log(oEditors.getById["writearea"].exec("UPDATE_CONTENTS_FILED", []));
-        $("#writereg").submit();
+
+        // 제목과 내용 가져오기
+        const title = document.querySelector("textarea[name='post_title']").value.trim();
+        const content = document.querySelector("textarea[name='post_context']").value.trim();
+
+        if (!title) {
+            alert("タイトルを入力してください。");
+            e.preventDefault(); // 폼 제출 막기
+            return;
+        }
+
+        if (!content) {
+            alert("内容を入力してください。");
+            e.preventDefault(); // 폼 제출 막기
+            return;
+        }
+
+        // 검증 통과 시 submit
+        document.getElementById("freeReg").submit();
     });
 </script>
+
 </html>

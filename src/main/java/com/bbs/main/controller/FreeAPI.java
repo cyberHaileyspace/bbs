@@ -78,40 +78,6 @@ public class FreeAPI {
         return freeService.getTotalReplyCount(post_id); // DB에서 count(*) 해주는 메서드
     }
 
-    @PostMapping("/like/{post_id}")
-    @ResponseBody // JSON 응답을 위한 애너테이션
-    public Map<String, Object> freeReplylike(@PathVariable("post_id") int no, HttpSession session) {
-        Map<String, Object> response = new HashMap<>();
-
-        if (userService.loginChk(session)) {
-            freeService.updateReplyLike(no); // 추천수 업데이트
-            int newReplyLikeCount = freeService.
-                    getReplyLikeCount(no); // 새로운 추천수 가져오기
-            response.put("success", true);
-            response.put("newReplyLikeCount", newReplyLikeCount);
-        } else {
-            response.put("success", false);
-        }
-        return response; // JSON 형태로 반환
-    }
-
-    @PostMapping("/unlike/{post_id}")
-    @ResponseBody // JSON 응답을 위한 애너테이션
-    public Map<String, Object> freeReplyUnlike(@PathVariable("post_id") int no, HttpSession session) {
-        Map<String, Object> response = new HashMap<>();
-
-        if (userService.loginChk(session)) {
-            freeService.updateReplyUnlike(no); // 추천 취소 기능: 추천수를 감소시키는 로직
-            int newReplyLikeCount = freeService.getReplyLikeCount(no); // 새로운 추천수 가져오기
-            response.put("success", true);
-            response.put("newReplyLikeCount", newReplyLikeCount);
-        } else {
-            response.put("success", false);
-        }
-
-        return response; // JSON 형태로 반환
-    }
-
 
     @PostMapping("/toggle/{r_id}")
     @ResponseBody
