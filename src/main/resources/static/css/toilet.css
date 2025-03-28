@@ -1,0 +1,47 @@
+/* toilet 전용 스타일 */
+.toilet-item {
+    width: 30%;
+    margin: 1%;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+    transition: transform 0.2s ease;
+}
+
+.toilet-item:hover {
+    transform: translateY(-5px);
+}
+
+#post-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.toilet-modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.toilet-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 2rem;
+    width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    border-radius: 10px;
+}

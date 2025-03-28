@@ -1,27 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+         pageEncoding="UTF-8" %> <%@ taglib prefix="c"
+                                            uri="http://java.sun.com/jsp/jstl/core" %> <%@ taglib
+        uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Title</title>
-    <%-- <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /> --%>
-    <script type="text/javascript" src="/resources/nse_files/js/HuskyEZCreator.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="/resources/css/sample.css">
+    <script
+            type="text/javascript"
+            src="/resources/nse_files/js/HuskyEZCreator.js"
+            charset="utf-8"
+    ></script>
+    <link rel="stylesheet" href="/resources/css/sample.css" />
 </head>
 <body>
-<form id="writereg" action="/main/free/update" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="post_id" value="${post.post_id}">  <!-- 여기에 post_id 추가 -->
+<form
+        id="toiletReg"
+        action="/main/toilet"
+        method="post"
+        enctype="multipart/form-data"
+>
     <div>
         <div hidden="hidden">
-            ニックネーム : <input name="user_nickname" value="${user.user_nickname}" type="text"
-                         placeholder="${user.user_nickname}" readonly></div>
+            ニックネーム :
+            <input
+                    name="user_nickname"
+                    value="${user.user_nickname}"
+                    type="text"
+                    placeholder="${user.user_nickname}"
+                    readonly
+            />
+        </div>
         <div>カテゴリー</div>
-        ${post.post_id}
         <div>
-
             <select name="post_category">
                 <option value="生活情報">生活情報</option>
                 <option value="健康情報">健康情報</option>
@@ -30,52 +42,57 @@
             </select>
         </div>
         <div>
-            <div>지역</div>
+            <div>地域</div>
 
             <select name="post_menu">
                 <option value="ソウル">ソウル</option>
                 <option value="京畿／仁川">京畿／仁川</option>
-                <option value="忠清／大田">忠清／大田</option>
+                <option value="忠正／大田">忠正／大田</option>
                 <option value="全羅／光州">全羅／光州</option>
-                <option value="慶北／大邱">慶北／大邱</option>
-                <option value="慶南／釜山／蔚山">慶南／釜山／蔚山</option>
-                <option value="江原">江原</option>
-                <option value="済州">済州</option>
+                <option value="慶北／大都">慶北／大都</option>
+                <option value="慶南／釜山／蓬山">慶南／釜山／蓬山</option>
+                <option value="治原">治原</option>
+                <option value="濟州">濟州</option>
             </select>
         </div>
     </div>
 
     <div>
         <div>タイトル</div>
-        <div><textarea name="post_title" rows="5" cols="100" style="resize: none;">${post.post_title}
-        </textarea>
+        <div>
+          <textarea
+                  name="post_title"
+                  rows="5"
+                  cols="100"
+                  placeholder="タイトルを入力してください。"
+                  style="resize: none"
+          ></textarea>
         </div>
     </div>
 
     <div>
         <div>内容</div>
         <div>
-            <textarea name="post_context" id="writearea" value="post_context" rows="25" cols="100">${post.post_context}
-            </textarea>
+          <textarea
+                  name="post_context"
+                  id="writearea"
+                  value="post_context"
+                  rows="25"
+                  cols="100"
+                  placeholder="内容を入力してください。"
+          ></textarea>
         </div>
     </div>
     <div>
-
         <div>
-            <div>現在のファイル :
-            <c:if test="${not empty post.post_image}">
-                <span>${post.post_image}</span> <!-- 기존 파일명 표시 -->
-                <input type="hidden" name="existing_post_image" value="${post.post_image}">
-            </c:if>
-            </div>
-            <div>
-                <input type="file" name="post_file" id="btnAtt">
-            </div>
+            <input type="file" name="post_file" id="btnAtt" />
         </div>
     </div>
     <div>
-        <button class="reg-cancel" type="button" onclick="history.back()">取り消し</button>
-        <button class="reg-post" type="submit" name="post_id" value="${post.post_id}">修正完了</button>
+        <button class="reg-cancel" type="button" onclick="history.back()">
+            キャンセル
+        </button>
+        <button class="reg-post" type="submit">投稿</button>
     </div>
 </form>
 </body>
@@ -120,4 +137,5 @@
         document.getElementById("freeReg").submit();
     });
 </script>
+
 </html>

@@ -1,23 +1,20 @@
 package com.bbs.main.controller;
-
 import com.bbs.main.service.UserService;
-import com.bbs.main.vo.FreeReplyVO;
 import com.bbs.main.vo.FreeVO;
 import com.bbs.main.vo.LifeVO;
 import com.bbs.main.vo.UserVO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import com.bbs.main.service.FreeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 @RequestMapping("/main/free")
 @Controller
 public class FreeC {
@@ -49,10 +46,12 @@ public class FreeC {
     public String detail(@PathVariable int post_id, String token, Model model, HttpSession session, HttpServletRequest req) {
         String sessionKey = "view_token_" + post_id;
         String lastToken = (String) session.getAttribute(sessionKey);
+
         if (lastToken == null || !lastToken.equals(token)) {
             freeService.getCount(post_id);  // 조회수 증가
             session.setAttribute(sessionKey, token);
         }
+
         UserVO user = (UserVO) session.getAttribute("user");
         String nickname = (user != null) ? user.getUser_nickname() : "";
         model.addAttribute("login_nickname", nickname);
@@ -72,11 +71,21 @@ public class FreeC {
     }
 
 
-    @DeleteMapping("/{post_id}")
-    public String delete(@PathVariable int post_id) {
-        freeService.deletePost(post_id);
-        return "redirect:/main/free";
+    @DeleteMapping("/{no}")
+    @ResponseBody
+    public ResponseEntity<Map<String, Object>> deleteFreePost(@PathVariable int no, HttpSession session) {
+        Map<String, Object> response = new HashMap<>();
+        if (userService.loginChk(session)) {
+            freeService.deletePost(no);
+            response.put("success", true);
+            response.put("redirectUrl", "/main/free");
+        } else {
+            response.put("success", false);
+            response.put("redirectUrl", "/login");
+        }
+        return ResponseEntity.ok(response);
     }
+
 
     @GetMapping("/update/{post_id}")
     public String update(@PathVariable int post_id, Model model) {
@@ -97,41 +106,6 @@ public class FreeC {
     @ResponseBody
     public List<FreeVO> getsorts(@RequestParam("option") String option) {
         return freeService.getsorts(option);
-    }
-
-    @PostMapping("/like/{post_id}")
-    @ResponseBody // JSON 응답을 위한 애너테이션
-    public Map<String, Object> freelike(@PathVariable("post_id") int no, HttpSession session) {
-        Map<String, Object> response = new HashMap<>();
-
-        if (userService.loginChk(session)) {
-            freeService.updateLike(no); // 추천수 업데이트
-            int newLikeCount = freeService.
-                    getLikeCount(no); // 새로운 추천수 가져오기
-            response.put("success", true);
-            response.put("newLikeCount", newLikeCount);
-        } else {
-            response.put("success", false);
-        }
-
-        return response; // JSON 형태로 반환
-    }
-
-    @PostMapping("/unlike/{post_id}")
-    @ResponseBody // JSON 응답을 위한 애너테이션
-    public Map<String, Object> freeUnlike(@PathVariable("post_id") int no, HttpSession session) {
-        Map<String, Object> response = new HashMap<>();
-
-        if (userService.loginChk(session)) {
-            freeService.updateUnlike(no); // 언라이크 기능: 추천수를 감소시키는 로직
-            int newLikeCount = freeService.getLikeCount(no); // 새로운 추천수 가져오기
-            response.put("success", true);
-            response.put("newLikeCount", newLikeCount);
-        } else {
-            response.put("success", false);
-        }
-
-        return response; // JSON 형태로 반환
     }
 
     @PostMapping("/toggle/{post_id}")
@@ -161,6 +135,7 @@ public class FreeC {
 
         return response;
     }
+
 
 
 }

@@ -1,8 +1,6 @@
-
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -14,9 +12,7 @@
 </head>
 <body>
 <div class="container-cm-post">
-    <!-- "자유掲示판" → "自由掲示板" (일본어) -->
-    <div class="life-back" onclick="location.href='/main/free'">自由掲示板 ></div>
-
+    <div class="life-back" onclick="location.href='/main/toilet'">トイレット掲示板 ></div>
 
     <div class="post-title"><span> ${post.post_title } </span></div>
     <div class="post-info">
@@ -44,7 +40,6 @@
         </div>
         <br>
         <div class="post-button">
-
             <button class="like-button" data-liked="${isLiked}" onclick="toggleLike(${post.post_id}, this)">
                 <c:choose>
                     <c:when test="${isLiked}">
@@ -56,6 +51,7 @@
                 </c:choose>
                 <div class="post-like"><img src="https://cdn-icons-png.flaticon.com/512/833/833234.png"></div>
             </button>
+
             <c:if test="${login_nickname == post.user_nickname}">
                 <button onclick="deletePost(${post.post_id})">削除</button>
                 <button onclick="location.href='update/${post.post_id}'">修正</button>
@@ -75,17 +71,15 @@
                 <textarea id="replyContent" placeholder="コメントを入力してください..." style="resize: none"></textarea>
             </div>
 
-            <button id="commentButton" onclick="handleFreeReplySubmit('${user.user_nickname}')">コメント投稿</button>
+            <button id="commentButton" onclick="handleToiletReplySubmit('${user.user_nickname}')">コメント投稿</button>
         </div>
         <div id="replyCountContainer"></div>
         <div>
-            <!-- 정렬 옵션 텍스트 변경: 최신순 → 最新順, 추천순 → いいね順 -->
             <label><input type="radio" name="option" value="new" checked="checked"/>最新順</label>
             <label><input type="radio" name="option" value="like"/>いいね順</label>
         </div>
         <div id="replySection">
         </div>
-        <!-- "댓글 5개 더보기" → "コメントを5件もっと見る" -->
         <div><button id="load-more-replies">コメントを5件もっと見る</button></div>
     </div>
 </div>
@@ -99,14 +93,13 @@
     let totalReplyCount = 0; // 전체 댓글 수를 저장할 전역 변수
 
     function loadReplyCount() {
-        return fetch('/main/free/reply/count/' + post_id)
+        return fetch('/main/toilet/reply/count/' + post_id)
             .then(response => response.text())
             .then(count => {
                 totalReplyCount = Number(count);
                 console.log(count);
                 const countContainer = document.getElementById("replyCountContainer");
                 if(Number(count) === 0 ){
-
                     countContainer.innerHTML = "";
                 } else {
                     countContainer.innerHTML = "<p>全コメント : " + count + "件</p>";
@@ -117,21 +110,24 @@
             });
     }
 
-
     function loadRepliesPaged() {
         replySortOption = document.querySelector("input[name='option']:checked").value;
 
-        fetch("/main/free/reply/" + post_id + "?page=" + replyPage + "&size=" + replySize + "&option=" + replySortOption)
+        fetch("/main/toilet/reply/" + post_id + "?page=" + replyPage + "&size=" + replySize + "&option=" + replySortOption)
             .then(response => response.json())
             .then(data => {
                 loadReplyCount();
                 const replySection = document.getElementById("replySection");
 
-                if (data.length === 0) {
+                console.log("댓글 응답 데이터:", data);
+                if (!Array.isArray(data)) {
+                    console.error("⚠️ 예상과 다른 응답 형식:", data);
+                    return;
+                }
 
+                if (data.length === 0) {
                     if (replyPage === 0) {
                         replySection.innerHTML = "<p>コメントがありません。最初のコメントを残してください！</p>";
-
                     }
                     document.getElementById("load-more-replies").style.display = "none";
                     return;
@@ -141,7 +137,6 @@
                     const replyDiv = document.createElement("div");
                     replyDiv.classList.add("reply");
                     replyDiv.id = "reply-" + reply.r_id;
-
 
                     // コメント HTML 生成例
                     let replyHTML =
@@ -158,7 +153,6 @@
                         replyHTML +=
                             "<button onclick=\"editReply('" + reply.r_id + "', '" + reply.r_writer + "', '" + reply.r_date + "', '" + reply.r_context + "')\">修正</button>" +
                             "<button onclick=\"deleteReply('" + reply.r_id + "')\">削除</button>";
-
                     }
 
                     replyDiv.innerHTML = replyHTML;
@@ -178,16 +172,13 @@
                     if (remaining <= 0) {
                         loadMoreButton.style.display = "none";
                     } else if (remaining < replySize) {
-
                         loadMoreButton.textContent = "コメントを" + remaining + "件もっと見る";
                     } else {
                         loadMoreButton.textContent = "コメントを" + replySize + "件もっと見る";
-
                     }
                 });
             })
             .catch(error => {
-
                 console.error("コメントの読み込みに失敗しました:", error);
             });
     }
@@ -202,13 +193,11 @@
         });
 
         // 並び順オプション変更イベントハンドラ
-
         document.querySelectorAll("input[name='option']").forEach(radio => {
             radio.addEventListener("change", () => {
                 replyPage = 0;
                 document.getElementById("replySection").innerHTML = "";
                 document.getElementById("load-more-replies").style.display = "block";
-
                 loadRepliesPaged();  // 並び順変更時に再読み込み
             });
         });
@@ -217,8 +206,7 @@
 <script>
     function toggleLike(postId, button) {
         // 単一トグル API を呼び出す
-
-        fetch("/main/free/toggle/" + postId, {
+        fetch("/main/toilet/toggle/" + postId, {
             method: "POST"
         })
             .then(function(response) {
@@ -248,10 +236,8 @@
                 console.error("Error:", error);
             });
     }
-
 </script>
-<script src="/resources/js/free/free.js"></script>
-<script src="/resources/js/free/free_reply.js"></script>
+<script src="/resources/js/toilet/toilet.js"></script>
+<script src="/resources/js/toilet/toilet_reply.js"></script>
 </body>
 </html>
-
