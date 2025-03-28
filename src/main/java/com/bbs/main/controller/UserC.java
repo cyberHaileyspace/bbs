@@ -51,7 +51,7 @@ public class UserC {
         System.out.println(registerVO);
         System.out.println(user_file.getOriginalFilename());
         userService.regUser(registerVO, user_file);
-        model.addAttribute("content", "main.jsp");
+        model.addAttribute("content", "tour/main.jsp");
         return "index";
     }
 
@@ -143,12 +143,13 @@ public class UserC {
     }
 
     @PostMapping("update")
-    public String updatepage(UserVO userVO, RedirectAttributes redirectAttributes, Model model) {
+    public String updatepage(UserVO userVO, HttpSession session, RedirectAttributes redirectAttributes, Model model) {
         String msg = userService.updateUser(userVO);
         System.out.println(111);
         if (msg.equals("내 정보가 변경되었습니다.")) {
-            /*RegisterVO user = registerMapper.login(registerVO);
-            session.setAttribute("user", user);*/
+            UserVO userSession = (UserVO) session.getAttribute("user");
+            userVO.setUser_pw(userSession.getUser_pw());
+            userService.loginuser(userVO, session);
             model.addAttribute("content", "index.jsp");
             return "redirect:/mypage";
         } else {
@@ -181,9 +182,9 @@ public class UserC {
     }
 
     @PostMapping("/deletepfp")
-    public String deletepfp(@RequestParam("user_id") String user_id,
-                            HttpSession session, RedirectAttributes redirectAttributes) {
-        UserVO user = userService.getUserById(user_id); // 사용자 정보 조회
+    public String deletepfp(HttpSession session, RedirectAttributes redirectAttributes) {
+        System.out.println(1111);
+        UserVO user = (UserVO) session.getAttribute("user");
         if (user == null) {
             redirectAttributes.addFlashAttribute("error", "ユーザー情報が見つかりません。");
             return "redirect:/mypage";

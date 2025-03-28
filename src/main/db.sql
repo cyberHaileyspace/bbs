@@ -87,7 +87,6 @@ ALTER TABLE Free_reply
 
 drop table Free_reply;
 
-
 -- 추천 내역 테이블 생성
 create table free_Post_Like(
                                l_id number(3) primary key,
@@ -101,7 +100,6 @@ ALTER TABLE free_Post_Like
         FOREIGN KEY (l_post_id)
             REFERENCES Free_Post_DB (post_id)
                 ON DELETE CASCADE;
-
 
 -- 한 유저당 한 번만 추천하도록 유니크 제약 조건 추가
 ALTER TABLE free_Post_Like
@@ -169,18 +167,14 @@ SELECT constraint_name, constraint_type
 FROM user_constraints
 WHERE table_name = 'FREE_REPLY_LIKE';
 
-
 -- 제약조건 먼저 삭제
 ALTER TABLE free_Reply_Like DROP CONSTRAINT fk_free_reply;
-ALTER TABLE free_Reply_Like DROP CONSTRAINT unique_user_reply_like;
 
 -- 테이블 삭제
 DROP TABLE free_Reply_Like;
 
 -- 시퀀스 삭제
 DROP SEQUENCE free_Reply_Like_seq;
-
-delete al
 
 select * from free_Reply_Like;
 SELECT COUNT(*) FROM free_reply_like WHERE l_user_nickname =  AND l_reply_id = #{replyId}

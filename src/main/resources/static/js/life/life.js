@@ -158,7 +158,7 @@ function deleteReply(r_id) {
             .then(data => {
                 if (data || !data.success) {
                     alert("댓글이 삭제되었습니다.");
-                    loadReplies();  // 댓글 삭제 후 댓글 목록 갱신
+                    loadLifeReplies();  // 댓글 삭제 후 댓글 목록 갱신
                 } else {
                     alert("댓글 삭제 실패! 서버 응답: " + JSON.stringify(data));
                 }

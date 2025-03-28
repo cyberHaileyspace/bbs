@@ -44,7 +44,7 @@ public class LifeC {
     }*/
     public String reg(Model model, HttpSession session) {
         if (userService.loginChk(session)) {
-            model.addAttribute("content", "life/lifereg.jsp");
+            model.addAttribute("content", "life/life_reg.jsp");
             return "index";
         }
         return "redirect:/login";
@@ -75,7 +75,7 @@ public class LifeC {
         String nickname = (user != null) ? user.getUser_nickname() : "";
         model.addAttribute("login_nickname", nickname);
         model.addAttribute("post", lifeService.getPost(no));
-        model.addAttribute("content", "life/lifedetail.jsp");
+        model.addAttribute("content", "life/life_detail.jsp");
         return "index";
     }
 
@@ -106,7 +106,7 @@ public class LifeC {
     @GetMapping("/update/{post_id}")
     public String update(@PathVariable int post_id, Model model) {
         model.addAttribute("post", lifeService.getPost(post_id));
-        model.addAttribute("content", "life/lifeupdate.jsp");
+        model.addAttribute("content", "life/life_update.jsp");
         return "index";
     }
 

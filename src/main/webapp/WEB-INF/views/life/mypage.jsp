@@ -313,11 +313,13 @@
 </script>
 <script>
     function deletepfp() {
+
         if (confirm("本当にプロフィール写真を削除しますか？")) {
-            fetch('/deletepfp', {
+            fetch('deletepfp', {
                 method: 'POST',
                 body: new FormData(document.getElementById('profile'))
             }).then(response => {
+                console.log(response)
                 if (response.redirected) {
                     window.location.href = response.url;
                 }
