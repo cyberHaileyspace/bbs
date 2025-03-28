@@ -29,12 +29,12 @@
         <div class="search-btn">
             <input type="text" placeholder="検索内容を入力してください。" id="search-input">
             <button id="search-btn"><img class="search-btn-img" alt=""
-                src="https://cdn-icons-png.flaticon.com/256/25/25313.png"/> <span>検索</span>
+                                         src="https://cdn-icons-png.flaticon.com/256/25/25313.png"/> <span>検索</span>
             </button>
         </div>
-        <hr style="width: 2000px">
+        <hr style="width: 1000px;">
         <div style="display: flex; padding: 0 50px; width: 90%">
-            <div style="display: flex">
+            <div style="display: flex; flex-direction: row">
                 <label class="cate_radio">
                     <input type="radio" name="option" value="new" checked="checked"/><span>最新順</span>
                 </label>
@@ -45,6 +45,7 @@
                     <input type="radio" name="option" value="view"/><span>閲覧数順</span>
                 </label>
             </div>
+
             <div style="margin-left: auto">
                 <button class="write-btn" onclick="logincheck('${sessionScope.user}')">
                     <img class="write-btn-img" alt="" src="https://cdn-icons-png.flaticon.com/512/117/117476.png"/>

@@ -49,11 +49,23 @@ public class TourService {
             HttpsURLConnection huc = (HttpsURLConnection) u.openConnection();
             InputStream is = huc.getInputStream();
             InputStreamReader isr = new InputStreamReader(is, StandardCharsets.UTF_8);
-//            BufferedReader br = new BufferedReader(isr);
+            BufferedReader br = new BufferedReader(isr);
 
-            JsonReader reader = new JsonReader(isr);
-            reader.setLenient(true); // lenient 모드 활성화
-            JsonObject rootObj = JsonParser.parseReader(reader).getAsJsonObject();
+            // 전체 응답을 문자열로 먼저 읽음
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
+            String responseStr = sb.toString();
+
+            // XML 응답 필터링
+            if (responseStr.trim().startsWith("<")) {
+                throw new RuntimeException("API 응답이 XML입니다. JSON 파싱 중단.");
+            }
+
+            // JSON 파싱
+            JsonObject rootObj = JsonParser.parseString(responseStr).getAsJsonObject();
             System.out.println("rootObj = " + rootObj);
             JsonObject responseObj = rootObj.getAsJsonObject("response");
             JsonObject body = responseObj.getAsJsonObject("body");

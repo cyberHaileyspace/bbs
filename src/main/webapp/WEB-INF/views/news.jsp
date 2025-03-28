@@ -5,17 +5,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>
-        .news-wrap{
-            margin: 20px;
-            /*border: 2px solid indianred;*/
-        }
-    </style>
+
 </head>
 <body>
-<div style="text-align: center"><h1>今日の日本海外トップニュース</h1></div>
-<div id="news-container"></div>
-<button id="more-btn">More</button>
+<div style="display: flex; justify-content: center">
+    <div class="news_page">
+        <div style="text-align: center; border-bottom: 1px solid gray"><h1>今日の日本海外トップニュース</h1></div>
+        <div id="news-container"></div>
+        <div class="more-btn-box">
+            <button id="more-btn">もっと見る</button>
+        </div>
+    </div>
+</div>
 </body>
 <script>
     window.onload = () => {
@@ -64,11 +65,11 @@
             const newsWrap = document.createElement("div");
             newsWrap.classList.add("news-wrap");
             newsWrap.innerHTML =
-                "<div class='item'>" + "<div>" + (currentIndex + i + 1) + "位" + "/" + "題目" + ":" +
-                "<div>" + news.title + "</div>" +
-            "<div>" + news.description + "</div>" +
-            "<div><a href='" + news.url + "' target='_blank'>詳細を見る</a></div>" +
-            "</div>";
+                "<div class='news_item'>" + "<div>" +
+                "<div class='news_title'>" + "<span>" + news.title + "</span>" + "</div>" +
+                "<div class='news_description'>" + news.description + "</div>" +
+                "<div class='news_link'><a href='" + news.url + "' target='_blank'>詳細を見る</a></div>" +
+                "</div>";
             newsContainer.appendChild(newsWrap);
         });
 
