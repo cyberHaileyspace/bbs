@@ -145,7 +145,6 @@ public class UserC {
     @PostMapping("update")
     public String updatepage(UserVO userVO, HttpSession session, RedirectAttributes redirectAttributes, Model model) {
         String msg = userService.updateUser(userVO);
-        System.out.println(111);
         if (msg.equals("내 정보가 변경되었습니다.")) {
             UserVO userSession = (UserVO) session.getAttribute("user");
             userVO.setUser_pw(userSession.getUser_pw());
@@ -183,13 +182,11 @@ public class UserC {
 
     @PostMapping("/deletepfp")
     public String deletepfp(HttpSession session, RedirectAttributes redirectAttributes) {
-        System.out.println(1111);
         UserVO user = (UserVO) session.getAttribute("user");
         if (user == null) {
             redirectAttributes.addFlashAttribute("error", "ユーザー情報が見つかりません。");
             return "redirect:/mypage";
         }
-        System.out.println("111");
         // 프로필 사진 삭제 (user_image를 null로 업데이트)
         userService.deletepfp(user);
 
