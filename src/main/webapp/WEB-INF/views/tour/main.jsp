@@ -16,7 +16,7 @@
                 <%-- 뉴스 게시판 --%>
                 <div class="main_content_box top_box">
                     <div class="main_board_header"><span class="main_board_header_title"
-                                                         onclick="location.href='/main/news'">ニュース・お知らせ</span><span
+                                                         onclick="location.href='/main/news'">海外ニュース</span><span
                             class="main_board_header_plus" onclick="location.href='/main/news'">もっと見る</span></div>
                     <div id="news-container"></div> <!-- 뉴스가 들어갈 공간 -->
                 </div>
