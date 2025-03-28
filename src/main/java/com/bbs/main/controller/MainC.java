@@ -1,11 +1,9 @@
 package com.bbs.main.controller;
 
-import com.bbs.main.service.FreeService;
-import com.bbs.main.service.LifeService;
-import com.bbs.main.service.TourService;
-import com.bbs.main.service.UserService;
+import com.bbs.main.service.*;
 import com.bbs.main.vo.FreeVO;
 import com.bbs.main.vo.LifeVO;
+import com.bbs.main.vo.ToiletVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +29,9 @@ public class MainC {
 
     @Autowired
     private TourService tourService;
+
+    @Autowired
+    private ToiletService toiletService;
 
     @GetMapping
     public String main(Model model) {
@@ -77,4 +78,17 @@ public class MainC {
         return "index";
     }
 
+
+    @GetMapping("/toilet") // 🚽 추가
+    public String toilet(Model model) {
+        model.addAttribute("content", "toilet/toilet_posts.jsp");
+        return "index";
+    }
+
+    @ResponseBody
+    @GetMapping("/toilet/all") // 🚽 추가
+    public List<ToiletVO> toiletsearch(@RequestParam(defaultValue = "", required = false) String title) {
+        System.out.println(title);
+        return toiletService.searchposts(title);
+    }
 }

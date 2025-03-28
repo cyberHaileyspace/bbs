@@ -71,6 +71,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         <div onclick="location.href='/main/life'" style="cursor: pointer">
           生活掲示板
         </div>
+          <div onclick="location.href='/main/toilet'" style="cursor: pointer">
+              綺麗なトイレ探し*Test
+          </div>
         <div onclick="location.href='/login'" style="cursor: pointer">
           ログイン
         </div>

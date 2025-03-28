@@ -5,6 +5,7 @@ import com.bbs.main.vo.LifeVO;
 import com.bbs.main.vo.UserVO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import com.bbs.main.service.FreeService;
@@ -68,11 +69,21 @@ public class FreeC {
     }
 
 
-    @DeleteMapping("/{post_id}")
-    public String delete(@PathVariable int post_id) {
-        freeService.deletePost(post_id);
-        return "redirect:/main/free";
+    @DeleteMapping("/{no}")
+    @ResponseBody
+    public ResponseEntity<Map<String, Object>> deleteFreePost(@PathVariable int no, HttpSession session) {
+        Map<String, Object> response = new HashMap<>();
+        if (userService.loginChk(session)) {
+            freeService.deletePost(no);
+            response.put("success", true);
+            response.put("redirectUrl", "/main/free");
+        } else {
+            response.put("success", false);
+            response.put("redirectUrl", "/login");
+        }
+        return ResponseEntity.ok(response);
     }
+
 
     @GetMapping("/update/{post_id}")
     public String update(@PathVariable int post_id, Model model) {

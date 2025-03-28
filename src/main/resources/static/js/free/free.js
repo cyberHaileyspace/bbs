@@ -1,3 +1,26 @@
+function deletePost(no) {
+    if (confirm('本当に削除しますか')) {
+        fetch('/main/free/' + no, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(response => response.json())  // JSON 응답을 받음
+            .then(data => {
+                if (data.success) {
+                    alert('削除されました.');
+                    location.href = '/main/free';
+                } else {
+                    alert('로그인이 필요합니다.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+}
+
 function generateToken() {
     const now = new Date();
     return now.getMinutes() + ":" + now.getSeconds();  // "mm:ss" 형식
