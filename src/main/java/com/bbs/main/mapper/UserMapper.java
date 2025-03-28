@@ -38,6 +38,9 @@ public interface UserMapper {
     @Select("select * from life_post_db where user_nickname = #{user_id} order by post_id desc")
     List<LifeVO> getMyLifePosts(String user_id);
 
+    @Select("select * from tour_post_db where user_nickname = #{user_id} order by post_id desc")
+    List<LifeVO> getMyTourPosts(String user_id);
+
     @Select("select r_id, post_id, r_context, r_like, " +
             "to_char(r_date, 'YYYY.MM.DD HH24:MI') as r_date, " +
             "to_char(r_update, 'YYYY.MM.DD HH24:MI') as r_update " +
@@ -53,6 +56,14 @@ public interface UserMapper {
             "where r_writer = #{user_nickname} " +
             "order by r_id DESC")
     List<LifeReplyVO> getMyLifePostReplies(String user_nickname);
+
+    @Select("select r_id, post_id, r_context, r_like, " +
+            "to_char(r_date, 'YYYY.MM.DD HH24:MI') AS r_date, " +
+            "to_char(r_update, 'YYYY.MM.DD HH24:MI') AS r_update " +
+            "from Tour_Board_Reply " +
+            "where r_writer = #{user_nickname} " +
+            "order by r_id DESC")
+    List<LifeReplyVO> getMyTourPostReplies(String user_nickname);
 
     @Select("SELECT * FROM User_DB WHERE user_id = #{user_id}")
     UserVO getUserById(String user_id);

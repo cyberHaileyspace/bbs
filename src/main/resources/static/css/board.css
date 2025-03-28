@@ -549,6 +549,7 @@ hr {
 .tab-content.show {
     display: flex;
     width: 100%;
+    justify-content: space-evenly;
 }
 
 .tab-button {

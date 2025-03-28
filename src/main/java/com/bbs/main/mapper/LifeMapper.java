@@ -1,5 +1,6 @@
 package com.bbs.main.mapper;
 
+import com.bbs.main.vo.FreeVO;
 import com.bbs.main.vo.LifeReplyVO;
 import com.bbs.main.vo.LifeVO;
 import org.apache.ibatis.annotations.*;
@@ -41,6 +42,10 @@ public interface LifeMapper {
 
     @Select("SELECT * FROM Life_Post_DB ORDER BY post_view DESC")
     List<LifeVO> getSortsView();  // 조회순
+
+    @Select("SELECT f.*, (SELECT COUNT(*) FROM Life_Reply r WHERE r.post_id = f.post_id) AS reply_count " +
+            "FROM Life_post_DB f ORDER BY reply_count DESC")
+    List<LifeVO> getSortsReply(); // 댓글순
 
     @Update("UPDATE Life_Post_DB SET post_like = post_like + 1 WHERE post_id = #{post_id}")
     void incrementLike(int post_id);

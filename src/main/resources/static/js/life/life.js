@@ -158,7 +158,7 @@ function deleteReply(r_id) {
             .then(data => {
                 if (data || !data.success) {
                     alert("댓글이 삭제되었습니다.");
-                    loadReplies();  // 댓글 삭제 후 댓글 목록 갱신
+                    loadLifeReplies();  // 댓글 삭제 후 댓글 목록 갱신
                 } else {
                     alert("댓글 삭제 실패! 서버 응답: " + JSON.stringify(data));
                 }
@@ -250,28 +250,29 @@ function renderPosts(posts) {
 
     posts.forEach(p => {
         const formattedDate = new Date(p.post_date).toISOString().split('T')[0];
-
         postHtml +=
             "<div class='item'>" +
             "<div class='post-life' onclick='goToPost(" + p.post_id + ")'>" +
             "<div class='life-kind'>" +
-            "<div class='life-no'>番号: " + p.post_id + "</div>&nbsp;/&nbsp;" +
-            "<div class='life-cate'>カテゴリー: " + p.post_category + "</div>&nbsp;/&nbsp;" +
-            "<div class='life-menu'>地域: " + p.post_menu + "</div>" +
+            "<div class='life-no'>番号 : " + p.post_id + "</div>&nbsp;/&nbsp;" +
+            "<div class='life-cate'>カテゴリー : " + p.post_category + "</div>&nbsp;/&nbsp;" +
+            "<div class='life-menu'>地域 : " + p.post_menu + "</div>" +
             "</div>" +
             "<div class='life-title'>" + p.post_title + "</div>" +
             "<div class='life-context'>" +
-            "<div class='life-text'><span>" + p.post_context + "</span></div>" +
+            /*"<div class='life-text'><span>" + p.post_context + "</span></div>" +*/
             "<div class='life-image'><img alt='' src='img/post/" + p.post_image + "'></div>" +
             "</div>" +
             "<div class='life-info'>" +
             "<div style='display: flex'>" +
-            "<div class='info-name'>投稿者: " + p.user_nickname + "</div>&nbsp;/&nbsp;" +
-            "<div class='info-date'>投稿日: " + formattedDate + "</div>" +
+            "<div class='info-name'>投稿者 : " + p.user_nickname + "</div>&nbsp;/&nbsp;" +
+            "<div class='info-date'>投稿日 : " + formattedDate + "</div>" +
             "</div>" +
             "<div style='display: flex'>" +
-            "<div class='info-view'>閲覧数: " + p.post_view + "</div>&nbsp;/&nbsp;" +
-            "<div class='info-like'>いいね数: " + p.post_like + "</div>" +
+            "<div class='info-view'>閲覧数 : " + p.post_view + "</div>&nbsp;/&nbsp;" +
+            "<div class='info-like'>いいね数 : " + p.post_like + "</div>&nbsp;/&nbsp;" +
+            "<div class='info-reply'>コメント数 : " + p.reply_count + "</div>" +
+            "</div>" +
             "</div>" +
             "</div>" +
             "</div>" +

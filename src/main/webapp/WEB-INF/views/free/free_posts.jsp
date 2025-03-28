@@ -24,10 +24,17 @@
 <div class="sort">
     <div>
         <div>
+<<<<<<< HEAD
             <label><input type="radio" name="option" value="new" checked="checked"/> 最新順</label>
             <label><input type="radio" name="option" value="like"/> いいね順</label>
             <label><input type="radio" name="option" value="view"/> 閲覧順</label>
             <label><input type="radio" name="option" value="reply"/> コメント順</label>
+=======
+            <label><input type="radio" name="option" value="new" checked="checked"/> 최신순</label>
+            <label><input type="radio" name="option" value="like"/> 추천순</label>
+            <label><input type="radio" name="option" value="view"/> 조회순</label>
+            <label><input type="radio" name="option" value="reply"/>댓글순</label>
+>>>>>>> ef4d36bbc13215d13bec4b334b4893df166d9550
         </div>
         <div style="display: flex; justify-content: flex-end">
             <button class="write-btn" onclick="logincheck('${sessionScope.user}')">

@@ -27,6 +27,7 @@
             <label><input type="radio" name="option" value="new" checked="checked"/> 最新順</label>
             <label><input type="radio" name="option" value="like"/> おすすめ順</label>
             <label><input type="radio" name="option" value="view"/> 閲覧数順</label>
+            <label><input type="radio" name="option" value="reply"/>コメント順</label>
         </div>
         <div style="display: flex; justify-content: flex-end">
             <button class="write-btn" onclick="logincheck('${sessionScope.user}')">

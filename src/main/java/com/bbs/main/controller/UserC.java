@@ -51,7 +51,7 @@ public class UserC {
         System.out.println(registerVO);
         System.out.println(user_file.getOriginalFilename());
         userService.regUser(registerVO, user_file);
-        model.addAttribute("content", "main.jsp");
+        model.addAttribute("content", "tour/main.jsp");
         return "index";
     }
 
@@ -104,8 +104,10 @@ public class UserC {
         if (userService.loginChk(session)) {
             model.addAttribute("freePosts", userService.getMyFreePosts(user.getUser_nickname()));
             model.addAttribute("lifePosts", userService.getMyLifePosts(user.getUser_nickname()));
+            model.addAttribute("tourPosts", userService.getMyTourPosts(user.getUser_nickname()));
             model.addAttribute("freePostReplies", userService.getMyFreePostReplies(user.getUser_nickname()));
             model.addAttribute("lifePostReplies", userService.getMyLifePostReplies(user.getUser_nickname()));
+            model.addAttribute("tourPostReplies", userService.getMyTourPostReplies(user.getUser_nickname()));
             model.addAttribute("content", "life/mypage.jsp");
         } else {
             return "redirect:login";
@@ -141,14 +143,14 @@ public class UserC {
     }
 
     @PostMapping("update")
-    public String updatepage(UserVO userVO, RedirectAttributes redirectAttributes, Model model) {
+    public String updatepage(UserVO userVO, HttpSession session, RedirectAttributes redirectAttributes, Model model) {
         String msg = userService.updateUser(userVO);
-        System.out.println(111);
         if (msg.equals("내 정보가 변경되었습니다.")) {
-            /*RegisterVO user = registerMapper.login(registerVO);
-            session.setAttribute("user", user);*/
+            UserVO userSession = (UserVO) session.getAttribute("user");
+            userVO.setUser_pw(userSession.getUser_pw());
+            userService.loginuser(userVO, session);
             model.addAttribute("content", "index.jsp");
-            return "redirect:/update";
+            return "redirect:/mypage";
         } else {
             redirectAttributes.addFlashAttribute("error", "IDを確認してください。");
             return "redirect:/login";
@@ -162,8 +164,8 @@ public class UserC {
 
     @PostMapping("/updatepfp")
     public String updatepfp(@RequestParam("user_id") String user_id,
-                                       @RequestParam(value = "profileImage", required = false) MultipartFile profileImage,
-                                       HttpSession session, RedirectAttributes redirectAttributes) {
+                            @RequestParam(value = "profileImage", required = false) MultipartFile profileImage,
+                            HttpSession session, RedirectAttributes redirectAttributes) {
         UserVO user = userService.getUserById(user_id); // 기존 사용자 정보 조회
         if (user == null) {
             redirectAttributes.addFlashAttribute("error", "ユーザー情報が見つかりません。");
@@ -179,14 +181,12 @@ public class UserC {
     }
 
     @PostMapping("/deletepfp")
-    public String deletepfp(@RequestParam("user_id") String user_id,
-                                       HttpSession session, RedirectAttributes redirectAttributes) {
-        UserVO user = userService.getUserById(user_id); // 사용자 정보 조회
+    public String deletepfp(HttpSession session, RedirectAttributes redirectAttributes) {
+        UserVO user = (UserVO) session.getAttribute("user");
         if (user == null) {
             redirectAttributes.addFlashAttribute("error", "ユーザー情報が見つかりません。");
             return "redirect:/mypage";
         }
-
         // 프로필 사진 삭제 (user_image를 null로 업데이트)
         userService.deletepfp(user);
 
