@@ -113,7 +113,6 @@ function renderPosts(posts) {
                 </div>
                 <div class="toilet-title">${p.post_title}</div>
                 <div class="toilet-body">
-                    <div class="toilet-text"><span>${p.post_context}</span></div>
                     <div class="toilet-image">
                         ${p.post_image ? `<img src='img/post/${p.post_image}' alt=''>` : ""}
                     </div>
@@ -133,9 +132,9 @@ function renderPosts(posts) {
     return postHtml;
 }
 
-document.addEventListener("click", function (e) {
-    const card = e.target.closest(".toilet-card");
-    console.log("카드 요소:", card); // ✅ 디버깅용
+document.addEventListener("click", function (s) {
+    const card = s.target.closest(".toilet-card");
+    console.log("클릭된 카드:", card);  // 이거 찍히는지 꼭 확인해줘
 
     if (card && card.dataset.post) {
         try {
@@ -149,15 +148,20 @@ document.addEventListener("click", function (e) {
 
 
 
-function openToiletModal(p) {
-    const formattedDate = new Date(p.post_date).toISOString().split('T')[0];
 
+function openToiletModal(p) {
+    // 1️⃣ 먼저 기존 모달 제거
+    closeToiletModal();
+
+    // 2️⃣ 모달 HTML 생성
+    const formattedDate = new Date(p.post_date).toISOString().split('T')[0];
     const modalHtml = `
         <div class="toilet-modal-overlay" onclick="closeToiletModal()"></div>
         <div class="toilet-modal">
+            <div><img alt="" src="file/${p.user_image}"></div>
             <h2>${p.post_title}</h2>
             <p class="toilet-modal-meta">${p.user_nickname} ・ ${formattedDate}</p>
-            <div class="toilet-modal-content">${p.post_context}</div>
+            <div class="toilet-modal-content">${p.post_address}</div>
             <div class="toilet-modal-actions">
                 <button onclick="toggleLike(${p.post_id}, this)">❤️ いいね：${p.post_like}</button>
                 <button onclick="goToPost(${p.post_id})">▶ 詳しく見る</button>
@@ -165,7 +169,24 @@ function openToiletModal(p) {
         </div>
     `;
     document.body.insertAdjacentHTML("beforeend", modalHtml);
+
+    // 3️⃣ 해당 카드에 highlight 클래스 추가
+    document.querySelectorAll(".toilet-item").forEach(item => {
+        item.classList.remove("highlighted");
+    });
+
+    const match = [...document.querySelectorAll(".toilet-card")].find(card =>
+        card.dataset.post && card.dataset.post.includes(`"post_id":${p.post_id}`)
+    );
+
+    if (match) {
+        const parentItem = match.closest(".toilet-item");
+        if (parentItem) {
+            parentItem.classList.add("highlighted");
+        }
+    }
 }
+
 
 
 function closeToiletModal() {
@@ -229,7 +250,8 @@ $(document).ready(async function () {
     let data = await loadData("");
     categoryHandler();
     optionHandler();
-    paging(data);
+    paging(data);         // 게시글 카드 표시
+    addMarkersToMap(data); // ✅ 지도에 마커 표시 추가!
     searchHandler();
 });
 

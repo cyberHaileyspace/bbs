@@ -194,6 +194,16 @@ CREATE TABLE TOILET_POST_DB (
 );
 
 ALTER TABLE TOILET_POST_DB
+    ADD (
+        post_lat NUMBER(10, 6),
+        post_lng NUMBER(10, 6),
+        post_address VARCHAR2(200)
+        );
+
+
+select * from TOILET_POST_DB;
+
+ALTER TABLE TOILET_POST_DB
     MODIFY post_date TIMESTAMP WITH TIME ZONE DEFAULT SYSTIMESTAMP AT TIME ZONE 'Asia/Seoul';
 
 ALTER TABLE TOILET_POST_DB

@@ -19,4 +19,8 @@ public class ToiletVO {
     private Date post_date;
     private Date post_update;
     private int reply_count;
+    private Double post_lat;      // 위도
+    private Double post_lng;      // 경도
+    private String post_address;  // 지번 or 도로명 주소
+
 }

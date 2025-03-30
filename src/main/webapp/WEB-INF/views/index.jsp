@@ -98,6 +98,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 >ログアウト</span
               >
             </div>
+              <div onclick="location.href='/main/toilet'" style="cursor: pointer">
+                  綺麗なトイレ探し*Beta
+              </div>
             <div
               onclick="location.href='https://www.kr.emb-japan.go.jp/itprtop_ko/index.html'"
               style="cursor: pointer"
@@ -115,6 +118,8 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             <div onclick="location.href='/main/toilet'" style="cursor: pointer">
               綺麗なトイレ探し*Test
             </div>
+
+
             <%--
             <form id="defaultTourForm" action="/main/tourInfo/loc" method="get">
               --%> <%-- <input type="hidden" name="areaCode" value="1" />--%>
