@@ -7,8 +7,11 @@
     <meta charset="UTF-8" />
     <title>Title</title>
     <link rel="stylesheet" href="/resources/css/board.css" />
+    <link rel="stylesheet" href="/resources/css/toilet.css">
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.min.js"></script>
+    <script type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=004383c9a684a2e2224afc37cca60d3c"></script>
 </head>
 <body>
 <div class="container-cm-post">
@@ -35,6 +38,7 @@
                 <img src="/file/${post.post_image}" style="width: 400px; height: 400px">
             </div>
         </c:if>
+        <div id="detail-map" style="width: 100%; height: 300px; margin-top: 20px; border-radius: 10px; border: 1px solid #ccc;"></div>
         <div class="post-text" id="post<%---${post.post_id}--%>">
             <div>${post.post_context}</div>
         </div>
@@ -51,7 +55,7 @@
                 </c:choose>
                 <div class="post-like"><img src="https://cdn-icons-png.flaticon.com/512/833/833234.png"></div>
             </button>
-
+           <button>経路検索</button>
             <c:if test="${login_nickname == post.user_nickname}">
                 <button onclick="deletePost(${post.post_id})">削除</button>
                 <button onclick="location.href='update/${post.post_id}'">修正</button>
@@ -84,6 +88,48 @@
     </div>
 </div>
 <%----------------------------------------------------------------------------------------------------------%>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const lat = parseFloat("${post.post_lat}");
+        const lng = parseFloat("${post.post_lng}");
+        const address = "${post.post_address}";
+        const mapContainer = document.getElementById('detail-map');
+
+        if (isNaN(lat) || isNaN(lng)) {
+            console.warn("❗ 등록된 위치 정보가 없습니다.");
+            return;
+        }
+
+        const map = new kakao.maps.Map(mapContainer, {
+            center: new kakao.maps.LatLng(lat, lng),
+            level: 3
+        });
+
+        const markerPosition = new kakao.maps.LatLng(lat, lng);
+        const marker = new kakao.maps.Marker({
+            position: markerPosition,
+            map: map
+        });
+
+        // 💬 말풍선 상시 표시
+        const iwContent = "<div style='padding:8px 12px; font-size:13px;'>📍" + address + "</div>";
+        const infowindow = new kakao.maps.InfoWindow({
+            content: iwContent,
+            position: markerPosition
+        });
+        infowindow.open(map, marker);  // 항상 표시
+
+        // 👉 '経路検索' 버튼에 이벤트 추가
+        const routeBtn = document.querySelector(".post-button button:nth-child(2)");  // 두 번째 버튼 (経路検索)
+        if (routeBtn) {
+            routeBtn.addEventListener("click", function () {
+                const link = "https://map.kakao.com/link/to/" + encodeURIComponent(address) + "," + lat + "," + lng;
+                window.open(link, "_blank");
+            });
+        }
+    });
+</script>
+
 <script>
     var post_id = ${post.post_id}; // JSP 변수를 JavaScript 변수에 할당
     var user_nickname = "${login_nickname}"; // 로그인한 사용자의 닉네임을 JSP 변수로 받아옴

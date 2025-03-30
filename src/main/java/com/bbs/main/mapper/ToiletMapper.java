@@ -10,11 +10,16 @@ import java.util.List;
 @Mapper
 public interface ToiletMapper {
 
-    @Insert("insert into TOILET_POST_DB" +
-            "(user_nickname, post_category, post_menu, post_title, post_context, post_image)" +
-            "VALUES" +
-            "(#{user_nickname}, #{post_category}, #{post_menu}, #{post_title}, #{post_context}, #{post_image, jdbcType=NULL})")
+    @Insert("INSERT INTO TOILET_POST_DB " +
+            "(user_nickname, post_category, post_menu, post_title, post_context, post_image, " +
+            "post_lat, post_lng, post_address) " +
+            "VALUES (" +
+            "#{user_nickname}, #{post_category}, #{post_menu}, #{post_title}, #{post_context}, " +
+            "#{post_image, jdbcType=NULL}, " +
+            "#{post_lat, jdbcType=DOUBLE}, #{post_lng, jdbcType=DOUBLE}, #{post_address, jdbcType=VARCHAR})")
     int addPost(ToiletVO freeVO);
+
+
 
     @Select("SELECT f.*, (SELECT COUNT(*) FROM TOILET_REPLY r WHERE r.post_id = f.post_id) AS reply_count FROM TOILET_POST_DB f ORDER BY f.post_id DESC")
     List<ToiletVO> getposts();
@@ -26,10 +31,17 @@ public interface ToiletMapper {
     int deletePost(int post_id);
 
     @Update("UPDATE TOILET_POST_DB " +
-            "SET post_category = #{post_category}, post_menu = #{post_menu}, post_title = #{post_title}, " +
-            "post_context = #{post_context}, post_image = #{post_image, jdbcType=NULL} " +
+            "SET post_category = #{post_category}, " +
+            "post_menu = #{post_menu}, " +
+            "post_title = #{post_title}, " +
+            "post_context = #{post_context}, " +
+            "post_image = #{post_image, jdbcType=NULL}, " +
+            "post_lat = #{post_lat, jdbcType=DOUBLE}, " +
+            "post_lng = #{post_lng, jdbcType=DOUBLE}, " +
+            "post_address = #{post_address, jdbcType=VARCHAR} " +
             "WHERE post_id = #{post_id}")
     int updatePost(ToiletVO freeVO);
+
 
     @Select("SELECT r_id, post_id, r_writer, r_context, r_like, " +
             "TO_CHAR(r_date, 'YYYY.MM.DD HH24:MI') AS r_date, " +
