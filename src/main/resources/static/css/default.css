@@ -161,11 +161,16 @@ body {
 .reply_date {
     margin-left: auto;
 }
-
+.use_css {
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+}
 .like-button {
     text-align: center;
     height: 40px;
-    width: 100px;
+    width: 110px;
     display: flex;
     align-items: center;
     justify-content: center;

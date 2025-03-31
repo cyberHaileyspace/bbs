@@ -169,7 +169,46 @@
     cursor: pointer;
 }
 
+.reply_my_button_box {
+    display: flex;
+    gap: 15px;
+}
+.reply_my_button {
+    text-align: center;
+    height: 40px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border-radius: 50px;
+    border: 1px solid #323232;
+    background-color: #323232;
+    color: #ffffff;
+    font-weight: 700;
+    cursor: pointer;
+}
 
+.cate_radio span:hover {
+    background-color: rgba(233, 234, 239, 0.8);   /* 배경색 변경 */
+    color: #067cf4;              /* 글자색 변경 */
+    transform: scale(1.05);      /* 살짝 커짐 */
+    transition: all 0.4s ease;   /* 부드럽게 */
+    cursor: pointer;             /* 마우스 커서 변경 */
+    border-radius: 50px;          /* 둥글게 */
+}
+
+.edit_my_box {
+    width: 400px;
+    margin: 20px 20px;
+    padding: 20px;
+    gap: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 80px;
+    border: 1px solid #ddd;
+}
 
 .cate_radio [type="radio"]:checked + span{
     border:1px solid #323232;

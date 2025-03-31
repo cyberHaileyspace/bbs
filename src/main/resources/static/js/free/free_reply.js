@@ -58,10 +58,12 @@ function editReply(r_id, r_writer, r_date, r_context) {
         <div>
           <span>投稿者 : ${r_writer}</span> <br>
           <span>投稿日時 : ${r_date}</span> <br>
-          <textarea id="edit-text-${r_id}" class="edit-textarea">${originalContent}</textarea>
+          <textarea id="edit-text-${r_id}" class="edit-textarea edit_my_box">${originalContent}</textarea>
         </div>
-        <button onclick="saveEdit('${r_id}', '${r_writer}', '${r_date}', '${originalContent}')">修正完了</button>
-        <button onclick="cancelEdit('${r_id}', '${r_writer}', '${r_date}', '${originalContent}')">修正取消</button>
+        <div style="display: flex; gap: 15px">
+        <button onclick="saveEdit('${r_id}', '${r_writer}', '${r_date}', '${originalContent}')" class="reply_my_button">修正完了</button>
+        <button onclick="cancelEdit('${r_id}', '${r_writer}', '${r_date}', '${originalContent}')" class="reply_my_button">修正取消</button>
+        </div>
     `;
 }
 
@@ -75,8 +77,10 @@ function cancelEdit(r_id, r_writer, r_date, originalContent) {
               <span>投稿日時 : ${r_date}</span> <br>
               <p id="reply-context" class="edit-textarea">${originalContent}</p>
             </div>
-            <button onclick="editReply('${r_id}', '${r_writer}', '${r_date}', '${originalContent}')">修正</button>
-            <button onclick="deleteReply(${r_id})">削除</button>
+            <div class="reply_my_button_box">
+              <button onclick="editReply('${r_id}', '${r_writer}', '${r_date}', '${originalContent}')" class="reply_my_button">修正</button>
+              <button onclick="deleteReply(${r_id})" class="reply_my_button">削除</button>
+            </div>
         `;
   }
   loadRepliesPaged();

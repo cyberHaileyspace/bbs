@@ -14,11 +14,10 @@
 <div class="mypage">
     <div class="mypage-container">
         <form id="profile" action="updatepfp" method="post" enctype="multipart/form-data">
-            <c:if test="${not empty user.user_image}">
-                <div>
-                    <img src="/img/upload/${user.user_image}" style="width: 100px; height: 100px">
-                </div>
-            </c:if>
+            <div>
+                <img src="${empty user.user_image ? '/img/no-image.png' : '/img/upload/'}${user.user_image}" style="width: 100px; height: 100px">
+            </div>
+
             <div style="display: flex; flex-direction: column">
                 <span>プロフィール画像</span>
                 <!-- 숨겨진 파일 입력창 -->
@@ -43,7 +42,7 @@
                 <button type="submit" name="user_id" value="${user.user_id}" class="my_photo_button">
                     プロフィール写真の変更
                 </button>
-                <%--<button type="button" name="user_id" onclick="deletepfp()">プロフィール写真の削除</button>--%>
+                <button type="button" name="user_id" onclick="deletepfp()" class="my_photo_button">プロフィール写真の削除</button>
             </div>
         </form>
         <div class="myPage_info">

@@ -91,7 +91,7 @@
         <div id="replySection">
         </div>
         <!-- "댓글 5개 더보기" → "コメントを5件もっと見る" -->
-        <div><button id="load-more-replies">コメントを5件もっと見る</button></div>
+        <div><button id="load-more-replies" class="reply_my_button">コメントを5件もっと見る</button></div>
     </div>
 </div>
 
@@ -145,7 +145,7 @@
 
                 data.forEach(reply => {
                     const replyDiv = document.createElement("div");
-                    replyDiv.classList.add("reply");
+                    replyDiv.classList.add("reply", "use_css");
                     replyDiv.id = "reply-" + reply.r_id;
 
 
@@ -161,9 +161,9 @@
                         "</button>";
 
                     if (user_nickname === reply.r_writer) {
-                        replyHTML += "<div class='reply_my_button'>" +
-                            "<button onclick=\"editReply('" + reply.r_id + "', '" + reply.r_writer + "', '" + reply.r_date + "', '" + reply.r_context + "')\">修正</button>" +
-                            "<button onclick=\"deleteReply('" + reply.r_id + "')\">削除</button>"
+                        replyHTML += "<div style='display: flex; gap: 15px'>" +
+                            "<button onclick=\"editReply('" + reply.r_id + "', '" + reply.r_writer + "', '" + reply.r_date + "', '" + reply.r_context + "')\" class='reply_my_button'>修正</button>" +
+                            "<button onclick=\"deleteReply('" + reply.r_id + "')\" class='reply_my_button'>削除</button>"
                         + "</div>";
 
                     }

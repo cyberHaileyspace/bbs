@@ -49,11 +49,16 @@
         <div><span class="menu" data-val="質問">質問</span></div>
         <div><span class="menu" data-val="レビュー">レビュー</span></div>
     </div>
-    <hr>
+
 
     <!-- 정렬 + 글쓰기 + 검색 -->
     <div class="sort">
         <div>
+            <div class="search-btn">
+                <input type="text" placeholder="タイトルを入力してください。" id="search-input">
+                <button id="search-btn"><img class="search-btn-img" alt="" src="https://cdn-icons-png.flaticon.com/256/25/25313.png"/> 検索</button>
+            </div>
+            <hr>
 
             <div style="display: flex; align-items: center">
             <div style="display: flex">
@@ -76,10 +81,7 @@
                 </button>
             </div>
             </div>
-            <div class="search-btn">
-                <input type="text" placeholder="タイトルを入力してください。" id="search-input">
-                <button id="search-btn"><img class="search-btn-img" alt="" src="https://cdn-icons-png.flaticon.com/256/25/25313.png"/> 検索</button>
-            </div>
+
         </div>
     </div>
 

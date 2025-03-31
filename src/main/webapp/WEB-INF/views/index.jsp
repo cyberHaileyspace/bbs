@@ -36,7 +36,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         </div>
         <div
           onclick="location.href='/'"
-          style="cursor: pointer; position: absolute; left: 35.5%"
+          style="cursor: pointer; position: absolute; left: 39.5%"
         >
           Diaspora - ディアスポラ
         </div>
