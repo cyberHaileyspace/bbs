@@ -146,6 +146,37 @@ body {
     cursor: pointer;
 }
 
+.reply_form {
+    display: flex;
+}
+
+.reply_form > span {
+
+}
+
+.reply_context {
+    padding: 10px 10px 10px 30px;
+}
+
+.reply_date {
+    margin-left: auto;
+}
+
+.like-button {
+    text-align: center;
+    height: 40px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border-radius: 50px;
+    border: 1px solid #323232;
+    background-color: #323232;
+    color: #ffffff;
+    font-weight: 700;
+}
+
 .login-button02 > div {
     cursor: pointer;
 }

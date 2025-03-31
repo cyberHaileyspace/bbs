@@ -166,6 +166,7 @@
     justify-content: center;
     box-sizing: border-box;
     border-radius: 50px;
+    cursor: pointer;
 }
 
 

@@ -19,19 +19,19 @@
                     <img src="/img/upload/${user.user_image}" style="width: 100px; height: 100px">
                 </div>
             </c:if>
-        <div style="display: flex; flex-direction: column">
-            <span>プロフィール画像</span>
-            <!-- 숨겨진 파일 입력창 -->
-            <input type="file" name="profileImage" id="profileImageInput" style="display: none;">
+            <div style="display: flex; flex-direction: column">
+                <span>プロフィール画像</span>
+                <!-- 숨겨진 파일 입력창 -->
+                <input type="file" name="profileImage" id="profileImageInput" style="display: none;">
 
-            <!-- 사용자에게 보여지는 버튼(label) -->
-            <label for="profileImageInput" class="custom-file-label">
-                ファイルを選択
-            </label>
+                <!-- 사용자에게 보여지는 버튼(label) -->
+                <label for="profileImageInput" class="custom-file-label">
+                    ファイルを選択
+                </label>
 
-            <!-- 선택된 파일명 표시 영역 -->
-            <span id="fileName">ファイルなし</span>
-        </div>
+                <!-- 선택된 파일명 표시 영역 -->
+                <span id="fileName">ファイルなし</span>
+            </div>
             <script>
                 document.querySelector('input[name="profileImage"]').addEventListener('change', function () {
                     const fileName = this.files[0]?.name || "선택된 파일 없음";
@@ -40,7 +40,9 @@
             </script>
 
             <div class="pfp">
-                <button type="submit" name="user_id" value="${user.user_id}" class="my_photo_button">プロフィール写真の変更</button>
+                <button type="submit" name="user_id" value="${user.user_id}" class="my_photo_button">
+                    プロフィール写真の変更
+                </button>
                 <%--<button type="button" name="user_id" onclick="deletepfp()">プロフィール写真の削除</button>--%>
             </div>
         </form>
@@ -94,23 +96,23 @@
                             <button onclick="location.href='delete?pk=${p.p_no}'">삭제</button>
                         </div>--%>
                     <div class="post-life" onclick="goTofreePost(${p.post_id})">
-                        <div class="life-kind">
-                            <div class="life-no">番号 : ${p.post_id }</div>&nbsp;/&nbsp;
-                            <div class="life-cate">カテゴリー : ${p.post_category }</div>&nbsp;/&nbsp;
-                            <div class="life-menu">地域 : ${p.post_menu }</div>
+                        <div class="life-kind" style="display: flex; gap: 15px">
+                            <div class="life-no">番号 : ${p.post_id }</div>
+                            <div style="display: flex; flex-direction: column; align-items: flex-end; margin-left: auto">
+                                <div class="life-cate">カテゴリー : ${p.post_category }</div>
+                                <div class="life-menu">地域 : ${p.post_menu }</div>
+                            </div>
                         </div>
                         <div class="life-title">${p.post_title }</div>
-                        <div class="life-context">
-                            <%--<div class="life-text"><span>${p.post_context }</span></div>--%>
-                            <div class="life-image"><img alt="" src="img/post/${p.post_image }"></div>
-                        </div>
+
                         <div class="life-info">
-                            <div style="display: flex">
-                                <div class="info-name">投稿者 : ${p.user_nickname }</div>&nbsp;/&nbsp;
-                                <div class="info-date">投稿日 : <fmt:formatDate value="${p.post_date}" pattern="yyyy-MM-dd HH:mm"/> </div>
+                            <div style="display: flex; flex-direction: column; text-align: left">
+                                <div class="info-name">投稿者 : ${p.user_nickname }</div>
+                                <div class="info-date">投稿日 : <fmt:formatDate value="${p.post_date}"
+                                                                                pattern="yyyy-MM-dd HH:mm"/></div>
                             </div>
-                            <div style="display: flex">
-                                <div class="info-view">閲覧数 : ${p.post_view }</div>&nbsp;/&nbsp;
+                            <div style="display: flex; flex-direction: column; margin-left: auto; align-items: flex-end">
+                                <div class="info-view">閲覧数 : ${p.post_view }</div>
                                 <div class="info-like">いいね : ${p.post_like }</div>
                             </div>
                         </div>
@@ -142,23 +144,23 @@
                             <button onclick="location.href='delete?pk=${p.p_no}'">삭제</button>
                         </div>--%>
                     <div class="post-life" onclick="goTolifePost(${p.post_id})">
-                        <div class="life-kind">
-                            <div class="life-no">番号 : ${p.post_id }</div>&nbsp;/&nbsp;
-                            <div class="life-cate">カテゴリー : ${p.post_category }</div>&nbsp;/&nbsp;
+                        <div class="life-kind" style="display: flex; gap: 15px">
+                            <div class="life-no">番号 : ${p.post_id }</div>
+                            <div style="display: flex; flex-direction: column; align-items: flex-end; margin-left: auto">
+                            <div class="life-cate">カテゴリー : ${p.post_category }</div>
                             <div class="life-menu">地域 : ${p.post_menu }</div>
+                            </div>
                         </div>
                         <div class="life-title">${p.post_title }</div>
-                        <div class="life-context">
-                            <%--<div class="life-text"><span>${p.post_context }</span></div>--%>
-                            <div class="life-image"><img alt="" src="img/post/${p.post_image }"></div>
-                        </div>
+
                         <div class="life-info">
-                            <div style="display: flex">
-                                <div class="info-name">投稿者 : ${p.user_nickname }</div>&nbsp;/&nbsp;
-                                <div class="info-date">投稿日 : <fmt:formatDate value="${p.post_date}" pattern="yyyy-MM-dd HH:mm"/></div>
+                            <div style="display: flex; flex-direction: column; text-align: left">
+                                <div class="info-name">投稿者 : ${p.user_nickname }</div>
+                                <div class="info-date">投稿日 : <fmt:formatDate value="${p.post_date}"
+                                                                                pattern="yyyy-MM-dd HH:mm"/></div>
                             </div>
-                            <div style="display: flex">
-                                <div class="info-view">閲覧数 : ${p.post_view }</div>&nbsp;/&nbsp;
+                            <div style="display: flex; flex-direction: column; margin-left: auto; align-items: flex-end">
+                                <div class="info-view">閲覧数 : ${p.post_view }</div>
                                 <div class="info-like">いいね : ${p.post_like }</div>
                             </div>
                         </div>
@@ -179,23 +181,23 @@
                             <button onclick="location.href='delete?pk=${p.p_no}'">삭제</button>
                         </div>--%>
                     <div class="post-life" onclick="goTotourPost(${p.post_id})">
-                        <div class="life-kind">
-                            <div class="life-no">番号 : ${p.post_id }</div>&nbsp;/&nbsp;
-                            <%--<div class="life-cate">カテゴリー : ${p.post_category }</div>&nbsp;/&nbsp;--%>
+                        <div class="life-kind" style="display: flex; gap: 15px">
+                            <div class="life-no">番号 : ${p.post_id }</div>
+                            <div style="display: flex; flex-direction: column; align-items: flex-end; margin-left: auto">
+                                <%--<div class="life-cate">カテゴリー : ${p.post_category }</div>--%>
                             <div class="life-menu">地域 : ${p.post_menu }</div>
+                            </div>
                         </div>
                         <div class="life-title">${p.post_title }</div>
-                        <div class="life-context">
-                            <%--<div class="life-text"><span>${p.post_context }</span></div>--%>
-                            <div class="life-image"><img alt="" src="img/post/${p.post_image }"></div>
-                        </div>
+
                         <div class="life-info">
-                            <div style="display: flex">
-                                <div class="info-name">投稿者 : ${p.user_nickname }</div>&nbsp;/&nbsp;
-                                <div class="info-date">投稿日 : <fmt:formatDate value="${p.post_date}" pattern="yyyy-MM-dd HH:mm"/></div>
+                            <div style="display: flex;  flex-direction: column; text-align: left">
+                                <div class="info-name">投稿者 : ${p.user_nickname }</div>
+                                <div class="info-date">投稿日 : <fmt:formatDate value="${p.post_date}"
+                                                                                pattern="yyyy-MM-dd HH:mm"/></div>
                             </div>
-                            <div style="display: flex">
-                                <div class="info-view">閲覧数 : ${p.post_view }</div>&nbsp;/&nbsp;
+                            <div style="display: flex; flex-direction: column; margin-left: auto; align-items: flex-end">
+                                <div class="info-view">閲覧数 : ${p.post_view }</div>
                                 <div class="info-like">いいね : ${p.post_like }</div>
                             </div>
                         </div>
@@ -210,7 +212,7 @@
             <c:forEach items="${freePostReplies}" var="fr">
                 <%--<div>${fr}</div>--%>
                 <div class="free-context">
-                    <div class="free-reply-text">${fr.r_context}&nbsp;/&nbsp;${fr.r_date}</div>
+                    <div class="free-reply-text">${fr.r_context}${fr.r_date}</div>
                 </div>
                 <%--<div class="item" onclick="goToPost(${p.post_id})">
                         &lt;%&ndash;<div>번호 : ${l.post_id}</div>
@@ -222,8 +224,8 @@
                         </div>&ndash;%&gt;
                     <div class="post-life" onclick="goToPost(${p.post_id})">
                         <div class="life-kind">
-                            <div class="life-no">번호 : ${p.post_id }</div>&nbsp;/&nbsp;
-                            <div class="life-cate">카테고리 : ${p.post_category }</div>&nbsp;/&nbsp;
+                            <div class="life-no">번호 : ${p.post_id }</div>
+                            <div class="life-cate">카테고리 : ${p.post_category }</div>
                             <div class="life-menu">지역 : ${p.post_menu }</div>
                         </div>
                         <div class="life-title">${p.post_title }</div>
@@ -233,12 +235,12 @@
                         </div>
                         <div class="life-info">
                             <div style="display: flex">
-                                <div class="info-name">작성자 : ${p.user_nickname }</div>&nbsp;/&nbsp;
+                                <div class="info-name">작성자 : ${p.user_nickname }</div>
                                 <div class="info-date">작성일 : <fmt:formatDate value="${p.post_date}"
                                                                              pattern="yyyy-MM-dd"/></div>
                             </div>
                             <div style="display: flex">
-                                <div class="info-view">조회수 : ${p.post_view }</div>&nbsp;/&nbsp;
+                                <div class="info-view">조회수 : ${p.post_view }</div>
                                 <div class="info-like">좋아요 : ${p.post_like }</div>
                             </div>
                         </div>
@@ -261,7 +263,7 @@
             <h3 class="my_page_board">生活掲示板</h3>
             <c:forEach items="${lifePostReplies}" var="lr">
                 <div class="life-context">
-                    <div class="life-reply-text">${lr.r_context}&nbsp;/&nbsp;${lr.r_date}</div>
+                    <div class="life-reply-text">${lr.r_context}${lr.r_date}</div>
                 </div>
             </c:forEach>
         </div>
@@ -269,7 +271,7 @@
             <h3 class="my_page_board">観光掲示板</h3>
             <c:forEach items="${tourPostReplies}" var="tr">
                 <div class="tour-context">
-                    <div class="life-reply-text">${tr.r_context}&nbsp;/&nbsp;${tr.r_date}</div>
+                    <div class="life-reply-text">${tr.r_context}${tr.r_date}</div>
                 </div>
             </c:forEach>
         </div>
