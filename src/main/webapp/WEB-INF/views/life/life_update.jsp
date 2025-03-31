@@ -13,6 +13,7 @@
 </head>
 <body>
 <form id="writereg" action="/main/life/update" method="post" enctype="multipart/form-data">
+    <div class="reg_dom">
     <input type="hidden" name="post_id" value="${post.post_id}">  <!-- 여기에 post_id 추가 -->
     <div>
         <div hidden="hidden">
@@ -56,15 +57,31 @@
             </textarea>
         </div>
     </div>
-    <div>
+    <div class="reg_form">
 
         <div>
-            <input type='file' name="post_file" id='btnAtt' value="${post.post_image}">
+            <!-- 숨겨진 파일 선택 input -->
+            <input type="file" name="post_file" id="btnAtt" style="display: none;" value="${post.post_image}">
+
+            <!-- label을 버튼처럼 사용 -->
+            <label for="btnAtt" class="custom-file-label">
+                ファイルを添付
+            </label>
+
+            <!-- 선택한 파일명 표시 -->
+            <span id="fileName">ファイルなし</span>
+        </div>
+        <script>
+            document.getElementById('btnAtt').addEventListener('change', function () {
+                const fileName = this.files[0]?.name || "ファイルなし";
+                document.getElementById('fileName').innerText = fileName;
+            });
+        </script>
+        <div class="update_button_box">
+            <button class="reg-cancel" type="button" onclick="history.back()">キャンセル</button>
+            <button class="reg-post" type="submit" name="post_id" value="${post.post_id}">修正</button>
         </div>
     </div>
-    <div>
-        <button class="reg-cancel" type="button" onclick="history.back()">キャンセル</button>
-        <button class="reg-post" type="submit" name="post_id" value="${post.post_id}">登録</button>
     </div>
 </form>
 </body>

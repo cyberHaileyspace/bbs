@@ -20,7 +20,7 @@
 
     <div class="post-title"><span> ${post.post_title } </span></div>
     <div class="post-info">
-        <div class="post-profile"><img alt="" src="file/${user.user_image }"></div>
+        <div class="post-profile"><img alt="" src="/img/upload/${user.user_image }"></div>
         <div class="post-mini-wrapper">
             <div class="post-string">
                 <div class="post-name">${post.user_nickname }</div>
@@ -36,7 +36,7 @@
     <div class="post-content">
         <c:if test="${post.post_image ne null}">
             <div class="post-img">
-                <img src="/file/${post.post_image}" style="width: 400px; height: 400px">
+                <img src="/img/upload/${post.post_image}" style="width: 400px; height: 400px">
             </div>
         </c:if>
         <div class="post-text" id="post<%---${post.post_id}--%>">
@@ -45,7 +45,7 @@
         <br>
         <div class="post-button">
 
-            <button class="like-button" data-liked="${isLiked}" onclick="toggleLike(${post.post_id}, this)">
+            <button class="like-button reply_button" data-liked="${isLiked}" onclick="toggleLike(${post.post_id}, this)">
                 <c:choose>
                     <c:when test="${isLiked}">
                         取り消し&nbsp;<span class="like-count">${post.post_like}</span>
@@ -73,9 +73,10 @@
 
             <div class="comment-ta">
                 <textarea id="replyContent" placeholder="コメントを入力してください..." style="resize: none"></textarea>
+                <button id="commentButton" onclick="handleFreeReplySubmit('${user.user_nickname}')">コメント投稿</button>
             </div>
 
-            <button id="commentButton" onclick="handleFreeReplySubmit('${user.user_nickname}')">コメント投稿</button>
+
         </div>
         <div id="replyCountContainer"></div>
         <div>

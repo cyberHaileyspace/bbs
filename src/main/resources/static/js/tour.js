@@ -119,6 +119,7 @@
       });
     });
 
+
     // 6. 페이징 기능 (동적 생성 및 항목 표시)
     // 페이징 관련 DOM 요소는 #tourContainer 안의 .tour_img_container와 .pagination이어야 함.
     const pagingContainer = document.querySelector(
@@ -276,6 +277,21 @@
           items[i].children[0].prepend(img);
         }
       }
+
+      document.querySelectorAll(".jp-title").forEach(el => {
+        const original = el.dataset.title;
+        const matched = original.match(/^(.*?)（(.*?)）/);
+
+        if (matched) {
+          const beforeParen = matched[1];
+          const insideParen = matched[2];
+          el.innerHTML = `${beforeParen}<br>（${insideParen}）`;
+        } else {
+          el.textContent = original;
+        }
+      });
+
+
       updateState(page);
     }
 
@@ -319,6 +335,9 @@
 
 
   });
+
+
+
 
   // -------------------------------------------------------------------------------
 

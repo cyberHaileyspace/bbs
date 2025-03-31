@@ -13,60 +13,81 @@
 </head>
 <body>
 <form id="writereg" action="/main/tourBoard/update" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="post_id" value="${post.post_id}">  <!-- 여기에 post_id 추가 -->
-    <div>
-        <div hidden="hidden">
-            ニックネーム : <input name="user_nickname" value="${user.user_nickname}" type="text"
-                         placeholder="${user.user_nickname}" readonly></div>
-
-        ${post.post_id}
+    <div class="reg_dom">
+        <input type="hidden" name="post_id" value="${post.post_id}">  <!-- 여기에 post_id 추가 -->
         <div>
-            <div>地域</div>
+            <div hidden="hidden">
+                ニックネーム : <input name="user_nickname" value="${user.user_nickname}" type="text"
+                                      placeholder="${user.user_nickname}" readonly></div>
 
-            <select name="post_menu">
-                <option value="ソウル">ソウル</option>
-                <option value="京畿／仁川">京畿／仁川</option>
-                <option value="忠清／大田">忠清／大田</option>
-                <option value="全羅／光州">全羅／光州</option>
-                <option value="慶北／大邱">慶北／大邱</option>
-                <option value="慶南／釜山／蔚山">慶南／釜山／蔚山</option>
-                <option value="江原">江原</option>
-                <option value="済州">済州</option>
-            </select>
+            ${post.post_id}
+            <div>
+                <div>地域</div>
+
+                <select name="post_menu">
+                    <option value="ソウル">ソウル</option>
+                    <option value="京畿／仁川">京畿／仁川</option>
+                    <option value="忠清／大田">忠清／大田</option>
+                    <option value="全羅／光州">全羅／光州</option>
+                    <option value="慶北／大邱">慶北／大邱</option>
+                    <option value="慶南／釜山／蔚山">慶南／釜山／蔚山</option>
+                    <option value="江原">江原</option>
+                    <option value="済州">済州</option>
+                </select>
+            </div>
         </div>
-    </div>
 
-    <div>
-        <div>タイトル</div>
-        <div><textarea name="post_title" rows="5" cols="100" style="resize: none;">${post.post_title}
-        </textarea>
-        </div>
-    </div>
-
-    <div>
-        <div>内容</div>
         <div>
+            <div>タイトル</div>
+            <div><textarea name="post_title" rows="5" cols="100" style="resize: none;">${post.post_title}
+            </textarea>
+            </div>
+        </div>
+
+        <div>
+            <div>内容</div>
+            <div>
             <textarea name="post_context" id="writearea" value="post_context" rows="25" cols="100">${post.post_context}
             </textarea>
+            </div>
         </div>
-    </div>
-    <div>
-
         <div>
+
+            <div class="reg_form">
+                <div>
+                    <div>
+                        <!-- 숨겨진 파일 선택 input -->
+                        <input type="file" name="post_file" id="btnAtt" style="display: none;"
+                               value="${post.post_image}">
+
+                        <!-- label을 버튼처럼 사용 -->
+                        <label for="btnAtt" class="custom-file-label">
+                            ファイルを添付
+                        </label>
+
+                        <!-- 선택한 파일명 표시 -->
+                        <span id="fileName">ファイルなし</span>
+                    </div>
+                    <script>
+                        document.getElementById('btnAtt').addEventListener('change', function () {
+                            const fileName = this.files[0]?.name || "ファイルなし";
+                            document.getElementById('fileName').innerText = fileName;
+                        });
+                    </script>
+                </div>
+                <div class="update_button_box">
+                    <button class="reg-cancel" type="button" onclick="history.back()">キャンセル</button>
+                    <button class="reg-post" type="submit" name="post_id" value="${post.post_id}">修正</button>
+                </div>
+            </div>
             <div>現在のファイル :
-            <c:if test="${not empty post.post_image}">
-                <span>${post.post_image}</span> <!-- 기존 파일명 표시 -->
-                <input type="hidden" name="existing_post_image" value="${post.post_image}">
-            </c:if>
+                <c:if test="${not empty post.post_image}">
+                    <span>${post.post_image}</span> <!-- 기존 파일명 표시 -->
+                    <input type="hidden" name="existing_post_image" value="${post.post_image}">
+                </c:if>
             </div>
-            <div>
-                <input type="file" name="post_file" id="btnAtt">
-            </div>
+
         </div>
-    </div>
-    <div>
-        <button class="reg-cancel" type="button" onclick="history.back()">キャンセル</button>
-        <button class="reg-post" type="submit" name="post_id" value="${post.post_id}">更新する</button>
     </div>
 </form>
 </body>

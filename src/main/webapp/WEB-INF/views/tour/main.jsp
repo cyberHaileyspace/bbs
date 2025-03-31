@@ -30,7 +30,7 @@
                     <c:forEach var="f" items="${free}" varStatus="status">
                         <c:if test="${status.index < 5}">
                             <div class="main_board_box">
-                                <img src="${f.post_image}" onclick="goToFree(${f.post_id})">
+                                <img src="${empty f.post_image ? '/img/no-image.png' : f.post_image}" onclick="goToFree(${f.post_id})">
                                 <p onclick="goToFree(${f.post_id})" class="main_board_content_title">${f.post_title}</p>
                                 <p style="margin-left: auto">
                                     <fmt:formatDate value="${f.post_date}" pattern="yyyy.M.d"/>
@@ -47,7 +47,7 @@
                     <c:forEach var="l" items="${life}" varStatus="status">
                         <c:if test="${status.index < 5}">
                             <div class="main_board_box">
-                                <img src="${l.post_image}" onclick="goToLife(${l.post_id})">
+                                <img src="${empty f.post_image ? '/img/no-image.png' : l.post_image}" onclick="goToLife(${l.post_id})">
                                 <p onclick="goToLife(${l.post_id})" class="main_board_content_title">${l.post_title}</p>
                                 <p style="margin-left: auto">
                                     <fmt:formatDate value="${l.post_date}" pattern="yyyy.M.d"/>
@@ -67,7 +67,7 @@
                     <c:forEach var="t" items="${tourPosts}" varStatus="status">
                         <c:if test="${status.index < 5}">
                             <div class="main_board_box">
-                                <img src="${t.post_image}" onclick="gotoTour(${t.post_id})">
+                                <img src="${empty f.post_image ? '/img/no-image.png' : t.post_image}" onclick="gotoTour(${t.post_id})">
                                 <p onclick="gotoTour(${t.post_id})" class="main_board_content_title">${t.post_title}</p>
                                 <p style="margin-left: auto">
                                     <fmt:formatDate value="${t.post_date}" pattern="yyyy.M.d"/>
