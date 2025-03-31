@@ -13,6 +13,10 @@
             charset="utf-8"
     ></script>
     <link rel="stylesheet" href="/resources/css/sample.css" />
+    <link rel="stylesheet" href="/resources/css/toilet.css">
+    <script type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=004383c9a684a2e2224afc37cca60d3c&libraries=services"></script>
+
 </head>
 <body>
 <form
@@ -47,7 +51,7 @@
             <select name="post_menu">
                 <option value="ソウル">ソウル</option>
                 <option value="京畿／仁川">京畿／仁川</option>
-                <option value="忠正／大田">忠正／大田</option>
+                <option value="忠清／大田">忠清／大田</option>
                 <option value="全羅／光州">全羅／光州</option>
                 <option value="慶北／大都">慶北／大都</option>
                 <option value="慶南／釜山／蓬山">慶南／釜山／蓬山</option>
@@ -69,9 +73,27 @@
           ></textarea>
         </div>
     </div>
-
+    <div style="position: relative;">
+        <div id="map" style="width: 60%; height: 300px; border: 1px solid #ccc; border-radius: 10px;"></div>
+        <button type="button" style=" position: absolute;
+    top: 10px;
+    right: 560px;
+    z-index: 300;
+    padding: 8px 14px;
+    border: none;
+    background: #3478f6;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;" class="location-btn" onclick="moveToMyLocation()">📍 내 위치</button>
+    </div>
+    <input readonly name="post_lat" id="post_lat" />
+    <input readonly name="post_lng" id="post_lng" />
+    <div>住所</div>
     <div>
-        <div>内容</div>
+    <input readonly placeholder="位置を選択してください。" name="post_address" id="post_address" />
+    </div>
+    <div>内容</div>
         <div>
           <textarea
                   name="post_context"
@@ -82,7 +104,7 @@
                   placeholder="内容を入力してください。"
           ></textarea>
         </div>
-    </div>
+
     <div>
         <div>
             <input type="file" name="post_file" id="btnAtt" />
@@ -93,7 +115,7 @@
             キャンセル
         </button>
         <button class="reg-post" type="submit">投稿</button>
-    </div>
+    </div></div>
 </form>
 </body>
 <script type="text/javascript" id="smartEditor">
@@ -137,5 +159,84 @@
         document.getElementById("freeReg").submit();
     });
 </script>
+<script type="text/javascript">
+    let map, marker;
+    const geocoder = new kakao.maps.services.Geocoder();
+
+    function initMap() {
+        const container = document.getElementById('map');
+        const options = {
+            center: new kakao.maps.LatLng(37.5665, 126.9780),
+            level: 3
+        };
+        map = new kakao.maps.Map(container, options);
+
+        kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
+            const latlng = mouseEvent.latLng;
+
+            if (!marker) {
+                marker = new kakao.maps.Marker({
+                    map: map,
+                    position: latlng
+                });
+            } else {
+                marker.setPosition(latlng);
+            }
+
+            // 위도 경도 저장
+            document.getElementById('post_lat').value = latlng.getLat();
+            document.getElementById('post_lng').value = latlng.getLng();
+
+
+            // 주소 변환 요청
+            geocoder.coord2Address(latlng.getLng(), latlng.getLat(), function(result, status) {
+                if (status === kakao.maps.services.Status.OK) {
+                    const address = result[0].address.address_name;
+                    document.getElementById('post_address').value = address;
+                    console.log("📍 선택한 주소:", address);
+                }
+            });
+        });
+    }
+
+    function moveToMyLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                const lat = position.coords.latitude;
+                const lng = position.coords.longitude;
+                const loc = new kakao.maps.LatLng(lat, lng);
+
+                map.setCenter(loc);
+
+                if (!marker) {
+                    marker = new kakao.maps.Marker({ map: map, position: loc });
+                } else {
+                    marker.setPosition(loc);
+                }
+
+                document.getElementById('post_lat').value = lat;
+                document.getElementById('post_lng').value = lng;
+
+
+                // 주소 자동 등록
+                geocoder.coord2Address(lng, lat, function(result, status) {
+                    if (status === kakao.maps.services.Status.OK) {
+                        const address = result[0].address.address_name;
+                        document.getElementById('post_address').value = address;
+                        console.log("📍 현재 위치 주소:", address);
+                    }
+                });
+            });
+        } else {
+            alert("이 브라우저는 위치 정보를 지원하지 않아요.");
+        }
+    }
+
+    // onload
+    window.onload = function () {
+        kakao.maps.load(initMap);
+    };
+</script>
+
 
 </html>
