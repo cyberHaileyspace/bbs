@@ -116,14 +116,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                     <div onclick="location.href='/main/toilet'" style="cursor: pointer">
                         綺麗なトイレ探し*Test
                     </div>
-                    <%--
-                    <form id="defaultTourForm" action="/main/tourInfo/loc" method="get">
-                      --%> <%-- <input type="hidden" name="areaCode" value="1" />--%>
-                    <%-- <input type="hidden" name="sigungu" value="" />--%> <%--
-              <input type="hidden" name="sort" value="R" />--%> <%--
-              <input type="hidden" name="pageNo" value="1" />--%> <%--
-            </form>
-            --%>
+                    
                     <div onclick="location.href='/main/tour'" style="cursor: pointer">
                         観光掲示板
                     </div>
