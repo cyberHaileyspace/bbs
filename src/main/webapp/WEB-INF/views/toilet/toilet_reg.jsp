@@ -104,10 +104,10 @@
     const geocoder = new kakao.maps.services.Geocoder();
 
     const categoryIcons = {
-        "office": "https://www.flaticon.com/kr/free-icon/hospital_5693793",
-        "hospital": "https://www.flaticon.com/kr/free-icon/hospital_5693793.png",
-        "toilet": "https://www.flaticon.com/kr/free-icon/toilets_5695128.png",
-        "etc":"https://cdn-icons-png.flaticon.com/512/684/684908.png"
+        "office": "https://cdn-icons-png.flaticon.com/128/5693/5693863.png",
+        "hospital": "https://cdn-icons-png.flaticon.com/128/5693/5693852.png",
+        "toilet": "https://cdn-icons-png.flaticon.com/128/5695/5695154.png",  // 예: 변기 아이콘
+        "etc": "https://cdn-icons-png.flaticon.com/128/5583/5583002.png"
     };
 
     function initMap() {

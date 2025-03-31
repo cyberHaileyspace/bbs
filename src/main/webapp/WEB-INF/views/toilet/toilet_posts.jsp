@@ -143,10 +143,10 @@
     });
 
     const categoryIcons = {
-        "office": "https://cdn-icons-png.flaticon.com/512/5953/5953760.png",     // 공공서비스
-        "hospital": "https://cdn-icons-png.flaticon.com/512/2972/2972657.png", // 병원
-        "toilet": "https://cdn-icons-png.flaticon.com/512/169/169367.png",     // 화장실
-        "etc": "https://cdn-icons-png.flaticon.com/512/5953/5953760.png",      // 기타
+        "office": "https://cdn-icons-png.flaticon.com/128/5693/5693863.png",
+        "hospital": "https://cdn-icons-png.flaticon.com/128/5693/5693852.png",
+        "toilet": "https://cdn-icons-png.flaticon.com/128/5695/5695154.png",  // 예: 변기 아이콘
+        "etc": "https://cdn-icons-png.flaticon.com/128/5583/5583002.png",     // 기타
         "default": "https://cdn-icons-png.flaticon.com/512/684/684908.png"     // 기본 마커
     };
 
