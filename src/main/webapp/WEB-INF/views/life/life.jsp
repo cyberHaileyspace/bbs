@@ -31,17 +31,20 @@
                                          src="https://cdn-icons-png.flaticon.com/256/25/25313.png"/> <span>検索</span>
             </button>
         </div>
-        <hr style="width: 1000px;">
+        <hr style="width: 1050px;">
         <div style="display: flex; padding: 0 50px; width: 90%; margin-top: 25px">
             <div style="display: flex; flex-direction: row">
                 <label class="cate_radio">
                     <input type="radio" name="option" value="new" checked="checked"/><span>最新順</span>
                 </label>
                 <label class="cate_radio">
-                    <input type="radio" name="option" value="like"/><span>おすすめ順</span>
+                    <input type="radio" name="option" value="like"/><span>いいね順</span>
                 </label>
                 <label class="cate_radio">
                     <input type="radio" name="option" value="view"/><span>閲覧数順</span>
+                </label>
+                <label class="cate_radio">
+                    <input type="radio" name="option" value="reply"/><span>コメント順</span>
                 </label>
             </div>
 
@@ -62,7 +65,7 @@
 <!-- 게시글 목록 -->
 <div id="post-container">
 </div>
-<div id="pagination-container" style="display: flex; justify-content: center"></div>
+<div id="pagination-container" style="display: flex; justify-content: center; padding: 10px"></div>
 <%--<c:choose>
     <c:when test="${not empty posts}">
         <c:forEach items="${posts}" var="p">

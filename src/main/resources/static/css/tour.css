@@ -22,7 +22,8 @@ ul {
     justify-content: space-around;
     align-items: center;
     border-radius: 0 0 50px 50px;
-    background-color: #efc752;
+    background-color: #585c5e;
+    color: #fff1f1;
     height: 40px;
     width: 600px;
     margin: 0 auto 15px auto;
