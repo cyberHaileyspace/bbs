@@ -13,48 +13,65 @@
 </head>
 <body>
 <form id="freeReg" action="/main/tourBoard" method="post" enctype="multipart/form-data">
-    <div>
-        <div hidden="hidden">ニックネーム : <input name="user_nickname" value="${user.user_nickname}" type="text"
-                                          placeholder="${user.user_nickname}" readonly></div>
+    <div class="reg_dom">
+        <div>
+            <div hidden="hidden">ニックネーム : <input name="user_nickname" value="${user.user_nickname}" type="text"
+                                                       placeholder="${user.user_nickname}" readonly></div>
+
+            <div>
+                <div>地域</div>
+                <select name="post_menu">
+                    <option value="ソウル">ソウル</option>
+                    <option value="京畿／仁川">京畿／仁川</option>
+                    <option value="忠清／大田">忠清／大田</option>
+                    <option value="全羅／光州">全羅／光州</option>
+                    <option value="慶北／大邱">慶北／大邱</option>
+                    <option value="慶南／釜山／蔚山">慶南／釜山／蔚山</option>
+                    <option value="江原">江原</option>
+                    <option value="済州">済州</option>
+                </select>
+            </div>
+        </div>
 
         <div>
-            <div>地域</div>
-            <select name="post_menu">
-                <option value="ソウル">ソウル</option>
-                <option value="京畿／仁川">京畿／仁川</option>
-                <option value="忠清／大田">忠清／大田</option>
-                <option value="全羅／光州">全羅／光州</option>
-                <option value="慶北／大邱">慶北／大邱</option>
-                <option value="慶南／釜山／蔚山">慶南／釜山／蔚山</option>
-                <option value="江原">江原</option>
-                <option value="済州">済州</option>
-            </select>
+            <div>タイトル</div>
+            <div><textarea name="post_title" rows="5" cols="100" placeholder="タイトルを入力してください。"
+                           style="resize: none;"></textarea>
+            </div>
         </div>
-    </div>
 
-    <div>
-        <div>タイトル</div>
-        <div><textarea name="post_title" rows="5" cols="100" placeholder="タイトルを入力してください。" style="resize: none;"></textarea>
-        </div>
-    </div>
-
-    <div>
-        <div>内容</div>
         <div>
+            <div>内容</div>
+            <div>
             <textarea name="post_context" id="writearea" value="post_context" rows="25" cols="100"
                       placeholder="内容を入力してください。"></textarea>
+            </div>
         </div>
-    </div>
-    <div>
+        <div class="reg_form">
+            <div>
+                <!-- 숨겨진 파일 선택 input -->
+                <input type="file" name="post_file" id="btnAtt" style="display: none;">
 
-        <div>
-            <input type='file' name="post_file" id='btnAtt'>
+                <!-- label을 버튼처럼 사용 -->
+                <label for="btnAtt" class="custom-file-label">
+                    ファイルを添付
+                </label>
+
+                <!-- 선택한 파일명 표시 -->
+                <span id="fileName">ファイルなし</span>
+            </div>
+            <script>
+                document.getElementById('btnAtt').addEventListener('change', function () {
+                    const fileName = this.files[0]?.name || "ファイルなし";
+                    document.getElementById('fileName').innerText = fileName;
+                });
+            </script>
+
+            <div class="update_button_box">
+                <button class="reg-cancel" type="button" onclick="history.back()">キャンセル</button>
+                <button class="reg-post" type="submit">投稿する</button>
+            </div>
         </div>
-
-    </div>
-    <div>
-        <button class="reg-cancel" type="button" onclick="history.back()">キャンセル</button>
-        <button class="reg-post" type="submit">投稿する</button>
     </div>
 
 </form>

@@ -62,11 +62,12 @@
 
             <div class="comment-ta">
                 <textarea id="replyContent" placeholder="コメントを入力してください..." style="resize: none"></textarea>
+                <button id="commentButton"
+                        onclick="handleFreeReplySubmit('${user.user_nickname}')">コメント投稿
+                </button>
             </div>
 
-            <button id="commentButton"
-                    onclick="handleFreeReplySubmit('${user.user_nickname}')">コメント投稿
-            </button>
+
         </div>
         <div id="replySection">
         </div>

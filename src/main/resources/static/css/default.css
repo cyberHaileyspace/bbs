@@ -87,6 +87,8 @@ body {
 .title {
     border-bottom: 1px solid grey;
     text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 .id.pw.name.nickname.email.file {
@@ -97,20 +99,12 @@ body {
     cursor: pointer;
 }
 
-
-
 .login-button {
     display: flex;
     width: 100%;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
-}
-
-.register-button {
-    display: flex;
-    width: 100%;
-    /*justify-content: space-evenly;*/
-    align-items: center;
+    gap: 20px;
 }
 
 .login-button02 {
@@ -120,6 +114,22 @@ body {
     border: 1px solid lightgrey;
     text-align: center;
 }
+
+.reg_dom {
+    width: 758px;
+    margin: auto
+}
+.reg_form {
+    display: flex;
+    align-items: center;
+}
+
+
+
+.login-button02 > div {
+    cursor: pointer;
+}
+
 
 .panel {
     width: 300px;
@@ -213,10 +223,13 @@ body {
 
 }
 
+.my_page_board {
+    margin: 13px;
+}
+
 /* 게시글 리스트 스타일 */
 .item {
     width: 85%;  /* 가로 크기 */
-    max-width: 800px; /* 최대 너비 */
     margin: 20px auto; /* 중앙 정렬 */
     padding: 20px;
     border-radius: 10px; /* 모서리 둥글게 */

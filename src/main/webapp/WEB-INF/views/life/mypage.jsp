@@ -19,11 +19,28 @@
                     <img src="/img/upload/${user.user_image}" style="width: 100px; height: 100px">
                 </div>
             </c:if>
+        <div style="display: flex; flex-direction: column">
+            <span>プロフィール画像</span>
+            <!-- 숨겨진 파일 입력창 -->
+            <input type="file" name="profileImage" id="profileImageInput" style="display: none;">
 
-            <input type="file" name="profileImage">
+            <!-- 사용자에게 보여지는 버튼(label) -->
+            <label for="profileImageInput" class="custom-file-label">
+                ファイルを選択
+            </label>
+
+            <!-- 선택된 파일명 표시 영역 -->
+            <span id="fileName">ファイルなし</span>
+        </div>
+            <script>
+                document.querySelector('input[name="profileImage"]').addEventListener('change', function () {
+                    const fileName = this.files[0]?.name || "선택된 파일 없음";
+                    document.getElementById('fileName').innerText = fileName;
+                });
+            </script>
 
             <div class="pfp">
-                <button type="submit" name="user_id" value="${user.user_id}">プロフィール写真の変更</button>
+                <button type="submit" name="user_id" value="${user.user_id}" class="my_photo_button">プロフィール写真の変更</button>
                 <%--<button type="button" name="user_id" onclick="deletepfp()">プロフィール写真の削除</button>--%>
             </div>
         </form>
@@ -65,7 +82,8 @@
 
     <div class="tab-content show" id="posts">
         <div style="width: 30%; margin: 20px">
-            <h3>自由掲示板</h3>
+            <h3 class="my_page_board">自由掲示板</h3>
+            <hr>
             <c:forEach items="${freePosts}" var="p">
                 <div class="item" <%--onclick="goToPost(${p.post_id})"--%>>
                         <%--<div>번호 : ${l.post_id}</div>
@@ -112,7 +130,8 @@
             </div>--%>
         </div>
         <div style="width: 30%; margin: 20px">
-            <h3>生活掲示板</h3>
+            <h3 class="my_page_board">生活掲示板</h3>
+            <hr>
             <c:forEach items="${lifePosts}" var="p">
                 <div class="item">
                         <%--<div>번호 : ${l.post_id}</div>
@@ -148,7 +167,8 @@
             </c:forEach>
         </div>
         <div style="width: 30%; margin: 20px">
-            <h3>観光掲示板</h3>
+            <h3 class="my_page_board">観光掲示板</h3>
+            <hr>
             <c:forEach items="${tourPosts}" var="p">
                 <div class="item">
                         <%--<div>번호 : ${l.post_id}</div>
@@ -186,7 +206,7 @@
     </div>
     <div class="tab-content" id="comments">
         <div style="width: 30%; margin: 20px">
-            <h3>自由掲示板</h3>
+            <h3 class="my_page_board">自由掲示板</h3>
             <c:forEach items="${freePostReplies}" var="fr">
                 <%--<div>${fr}</div>--%>
                 <div class="free-context">
@@ -238,7 +258,7 @@
             </div>--%>
         </div>
         <div style="width: 30%; margin: 20px">
-            <h3>生活掲示板</h3>
+            <h3 class="my_page_board">生活掲示板</h3>
             <c:forEach items="${lifePostReplies}" var="lr">
                 <div class="life-context">
                     <div class="life-reply-text">${lr.r_context}&nbsp;/&nbsp;${lr.r_date}</div>
@@ -246,7 +266,7 @@
             </c:forEach>
         </div>
         <div style="width: 30%; margin: 20px">
-            <h3>観光掲示板</h3>
+            <h3 class="my_page_board">観光掲示板</h3>
             <c:forEach items="${tourPostReplies}" var="tr">
                 <div class="tour-context">
                     <div class="life-reply-text">${tr.r_context}&nbsp;/&nbsp;${tr.r_date}</div>

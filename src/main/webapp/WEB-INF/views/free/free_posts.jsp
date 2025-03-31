@@ -33,37 +33,28 @@
                                          src="https://cdn-icons-png.flaticon.com/256/25/25313.png"/> <span>検索</span>
             </button>
         </div>
-        <div style="display: flex; justify-content: flex-end">
-            <button class="write-btn" onclick="logincheck('${sessionScope.user}')">
-                <img class="write-btn-img" alt="" src="https://cdn-icons-png.flaticon.com/512/117/117476.png"/> 作成
-            </button>
-        </div>
-        <div class="search-btn">
-            <input type="text" placeholder="タイトルを入力してください。" id="search-input">
-            <button id="search-btn"><img class="search-btn-img" alt="" src="https://cdn-icons-png.flaticon.com/256/25/25313.png"/> 検索
-            </button>
-        <div style="display: flex">
-            <div style="display: flex">
-                <label class="cate_radio">
-                    <input type="radio" name="option" value="new" checked="checked"/><span>最新順</span>
-                </label>
-                <label class="cate_radio">
-                    <input type="radio" name="option" value="like"/><span>おすすめ順</span>
-                </label>
-                <label class="cate_radio">
-                    <input type="radio" name="option" value="view"/><span>閲覧数順</span>
-                </label>
-                <label class="cate_radio">
-                    <input type="radio" name="option" value="reply"/><span>コメント順</span>
-                </label>
+            <hr style="width: 1000px;">
+            <div style="display: flex; padding: 0 50px; width: 90%; margin-top: 25px">
+                <div style="display: flex; flex-direction: row">
+                    <label class="cate_radio">
+                        <input type="radio" name="option" value="new" checked="checked"/><span>最新順</span>
+                    </label>
+                    <label class="cate_radio">
+                        <input type="radio" name="option" value="like"/><span>おすすめ順</span>
+                    </label>
+                    <label class="cate_radio">
+                        <input type="radio" name="option" value="view"/><span>閲覧数順</span>
+                    </label>
+                </div>
+
+                <div style="margin-left: auto">
+                    <button class="write-btn" onclick="logincheck('${sessionScope.user}')">
+                        <img class="write-btn-img" alt="" src="https://cdn-icons-png.flaticon.com/512/117/117476.png"/>
+                        <span>投稿</span>
+                    </button>
+                </div>
             </div>
-            <div style="margin-left: auto">
-                <button class="write-btn" onclick="logincheck('${sessionScope.user}')">
-                    <img class="write-btn-img" alt="" src="https://cdn-icons-png.flaticon.com/512/117/117476.png"/> 작성
-                </button>
-            </div>
-        </div>
-    </div>
+
 </div>
 <br>
 <div id="post-container">

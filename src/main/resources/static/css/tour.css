@@ -1,11 +1,3 @@
-.location-wrap {
-    display: none;
-    background-color: rgb(220, 230, 220);
-    width: 350px;
-    position: absolute;
-    left: 49%;
-    margin-left: -100px;
-}
 
 .location-wrap.show {
     display: flex;
@@ -29,7 +21,7 @@ ul {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    border-radius: 0 0 20px 20px;
+    border-radius: 0 0 50px 50px;
     background-color: #efc752;
     height: 40px;
     width: 600px;
@@ -128,16 +120,17 @@ ul {
 /* 지역선택창 전체 컨테이너 (팝업) */
 .location-wrap {
     display: none; /* 초기에는 숨김 */
-    background: linear-gradient(135deg, #e0f7fa, #80deea); /* 부드러운 그라데이션 배경 */
+    background: linear-gradient(135deg, #f9f9f9, #e8ecf3); /* 부드러운 그라데이션 배경 */
     border: 2px solid #4dd0e1;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 20px;
     width: 400px;
-    position: relative;
     top: 18%;
-    left: 57%;
+    left: 50%;
     transform: translateX(-50%);
+    position: absolute;
+    z-index: 5;
 }
 
 /* 팝업이 활성화된 경우 */

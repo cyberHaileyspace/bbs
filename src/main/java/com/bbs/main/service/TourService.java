@@ -1,6 +1,7 @@
 package com.bbs.main.service;
 
 import com.bbs.main.mapper.TourMapper;
+import com.bbs.main.vo.LifeVO;
 import com.bbs.main.vo.TourVO;
 import com.bbs.main.vo.TourReplyVO;
 import com.bbs.main.vo.Tour_API_VO;
@@ -375,5 +376,9 @@ public class TourService {
 
     public int getLikeCount(int post_id) {
         return tourMapper.getLikeCount(post_id);
+    }
+
+    public List<LifeVO> searchposts(String title) {
+        return tourMapper.searchposts(title);
     }
 }

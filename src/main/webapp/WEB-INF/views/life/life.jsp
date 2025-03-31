@@ -32,7 +32,7 @@
             </button>
         </div>
         <hr style="width: 1000px;">
-        <div style="display: flex; padding: 0 50px; width: 90%">
+        <div style="display: flex; padding: 0 50px; width: 90%; margin-top: 25px">
             <div style="display: flex; flex-direction: row">
                 <label class="cate_radio">
                     <input type="radio" name="option" value="new" checked="checked"/><span>最新順</span>

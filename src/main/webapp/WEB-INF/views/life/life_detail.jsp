@@ -7,71 +7,75 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
     <script type="text/javascript" src="/resources/nse_files/js/HuskyEZCreator.js" charset="utf-8"></script>
     <link rel="stylesheet" href="/resources/css/board.css">
     <script src="/resources/js/life/life.js"></script>
 </head>
 <body>
-<div class="container-cm-post">
-    <div class="life-back" onclick="location.href='/main/life'">生活掲示板 ></div>
-    <div class="post-title"><span> ${post.post_title } </span></div>
-    <div class="post-info">
-        <div class="post-profile"><img alt="" src="/file/${user.user_image }"></div>
-        <div class="post-mini-wrapper">
-            <div class="post-string">
-                <div class="post-name">${post.user_nickname }</div>
-                <div class="post-date"><fmt:formatDate value="${post.post_date}" pattern="yyyy-MM-dd"/></div>
-            </div>
-            <div class="post-items">
-                <div class="post-view"><img
-                        src="https://cdn-icons-png.flaticon.com/512/7835/7835667.png">${post.post_view }</div>
-                <div class="post-like"><img
-                        src="https://cdn-icons-png.flaticon.com/512/833/833234.png">${post.post_like }</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="post-content">
-        <c:if test="${post.post_image ne null}">
-            <div class="post-img">
-                <img src="/file/${post.post_image}" style="width: 400px; height: 400px">
-            </div>
-        </c:if>
-        <div class="post-text" id="post<%---${post.post_id}--%>">
-            <div>${post.post_context}</div>
-        </div>
-        <br>
-        <div class="post-button">
-            <button class="like-button" onclick="likePost(${post.post_id}, this)">
-                いいね数 : &nbsp;<span class="like-count">${post.post_like}</span>
-            </button>
-            <c:if test="${login_nickname == post.user_nickname}">
-                <button onclick="deletePost(${post.post_id})">削除</button>
-                <button onclick="location.href='update/${post.post_id}'">修正</button>
-            </c:if>
-            <button onclick="location.href='/main/life'">リスト</button>
-        </div>
-    </div>
-</div>
 <div>
-    <div>
-        <div class="reply-section">
-            <div class="reply-header">コメントを書く</div>
-            <div hidden="hidden">ニックネーム : <input name="user_nickname" value="${user.user_nickname}" type="text"
-                                              placeholder="${user.user_nickname}" readonly></div>
-
-            <div class="reply-ta">
-                <textarea id="replyContent" placeholder="コメントを入力してください..." style="resize: none"></textarea>
+    <div class="container-cm-post">
+        <div class="life-back" onclick="location.href='/main/life'">生活掲示板 ></div>
+        <div class="post-title"><span> ${post.post_title } </span></div>
+        <div class="post-info">
+            <div class="post-profile"><img alt="" src="/file/${user.user_image }"></div>
+            <div class="post-mini-wrapper">
+                <div class="post-string">
+                    <div class="post-name">${post.user_nickname }</div>
+                    <div class="post-date"><fmt:formatDate value="${post.post_date}" pattern="yyyy-MM-dd"/></div>
+                </div>
+                <div class="post-items">
+                    <div class="post-view"><img
+                            src="https://cdn-icons-png.flaticon.com/512/7835/7835667.png">${post.post_view }</div>
+                    <div class="post-like"><img
+                            src="https://cdn-icons-png.flaticon.com/512/833/833234.png">${post.post_like }</div>
+                </div>
             </div>
-
-            <button id="replyButton"
-                    onclick="handleReplySubmit('${user.user_nickname}')">コメント投稿
-            </button>
         </div>
 
-        <div id="replySection">
-            <p></p>
+        <div class="post-content">
+            <c:if test="${post.post_image ne null}">
+                <div class="post-img">
+                    <img src="/file/${post.post_image}" style="width: 400px; height: 400px">
+                </div>
+            </c:if>
+            <div class="post-text" id="post<%---${post.post_id}--%>">
+                <div>${post.post_context}</div>
+            </div>
+            <br>
+            <div class="post-button">
+                <button class="like-button" onclick="likePost(${post.post_id}, this)">
+                    いいね数 : &nbsp;<span class="like-count">${post.post_like}</span>
+                </button>
+                <c:if test="${login_nickname == post.user_nickname}">
+                    <button onclick="deletePost(${post.post_id})">削除</button>
+                    <button onclick="location.href='update/${post.post_id}'">修正</button>
+                </c:if>
+                <button onclick="location.href='/main/life'">リスト</button>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div>
+            <div class="reply-section">
+                <div class="reply-header">コメントを書く</div>
+                <div hidden="hidden">ニックネーム : <input name="user_nickname" value="${user.user_nickname}"
+                                                           type="text"
+                                                           placeholder="${user.user_nickname}" readonly></div>
+
+                <div class="reply-ta">
+                    <textarea id="replyContent" placeholder="コメントを入力してください..."
+                              style="resize: none"></textarea>
+                    <button id="replyButton"
+                            onclick="handleReplySubmit('${user.user_nickname}')">コメント投稿
+                    </button>
+                </div>
+
+            </div>
+
+            <div id="replySection">
+                <p></p>
+            </div>
         </div>
     </div>
 </div>
@@ -108,7 +112,7 @@
 
     // 페이지 로드 시 댓글을 비동기적으로 가져오는 함수
     function loadLifeReplies() {
-        fetch('/main/life/reply/'+ post_id)
+        fetch('/main/life/reply/' + post_id)
             .then(response => response.json())
             .then(data => {
                 console.log("Fetched Replies:", data)

@@ -1,3 +1,15 @@
+.custom-file-label {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    border: 1px solid black;
+    margin: 5px 10px;
+}
+
 .main02 {
     width: 35%;
 }
@@ -44,6 +56,7 @@
     height: 30px;
     font-size: 12px;
     margin-left: auto;
+    border-radius: 5px;
 }
 
 #id_check_btn:hover, #nick_check_btn:hover, #email_check_btn:hover {
@@ -68,6 +81,8 @@
 .file {
     flex-direction: column;
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .file > input {
     padding: 0 100px;
@@ -75,10 +90,12 @@
 
 .register-button {
     display: flex;
-    gap: 8px;
+    gap: 15px;
     justify-content: center;
-    margin-top: 12px;
+    align-items: center;
+    margin-top: 20px;
 }
+
 
 .myPage_info {
     display: grid;
@@ -96,4 +113,44 @@
 }
 .right {
     text-align: left;
+}
+
+.info_form {
+    width: 100%;
+    height: 80px;
+}
+.name {
+    height: 50px;
+}
+
+.my_info_button {
+    border:1px solid #323232;
+    background-color: #323232;
+    color:#ffffff;
+    font-weight: 700;
+    text-align: center;
+    height: 40px;
+    width: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.my_photo_button {
+    border:1px solid #323232;
+    background-color: #323232;
+    color:#ffffff;
+    font-weight: 700;
+    text-align: center;
+    height: 40px;
+    width: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border-radius: 50px;
+    cursor: pointer;
 }

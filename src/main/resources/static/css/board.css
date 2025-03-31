@@ -1,8 +1,4 @@
-.title {
-    border-bottom: 1px solid grey;
-    text-align: center;
-    width: 100%;
-}
+
 
 .id.pw.name.nickname.email.file {
     display: flex;
@@ -30,27 +26,6 @@
 
 
 
-/* 가입하기 버튼 */
-.sign {
-    background-color: rgb(0, 123, 255);
-    color: white;
-    font-weight: bold;
-}
-
-.sign:hover {
-    background-color: #0056b3;
-}
-
-/* 뒤로가기 버튼 */
-.back {
-    background-color: #6c757d;
-    color: white;
-    font-weight: bold;
-}
-
-.back:hover {
-    background-color: #5a6268;
-}
 
 
 .panel {
@@ -94,7 +69,7 @@
 
 .mypage-container {
     width: 500px;
-    height: 400px;
+    height: 500px;
     box-shadow: 3px 3px 3px 3px lightgrey;
     display: flex;
     flex-direction: column;
@@ -113,28 +88,32 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    border: lightgrey;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    border-top: 1px solid gray;
+    padding-top: 10px;
 }
 
 .mypage-box > .menu-btn {
     cursor: pointer;
     transition: all 0.3s ease;
+    border-radius: 15px;
+    padding: 3px 5px;
 }
 
 .mypage-box > .menu-btn:hover {
-    background-color: #e0edff; /* 연한 보라색 */
-    color: #333;
+    background-color: #3c3c45; /* 연한 보라색 */
+    color: #f4eeee;
     transform: translateY(-2px); /* 살짝 떠오르는 느낌 */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 
 
+
+
 .pfp {
     display: flex;
     justify-content: center;
+    margin-top: 13px;
 }
 
 .category {
@@ -142,7 +121,7 @@
     justify-content: space-around;
     align-items: center;
     padding: 10px 20px;
-    border-radius: 10px;
+    border-radius: 0 0 50px 50px;
     margin-bottom: 15px;
     gap: 20px;
     background-color: #585c5e;
@@ -158,7 +137,7 @@
 }
 
 .category div span:hover {
-    background-color: #5563ed;
+    background-color: #2b2e3e;
     border-radius: 15px;
 }
 
@@ -186,9 +165,7 @@
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    border:1px solid #dcdcdc;
     border-radius: 50px;
-    color:#c0b0b0;
 }
 
 
@@ -263,10 +240,118 @@
     cursor: pointer;
 }
 
+#search-btn:hover {
+    background-color: #c5c7cd;
+}
+
 #search-btn span {
 }
 
 .search-btn-img {
     width: 20px;
     height: 20px;
+}
+
+.reply-section {
+    width: 90%;
+    margin: 35px;
+    padding: 10px;
+
+}
+.life-kind {
+    width: 100%;
+}
+
+.life_northWest {
+    display: flex;
+    gap: 20px;
+}
+.lift_northEast {
+    display: flex;
+    margin-left: auto;
+    gap: 20px;
+}
+
+.life_southWest {
+    display: flex;
+    gap: 20px;
+}
+
+.life_southEast {
+    display: flex;
+    gap: 15px;
+    margin-left: auto;
+}
+
+.post-button {
+    display: flex;
+    gap: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.post-button button {
+    border-radius: 20px;
+    background-color: #544c4c;
+    color: white;
+}
+
+.post-button button:hover {
+    background-color: darkgrey;
+}
+
+.reply-header {
+    display: flex;
+    justify-content: center;
+}
+
+.reply-ta {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    align-items: center;
+}
+
+#replySection {
+    margin-left: 45px;
+}
+
+#replyContent {
+    width: 400px;
+    margin: 20px 20px;
+    padding: 20px;
+    gap: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 80px;
+    border: 1px solid #ddd;
+}
+
+#replyButton {
+    cursor: pointer;
+    background-color: #544c4c;
+    color: white;
+    border-radius: 20px;
+    height: 40px;
+}
+
+.update_button_box {
+    display: flex;
+    gap: 15px;
+    margin-left: auto;
+}
+.update_button_box > button {
+    border: 1px solid #323232;
+    background-color: #323232;
+    color: #ffffff;
+    font-weight: 700;
+    text-align: center;
+    height: 40px;
+    width: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border-radius: 50px;
+    cursor: pointer;
 }

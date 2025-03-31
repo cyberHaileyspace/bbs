@@ -36,7 +36,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         </div>
         <div
           onclick="location.href='/'"
-          style="cursor: pointer; position: absolute; left: 42.5%"
+          style="cursor: pointer; position: absolute; left: 35.5%"
         >
           Diaspora - ディアスポラ
         </div>
@@ -114,7 +114,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     </div>
 </div>
         <form id="defaultTourForm" action="/main/tourInfo/loc" method="get">
-            <input type="hidden" name="areaCode" value="1"/>
+            <input type="hidden" name="areaCode" value="6"/>
             <input type="hidden" name="sigungu" value=""/>
             <input type="hidden" name="sort" value="R"/>
             <input type="hidden" name="pageNo" value="1"/>

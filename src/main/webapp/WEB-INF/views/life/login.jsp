@@ -27,10 +27,10 @@
                     <div><input name="user_pw" type="password" required></div>
                 </div>
                 <div class="login-button">
-                    <button type="submit">ログイン</button>
-                    <button onclick="location.href='/'" class="back">
+                    <button onclick="location.href='/'" class="back my_info_button">
                         戻る
                     </button>
+                    <button type="submit" class="my_info_button">ログイン</button>
                 </div>
                 <br>
             </form>

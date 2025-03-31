@@ -59,6 +59,13 @@ public class MainC {
         return "index";
     }
 
+    @ResponseBody
+    @GetMapping("/tour/all")
+    public List<LifeVO> toursearch(@RequestParam(defaultValue = "", required = false) String title) {
+        System.out.println(title);
+        return tourService.searchposts(title);
+    }
+
     @GetMapping("/free")
     public String list(Model model) {
         model.addAttribute("content", "free/free_posts.jsp");

@@ -52,4 +52,7 @@ public interface TourMapper {
 
     @Select("SELECT post_like FROM TOUR_POST_DB WHERE post_id = #{post_id}")
     int getLikeCount(int post_id);
+
+    @Select("select * from Tour_Post_DB where post_title like '%'||#{title}||'%' order by post_id desc")
+    List<LifeVO> searchposts(String title);
 }

@@ -12,6 +12,7 @@
 </head>
 <body>
 <form id="writereg" action="reg" method="post" enctype="multipart/form-data">
+    <div class="reg_dom">
     <div>
         <div hidden="hidden">ニックネーム : <input name="user_nickname" value="${user.user_nickname}" type="text"
                                           placeholder="${user.user_nickname}" readonly></div>
@@ -66,18 +67,33 @@
                       placeholder="内容を入力してください。"></textarea>
         </div>
     </div>
-    <div>
+    <div class="reg_form">
 
         <div>
-            <input type='file' name="post_file" id='btnAtt'>
+            <!-- 숨겨진 파일 선택 input -->
+            <input type="file" name="post_file" id="btnAtt" style="display: none;">
+
+            <!-- label을 버튼처럼 사용 -->
+            <label for="btnAtt" class="custom-file-label">
+                ファイルを添付
+            </label>
+
+            <!-- 선택한 파일명 표시 -->
+            <span id="fileName">ファイルなし</span>
         </div>
+        <script>
+            document.getElementById('btnAtt').addEventListener('change', function () {
+                const fileName = this.files[0]?.name || "ファイルなし";
+                document.getElementById('fileName').innerText = fileName;
+            });
+        </script>
+        <div style="display: flex; gap: 20px; margin-left: auto">
+            <button class="reg-cancel my_info_button" type="button" onclick="history.back()">キャンセル</button>
+            <button class="reg-post my_info_button" type="submit">登録</button>
+        </div>
+    </div>
 
     </div>
-    <div style="display: flex; gap: 20px">
-        <button class="reg-cancel" type="button" onclick="history.back()">キャンセル</button>
-        <button class="reg-post" type="submit">登録</button>
-    </div>
-
 </form>
 </body>
 <script type="text/javascript" id="smartEditor">

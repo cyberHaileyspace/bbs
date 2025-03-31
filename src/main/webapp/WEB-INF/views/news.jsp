@@ -10,7 +10,10 @@
 <body>
 <div style="display: flex; justify-content: center">
     <div class="news_page">
-        <div style="text-align: center; border-bottom: 1px solid gray"><h1>今日の日本海外トップニュース</h1></div>
+        <div style="text-align: center">
+            <h1>今日の日本海外トップニュース</h1>
+            <hr style="width: 90%">
+        </div>
         <div id="news-container"></div>
         <div class="more-btn-box">
             <button id="more-btn">もっと見る</button>

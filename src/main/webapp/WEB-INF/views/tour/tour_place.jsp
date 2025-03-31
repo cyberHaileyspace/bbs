@@ -98,13 +98,14 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
               placeholder="コメントを入力してください..."
               style="resize: none"
             ></textarea>
+            <button
+                    id="commentButton"
+                    onclick="handleTourReplySubmit('${sessionScope.user.user_nickname}')"
+            >
+              コメント投稿
+            </button>
           </div>
-          <button
-            id="commentButton"
-            onclick="handleTourReplySubmit('${sessionScope.user.user_nickname}')"
-          >
-            コメント投稿
-          </button>
+
         </div>
         <div id="replySection"></div>
       </div>

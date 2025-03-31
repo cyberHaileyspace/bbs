@@ -58,10 +58,22 @@
                         <label><span>女性</span><input type="radio" name="user_gender" value="female"></label>
                     </div>
                 </div>
-                <div class="file reg_input">
+                <div class="file">
                     <span>プロフィール画像</span>
-                    <input type="file" name="user_file">
+                    <input type="file" name="user_file" id="userFileInput" style="display: none;">
+
+                    <label for="userFileInput" class="custom-file-label">
+                        ファイルを選択
+                    </label>
+
+                    <span id="fileName">ファイルなし</span>
                 </div>
+                <script>
+                    document.querySelector('input[name="user_file"]').addEventListener('change', function () {
+                        const fileName = this.files[0]?.name || "선택된 파일 없음";
+                        document.getElementById('fileName').innerText = fileName;
+                    });
+                </script>
 
                 <%--.login-button {
                 display: flex;
@@ -78,10 +90,10 @@
                 }--%>
 
                 <div class="register-button">
-                    <button type="submit" class="sign">登録する</button>
-                    <button onclick="location.href='/'" class="back">
+                    <button onclick="location.href='/'" class="back my_info_button">
                         戻る
                     </button>
+                    <button type="submit" class="sign my_info_button">登録する</button>
                 </div>
         </div>
         </form>

@@ -45,7 +45,7 @@
         <br>
         <div class="post-button">
 
-            <button class="like-button" data-liked="${isLiked}" onclick="toggleLike(${post.post_id}, this)">
+            <button class="like-button reply_button" data-liked="${isLiked}" onclick="toggleLike(${post.post_id}, this)">
                 <c:choose>
                     <c:when test="${isLiked}">
                         取り消し&nbsp;<span class="like-count">${post.post_like}</span>
@@ -73,9 +73,10 @@
 
             <div class="comment-ta">
                 <textarea id="replyContent" placeholder="コメントを入力してください..." style="resize: none"></textarea>
+                <button id="commentButton" onclick="handleFreeReplySubmit('${user.user_nickname}')">コメント投稿</button>
             </div>
 
-            <button id="commentButton" onclick="handleFreeReplySubmit('${user.user_nickname}')">コメント投稿</button>
+
         </div>
         <div id="replyCountContainer"></div>
         <div>

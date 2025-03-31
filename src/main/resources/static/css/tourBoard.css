@@ -28,28 +28,6 @@
 }
 
 
-/* 가입하기 버튼 */
-.sign {
-    background-color: rgb(0, 123, 255);
-    color: white;
-    font-weight: bold;
-}
-
-.sign:hover {
-    background-color: #0056b3;
-}
-
-/* 뒤로가기 버튼 */
-.back {
-    background-color: #6c757d;
-    color: white;
-    font-weight: bold;
-}
-
-.back:hover {
-    background-color: #5a6268;
-}
-
 
 .panel {
     width: 300px;
@@ -98,12 +76,13 @@
     font-size: 1.4em;
     font-weight: bold;
     color: #333;
-    margin-bottom: 10px;
+    padding: 25px;
 }
 
 .life-info {
     font-size: 0.8em;
     color: #777;
+    display: flex;
 }
 
 
@@ -213,19 +192,6 @@
     color: #444;
 }
 
-.post-button {
-    display: flex;
-    gap: 20px;
-    transition: background-color 0.3s ease;
-}
-
-.post-button button {
-    border-radius: 20px;
-}
-
-.post-button button:hover {
-    background-color: darkgrey;
-}
 
 .comment-section {
     width: 90%;
@@ -236,7 +202,22 @@
 }
 
 .comment-section button {
-    border-radius: 20px;
+    border: 1px solid #323232;
+    background-color: #323232;
+    color: #ffffff;
+    font-weight: 700;
+    text-align: center;
+    height: 40px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border-radius: 50px;
+    cursor: pointer;
+}
+.comment-header {
+    text-align: center;
 }
 
 .comment-section button:hover {
@@ -253,7 +234,7 @@
 
 .comment-ta > textarea {
     width: 94%;
-    margin: 20px auto;
+    margin: 20px 20px;
     padding: 20px;
     gap: 20px;
     background-color: #fff;
@@ -291,7 +272,7 @@
 
 .tab-button {
     cursor: pointer;
-    padding: 10px;
+    padding: 5px 10px;
     display: inline-block;
     /*background: lightgray;*/
     border-radius: 5px;
