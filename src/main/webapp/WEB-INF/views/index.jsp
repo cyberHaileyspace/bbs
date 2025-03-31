@@ -88,6 +88,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             <div onclick="location.href='/main/life'" style="cursor: pointer">
               生活掲示板
             </div>
+            <div onclick="location.href='/main/toilet'" style="cursor: pointer">
+              みんなのマップ
+            </div>
             <div>
               <span onclick="location.href='/mypage'" style="cursor: pointer"
                 >${user.user_nickname} 様のマイページ</span
@@ -98,9 +101,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 >ログアウト</span
               >
             </div>
-              <div onclick="location.href='/main/toilet'" style="cursor: pointer">
-                  綺麗なトイレ探し*Beta
-              </div>
+
             <div
               onclick="location.href='https://www.kr.emb-japan.go.jp/itprtop_ko/index.html'"
               style="cursor: pointer"
@@ -115,11 +116,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             <div onclick="location.href='/main/free'" style="cursor: pointer">
               自由掲示板
             </div>
-            <div onclick="location.href='/main/toilet'" style="cursor: pointer">
-              綺麗なトイレ探し*Test
-            </div>
-
-
             <%--
             <form id="defaultTourForm" action="/main/tourInfo/loc" method="get">
               --%> <%-- <input type="hidden" name="areaCode" value="1" />--%>
@@ -133,6 +129,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             </div>
             <div onclick="location.href='/main/life'" style="cursor: pointer">
               生活掲示板
+            </div>
+            <div onclick="location.href='/main/toilet'" style="cursor: pointer">
+              みんなのマップ
             </div>
             <div onclick="location.href='/login'" style="cursor: pointer">
               ログイン

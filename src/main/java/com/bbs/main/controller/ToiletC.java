@@ -2,6 +2,7 @@ package com.bbs.main.controller;
 
 import com.bbs.main.service.ToiletService;
 import com.bbs.main.service.UserService;
+import com.bbs.main.vo.LifeVO;
 import com.bbs.main.vo.ToiletVO;
 import com.bbs.main.vo.UserVO;
 import jakarta.servlet.http.HttpServletRequest;
@@ -119,4 +120,11 @@ public class ToiletC {
         }
         return response;
     }
+
+    @GetMapping("/category")
+    @ResponseBody
+    public List<ToiletVO> getcategory(@RequestParam("category") String category) {
+        return toiletService.getcategory(category);
+    }
+
 }

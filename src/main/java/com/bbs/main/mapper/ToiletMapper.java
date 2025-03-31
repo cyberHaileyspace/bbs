@@ -1,6 +1,7 @@
 package com.bbs.main.mapper;
 
 import com.bbs.main.vo.FreeReplyVO;
+import com.bbs.main.vo.LifeVO;
 import com.bbs.main.vo.ToiletReplyVO;
 import com.bbs.main.vo.ToiletVO;
 import org.apache.ibatis.annotations.*;
@@ -142,4 +143,19 @@ public interface ToiletMapper {
     @Insert("INSERT INTO toilet_reply_like (l_id, l_user_nickname, l_reply_id) " +
             "VALUES (toilet_reply_like_seq.nextval, #{userNickname}, #{replyId})")
     void insertReplyLike(@Param("userNickname") String userNickname, @Param("replyId") int replyId);
+
+    @Select("SELECT * FROM TOILET_POST_DB ORDER BY post_date DESC")
+    List<ToiletVO> getAll(String category);
+
+    @Select("SELECT * FROM TOILET_POST_DB where post_category = 'office' ORDER BY post_date DESC")
+    List<ToiletVO> getOffice(String category);
+
+    @Select("SELECT * FROM TOILET_POST_DB where post_category = 'hospital' ORDER BY post_date DESC")
+    List<ToiletVO> getHospital(String category);
+
+    @Select("SELECT * FROM TOILET_POST_DB where post_category = 'toilet' ORDER BY post_date DESC")
+    List<ToiletVO> getToilet(String category);
+
+    @Select("SELECT * FROM TOILET_POST_DB where post_category = 'etc' ORDER BY post_date DESC")
+    List<ToiletVO> getETC(String category);
 }

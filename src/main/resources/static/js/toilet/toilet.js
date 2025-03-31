@@ -220,30 +220,36 @@ function optionHandler() {
 }
 
 function categoryHandler() {
-    $(".menu").click(function () {
-        let category = $(this).data("val");  // 클릭된 span 태그에서 data-val 값을 가져옴
+    $(".menu").click(async function () {
+        let category = $(this).data("val") || "all";
         console.log("선택된 카테고리:", category);
 
-        // Ajax 요청 보내기
-        $.ajax({
-            url: 'toilet/category',
-            type: 'GET',
-            data: {category: category},
-            async: true,
-        })
-            .done(function (resData) {
-                console.log("응답 데이터:", resData);
-                if (resData.length !== 0) {
-                    paging(resData);
-                } else {
-                    $("#post-container").text("投稿がありません。");
-                }
-            })
-            .fail(function (xhr) {
-                console.error("요청 실패:", xhr);
+        try {
+            const resData = await $.ajax({
+                url: 'toilet/category',
+                type: 'GET',
+                data: {category: category}
             });
+
+            if (resData.length !== 0) {
+                paging(resData);           // 카드 갱신
+                addMarkersToMap(resData);  // 마커 갱신
+            } else {
+                $("#post-container").text("投稿がありません。");
+                addMarkersToMap([]); // 마커도 전부 제거
+            }
+        } catch (xhr) {
+            console.error("요청 실패:", xhr);
+        }
     });
 }
+
+
+function clearMarkers() {
+    postMarkers.forEach(m => m.marker.setMap(null));
+    postMarkers = [];
+}
+
 
 $(document).ready(async function () {
 
@@ -251,6 +257,7 @@ $(document).ready(async function () {
     categoryHandler();
     optionHandler();
     paging(data);         // 게시글 카드 표시
+    clearMarkers();
     addMarkersToMap(data); // ✅ 지도에 마커 표시 추가!
     searchHandler();
 });
