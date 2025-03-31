@@ -87,9 +87,9 @@
                 document.getElementById('fileName').innerText = fileName;
             });
         </script>
-        <div style="display: flex; gap: 20px; margin-left: auto">
+        <div style="display: flex; gap: 15px; margin-left: auto">
             <button class="reg-cancel my_info_button" type="button" onclick="history.back()">キャンセル</button>
-            <button class="reg-post my_info_button" type="submit">登録</button>
+            <button class="reg-post my_info_button" type="submit">投稿</button>
         </div>
     </div>
 

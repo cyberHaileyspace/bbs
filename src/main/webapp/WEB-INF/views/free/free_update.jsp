@@ -63,12 +63,7 @@
     <div class="reg_form">
 
         <div>
-            <div>現在のファイル :
-            <c:if test="${not empty post.post_image}">
-                <span>${post.post_image}</span> <!-- 기존 파일명 표시 -->
-                <input type="hidden" name="existing_post_image" value="${post.post_image}">
-            </c:if>
-            </div>
+
             <div>
                 <!-- 숨겨진 파일 선택 input -->
                 <input type="file" name="post_file" id="btnAtt" style="display: none;" value="${post.post_image}">
@@ -89,10 +84,16 @@
             </script>
         </div>
         <div class="update_button_box">
-            <button class="reg-cancel" type="button" onclick="history.back()">取り消し</button>
-            <button class="reg-post" type="submit" name="post_id" value="${post.post_id}">修正完了</button>
+            <button class="reg-cancel" type="button" onclick="history.back()">キャンセル</button>
+            <button class="reg-post" type="submit" name="post_id" value="${post.post_id}">修正</button>
         </div>
     </div>
+        <div>現在のファイル :
+            <c:if test="${not empty post.post_image}">
+                <span>${post.post_image}</span> <!-- 기존 파일명 표시 -->
+                <input type="hidden" name="existing_post_image" value="${post.post_image}">
+            </c:if>
+        </div>
     </div>
 </form>
 </body>

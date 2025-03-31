@@ -124,7 +124,27 @@ body {
     align-items: center;
 }
 
+.reg_button {
+    margin-left: auto;
+    display: flex;
+    gap: 15px;
+}
 
+.reg_button > button {
+    border: 1px solid #323232;
+    background-color: #323232;
+    color: #ffffff;
+    font-weight: 700;
+    text-align: center;
+    height: 40px;
+    width: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border-radius: 50px;
+    cursor: pointer;
+}
 
 .login-button02 > div {
     cursor: pointer;

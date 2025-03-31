@@ -46,7 +46,7 @@ public class FreeService {
             String originName = post_file.getOriginalFilename();
             String fileExtension = originName.substring(originName.lastIndexOf("."), originName.length());
             System.out.println(fileExtension);
-            String uploadFolder = "/Users/kimsuhyeon/Desktop/final_img";
+            String uploadFolder = "C:\\Users\\dutch\\Documents\\bbs\\src\\main\\resources\\static\\img\\upload";
             UUID uuid = UUID.randomUUID();
             System.out.println(uuid);
             String[] uuids = uuid.toString().split("-");
@@ -72,7 +72,7 @@ public class FreeService {
             throw new IllegalArgumentException("해당 게시글이 존재하지 않습니다: ID=" + freeVO.getPost_id());
         }
 
-        String uploadFolder = "/Users/kimsuhyeon/Desktop/final_img";
+        String uploadFolder = "C:\\Users\\dutch\\Documents\\bbs\\src\\main\\resources\\static\\img\\upload";
 
         if (post_file != null && !post_file.isEmpty()) {
             String originName = post_file.getOriginalFilename();

@@ -135,7 +135,7 @@
                     });
                 </script>
             </div>
-            <div>
+            <div class="reg_button">
                 <button class="reg-cancel" type="button" onclick="history.back()">
                     キャンセル
                 </button>

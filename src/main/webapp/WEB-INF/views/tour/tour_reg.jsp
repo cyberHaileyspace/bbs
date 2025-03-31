@@ -69,7 +69,7 @@
 
             <div class="update_button_box">
                 <button class="reg-cancel" type="button" onclick="history.back()">キャンセル</button>
-                <button class="reg-post" type="submit">投稿する</button>
+                <button class="reg-post" type="submit">投稿</button>
             </div>
         </div>
     </div>

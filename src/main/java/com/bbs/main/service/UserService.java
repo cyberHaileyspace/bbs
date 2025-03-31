@@ -31,7 +31,7 @@ public class UserService {
             String originName = user_file.getOriginalFilename();
             String fileExtension = originName.substring(originName.lastIndexOf("."), originName.length());
             System.out.println(fileExtension);
-            String uploadFolder = "C:\\Users\\soldesk\\Desktop\\uploadFolder";
+            String uploadFolder = "C:\\Users\\dutch\\Documents\\bbs\\src\\main\\resources\\static\\img\\upload";
             UUID uuid = UUID.randomUUID();
             System.out.println(uuid);
             String[] uuids = uuid.toString().split("-");
@@ -163,7 +163,7 @@ public class UserService {
 
     public void deletepfp(UserVO user) {
         // 기존 이미지 파일 삭제 (파일이 존재하면 삭제)
-        String uploadFolder = "C:\\Users\\soldesk\\Desktop\\uploadFolder";
+        String uploadFolder = "C:\\Users\\dutch\\Documents\\bbs\\src\\main\\resources\\static\\img\\upload";
         if (user.getUser_image() != null) {
             File oldFile = new File(uploadFolder + "/" + user.getUser_image());
             if (oldFile.exists()) {

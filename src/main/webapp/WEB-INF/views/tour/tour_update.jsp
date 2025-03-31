@@ -77,7 +77,7 @@
                 </div>
                 <div class="update_button_box">
                     <button class="reg-cancel" type="button" onclick="history.back()">キャンセル</button>
-                    <button class="reg-post" type="submit" name="post_id" value="${post.post_id}">更新する</button>
+                    <button class="reg-post" type="submit" name="post_id" value="${post.post_id}">修正</button>
                 </div>
             </div>
             <div>現在のファイル :
