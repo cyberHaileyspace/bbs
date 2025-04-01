@@ -11,6 +11,19 @@
     <link rel="stylesheet" href="/resources/css/toilet.css">
     <script type="text/javascript"
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=004383c9a684a2e2224afc37cca60d3c&libraries=services"></script>
+    <style>     .location-btn {
+        position: absolute;
+        top: 10px;
+        right: 30px;
+        z-index: 10;
+        padding: 8px 14px;
+        border: none;
+        background: #3478f6;
+        color: white;
+        font-weight: bold;
+        border-radius: 6px;
+        cursor: pointer;
+    }</style>
 </head>
 <body>
 <form id="updateForm" action="/main/toilet/update" method="post" enctype="multipart/form-data">
@@ -106,7 +119,7 @@
         "office": "https://cdn-icons-png.flaticon.com/128/5693/5693863.png",
         "hospital": "https://cdn-icons-png.flaticon.com/128/5693/5693852.png",
         "toilet": "https://cdn-icons-png.flaticon.com/128/5695/5695154.png",  // 예: 변기 아이콘
-        "etc": "https://cdn-icons-png.flaticon.com/128/5583/5583002.png"
+        "etc": "https://cdn-icons-png.flaticon.com/128/5695/5695144.png"
     };
 
     function initMap() {

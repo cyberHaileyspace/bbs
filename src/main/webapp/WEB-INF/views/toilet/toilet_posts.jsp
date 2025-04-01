@@ -43,11 +43,21 @@
 
     <!-- 카테고리 -->
     <div class="category">
-        <div><span class="menu" data-val="all">すべて</span></div>
-        <div><span class="menu" data-val="office">公共サービス</span></div>
-        <div><span class="menu" data-val="hospital">病院</span></div>
-        <div><span class="menu" data-val="toilet">トイレ</span></div>
-        <div><span class="menu" data-val="etc">その他</span></div>
+        <div><span class="menu" data-val="all">すべて</span><img src="https://cdn-icons-png.flaticon.com/128/3466/3466335.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;"></div>
+        <div><span class="menu" data-val="office">公共サービス</span><img src="https://cdn-icons-png.flaticon.com/128/5693/5693863.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;"></div>
+        <div><span class="menu" data-val="hospital">病院</span><img src="https://cdn-icons-png.flaticon.com/128/5693/5693852.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;"></div>
+        <div><span class="menu" data-val="toilet">トイレ</span><img src="https://cdn-icons-png.flaticon.com/128/5695/5695154.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;"></div>
+        <div><span class="menu" data-val="etc">その他</span><img src="https://cdn-icons-png.flaticon.com/128/5695/5695144.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;"></div>
     </div>
     <hr>
 
@@ -79,7 +89,9 @@
             height: 400px;
             margin-bottom: 30px;
             border-radius: 10px;
-            border: 1px solid #ccc;">  <button class="location-btn" onclick="showMyLocation()">📍 내 위치</button></div>
+            border: 1px solid #ccc;">  <button class="location-btn" onclick="showMyLocation()"> <img src="https://cdn-icons-png.flaticon.com/128/7124/7124723.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;">내 위치</button></div>
     <!-- 게시글 목록 -->
     <div id="post-container"></div>
 
@@ -99,7 +111,7 @@
                     map.setCenter(loc);
 
                     const markerImage = new kakao.maps.MarkerImage(
-                        "https://cdn-icons-png.flaticon.com/512/252/252025.png", // 내 위치 마커 이미지
+                        "https://cdn-icons-png.flaticon.com/128/7124/7124723.png", // 내 위치 마커 이미지
                         new kakao.maps.Size(40, 42),
                         { offset: new kakao.maps.Point(13, 42) }
                     );
@@ -146,7 +158,7 @@
         "office": "https://cdn-icons-png.flaticon.com/128/5693/5693863.png",
         "hospital": "https://cdn-icons-png.flaticon.com/128/5693/5693852.png",
         "toilet": "https://cdn-icons-png.flaticon.com/128/5695/5695154.png",  // 예: 변기 아이콘
-        "etc": "https://cdn-icons-png.flaticon.com/128/5583/5583002.png",     // 기타
+        "etc": "https://cdn-icons-png.flaticon.com/128/5695/5695144.png",     // 기타
         "default": "https://cdn-icons-png.flaticon.com/512/684/684908.png"     // 기본 마커
     };
 

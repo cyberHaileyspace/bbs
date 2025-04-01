@@ -55,7 +55,7 @@
                 </c:choose>
                 <div class="post-like"><img src="https://cdn-icons-png.flaticon.com/512/833/833234.png"></div>
             </button>
-           <button>経路検索</button>
+           <button>経路検索<div class="post-like"><img src="https://cdn-icons-png.flaticon.com/128/3466/3466335.png"></button>
             <c:if test="${login_nickname == post.user_nickname}">
                 <button onclick="deletePost(${post.post_id})">削除</button>
                 <button onclick="location.href='update/${post.post_id}'">修正</button>
