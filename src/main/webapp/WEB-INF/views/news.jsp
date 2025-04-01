@@ -67,12 +67,17 @@
         newArticles.forEach((news, i) => {
             const newsWrap = document.createElement("div");
             newsWrap.classList.add("news-wrap");
-            newsWrap.innerHTML =
-                "<div class='news_item'>" + "<div>" +
-                "<div class='news_title'>" + "<span>" + news.title + "</span>" + "</div>" +
-                "<div class='news_description'>" + news.description + "</div>" +
-                "<div class='news_link'><a href='" + news.url + "' target='_blank'>詳細を見る</a></div>" +
-                "</div>";
+            let des = news.description;
+            if (des != null){
+
+                newsWrap.innerHTML =
+                    "<div class='news_item'>" + "<div>" +
+                    "<div class='news_title'>" + "<span>" + news.title + "</span>" + "</div>" +
+                    "<div class='news_description'>" + news.description + "</div>" +
+                    "<div class='news_link'><a href='" + news.url + "' target='_blank'>詳細を見る</a></div>" +
+                    "</div>";
+            }
+
             newsContainer.appendChild(newsWrap);
         });
 

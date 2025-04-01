@@ -6,6 +6,13 @@
     gap: 20px;
 }
 
+.toilet-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
 .toilet-item {
     width: 30%;
     margin: 1%;
@@ -28,6 +35,9 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+}
+.reg_layout {
+    margin: 5px;
 }
 
 /* 모달 오버레이 */

@@ -34,7 +34,7 @@
                     <c:forEach var="f" items="${free}" varStatus="status">
                         <c:if test="${status.index < 5}">
                             <div class="main_board_box">
-                                <img src="${empty f.post_image ? '/img/no-image.png' : f.post_image}" onclick="goToFree(${f.post_id})">
+                                <img src="${empty f.post_image ? '/img/no-image.png' : '/file/'}${f.post_image}" onclick="goToFree(${f.post_id})">
                                 <p onclick="goToFree(${f.post_id})" class="main_board_content_title">${f.post_title}</p>
                                 <p style="margin-left: auto">
                                     <fmt:formatDate value="${f.post_date}" pattern="yyyy.M.d"/>
@@ -53,7 +53,7 @@
                     <c:forEach var="l" items="${life}" varStatus="status">
                         <c:if test="${status.index < 5}">
                             <div class="main_board_box">
-                                <img src="${empty f.post_image ? '/img/no-image.png' : l.post_image}" onclick="goToLife(${l.post_id})">
+                                <img src="${empty l.post_image ? '/img/no-image.png' : '/file/'}${l.post_image}" onclick="goToFree(${l.post_id})">
                                 <p onclick="goToLife(${l.post_id})" class="main_board_content_title">${l.post_title}</p>
                                 <p style="margin-left: auto">
                                     <fmt:formatDate value="${l.post_date}" pattern="yyyy.M.d"/>
@@ -75,7 +75,7 @@
                     <c:forEach var="t" items="${tourPosts}" varStatus="status">
                         <c:if test="${status.index < 5}">
                             <div class="main_board_box">
-                                <img src="${empty f.post_image ? '/img/no-image.png' : t.post_image}" onclick="gotoTour(${t.post_id})">
+                                <img src="${empty t.post_image ? '/img/no-image.png' : '/file/'}${t.post_image}" onclick="goToFree(${t.post_id})">
                                 <p onclick="gotoTour(${t.post_id})" class="main_board_content_title">${t.post_title}</p>
                                 <p style="margin-left: auto">
                                     <fmt:formatDate value="${t.post_date}" pattern="yyyy.M.d"/>
@@ -108,6 +108,29 @@
                         </c:if>
                     </c:forEach>
                 </div>
+
+
+            </div>
+            <div class="main_content">
+                <%-- 모두의 맵 게시판 --%>
+
+                <div class="main_content_box">
+                    <div class="main_board_header"><span class="main_board_header_title"
+                                                         onclick="location.href='/main/toilet'">みんなのマップ</span><span
+                            class="main_board_header_plus" onclick="location.href='/main/toilet'">もっと見る</span></div>
+                    <c:forEach var="t" items="${map}" varStatus="status">
+                        <c:if test="${status.index < 5}">
+                            <div class="main_board_box">
+                                <img src="${empty t.post_image ? '/img/no-image.png' : '/file/'}${t.post_image}" onclick="goToFree(${t.post_id})">
+                                <p onclick="gotoTour(${t.post_id})" class="main_board_content_title">${t.post_title}</p>
+                                <p style="margin-left: auto">
+                                    <fmt:formatDate value="${t.post_date}" pattern="yyyy.M.d"/>
+                                </p>
+                            </div>
+                        </c:if>
+                    </c:forEach>
+                </div>
+
 
 
             </div>

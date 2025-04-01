@@ -28,6 +28,7 @@ public class HC {
         model.addAttribute("tour", tourService.getAllLocation("1", null, "O"));
         model.addAttribute("tourPosts", tourService.getposts());
         model.addAttribute("life", lifeService.getposts());
+        model.addAttribute("map", tourService.getposts());
         model.addAttribute("content", "tour/main.jsp");
         return "index";
     }

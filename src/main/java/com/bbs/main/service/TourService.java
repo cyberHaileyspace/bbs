@@ -306,7 +306,7 @@ public class TourService {
             String originName = post_file.getOriginalFilename();
             String fileExtension = originName.substring(originName.lastIndexOf("."), originName.length());
             System.out.println(fileExtension);
-            String uploadFolder = "C:/Users/dutch/Documents/bbs/src/main/resources/static/img/upload";
+            String uploadFolder = "C:\\Users\\dutch\\Documents\\upload";
             UUID uuid = UUID.randomUUID();
             System.out.println(uuid);
             String[] uuids = uuid.toString().split("-");

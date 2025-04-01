@@ -13,6 +13,6 @@ public class WebConfig implements WebMvcConfigurer {
                 .addResourceLocations("classpath:/static/");
 
         registry.addResourceHandler("/file/**")
-                .addResourceLocations("file:C:\\Users\\soldesk\\Desktop\\uploadFolder");
+                .addResourceLocations("file:C:\\Users\\dutch\\Documents\\upload");
     }
 }

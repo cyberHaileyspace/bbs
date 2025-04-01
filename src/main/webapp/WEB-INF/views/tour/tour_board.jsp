@@ -54,6 +54,9 @@
                     <label class="cate_radio">
                         <input type="radio" name="option" value="view"/><span>閲覧数順</span>
                     </label>
+                    <label class="cate_radio">
+                        <input type="radio" name="option" value="reply"/><span>コメント順</span>
+                    </label>
                 </div>
 
                 <div style="margin-left: auto">
@@ -106,8 +109,9 @@
             <p>投稿がありません。ぜひ最初の投稿をしてみてください！</p>
         </c:otherwise>
     </c:choose>
-    <div id="pagination-container" style="display: flex; justify-content: center"></div>
-</div>
+    <div id="post-container"></div>
+    <div id="pagination-container" style="display: flex; justify-content: center;"></div>
+    <script src="/resources/js/tourBoard(paging).js"></script></div>
 </body>
 <script>
     function generateToken() {

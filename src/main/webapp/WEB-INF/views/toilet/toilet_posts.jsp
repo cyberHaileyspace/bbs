@@ -59,13 +59,21 @@
     height: 20px;
     margin-right: 5px;"></div>
     </div>
-    <hr>
+
 
     <!-- 정렬 + 글쓰기 + 검색 -->
     <div class="sort">
         <div>
+            <div style="display: flex; justify-content: center">
+                <h2>みんなのマップ</h2>
+            </div>
+            <div class="search-btn">
+                <input type="text" placeholder="タイトルを入力してください。" id="search-input">
+                <button id="search-btn"><img class="search-btn-img" alt="" src="https://cdn-icons-png.flaticon.com/256/25/25313.png"/> 検索</button>
+            </div>
+            <hr>
 
-            <div style="display: flex; align-items: center">
+            <div style="display: flex; align-items: center; margin-bottom: 10px">
             <div style="display: flex">
                 <label class="cate_radio">
                     <input type="radio" name="option" value="new" checked="checked"/><span>最新順</span>
@@ -86,10 +94,7 @@
                 </button>
             </div>
             </div>
-            <div class="search-btn">
-                <input type="text" placeholder="タイトルを入力してください。" id="search-input">
-                <button id="search-btn"><img class="search-btn-img" alt="" src="https://cdn-icons-png.flaticon.com/256/25/25313.png"/> 検索</button>
-            </div>
+
         </div>
     </div>
 

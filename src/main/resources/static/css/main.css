@@ -107,10 +107,17 @@ a {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 살짝 입체감 추가 */
 }
 
+
 .main_board_box a {
     height: 100%;
     text-decoration: none;
     font-size: large;
+    color: black;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* 부드러운 효과 */
+}
+.main_board_box a:hover {
+    transform: scale(1.05); /* 10% 확대 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 살짝 입체감 추가 */
 }
 .main_board_box p {
     margin: 0;

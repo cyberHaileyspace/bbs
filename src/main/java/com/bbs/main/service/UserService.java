@@ -123,7 +123,7 @@ public class UserService {
     }
 
     public void updatepfp(UserVO user, MultipartFile profileImage) {
-        String uploadFolder = "C:\\Users\\dutch\\Documents\\bbs\\src\\main\\resources\\static\\img\\upload";
+        String uploadFolder = "C:\\Users\\dutch\\Documents\\upload";
 
         // 기존 이미지 정보 가져오기
         UserVO existingUser = userMapper.getUserById(user.getUser_id());

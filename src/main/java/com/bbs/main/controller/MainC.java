@@ -4,6 +4,7 @@ import com.bbs.main.service.*;
 import com.bbs.main.vo.FreeVO;
 import com.bbs.main.vo.LifeVO;
 import com.bbs.main.vo.ToiletVO;
+import com.bbs.main.vo.TourVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -61,9 +62,8 @@ public class MainC {
 
     @ResponseBody
     @GetMapping("/tour/all")
-    public List<LifeVO> toursearch(@RequestParam(defaultValue = "", required = false) String title) {
-        System.out.println(title);
-        return tourService.searchposts(title);
+    public List<TourVO> getAllTourPosts() {
+        return tourService.getposts();
     }
 
     @GetMapping("/free")
@@ -99,4 +99,5 @@ public class MainC {
         System.out.println(title);
         return toiletService.searchposts(title);
     }
+
 }

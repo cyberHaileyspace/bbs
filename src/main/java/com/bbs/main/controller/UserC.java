@@ -166,15 +166,18 @@ public class UserC {
     public String updatepfp(@RequestParam("user_id") String user_id,
                             @RequestParam(value = "profileImage", required = false) MultipartFile profileImage,
                             HttpSession session, RedirectAttributes redirectAttributes) {
-        UserVO user = userService.getUserById(user_id); // 기존 사용자 정보 조회
+        // 기존 사용자 정보 조회
+        UserVO user = (UserVO) session.getAttribute("user");
         if (user == null) {
             redirectAttributes.addFlashAttribute("error", "ユーザー情報が見つかりません。");
             return "redirect:/mypage";
         }
 
         userService.updatepfp(user, profileImage);
-
-        session.setAttribute("user", user); // 세션 업데이트
+        UserVO userVO = userService.getUserById(user_id);
+        session.setAttribute("user", userVO);
+        System.out.println("----------------------------");
+        System.out.println("userVO = " + userVO);
         redirectAttributes.addFlashAttribute("success", "プロフィール写真を更新しました。");
 
         return "redirect:/mypage";

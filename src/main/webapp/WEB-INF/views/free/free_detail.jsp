@@ -20,7 +20,7 @@
 
     <div class="post-title"><span> ${post.post_title } </span></div>
     <div class="post-info">
-        <div class="post-profile"><img alt="" src="/img/upload/${user.user_image }"></div>
+        <div class="post-profile"><img alt="" src="file/${user.user_image }"></div>
         <div class="post-mini-wrapper">
             <div class="post-string">
                 <div class="post-name">${post.user_nickname }</div>
@@ -36,7 +36,7 @@
     <div class="post-content">
         <c:if test="${post.post_image ne null}">
             <div class="post-img">
-                <img src="/img/upload/${post.post_image}" style="width: 400px; height: 400px">
+                <img src="/file/${post.post_image}" style="width: 400px; height: 400px">
             </div>
         </c:if>
         <div class="post-text" id="post<%---${post.post_id}--%>">
@@ -79,17 +79,22 @@
 
         </div>
         <div id="replyCountContainer"></div>
-        <div>
+        <div style="display: flex">
             <!-- 정렬 옵션 텍스트 변경: 최신순 → 最新順, 추천순 → いいね順 -->
-            <label><input type="radio" name="option" value="new" checked="checked"/>最新順</label>
-            <label><input type="radio" name="option" value="like"/>いいね順</label>
+            <label class="cate_radio">
+                <input type="radio" name="option" value="new" checked="checked"/><span>最新順</span>
+            </label>
+            <label class="cate_radio">
+                <input type="radio" name="option" value="like"/><span>いいね順</span>
+            </label>
         </div>
         <div id="replySection">
         </div>
         <!-- "댓글 5개 더보기" → "コメントを5件もっと見る" -->
-        <div><button id="load-more-replies">コメントを5件もっと見る</button></div>
+        <div><button id="load-more-replies" class="reply_my_button">コメントを5件もっと見る</button></div>
     </div>
 </div>
+
 <%----------------------------------------------------------------------------------------------------------%>
 <script>
     var post_id = ${post.post_id}; // JSP 변수를 JavaScript 변수에 할당
@@ -140,25 +145,26 @@
 
                 data.forEach(reply => {
                     const replyDiv = document.createElement("div");
-                    replyDiv.classList.add("reply");
+                    replyDiv.classList.add("reply", "use_css");
                     replyDiv.id = "reply-" + reply.r_id;
 
 
                     // コメント HTML 生成例
                     let replyHTML =
-                        "<div>" +
-                        "<span>投稿者 : " + reply.r_writer + "</span><br>" +
-                        "<span>投稿日時 : " + reply.r_date + "</span>" +
-                        "<p>" + reply.r_context + "</p>" +
+                        "<div class='use_css_box'>" + "<div class='reply_form'>" +
+                        "<span>投稿者 : " + reply.r_writer + "</span>" +
+                        "<span class='reply_date'>投稿日時 : " + reply.r_date + "</span>" + "</div>" +
+                        "<p class='reply_context'>" + reply.r_context + "</p>" +
                         "<button class='like-button' data-liked='" + reply.likedByCurrentUser + "' onclick='toggleReplyLike(" + reply.r_id + ", this)'>" +
                         (reply.likedByCurrentUser ? "取り消し" : "いいね") + "&nbsp;<span class='like-count'>" + reply.r_like + "</span>" +
                         '<div class="post-like"><img src="https://cdn-icons-png.flaticon.com/512/833/833234.png"></div>' +
                         "</button>";
 
                     if (user_nickname === reply.r_writer) {
-                        replyHTML +=
-                            "<button onclick=\"editReply('" + reply.r_id + "', '" + reply.r_writer + "', '" + reply.r_date + "', '" + reply.r_context + "')\">修正</button>" +
-                            "<button onclick=\"deleteReply('" + reply.r_id + "')\">削除</button>";
+                        replyHTML += "<div style='display: flex; gap: 15px; margin-top: 10px'>" +
+                            "<button onclick=\"editReply('" + reply.r_id + "', '" + reply.r_writer + "', '" + reply.r_date + "', '" + reply.r_context + "')\" class='reply_my_button'>修正</button>" +
+                            "<button onclick=\"deleteReply('" + reply.r_id + "')\" class='reply_my_button'>削除</button>"
+                        + "</div>";
 
                     }
 
