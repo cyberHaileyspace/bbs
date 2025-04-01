@@ -18,7 +18,16 @@
         <div class="life-back" onclick="location.href='/main/life'">生活掲示板 ></div>
         <div class="post-title"><span> ${post.post_title } </span></div>
         <div class="post-info">
-            <div class="post-profile"><img alt="" src="/file/${user.user_image }"></div>
+            <div class="post-profile">
+                <c:choose>
+                    <c:when test="${empty user.user_image}">
+                        <img src="/img/free-icon-user-1144760.png" style="width:60px; height:60px;">
+                    </c:when>
+                    <c:otherwise>
+                        <img src="/file/${user.user_image}" style="width:60px; height:60px;">
+                    </c:otherwise>
+                </c:choose>
+            </div>
             <div class="post-mini-wrapper">
                 <div class="post-string">
                     <div class="post-name">${post.user_nickname }</div>

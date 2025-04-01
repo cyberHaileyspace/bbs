@@ -80,6 +80,10 @@ a {
     margin: 0 auto;
     width: 85%;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
 }
 
 .main_board_header_plus {

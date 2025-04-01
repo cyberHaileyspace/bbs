@@ -13,7 +13,7 @@
         <div onclick="location.href='/main/tour'">観光掲示板</div>
         <div>観光情報</div>
     </div>
-    <div style="display: flex; flex-direction: column; align-items: center; width: 350px; height: 70px; background-color: #e0eae9; margin: 0 auto; padding: 20px 0; border-radius: 20px; margin-bottom: 80px">
+    <div style="display: flex; flex-direction: column; align-items: center; width: 350px; height: 70px; background-color: #95e5ef; margin: 0 auto; padding: 20px 0; border-radius: 20px; margin-bottom: 80px">
         <h3 style="width: 80%; height: 50px; text-align: center; display: flex; align-items: center; justify-content: center; border-radius: 15px; margin: 0">
             行きたい地域を選んでください</h3>
         <input type="text" class="location-input" style="width: 75%; border-radius: 5px; border: none" placeholder="クリックすると地域選択が表示されます。"/>

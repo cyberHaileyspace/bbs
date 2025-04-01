@@ -36,9 +36,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         </div>
         <div
           onclick="location.href='/'"
-          style="cursor: pointer; position: absolute; left: 39.5%"
+          style="cursor: pointer; position: absolute; left: 37.5%; display: flex; align-items: center; gap: 15px"
         >
-          Diaspora - ディアスポラ
+            <img src="/resources/img/refugee_7439891.png" style="width: 40px; height: 40px">Diaspora - ディアスポラ
         </div>
         <c:choose>
           <c:when test="${user ne null}">

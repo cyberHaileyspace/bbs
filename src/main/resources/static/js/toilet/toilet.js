@@ -158,7 +158,7 @@ function openToiletModal(p) {
     const modalHtml = `
         <div class="toilet-modal-overlay" onclick="closeToiletModal()"></div>
         <div class="toilet-modal">
-            <div><img alt="" src="file/${p.user_image}"></div>
+            <div><img alt="" src="/file/${p.post_image}" style="width: 200px"></div>
             <h2>${p.post_title}</h2>
             <p class="toilet-modal-meta">${p.user_nickname} ・ ${formattedDate}</p>
             <div class="toilet-modal-content">${p.post_address}</div>
@@ -283,5 +283,3 @@ function searchHandler() {
         }
     })
 }
-
-/* -------------------- 검색 -------------------- */
