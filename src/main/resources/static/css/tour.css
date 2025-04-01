@@ -1,15 +1,8 @@
-.location-wrap {
-    display: none;
-    background-color: rgb(220, 230, 220);
-    width: 350px;
-    position: absolute;
-    left: 49%;
-    margin-left: -100px;
-}
 
 .location-wrap.show {
     display: flex;
 }
+
 
 li {
     list-style: none;
@@ -22,14 +15,18 @@ ul {
     padding: 0px;
 }
 
+
+
 .travel {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 10px 20px;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    gap: 20px;
+    border-radius: 0 0 50px 50px;
+    background-color: #585c5e;
+    color: #fff1f1;
+    height: 40px;
+    width: 600px;
+    margin: 0 auto 15px auto;
 }
 
 .travel div span {
@@ -48,15 +45,15 @@ ul {
 .tour_img_container {
     display: flex;
     justify-content: center;
-    gap: 50px;
+    gap: 50px 55px;
     min-width: 1100px;
+    flex-wrap: wrap;
 }
 
 .tour_img_box {
     display: flex;
     justify-content: center;
-    width: 220px;
-
+    width: 320px;
     position: relative;
 }
 .tour_img_box div {
@@ -71,9 +68,16 @@ ul {
     padding: 5px 0;
 }
 
-.tour_img_container {
-    display: flex;
-    flex-wrap: wrap;
+.tour_img_box:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tour_img_box img {
+    width: 320px;
+    height: 190px;
+    display: block;
 }
 
 #extraInfo {
@@ -82,26 +86,19 @@ ul {
     justify-content: right;
     flex-direction: row;
     align-items: center;
-    width: 100%;
+    width: 1100px;
     height: 50px;
     padding-top: 50px;
+    border-bottom: 1px solid;
 }
 
 .extraList {
     margin-left: 15px;
+    border-radius: 15px;
+    width: 100px;
 }
 
-.tour_img_box:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
 
-.tour_img_box img {
-    width: 220px;
-    height: 158px;
-    display: block;
-}
 
 .pagination a {
     margin-right: 5px;       /* 각 링크 사이에 5px 간격 */
@@ -124,16 +121,17 @@ ul {
 /* 지역선택창 전체 컨테이너 (팝업) */
 .location-wrap {
     display: none; /* 초기에는 숨김 */
-    background: linear-gradient(135deg, #e0f7fa, #80deea); /* 부드러운 그라데이션 배경 */
+    background: linear-gradient(135deg, #f9f9f9, #e8ecf3); /* 부드러운 그라데이션 배경 */
     border: 2px solid #4dd0e1;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 20px;
     width: 400px;
-    position: relative;
     top: 18%;
-    left: 57%;
+    left: 50%;
     transform: translateX(-50%);
+    position: absolute;
+    z-index: 5;
 }
 
 /* 팝업이 활성화된 경우 */
@@ -141,11 +139,6 @@ ul {
     display: flex;
     flex-direction: column;
     animation: fadeIn 0.3s ease-in-out;
-}
-
-/* 대분류 영역 */
-.panel_2depth {
-    margin-bottom: 15px;
 }
 
 /* 대분류 리스트 스타일 */
@@ -158,7 +151,7 @@ ul {
 }
 
 .place_items li {
-    margin: 5px;
+    margin: 10px 5px;
 }
 
 /* 대분류 링크 스타일 */
@@ -177,6 +170,7 @@ ul {
 .place_items li a.selected {
     background-color: #008ba3;
 }
+
 
 /* 소분류 영역 (하위 패널) */
 .sub-panel {
@@ -197,11 +191,14 @@ ul {
     align-self: flex-end;
     background-color: #ff5252;
     color: #fff;
-    padding: 5px 10px;
     border-radius: 4px;
     cursor: pointer;
     font-weight: bold;
     transition: background-color 0.2s ease;
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 15px;
+    margin-top: 7px;
 }
 
 .close-btn:hover {

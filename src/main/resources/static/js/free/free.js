@@ -106,26 +106,28 @@ function renderPosts(posts) {
         postHtml +=
             "<div class='item'>" +
             "<div class='post-life' onclick='goToPost(" + p.post_id + ")'>" +
-            "<div class='life-kind'>" +
-            "<div class='life-no'>掲示番号：" + p.post_id + "</div>&nbsp;/&nbsp;" +
-            "<div class='life-cate'>カテゴリ：" + p.post_category + "</div>&nbsp;/&nbsp;" +
-            "<div class='life-menu'>地域：" + p.post_menu + "</div>" +
+            "<div class='life-kind'>" + "<div class='life_northWest'>" +
+            "<div class='life-no'>番号 : " + p.post_id + "</div>" +
+
+            "</div>" +
+            "<div class='lift_northEast'>" +
+            "<div class='info-name'>投稿者 : " + p.user_nickname + "</div>" +
+            "<div class='info-date'>投稿日 : " + formattedDate + "</div>" +
+            "</div>" +
             "</div>" +
             "<div class='life-title'>" + p.post_title + "</div>" +
-            "<div class='life-context'>" +
-            "<div class='life-text'><span>" + p.post_context + "</span></div>" +
-            "<div class='life-image'><img alt='' src='img/post/" + p.post_image + "'></div>" +
-            "</div>" +
+
             "<div class='life-info'>" +
-            "<div style='display: flex'>" +
-            "<div class='info-name'>投稿者：" + p.user_nickname + "</div>&nbsp;/&nbsp;" +
-            "<div class='info-date'>作成日：" + formattedDate + "</div>" +
+            "<div class='life_southWest'>" +
+            "<div class='life-cate'>カテゴリー : " + p.post_category + "</div>" +
+            "<div class='life-menu'>地域 : " + p.post_menu + "</div>" +
             "</div>" +
-            "<div style='display: flex'>" +
-            "<div class='info-view'>閲覧数：" + p.post_view + "</div>&nbsp;/&nbsp;" +
-            "<div class='info-like'>いいね：" + p.post_like + "</div>&nbsp;/&nbsp;" +
-            "<div class='info-reply'>コメント：" + p.reply_count + "</div>"
-            +
+
+            "<div class='life_southEast'>" +
+            "<div class='info-view'>閲覧数 : " + p.post_view + "</div>" +
+            "<div class='info-like'>いいね数 : " + p.post_like + "</div>" +
+            "<div class='info-reply'>コメント数 : " + p.reply_count + "</div>" +
+            "</div>" +
             "</div>" +
             "</div>" +
             "</div>" +

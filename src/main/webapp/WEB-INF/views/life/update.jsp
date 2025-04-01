@@ -44,23 +44,27 @@
                     <div>氏名</div>
                     <div><input name="user_name" id="user_name" value="${user.user_name}" type="text" placeholder="${user.user_name}"></div>
                 </div>
-                <div class="nickname">
+                <div class="info_form">
                     <div>ニックネーム</div>
-                    <div><input name="user_nickname" id="user_nickname" value="${user.user_nickname}" type="text" placeholder="${user.user_nickname}"></div>
+                    <div class="duplicate">
+                        <input name="user_nickname" id="user_nickname" value="${user.user_nickname}" type="text" placeholder="${user.user_nickname}">
+                        <button type="button" id="nick_check_btn" value="0">重複チェック</button>
+                    </div>
                     <span id="nick_check" style="color: red; font-size: 12px"></span>
-                    <button type="button" id="nick_check_btn" value="0">重複チェック</button>
                 </div>
-                <div class="email">
+                <div class="info_form">
                     <div>メールアドレス</div>
-                    <div><input name="user_email" id="user_email" value="${user.user_email}" type="text" placeholder="${user.user_email}"></div>
+                    <div class="duplicate">
+                        <input name="user_email" id="user_email" value="${user.user_email}" type="text" placeholder="${user.user_email}">
+                        <button type="button" id="email_check_btn" value="0">重複チェック</button>
+                    </div>
                     <span id="email_check" style="color: red; font-size: 12px"></span>
-                    <button type="button" id="email_check_btn" value="0">重複チェック</button>
                 </div>
                 <div class="login-button">
                     <%--<button onclick="location.href='/'" class="back">
                         閉じる
                     </button>--%>
-                    <button type="submit">更新する</button>
+                    <button type="submit" class="my_info_button">更新する</button>
                 </div>
 
                 <%--<div class="two_box">

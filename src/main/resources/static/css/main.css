@@ -10,12 +10,8 @@
     width: 85%;
     background-color: white;
     margin: 0px auto;
-    padding: 20px;
+    padding: 0 20px 20px 20px;
     gap: 20px;
-}
-
-.main02 {
-    width: 35%;
 }
 
 .header_title {
@@ -47,7 +43,7 @@ a {
 .main_content {
     display: flex;
     justify-content: center;
-    padding: 40px 0;
+    padding: 20px 0;
     gap: 30px;
 }
 
@@ -63,14 +59,14 @@ a {
 }
 
 .top_box {
-    width: 900px;
+    width: 1070px;
 }
 
 .main_board_header {
     text-align: center;
     display: flex;
-    font-size: larger;
-    padding: 10px 0;
+    border-bottom: 1px solid #c3c3c3;
+    padding: 0 0 10px 0;
 }
 
 .main_board_header_link {
@@ -80,6 +76,7 @@ a {
 }
 
 .main_board_header_title {
+    font-size: larger;
     margin: 0 auto;
     width: 85%;
     cursor: pointer;
@@ -88,6 +85,7 @@ a {
 .main_board_header_plus {
     margin-left: auto;
     cursor: pointer;
+    font-size: 11pt;
 }
 
 .main_board_box{
@@ -131,6 +129,8 @@ a {
 .main_board_content_news a {
     cursor: pointer;
     font-size: 11pt;
+    display: flex;
+    align-items: center;
 }
 
 .main_board_box img {

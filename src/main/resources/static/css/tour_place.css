@@ -79,14 +79,13 @@
     border-radius: 4px;
 }
 
-.comment-section button {
-    background-color: #007BFF;
-    margin-top: 10px;
+.comment-ta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.comment-section button:hover {
-    background-color: #0056b3;
-}
+
 
 /* 댓글 폼 전체 스타일 */
 #commentForm {
@@ -145,8 +144,5 @@
     transform: scale(0.98);
 }
 
-.comment {
-
-}
 
 

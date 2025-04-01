@@ -82,22 +82,22 @@ public class Tour_boardC {
         return "redirect:/main/tourBoard/" + post_id;
     }
 
-//    @PostMapping("/like/{post_id}")
-//    @ResponseBody // JSON 응답을 위한 애너테이션
-//    public Map<String, Object> lifelike(@PathVariable("post_id") int no, HttpSession session) {
-//        Map<String, Object> response = new HashMap<>();
-//
-//        if (userService.loginChk(session)) {
-//            lifeService.updateLike(no); // 추천수 업데이트
-//            int newLikeCount = lifeService.getLikeCount(no); // 새로운 추천수 가져오기
-//            response.put("success", true);
-//            response.put("newLikeCount", newLikeCount);
-//        } else {
-//            response.put("success", false);
-//        }
-//
-//        return response; // JSON 형태로 반환
-//    }
+    @PostMapping("/like/{post_id}")
+    @ResponseBody // JSON 응답을 위한 애너테이션
+    public Map<String, Object> tourlike(@PathVariable int post_id, HttpSession session) {
+        Map<String, Object> response = new HashMap<>();
+
+        if (userService.loginChk(session)) {
+            tourService.updateLike(post_id); // 추천수 업데이트
+            int newLikeCount = tourService.getLikeCount(post_id); // 새로운 추천수 가져오기
+            response.put("success", true);
+            response.put("newLikeCount", newLikeCount);
+        } else {
+            response.put("success", false);
+        }
+
+        return response; // JSON 형태로 반환
+    }
 
 
 

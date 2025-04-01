@@ -38,7 +38,8 @@ body {
     background-color: white;
     font-size: 20pt;
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     height: 40px;
     position: sticky;
@@ -86,6 +87,8 @@ body {
 .title {
     border-bottom: 1px solid grey;
     text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 .id.pw.name.nickname.email.file {
@@ -96,22 +99,12 @@ body {
     cursor: pointer;
 }
 
-button {
-    width: 120px;
-}
-
 .login-button {
     display: flex;
     width: 100%;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
-}
-
-.register-button {
-    display: flex;
-    width: 100%;
-    /*justify-content: space-evenly;*/
-    align-items: center;
+    gap: 20px;
 }
 
 .login-button02 {
@@ -121,6 +114,42 @@ button {
     border: 1px solid lightgrey;
     text-align: center;
 }
+
+.reg_dom {
+    width: 758px;
+    margin: auto
+}
+.reg_form {
+    display: flex;
+    align-items: center;
+}
+
+.reg_button {
+    margin-left: auto;
+    display: flex;
+    gap: 15px;
+}
+
+.reg_button > button {
+    border: 1px solid #323232;
+    background-color: #323232;
+    color: #ffffff;
+    font-weight: 700;
+    text-align: center;
+    height: 40px;
+    width: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.login-button02 > div {
+    cursor: pointer;
+}
+
 
 .panel {
     width: 300px;
@@ -187,7 +216,7 @@ button {
 }
 
 .mypage-content {
-    width: 400px;
+    width: 500px;
     height: 40px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -214,10 +243,13 @@ button {
 
 }
 
+.my_page_board {
+    margin: 13px;
+}
+
 /* 게시글 리스트 스타일 */
 .item {
-    width: 80%;  /* 가로 크기 */
-    max-width: 800px; /* 최대 너비 */
+    width: 85%;  /* 가로 크기 */
     margin: 20px auto; /* 중앙 정렬 */
     padding: 20px;
     border-radius: 10px; /* 모서리 둥글게 */
@@ -232,30 +264,15 @@ button {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* 제목 스타일
-.item div:nth-child(2) {
-    font-size: 1.4em;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 10px;
-}
-
-작성자 & 날짜 스타일
-.item div:nth-child(3),
-.item div:nth-child(4) {
-    font-size: 0.8em;
-    color: #777;
-}
-
-구분선 */
-hr {
-    width: 80%;
-    max-width: 800px;
-    border: none;
-    height: 1px;
-    background: #ddd;
-    margin: 10px auto;
-}
+/*구분선 *!*/
+/*hr {*/
+/*    width: 80%;*/
+/*    max-width: 800px;*/
+/*    border: none;*/
+/*    height: 1px;*/
+/*    background: #ddd;*/
+/*    margin: 10px auto;*/
+/*}*/
 
 /* 반응형 디자인 */
 @media (max-width: 600px) {
@@ -267,4 +284,94 @@ hr {
     .item div:nth-child(2) {
         font-size: 1.2em;
     }
+}
+
+.news_page {
+    width: 90%;
+    border: 1px solid gray;
+    border-radius: 40px;
+}
+
+.news_item {
+    width: 85%;  /* 가로 크기 */
+    max-width: 800px; /* 최대 너비 */
+    margin: 20px auto; /* 중앙 정렬 */
+    padding: 20px;
+    border-radius: 10px; /* 모서리 둥글게 */
+    background: #fff; /* 카드 배경색 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+}
+
+.more-btn-box {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 12px;
+
+}
+
+.news_page #more-btn {
+    text-align: center;
+    height: 40px;
+    width: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border: 1px solid #323232;
+    background-color: #323232;
+    border-radius: 50px;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.news-wrap{
+    margin: 10px;
+}
+
+.news_title {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.news_title span {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s, box-shadow 0.3s; /* 호버 효과 */
+}
+
+.news_title span:hover {
+    transform: translateY(-3px); /* 살짝 위로 이동 */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.news_description {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.news_description:hover {
+    transform: translateY(-3px); /* 살짝 위로 이동 */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.news_link {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+}
+
+.news_link a {
+    width: 100px;
+    color: black;
+    display: flex;
+    justify-content: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.news_link a:hover{
+    transform: translateY(-3px); /* 살짝 위로 이동 */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }

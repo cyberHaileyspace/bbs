@@ -64,21 +64,32 @@
     <!-- 정렬 + 글쓰기 + 검색 -->
     <div class="sort">
         <div>
-            <label><input type="radio" name="option" value="new" checked="checked"/> 最新順</label>
-            <label><input type="radio" name="option" value="like"/> いいね順</label>
-            <label><input type="radio" name="option" value="view"/> 閲覧順</label>
-            <label><input type="radio" name="option" value="reply"/> コメント順</label>
-        </div>
-        <div style="display: flex; justify-content: flex-end">
-            <button class="write-btn" onclick="logincheck('${sessionScope.user}')">
-                <img class="write-btn-img" alt="" src="https://cdn-icons-png.flaticon.com/512/117/117476.png"/> 作成
-            </button>
-        </div>
-        <div class="search-btn">
-            <input type="text" placeholder="タイトルを入力してください。" id="search-input">
-            <button id="search-btn">
-                <img class="search-btn-img" alt="" src="https://cdn-icons-png.flaticon.com/256/25/25313.png"/> 検索
-            </button>
+
+            <div style="display: flex; align-items: center">
+            <div style="display: flex">
+                <label class="cate_radio">
+                    <input type="radio" name="option" value="new" checked="checked"/><span>最新順</span>
+                </label>
+                <label class="cate_radio">
+                    <input type="radio" name="option" value="like"/><span>いいね順</span>
+                </label>
+                <label class="cate_radio">
+                    <input type="radio" name="option" value="view"/><span>閲覧数順</span>
+                </label>
+                <label class="cate_radio">
+                    <input type="radio" name="option" value="reply"/><span>コメント順</span>
+                </label>
+            </div>
+            <div style="display: flex; margin-left: auto">
+                <button class="write-btn" onclick="logincheck('${sessionScope.user}')">
+                    <img class="write-btn-img" alt="" src="https://cdn-icons-png.flaticon.com/512/117/117476.png"/> 作成
+                </button>
+            </div>
+            </div>
+            <div class="search-btn">
+                <input type="text" placeholder="タイトルを入力してください。" id="search-input">
+                <button id="search-btn"><img class="search-btn-img" alt="" src="https://cdn-icons-png.flaticon.com/256/25/25313.png"/> 検索</button>
+            </div>
         </div>
     </div>
 

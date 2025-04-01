@@ -62,3 +62,24 @@
     border: 1px solid #ccc;
 }
 
+.toilet-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+.toilet-modal-actions > button {
+    border: 1px solid #323232;
+    background-color: #323232;
+    color: #ffffff;
+    font-weight: 700;
+    text-align: center;
+    height: 40px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border-radius: 50px;
+    cursor: pointer;
+}
