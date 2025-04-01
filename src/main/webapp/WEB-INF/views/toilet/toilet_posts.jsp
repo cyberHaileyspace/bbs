@@ -43,11 +43,21 @@
 
     <!-- 카테고리 -->
     <div class="category">
-        <div><span class="menu">すべて</span></div>
-        <div><span class="menu" data-val="生活情報">生活情報</span></div>
-        <div><span class="menu" data-val="健康情報">健康情報</span></div>
-        <div><span class="menu" data-val="質問">質問</span></div>
-        <div><span class="menu" data-val="レビュー">レビュー</span></div>
+        <div><span class="menu" data-val="all">すべて</span><img src="https://cdn-icons-png.flaticon.com/128/3466/3466335.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;"></div>
+        <div><span class="menu" data-val="office">公共サービス</span><img src="https://cdn-icons-png.flaticon.com/128/5693/5693863.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;"></div>
+        <div><span class="menu" data-val="hospital">病院</span><img src="https://cdn-icons-png.flaticon.com/128/5693/5693852.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;"></div>
+        <div><span class="menu" data-val="toilet">トイレ</span><img src="https://cdn-icons-png.flaticon.com/128/5695/5695154.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;"></div>
+        <div><span class="menu" data-val="etc">その他</span><img src="https://cdn-icons-png.flaticon.com/128/5695/5695144.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;"></div>
     </div>
 
 
@@ -95,7 +105,9 @@
             height: 400px;
             margin-bottom: 30px;
             border-radius: 10px;
-            border: 1px solid #ccc;">  <button class="location-btn" onclick="showMyLocation()">📍 내 위치</button></div>
+            border: 1px solid #ccc;">  <button class="location-btn" onclick="showMyLocation()"> <img src="https://cdn-icons-png.flaticon.com/128/7124/7124723.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;">내 위치</button></div>
     <!-- 게시글 목록 -->
     <div id="post-container"></div>
 
@@ -103,6 +115,42 @@
     <div id="pagination-container" style="display: flex; justify-content: center;"></div>
 
 </div>
+<script>
+    function showMyLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                function (position) {
+                    const lat = position.coords.latitude;
+                    const lng = position.coords.longitude;
+
+                    const loc = new kakao.maps.LatLng(lat, lng);
+                    map.setCenter(loc);
+
+                    const markerImage = new kakao.maps.MarkerImage(
+                        "https://cdn-icons-png.flaticon.com/128/7124/7124723.png", // 내 위치 마커 이미지
+                        new kakao.maps.Size(40, 42),
+                        { offset: new kakao.maps.Point(13, 42) }
+                    );
+
+                    const myMarker = new kakao.maps.Marker({
+                        map: map,
+                        position: loc,
+                        image: markerImage
+                    });
+
+                    console.log("내 위치 표시됨:", lat, lng);
+                },
+                function (error) {
+                    console.error("위치 정보 가져오기 실패:", error.message);
+                    alert("위치 정보를 가져올 수 없습니다.");
+                },
+                { enableHighAccuracy: true }
+            );
+        } else {
+            alert("이 브라우저는 위치 정보를 지원하지 않습니다.");
+        }
+    }
+</script>
 <script>
     let map;
     let postMarkers = [];
@@ -122,74 +170,65 @@
         searchHandler();
     });
 
+    const categoryIcons = {
+        "office": "https://cdn-icons-png.flaticon.com/128/5693/5693863.png",
+        "hospital": "https://cdn-icons-png.flaticon.com/128/5693/5693852.png",
+        "toilet": "https://cdn-icons-png.flaticon.com/128/5695/5695154.png",  // 예: 변기 아이콘
+        "etc": "https://cdn-icons-png.flaticon.com/128/5695/5695144.png",     // 기타
+        "default": "https://cdn-icons-png.flaticon.com/512/684/684908.png"     // 기본 마커
+    };
+
+    const categoryLabels = {
+        office: "公共サービス",
+        hospital: "病院",
+        toilet: "トイレ",
+        etc: "その他"
+    };
+    let openInfoWindow = null;
+
     function addMarkersToMap(posts) {
+        postMarkers.forEach(({ marker }) => marker.setMap(null));
         postMarkers = [];
 
-        posts.forEach((p, idx) => {
+        posts.forEach((p) => {
             if (p.post_lat && p.post_lng) {
                 const latlng = new kakao.maps.LatLng(p.post_lat, p.post_lng);
+                const category = p.post_category || "default";
+
+                const markerImage = new kakao.maps.MarkerImage(
+                    categoryIcons[category] || categoryIcons["default"],
+                    new kakao.maps.Size(40, 42),
+                    { offset: new kakao.maps.Point(20, 42) }
+                );
 
                 const marker = new kakao.maps.Marker({
                     map: map,
-                    position: latlng
+                    position: latlng,
+                    image: markerImage
                 });
 
-                const iwContent = "<div style=\"padding:6px 12px; font-size:13px; font-weight:bold; color:#333; cursor:pointer\">" + p.post_title + "</div>";
+                const iwContent =
+                    "<div style='padding:6px 12px; font-size:13px; font-weight:bold; color:#333;'>" +
+                    "<div style='font-size:11px; color:gray;'>[" + (categoryLabels[p.post_category] || "未分類") + "]</div>" +
+                    "<div style='cursor:pointer;'>" + p.post_title + "</div>" +
+                    "</div>";
                 const infowindow = new kakao.maps.InfoWindow({
                     content: iwContent,
                     removable: false
                 });
-                infowindow.open(map, marker);
 
                 kakao.maps.event.addListener(marker, 'click', function () {
+                    if (openInfoWindow) openInfoWindow.close(); // 이전 인포윈도우 닫기
+                    infowindow.open(map, marker);
+                    openInfoWindow = infowindow;
+
                     openToiletModal(p);
                     highlightCard(p.post_id);
-                });
-
-                kakao.maps.event.addListener(infowindow, 'domready', function () {
-                    const iwDiv = document.querySelector(".infoWindow");
-                    if (iwDiv) {
-                        iwDiv.style.cursor = "pointer";
-                        iwDiv.onclick = function () {
-                            openToiletModal(p);
-                            highlightCard(p.post_id);
-                        }
-                    }
                 });
 
                 postMarkers.push({ id: p.post_id, marker });
             }
         });
-    }
-
-    function showMyLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                function (position) {
-                    const lat = position.coords.latitude;
-                    const lng = position.coords.longitude;
-
-                    const loc = new kakao.maps.LatLng(lat, lng);
-                    map.setCenter(loc);
-
-                    new kakao.maps.Marker({
-                        map: map,
-                        position: loc,
-                        image: new kakao.maps.MarkerImage(
-                            "https://cdn-icons-png.flaticon.com/512/252/252025.png",
-                            new kakao.maps.Size(40, 42),
-                            { offset: new kakao.maps.Point(13, 42) }
-                        )
-                    });
-
-                    console.log("📍 내 위치:", lat, lng);
-                },
-                function (error) {
-                    console.error("❌ 위치 정보 접근 실패:", error.message);
-                },
-                { enableHighAccuracy: true }
-            );
-        }
     }
 
     function highlightCard(postId) {

@@ -1,10 +1,7 @@
 package com.bbs.main.service;
 
 import com.bbs.main.mapper.ToiletMapper;
-import com.bbs.main.vo.FreeReplyVO;
-import com.bbs.main.vo.ToiletReplyVO;
-import com.bbs.main.vo.ToiletVO;
-import com.bbs.main.vo.UserVO;
+import com.bbs.main.vo.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -204,5 +201,21 @@ public class ToiletService {
 
     public boolean hasUserReplyLiked(int rId, String nickname) {
         return toiletMapper.existsReplyLike(nickname, rId) > 0;
+    }
+    public List<ToiletVO> getcategory(String category) {
+        switch (category) {
+            case "all":
+                return toiletMapper.getAll(category);
+            case "office":
+                return toiletMapper.getOffice(category);
+            case "hospital":
+                return toiletMapper.getHospital(category);
+            case "toilet":
+                return toiletMapper.getToilet(category);
+            case "etc":
+                return toiletMapper.getETC(category);
+            default:
+                return new ArrayList<>();
+        }
     }
 }

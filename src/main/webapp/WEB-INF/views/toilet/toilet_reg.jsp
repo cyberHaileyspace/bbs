@@ -5,14 +5,14 @@
 <%@ taglib
         uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>投稿作成</title>
     <script
-            type="text/javascript"
-            src="/resources/nse_files/js/HuskyEZCreator.js"
-            charset="utf-8"
+      type="text/javascript"
+      src="/resources/nse_files/js/HuskyEZCreator.js"
+      charset="utf-8"
     ></script>
     <link rel="stylesheet" href="/resources/css/sample.css"/>
     <link rel="stylesheet" href="/resources/css/toilet.css">
@@ -149,19 +149,16 @@
         },
     });
 
-    document.querySelector(".reg-post").addEventListener("click", function (e) {
-        // 스마트에디터 내용 → textarea로 업데이트
-        oEditors.getById["writearea"].exec("UPDATE_CONTENTS_FIELD", []);
-
-        // 제목과 내용 가져오기
-        const title = document.querySelector("textarea[name='post_title']").value.trim();
-        const content = document.querySelector("textarea[name='post_context']").value.trim();
-
-        if (!title) {
-            alert("タイトルを入力してください。");
-            e.preventDefault(); // 폼 제출 막기
-            return;
-        }
+      document
+        .querySelector(".reg-post")
+        .addEventListener("click", function (e) {
+          oEditors.getById["writearea"].exec("UPDATE_CONTENTS_FIELD", []);
+          const title = document
+            .querySelector("textarea[name='post_title']")
+            .value.trim();
+          const content = document
+            .querySelector("textarea[name='post_context']")
+            .value.trim();
 
         if (!content) {
             alert("内容を入力してください。");
@@ -177,80 +174,119 @@
     let map, marker;
     const geocoder = new kakao.maps.services.Geocoder();
 
-    function initMap() {
-        const container = document.getElementById('map');
-        const options = {
-            center: new kakao.maps.LatLng(37.5665, 126.9780),
-            level: 3
-        };
-        map = new kakao.maps.Map(container, options);
+      const categoryIcons = {
+        office: "https://cdn-icons-png.flaticon.com/128/5693/5693863.png",
+        hospital: "https://cdn-icons-png.flaticon.com/128/5693/5693852.png",
+        toilet: "https://cdn-icons-png.flaticon.com/128/5695/5695154.png", // 예: 변기 아이콘
+        etc: "https://cdn-icons-png.flaticon.com/128/5695/5695144.png",
+      };
 
-        kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
-            const latlng = mouseEvent.latLng;
+      function initMap() {
+        const container = document.getElementById("map");
+        map = new kakao.maps.Map(container, {
+          center: new kakao.maps.LatLng(37.5665, 126.978),
+          level: 3,
+        });
 
-            if (!marker) {
-                marker = new kakao.maps.Marker({
-                    map: map,
-                    position: latlng
-                });
-            } else {
-                marker.setPosition(latlng);
-            }
+        kakao.maps.event.addListener(map, "click", function (mouseEvent) {
+          const latlng = mouseEvent.latLng;
+          const category = document.getElementById(
+            "post_marker_category"
+          ).value;
+          const markerImage = new kakao.maps.MarkerImage(
+            categoryIcons[category],
+            new kakao.maps.Size(40, 42),
+            { offset: new kakao.maps.Point(13, 42) }
+          );
 
-            // 위도 경도 저장
-            document.getElementById('post_lat').value = latlng.getLat();
-            document.getElementById('post_lng').value = latlng.getLng();
-
-
-            // 주소 변환 요청
-            geocoder.coord2Address(latlng.getLng(), latlng.getLat(), function (result, status) {
-                if (status === kakao.maps.services.Status.OK) {
-                    const address = result[0].address.address_name;
-                    document.getElementById('post_address').value = address;
-                    console.log("📍 선택한 주소:", address);
-                }
+          if (!marker) {
+            marker = new kakao.maps.Marker({
+              map: map,
+              position: latlng,
+              image: markerImage,
             });
+          } else {
+            marker.setPosition(latlng);
+            marker.setImage(markerImage);
+          }
+
+          document.getElementById("post_lat").value = latlng.getLat();
+          document.getElementById("post_lng").value = latlng.getLng();
+
+          geocoder.coord2Address(
+            latlng.getLng(),
+            latlng.getLat(),
+            function (result, status) {
+              if (status === kakao.maps.services.Status.OK) {
+                document.getElementById("post_address").value =
+                  result[0].address.address_name;
+              }
+            }
+          );
         });
     }
 
     function moveToMyLocation() {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                const lat = position.coords.latitude;
-                const lng = position.coords.longitude;
-                const loc = new kakao.maps.LatLng(lat, lng);
+          navigator.geolocation.getCurrentPosition(function (position) {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            const loc = new kakao.maps.LatLng(lat, lng);
 
                 map.setCenter(loc);
 
-                if (!marker) {
-                    marker = new kakao.maps.Marker({map: map, position: loc});
-                } else {
-                    marker.setPosition(loc);
-                }
+            const category = document.getElementById(
+              "post_marker_category"
+            ).value;
+            const markerImage = new kakao.maps.MarkerImage(
+              categoryIcons[category],
+              new kakao.maps.Size(40, 42),
+              { offset: new kakao.maps.Point(13, 42) }
+            );
 
-                document.getElementById('post_lat').value = lat;
-                document.getElementById('post_lng').value = lng;
+            if (!marker) {
+              marker = new kakao.maps.Marker({
+                map: map,
+                position: loc,
+                image: markerImage,
+              });
+            } else {
+              marker.setPosition(loc);
+              marker.setImage(markerImage);
+            }
 
+            document.getElementById("post_lat").value = lat;
+            document.getElementById("post_lng").value = lng;
 
-                // 주소 자동 등록
-                geocoder.coord2Address(lng, lat, function (result, status) {
-                    if (status === kakao.maps.services.Status.OK) {
-                        const address = result[0].address.address_name;
-                        document.getElementById('post_address').value = address;
-                        console.log("📍 현재 위치 주소:", address);
-                    }
-                });
+            geocoder.coord2Address(lng, lat, function (result, status) {
+              if (status === kakao.maps.services.Status.OK) {
+                document.getElementById("post_address").value =
+                  result[0].address.address_name;
+              }
             });
+          });
         } else {
-            alert("이 브라우저는 위치 정보를 지원하지 않아요.");
+          alert("이 브라우저는 위치 정보를 지원하지 않아요.");
         }
-    }
+      }
 
-    // onload
-    window.onload = function () {
-        kakao.maps.load(initMap);
-    };
-</script>
+      document.addEventListener("DOMContentLoaded", function () {
+        initMap();
 
-
+        document
+          .getElementById("post_marker_category")
+          .addEventListener("change", function () {
+            if (marker) {
+              const category = this.value;
+              const markerImage = new kakao.maps.MarkerImage(
+                categoryIcons[category],
+                new kakao.maps.Size(40, 42),
+                { offset: new kakao.maps.Point(13, 42) }
+              );
+              marker.setImage(markerImage);
+            }
+          });
+      });
+    </script>
+  </body>
 </html>
