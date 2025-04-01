@@ -85,7 +85,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                         観光情報
                     </div>
                     <div onclick="location.href='/main/toilet'" style="cursor: pointer">
-                        綺麗なトイレ探し*Test
+                        みんなのマップ
                     </div>
                     <div>
               <span onclick="location.href='/mypage'" style="cursor: pointer"
@@ -121,7 +121,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                         観光情報
                     </div>
                     <div onclick="location.href='/main/toilet'" style="cursor: pointer">
-                        綺麗なトイレ探し*Test
+                        みんなのマップ
                     </div>
                     <div onclick="location.href='/login'" style="cursor: pointer">
                         ログイン

@@ -55,12 +55,12 @@ function editReply(r_id, r_writer, r_date, r_context) {
   commentDiv.setAttribute("data-original", originalContent);
   // 댓글 내용을 textarea로 변경
   commentDiv.innerHTML = `
-        <div>
+        <div class="use_css_box">
           <span>投稿者 : ${r_writer}</span> <br>
           <span>投稿日時 : ${r_date}</span> <br>
           <textarea id="edit-text-${r_id}" class="edit-textarea edit_my_box">${originalContent}</textarea>
         </div>
-        <div style="display: flex; gap: 15px">
+        <div style="display: flex; gap: 15px; margin-top: 10px">
         <button onclick="saveEdit('${r_id}', '${r_writer}', '${r_date}', '${originalContent}')" class="reply_my_button">修正完了</button>
         <button onclick="cancelEdit('${r_id}', '${r_writer}', '${r_date}', '${originalContent}')" class="reply_my_button">修正取消</button>
         </div>

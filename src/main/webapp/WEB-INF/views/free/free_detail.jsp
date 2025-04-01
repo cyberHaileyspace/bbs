@@ -20,7 +20,7 @@
 
     <div class="post-title"><span> ${post.post_title } </span></div>
     <div class="post-info">
-        <div class="post-profile"><img alt="" src="/img/upload/${user.user_image }"></div>
+        <div class="post-profile"><img alt="" src="file/${user.user_image }"></div>
         <div class="post-mini-wrapper">
             <div class="post-string">
                 <div class="post-name">${post.user_nickname }</div>
@@ -36,7 +36,7 @@
     <div class="post-content">
         <c:if test="${post.post_image ne null}">
             <div class="post-img">
-                <img src="/img/upload/${post.post_image}" style="width: 400px; height: 400px">
+                <img src="/file/${post.post_image}" style="width: 400px; height: 400px">
             </div>
         </c:if>
         <div class="post-text" id="post<%---${post.post_id}--%>">
@@ -151,7 +151,7 @@
 
                     // コメント HTML 生成例
                     let replyHTML =
-                        "<div>" + "<div class='reply_form'>" +
+                        "<div class='use_css_box'>" + "<div class='reply_form'>" +
                         "<span>投稿者 : " + reply.r_writer + "</span>" +
                         "<span class='reply_date'>投稿日時 : " + reply.r_date + "</span>" + "</div>" +
                         "<p class='reply_context'>" + reply.r_context + "</p>" +
@@ -161,7 +161,7 @@
                         "</button>";
 
                     if (user_nickname === reply.r_writer) {
-                        replyHTML += "<div style='display: flex; gap: 15px'>" +
+                        replyHTML += "<div style='display: flex; gap: 15px; margin-top: 10px'>" +
                             "<button onclick=\"editReply('" + reply.r_id + "', '" + reply.r_writer + "', '" + reply.r_date + "', '" + reply.r_context + "')\" class='reply_my_button'>修正</button>" +
                             "<button onclick=\"deleteReply('" + reply.r_id + "')\" class='reply_my_button'>削除</button>"
                         + "</div>";

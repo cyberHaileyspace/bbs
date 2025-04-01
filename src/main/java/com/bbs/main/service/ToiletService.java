@@ -45,7 +45,7 @@ public class ToiletService {
         if (post_file.getOriginalFilename().length() != 0) {
             String originName = post_file.getOriginalFilename();
             String fileExtension = originName.substring(originName.lastIndexOf("."), originName.length());
-            String uploadFolder = "/Users/kimsuhyeon/Desktop/final_img";
+            String uploadFolder = "C:\\Users\\dutch\\Documents\\upload";
             UUID uuid = UUID.randomUUID();
             String[] uuids = uuid.toString().split("-");
             String fileName = uuids[0] + fileExtension;
@@ -66,7 +66,7 @@ public class ToiletService {
             throw new IllegalArgumentException("해당 게시글이 존재하지 않습니다: ID=" + toiletVO.getPost_id());
         }
 
-        String uploadFolder = "/Users/kimsuhyeon/Desktop/final_img";
+        String uploadFolder = "C:\\Users\\dutch\\Documents\\upload";
 
         if (post_file != null && !post_file.isEmpty()) {
             String originName = post_file.getOriginalFilename();

@@ -167,6 +167,9 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border: 1px solid #ddd;
 }
+.use_css_box {
+    padding: 25px;
+}
 .like-button {
     text-align: center;
     height: 40px;

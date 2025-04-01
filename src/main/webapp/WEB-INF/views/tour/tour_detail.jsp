@@ -16,7 +16,7 @@
     <div class="life-back" onclick="location.href='/main/tour'">観光掲示板 ></div>
     <div class="post-title"><span> ${post.post_title } </span></div>
     <div class="post-info">
-        <div class="post-profile"><img alt="" src="/img/upload/${user.user_image }"></div>
+        <div class="post-profile"><img alt="" src="/file/${user.user_image }"></div>
         <div class="post-mini-wrapper">
             <div class="post-string">
                 <div class="post-name">${post.user_nickname }</div>
@@ -34,7 +34,7 @@
     <div class="post-content">
         <c:if test="${post.post_image ne null}">
             <div class="post-img">
-                <img src="/img/upload/${post.post_image}" style="width: 400px; height: 400px">
+                <img src="/file/${post.post_image}" style="width: 400px; height: 400px">
             </div>
         </c:if>
         <div class="post-text" id="post<%---${post.post_id}--%>">

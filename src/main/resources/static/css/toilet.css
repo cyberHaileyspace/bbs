@@ -6,6 +6,12 @@
     gap: 20px;
 }
 
+.toilet-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 .toilet-item {
     width: 30%;
     margin: 1%;

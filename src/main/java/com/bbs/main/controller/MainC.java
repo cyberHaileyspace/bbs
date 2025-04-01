@@ -99,4 +99,5 @@ public class MainC {
         System.out.println(title);
         return toiletService.searchposts(title);
     }
+
 }

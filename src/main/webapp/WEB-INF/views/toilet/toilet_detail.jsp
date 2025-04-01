@@ -19,7 +19,7 @@
 
     <div class="post-title"><span> ${post.post_title } </span></div>
     <div class="post-info">
-        <div class="post-profile"><img alt="" src="file/${user.user_image }"></div>
+        <div class="post-profile"><img alt="" src="/file/${user.user_image }"></div>
         <div class="post-mini-wrapper">
             <div class="post-string">
                 <div class="post-name">${post.user_nickname }</div>

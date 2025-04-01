@@ -27,7 +27,7 @@
                     <div><input name="user_pw" type="password" required></div>
                 </div>
                 <div class="login-button">
-                    <button onclick="location.href='/'" class="back my_info_button">
+                    <button type="button" onclick="location.href='/'" class="back my_info_button">
                         戻る
                     </button>
                     <button type="submit" class="my_info_button">ログイン</button>
