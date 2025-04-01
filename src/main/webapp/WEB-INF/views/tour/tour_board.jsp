@@ -54,6 +54,9 @@
                     <label class="cate_radio">
                         <input type="radio" name="option" value="view"/><span>閲覧数順</span>
                     </label>
+                    <label class="cate_radio">
+                        <input type="radio" name="option" value="reply"/><span>コメント順</span>
+                    </label>
                 </div>
 
                 <div style="margin-left: auto">
