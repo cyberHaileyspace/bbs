@@ -134,17 +134,17 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
                           replyDiv.id = "reply-" + reply.r_id;
                           // 댓글 작성자와 로그인한 사용자가 동일한 경우 삭제 및 수정 버튼을 추가
                           let replytHTML =
-                              "<div>" +
-                              "<span>投稿者 : " + reply.r_writer + "</span>" + "<br>" +
-                              "<span>投稿日 : "  + reply.r_date + "</span>" +
+                              "<div>" + "<div style='display: flex'>" +
+                              "<span>投稿者 : " + reply.r_writer + "</span>" +
+                              "<span style='margin-left: auto'>投稿日 : "  + reply.r_date + "</span>" + "</div>" +
                               "<p>"+ reply.r_context +"</p>"
                               + "</div>"
                           ;
 
                           if (user_nickname === reply.r_writer) {
-                              replytHTML += "<button onclick=\"editReply('" + reply.r_id + "', '" + reply.r_writer + "', '" + reply.r_date + "', '" + reply.r_context + "')\">修正</button>"
+                              replytHTML += "<div style='display: flex; gap: 15px'>" +"<button onclick=\"editReply('" + reply.r_id + "', '" + reply.r_writer + "', '" + reply.r_date + "', '" + reply.r_context + "')\" class='reply_my_button'>修正</button>"
                                   +
-                                  "<button onclick=\"deleteReply('" + reply.r_id + "')\">削除</button>" ;
+                                  "<button onclick=\"deleteReply('" + reply.r_id + "')\" class='reply_my_button'>削除</button>" + "</div>";
                           }
                           replyDiv.innerHTML = replytHTML;
                           replySection.appendChild(replyDiv);

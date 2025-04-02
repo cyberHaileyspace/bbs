@@ -44,7 +44,7 @@ body {
     height: 40px;
     position: sticky;
     top: 0px;
-    z-index: 10;
+    z-index: 301;
     padding: 15px 30px;
     border-bottom: 1px solid lightgrey;
     min-width: 1240px;

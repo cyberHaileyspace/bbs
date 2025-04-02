@@ -55,8 +55,10 @@ public class FreeC {
         UserVO user = (UserVO) session.getAttribute("user");
         String nickname = (user != null) ? user.getUser_nickname() : "";
         model.addAttribute("login_nickname", nickname);
+        model.addAttribute("user", user);
         FreeVO post =  freeService.detailPost(post_id);
         model.addAttribute("post", post);
+
 
         // 추천 상태 조회 (현재 로그인한 유저가 이 게시글에 추천을 눌렀는지 확인)
         boolean isLiked = false;
