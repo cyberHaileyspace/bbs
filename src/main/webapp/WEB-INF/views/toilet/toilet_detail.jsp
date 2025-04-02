@@ -127,11 +127,28 @@ ${post.post_title}</span></div>
         infowindow.open(map, marker);  // 항상 표시
 
         // 👉 '経路検索' 버튼에 이벤트 추가
-        const routeBtn = document.querySelector(".post-button button:nth-child(2)");  // 두 번째 버튼 (経路検索)
+        const routeBtn = document.querySelector(".post-button button:nth-child(2)");
         if (routeBtn) {
             routeBtn.addEventListener("click", function () {
-                const link = "https://map.kakao.com/link/to/" + encodeURIComponent(address) + "," + lat + "," + lng;
-                window.open(link, "_blank");
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                        function (position) {
+                            const startLat = position.coords.latitude;
+                            const startLng = position.coords.longitude;
+                            const startName = "現在地";
+
+                            const link = "https://map.kakao.com/link/from/" + encodeURIComponent(startName) + "," + startLat + "," + startLng +
+                                "/to/" + encodeURIComponent(address) + "," + lat + "," + lng;
+
+                            window.open(link, "_blank");
+                        },
+                        function (error) {
+                            alert("現在地の取得に失敗しました。位置情報の使用を許可してください。");
+                        }
+                    );
+                } else {
+                    alert("このブラウザでは位置情報を利用できません。");
+                }
             });
         }
     });
