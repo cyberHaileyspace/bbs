@@ -41,9 +41,9 @@
                 <%-- 뉴스 게시판 --%>
                 <div class="main_content_box top_box">
                     <div class="main_board_header"><span class="main_board_header_title"
-                                                         onclick="location.href='/main/news'">海外ニュース  <img src="https://cdn-icons-png.flaticon.com/128/117/117965.png" style="width: 20px;
+                                                         onclick="location.href='/main/news'"><img src="https://cdn-icons-png.flaticon.com/128/117/117965.png" style="width: 20px;
     height: 20px;
-    margin-right: 5px;"></span><span
+    margin-right: 5px;">海外ニュース</span><span
                             class="main_board_header_plus" onclick="location.href='/main/news'">もっと見る</span></div>
                     <div id="news-container"></div> <!-- 뉴스가 들어갈 공간 -->
                 </div>
@@ -52,9 +52,9 @@
                 <%-- 자유 게시판 --%>
                 <div class="main_content_box">
                     <div class="main_board_header"><span class="main_board_header_title"
-                                                         onclick="location.href='/main/free'">自由掲示板  <img src="https://cdn-icons-png.flaticon.com/128/12094/12094191.png" style="width: 20px;
+                                                         onclick="location.href='/main/free'"><img src="https://cdn-icons-png.flaticon.com/128/12094/12094191.png" style="width: 20px;
     height: 20px;
-    margin-right: 5px;"></span><span
+    margin-right: 5px;">自由掲示板</span><span
                             class="main_board_header_plus" onclick="location.href='/main/free'">もっと見る</span></div>
                     <c:forEach var="f" items="${free}" varStatus="status">
                         <c:if test="${status.index < 5}">
@@ -71,9 +71,9 @@
                 <%-- 생활 게시판 --%>
                 <div class="main_content_box">
                     <div class="main_board_header"><span class="main_board_header_title"
-                                                         onclick="location.href='/main/life'">生活掲示板  <img src="https://cdn-icons-png.flaticon.com/128/4943/4943739.png" style="width: 20px;
+                                                         onclick="location.href='/main/life'"><img src="https://cdn-icons-png.flaticon.com/128/4943/4943739.png" style="width: 20px;
     height: 20px;
-    margin-right: 5px;"></span><span
+    margin-right: 5px;">生活掲示板</span><span
                             class="main_board_header_plus" onclick="location.href='/main/life'">もっと見る</span></div>
                     <c:forEach var="l" items="${life}" varStatus="status">
                         <c:if test="${status.index < 5}">
@@ -93,9 +93,9 @@
 
                 <div class="main_content_box">
                     <div class="main_board_header"><span class="main_board_header_title"
-                                                         onclick="location.href='/main/tour'">観光掲示板  <img src="https://cdn-icons-png.flaticon.com/128/5333/5333434.png" style="width: 20px;
+                                                         onclick="location.href='/main/tour'"><img src="https://cdn-icons-png.flaticon.com/128/5333/5333434.png" style="width: 20px;
     height: 20px;
-    margin-right: 5px;"></span><span
+    margin-right: 5px;">観光掲示板</span><span
                             class="main_board_header_plus" onclick="location.href='/main/tour'">もっと見る</span></div>
                     <c:forEach var="t" items="${tourPosts}" varStatus="status">
                         <c:if test="${status.index < 5}">
@@ -120,9 +120,9 @@
 
                 <div class="main_content_box">
                     <div class="main_board_header"><span class="main_board_header_title tour-link"
-                                                         onclick="document.getElementById('defaultTourForm').submit()">観光情報  <img src="https://cdn-icons-png.flaticon.com/128/7813/7813703.png" style="width: 20px;
+                                                         onclick="document.getElementById('defaultTourForm').submit()"><img src="https://cdn-icons-png.flaticon.com/128/7813/7813703.png" style="width: 20px;
     height: 20px;
-    margin-right: 5px;"></span><span
+    margin-right: 5px;">観光情報</span><span
                             class="main_board_header_plus tour-link" onclick="document.getElementById('defaultTourForm').submit()">もっと見る</span>
                     </div>
                     <c:forEach var="t" items="${tour}" varStatus="status">
@@ -150,9 +150,9 @@
             width: 100%;
             height: 100%;
             border-radius: 10px;
-            border: 1px solid #ccc;">  <button class="location-btn" onclick="showMyLocation()"> <img src="https://cdn-icons-png.flaticon.com/128/7124/7124723.png" style="width: 20px;
+            border: 1px solid #ccc;">  <button class="location-btn" onclick="showMyLocation()" style="display: flex; align-items: center"> <img src="https://cdn-icons-png.flaticon.com/128/7124/7124723.png" style="width: 20px;
     height: 20px;
-    margin-right: 5px;">내 위치</button></div>
+    margin-right: 5px;">現在位置</button></div>
 
                 </div>
 

@@ -104,8 +104,19 @@ a {
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* 부드러운 효과 */
     cursor: pointer;
 }
+.menu_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.menu_container > img {
 
-/* 마우스 오버 시 이미지 확대 및 그림자 효과 */
+}
+.menu_container > span {
+
+}
+
+    /* 마우스 오버 시 이미지 확대 및 그림자 효과 */
 .main_board_box:hover img {
     transform: scale(1.1); /* 10% 확대 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 살짝 입체감 추가 */

@@ -89,9 +89,9 @@
             height: 400px;
             margin-bottom: 30px;
             border-radius: 10px;
-            border: 1px solid #ccc;">  <button class="location-btn" onclick="showMyLocation()"> <img src="https://cdn-icons-png.flaticon.com/128/7124/7124723.png" style="width: 20px;
+            border: 1px solid #ccc;">  <button class="location-btn" onclick="showMyLocation()" style="display: flex; align-items: center"> <img src="https://cdn-icons-png.flaticon.com/128/7124/7124723.png" style="width: 20px;
     height: 20px;
-    margin-right: 5px;">내 위치</button></div>
+    margin-right: 5px;">現在位置</button></div>
 </div>
     <!-- 게시글 목록 -->
     <div id="post-container"></div>

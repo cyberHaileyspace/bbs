@@ -61,8 +61,8 @@
 
     <div class="reg_layout" style="position: relative;">
         <div id="map" style="width: 100%; height: 300px; border: 1px solid #ccc; border-radius: 10px;"></div>
-        <button type="button" style="position: absolute; top: 10px; right: 10px; z-index: 300;"
-                class="location-btn" onclick="moveToMyLocation()">📍 내 위치</button>
+        <button type="button" style="position: absolute; top: 10px; right: 10px; z-index: 300; display: flex; align-items: center"
+                class="location-btn" onclick="moveToMyLocation()">📍 現在位置</button>
     </div>
 
     <input type="hidden" name="post_lat" id="post_lat" />

@@ -5,7 +5,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <title>Diaspora - ディアスポラ</title>
+    <title>ディアスポラ</title>
     <link rel="stylesheet" href="/resources/css/default.css"/>
     <link rel="stylesheet" href="/resources/css/user_info.css"/>
     <link rel="stylesheet" href="/resources/css/board.css"/>
@@ -36,9 +36,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         </div>
         <div
           onclick="location.href='/'"
-          style="cursor: pointer; position: absolute; left: 37.5%; display: flex; align-items: center; gap: 15px"
+          style="cursor: pointer; position: absolute; left: 39.5%; display: flex; align-items: center; gap: 15px"
         >
-            <img src="/resources/img/refugee_7439891.png" style="width: 40px; height: 40px">Diaspora - ディアスポラ
+            <img src="/resources/img/refugee_7439891.png" style="width: 40px; height: 40px">ディアスポラ
         </div>
         <c:choose>
           <c:when test="${user ne null}">
@@ -69,23 +69,38 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         <div class="panel">
             <c:choose>
                 <c:when test="${user ne null}">
-                    <div onclick="location.href='/main/news'" style="cursor: pointer">
-                        海外ニュース
+                    <div onclick="location.href='/main/news'" style="cursor: pointer" class="menu_container">
+                        <img src="https://cdn-icons-png.flaticon.com/128/117/117965.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;">
+                        <span>海外ニュース</span>
                     </div>
-                    <div onclick="location.href='/main/free'" style="cursor: pointer">
-                        自由掲示板
+                    <div onclick="location.href='/main/free'" style="cursor: pointer" class="menu_container">
+                        <img src="https://cdn-icons-png.flaticon.com/128/12094/12094191.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;">
+                        <span>自由掲示板</span>
                     </div>
-                    <div onclick="location.href='/main/life'" style="cursor: pointer">
-                        生活掲示板
+                    <div onclick="location.href='/main/life'" style="cursor: pointer" class="menu_container">
+                        <img src="https://cdn-icons-png.flaticon.com/128/4943/4943739.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;">
+                        <span>生活掲示板</span>
                     </div>
-                    <div onclick="location.href='/main/tour'" style="cursor: pointer">
-                        観光掲示板
+                    <div onclick="location.href='/main/tour'" style="cursor: pointer" class="menu_container">
+                        <img src="https://cdn-icons-png.flaticon.com/128/5333/5333434.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;">
+                        <span>観光掲示板</span>
                     </div>
-                    <div onclick="document.getElementById('defaultTourForm').submit()" style="cursor: pointer">
-                        観光情報
+                    <div onclick="document.getElementById('defaultTourForm').submit()" style="cursor: pointer" class="menu_container">
+                        <img src="https://cdn-icons-png.flaticon.com/128/7813/7813703.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;">
+                        <span>観光情報</span>
                     </div>
-                    <div onclick="location.href='/main/toilet'" style="cursor: pointer">
-                        みんなのマップ
+                    <div onclick="location.href='/main/toilet'" style="cursor: pointer" class="menu_container">
+                        <span>みんなのマップ</span>
                     </div>
                     <div>
               <span onclick="location.href='/mypage'" style="cursor: pointer"
@@ -105,23 +120,39 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                     </div>
                 </c:when>
                 <c:otherwise>
-                    <div onclick="location.href='/main/news'" style="cursor: pointer">
-                        海外ニュース
+                    <div onclick="location.href='/main/news'" style="cursor: pointer" class="menu_container">
+                        <img src="https://cdn-icons-png.flaticon.com/128/117/117965.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;">
+                        <span>海外ニュース</span>
+
                     </div>
-                    <div onclick="location.href='/main/free'" style="cursor: pointer">
-                        自由掲示板
+                    <div onclick="location.href='/main/free'" style="cursor: pointer" class="menu_container">
+                        <img src="https://cdn-icons-png.flaticon.com/128/12094/12094191.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;">
+                        <span>自由掲示板</span>
                     </div>
-                    <div onclick="location.href='/main/life'" style="cursor: pointer">
-                        生活掲示板
+                    <div onclick="location.href='/main/life'" style="cursor: pointer" class="menu_container">
+                        <img src="https://cdn-icons-png.flaticon.com/128/4943/4943739.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;">
+                        <span>生活掲示板</span>
                     </div>
-                    <div onclick="location.href='/main/tour'" style="cursor: pointer">
-                        観光掲示板
+                    <div onclick="location.href='/main/tour'" style="cursor: pointer" class="menu_container">
+                        <img src="https://cdn-icons-png.flaticon.com/128/5333/5333434.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;">
+                        <span>観光掲示板</span>
                     </div>
-                    <div onclick="document.getElementById('defaultTourForm').submit()" style="cursor: pointer">
-                        観光情報
+                    <div onclick="document.getElementById('defaultTourForm').submit()" style="cursor: pointer" class="menu_container">
+                        <img src="https://cdn-icons-png.flaticon.com/128/7813/7813703.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;">
+                        <span>観光情報</span>
                     </div>
-                    <div onclick="location.href='/main/toilet'" style="cursor: pointer">
-                        みんなのマップ
+                    <div onclick="location.href='/main/toilet'" style="cursor: pointer" class="menu_container">
+                        <span>みんなのマップ</span>
                     </div>
                     <div onclick="location.href='/login'" style="cursor: pointer">
                         ログイン
@@ -149,7 +180,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             ディアスポラを通じて、韓国での生活やビジネスに役立つ最新のヒントを共有しましょう。
         </div>
         <div>
-            <h4>© 2025 ディアスポラ（Diaspora） 韓国在住日本人のための生活情報コミュニティ</h4>
+            <h4>© 2025年 ディアスポラ 韓国在住日本人のための生活情報コミュニティ</h4>
         </div>
     </div>
 </div>
