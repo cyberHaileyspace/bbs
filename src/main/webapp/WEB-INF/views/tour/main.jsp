@@ -152,13 +152,15 @@
             border-radius: 10px;
             border: 1px solid #ccc;">  <button class="location-btn" onclick="showMyLocation()" style="display: flex; align-items: center"> <img src="https://cdn-icons-png.flaticon.com/128/7124/7124723.png" style="width: 20px;
     height: 20px;
-    margin-right: 5px;">現在位置</button></div>
+    margin-right: 5px;">現在地</button></div>
 
                 </div>
 
                 <div class="main_content_box">
                     <div class="main_board_header"><span class="main_board_header_title"
-                                                         onclick="location.href='/main/toilet'">みんなのマップ</span><span
+                                                         onclick="location.href='/main/toilet'"><img src="https://cdn-icons-png.flaticon.com/128/4671/4671636.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;">みんなのマップ</span><span
                             class="main_board_header_plus" onclick="location.href='/main/toilet'">もっと見る</span></div>
                     <c:forEach var="t" items="${map}" varStatus="status">
                         <c:if test="${status.index < 5}">

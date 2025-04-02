@@ -22,6 +22,9 @@
 </div>
 <div class="sort">
     <div style="display: flex; justify-content: center">
+        <img src="https://cdn-icons-png.flaticon.com/128/4943/4943739.png" style="width: 30px;
+    height: 30px;
+    margin-right: 5px;">
         <h2>生活掲示板</h2>
     </div>
     <div>
@@ -31,7 +34,7 @@
                                          src="https://cdn-icons-png.flaticon.com/256/25/25313.png"/> <span>検索</span>
             </button>
         </div>
-        <hr style="width: 1050px;">
+        <hr style="width: 1100px;">
         <div style="display: flex; padding: 0 50px; width: 90%; margin-top: 25px">
             <div style="display: flex; flex-direction: row">
                 <label class="cate_radio">

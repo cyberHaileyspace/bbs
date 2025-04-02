@@ -42,7 +42,7 @@
                     <span>検索</span>
                 </button>
             </div>
-            <hr style="width: 1000px;">
+            <hr style="width: 1100px;">
             <div style="display: flex; padding: 0 50px; width: 90%; margin-top: 25px">
                 <div style="display: flex; flex-direction: row">
                     <label class="cate_radio">

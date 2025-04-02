@@ -100,6 +100,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                         <span>観光情報</span>
                     </div>
                     <div onclick="location.href='/main/toilet'" style="cursor: pointer" class="menu_container">
+                        <img src="https://cdn-icons-png.flaticon.com/128/4671/4671636.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;">
                         <span>みんなのマップ</span>
                     </div>
                     <div>
@@ -152,6 +155,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                         <span>観光情報</span>
                     </div>
                     <div onclick="location.href='/main/toilet'" style="cursor: pointer" class="menu_container">
+                        <img src="https://cdn-icons-png.flaticon.com/128/4671/4671636.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;">
                         <span>みんなのマップ</span>
                     </div>
                     <div onclick="location.href='/login'" style="cursor: pointer">

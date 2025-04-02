@@ -62,6 +62,7 @@ public class TourService {
 
             // XML 응답 필터링
             if (responseStr.trim().startsWith("<")) {
+                
                 throw new RuntimeException("API 응답이 XML입니다. JSON 파싱 중단.");
             }
 
