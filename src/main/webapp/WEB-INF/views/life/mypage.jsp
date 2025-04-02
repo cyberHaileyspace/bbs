@@ -211,7 +211,7 @@
             <c:forEach items="${freePostReplies}" var="fr">
                 <%--<div>${fr}</div>--%>
                 <div class="free-context">
-                    <div class="free-reply-text">${fr.r_context}${fr.r_date}</div>
+                    <div class="free-reply-text">${fr.r_context} / ${fr.r_date}</div>
                 </div>
                 <%--<div class="item" onclick="goToPost(${p.post_id})">
                         &lt;%&ndash;<div>번호 : ${l.post_id}</div>
@@ -262,7 +262,7 @@
             <h3 class="my_page_board">生活掲示板</h3>
             <c:forEach items="${lifePostReplies}" var="lr">
                 <div class="life-context">
-                    <div class="life-reply-text">${lr.r_context}${lr.r_date}</div>
+                    <div class="life-reply-text">${lr.r_context} / ${lr.r_date}</div>
                 </div>
             </c:forEach>
         </div>
@@ -270,7 +270,7 @@
             <h3 class="my_page_board">観光掲示板</h3>
             <c:forEach items="${tourPostReplies}" var="tr">
                 <div class="tour-context">
-                    <div class="life-reply-text">${tr.r_context}${tr.r_date}</div>
+                    <div class="life-reply-text">${tr.r_context} / ${tr.r_date}</div>
                 </div>
             </c:forEach>
         </div>

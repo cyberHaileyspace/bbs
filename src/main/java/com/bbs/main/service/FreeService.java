@@ -3,6 +3,7 @@ package com.bbs.main.service;
 import com.bbs.main.mapper.FreeMapper;
 import com.bbs.main.vo.FreeReplyVO;
 import com.bbs.main.vo.FreeVO;
+import com.bbs.main.vo.LifeVO;
 import com.bbs.main.vo.UserVO;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -239,5 +240,20 @@ public class FreeService {
         System.out.println(rId);
         System.out.println(nickname);
         return freeMapper.existsReplyLike(nickname, rId) > 0;
+    }
+
+    public List<FreeVO> getcategory(String category) {
+        switch (category) {
+            case "all":
+                return freeMapper.getAll(category);
+            case "hobby":
+                return freeMapper.getHobby(category);
+            case "love":
+                return freeMapper.getLove(category);
+            case "talk":
+                return freeMapper.getTalk(category);
+            default:
+                return new ArrayList<>();
+        }
     }
 }

@@ -116,7 +116,7 @@
                         </c:if>
                     </c:forEach>
                 </div>
-                    <%-- 관광 정보 --%>
+                <%-- 관광 정보 --%>
 
                 <div class="main_content_box">
                     <div class="main_board_header"><span class="main_board_header_title tour-link"
@@ -129,7 +129,7 @@
                         <c:if test="${status.index < 5}">
                             <div class="main_board_box">
                                 <a href="/main/tourInfo/getLoc?contentid=${t.contentid}" style="display: flex"><img style="width: 40px; height: 40px"
-                                        src="${t.firstimage}">
+                                                                                                                    src="${t.firstimage}">
                                     <p class="main_board_content_title">${t.title}</p></a>
                                 <p style="margin-left: auto">
                                     <fmt:parseDate value="${t.createdtime.substring(0,8)}" pattern="yyyyMMdd"

@@ -14,11 +14,18 @@
 </head>
 <body>
 <div class="category">
-    <div><span class="menu">すべて</span></div>
-    <div><span class="menu" data-val="生活情報">生活情報</span></div>
-    <div><span class="menu" data-val="健康情報">健康情報</span></div>
-    <div><span class="menu" data-val="質問">質問</span></div>
-    <div><span class="menu" data-val="レビュー">レビュー</span></div>
+    <div><span class="menu" data-val="all">すべて</span><img src="https://cdn-icons-png.flaticon.com/128/4559/4559106.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;"></div>
+    <div><span class="menu" data-val="hobby">趣味</span><img src="https://cdn-icons-png.flaticon.com/128/4807/4807749.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;"></div>
+    <div><span class="menu" data-val="love">恋バナ</span><img src="https://cdn-icons-png.flaticon.com/128/4003/4003342.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;"></div>
+    <div><span class="menu" data-val="talk">雑談</span><img src="https://cdn-icons-png.flaticon.com/128/1000/1000384.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;"></div>
 </div>
 <div class="sort">
     <div style="display: flex; justify-content: center; align-items: center">
@@ -31,7 +38,7 @@
         <div>
 
         <div class="search-btn">
-            <input type="text" placeholder="検索内容を入力してください。" id="search-input">
+            <input type="text" placeholder="タイトルを入力してください。" id="search-input">
             <button id="search-btn"><img class="search-btn-img" alt=""
                                          src="https://cdn-icons-png.flaticon.com/256/25/25313.png"/> <span>検索</span>
             </button>

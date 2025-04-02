@@ -63,7 +63,7 @@
         <img src="https://cdn-icons-png.flaticon.com/128/4671/4671636.png" style="width: 30px;
     height: 30px;
     margin-right: 5px;">
-        <h2>みんなのマップ</h2>
+        <h2 style="margin: 5px 0">みんなのマップ</h2>
     </div>
 
     <!-- 정렬 + 글쓰기 + 검색 -->
@@ -75,7 +75,6 @@
                 <img class="search-btn-img" alt="" src="https://cdn-icons-png.flaticon.com/256/25/25313.png"/> 検索
             </button>
         </div>
-        <hr style="width: 1100px">
 
         <div style="display: flex; align-items: center">
             <div style="display: flex; flex-direction: row">
@@ -100,7 +99,6 @@
         </div>
     </div>
 
-
     <!-- 지도 + 버튼 -->
 <div style="display: flex; justify-content: center">
     <div id="map" style="    position: relative; /* ✅ 이거 추가 */
@@ -112,12 +110,18 @@
     height: 20px;
     margin-right: 5px;">現在地</button></div>
 </div>
+    <!-- 지도만 감싸는 flex -->
+<%--    <div style="display: flex; justify-content: center;">--%>
+<%--        <div id="map" style="width: 94%; height: 400px; border: 1px solid #ccc; border-radius: 10px; position: relative;">--%>
+<%--            <button class="location-btn" onclick="showMyLocation()">現在地</button>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+
     <!-- 게시글 목록 -->
-    <div id="post-container"></div>
+    <div id="post-container" style="width: 94%; margin: 30px auto 0;"></div>
 
     <!-- 페이징 -->
-    <div id="pagination-container" style="display: flex; justify-content: center;"></div>
-
+    <div id="pagination-container" style="display: flex; justify-content: center; margin-top: 20px;"></div>
 </div>
 <script>
     function showMyLocation() {

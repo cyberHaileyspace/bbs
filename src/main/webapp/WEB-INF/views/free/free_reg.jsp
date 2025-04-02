@@ -67,10 +67,10 @@
                   value="life-aft"
                 />&lt;%&ndash;<label for="life-aft">&ndash;%&gt;후기</label>--%>
                 <select name="post_category">
-                    <option value="生活情報">生活情報</option>
-                    <option value="健康情報">健康情報</option>
-                    <option value="質問">質問</option>
-                    <option value="レビュー">レビュー</option>
+                    <option value="all">すべて</option>
+                    <option value="hobby">趣味</option>
+                    <option value="love">恋バナ</option>
+                    <option value="talk">雑談</option>
                 </select>
             </div>
             <div>
@@ -102,7 +102,7 @@
         </div>
 
         <div>
-            <div>내용</div>
+            <div>内容</div>
             <div>
           <textarea
                   name="post_context"

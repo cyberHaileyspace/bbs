@@ -36,7 +36,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         </div>
         <div
           onclick="location.href='/'"
-          style="cursor: pointer; position: absolute; left: 39.5%; display: flex; align-items: center; gap: 15px"
+          style="cursor: pointer; position: absolute; left: 42.5%; display: flex; align-items: center; gap: 15px"
         >
             <img src="/resources/img/refugee_7439891.png" style="width: 40px; height: 40px">ディアスポラ
         </div>

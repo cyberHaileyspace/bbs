@@ -27,6 +27,8 @@
 }</style>
 <body>
 <form id="toiletReg" action="/main/toilet" method="post" enctype="multipart/form-data">
+
+    <div>
     <div class="reg_dom">
     <input type="hidden" name="user_nickname" value="${user.user_nickname}" />
 
@@ -40,6 +42,7 @@
         </select>
     </div>
 
+    <div>
     <div class="reg_layout">
         <div>地域</div>
         <select name="post_menu">
@@ -54,6 +57,7 @@
         </select>
     </div>
 
+    <div>
     <div class="reg_layout">
         <div>タイトル</div>
         <textarea name="post_title" rows="3" cols="100" placeholder="タイトルを入力してください。" style="resize: none"></textarea>

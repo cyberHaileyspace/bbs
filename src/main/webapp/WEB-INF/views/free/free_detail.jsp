@@ -18,7 +18,12 @@
     <div class="life-back" onclick="location.href='/main/free'">自由掲示板 ></div>
 
 
-    <div class="post-title"><span> ${post.post_title } </span></div>
+    <div class="post-title"><span> <c:choose>
+        <c:when test="${post.post_category == 'hobby'}">[趣味]</c:when>
+        <c:when test="${post.post_category == 'love'}">[恋バナ]</c:when>
+        <c:when test="${post.post_category == 'talk'}">[雑談]</c:when>
+        <c:otherwise>[未分類]</c:otherwise>
+    </c:choose>${post.post_title } </span></div>
     <div class="post-info">
         <div class="post-profile">
             <c:choose>
