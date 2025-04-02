@@ -62,7 +62,7 @@
     <div style="position: relative;">
         <div id="map" style="width: 60%; height: 300px; border: 1px solid #ccc; border-radius: 10px;"></div>
         <button type="button" class="location-btn" style="position:absolute; top:10px; right:560px; z-index:300;"
-                onclick="moveToMyLocation()">📍 내 위치</button>
+                onclick="moveToMyLocation()">📍現在地</button>
     </div>
 
     <input type="hidden" name="post_lat" id="post_lat" value="${post.post_lat}">

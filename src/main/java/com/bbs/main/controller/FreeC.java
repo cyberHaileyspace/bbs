@@ -136,6 +136,10 @@ public class FreeC {
         return response;
     }
 
-
+    @GetMapping("/category")
+    @ResponseBody
+    public List<FreeVO> getcategory(@RequestParam("category") String category) {
+        return freeService.getcategory(category);
+    }
 
 }

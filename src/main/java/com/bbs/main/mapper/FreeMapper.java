@@ -2,6 +2,7 @@ package com.bbs.main.mapper;
 
 import com.bbs.main.vo.FreeReplyVO;
 import com.bbs.main.vo.FreeVO;
+import com.bbs.main.vo.ToiletVO;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -135,4 +136,16 @@ public interface FreeMapper {
     @Insert("INSERT INTO free_reply_like (l_id, l_user_nickname, l_reply_id) " +
             "VALUES (free_reply_like_seq.nextval, #{userNickname}, #{replyId})")
     void insertReplyLike(@Param("userNickname") String userNickname, @Param("replyId") int replyId);
+
+    @Select("SELECT * FROM Free_POST_DB ORDER BY post_date DESC")
+    List<FreeVO> getAll(String category);
+
+    @Select("SELECT * FROM Free_POST_DB where post_category = 'hobby' ORDER BY post_date DESC")
+    List<FreeVO> getHobby(String category);
+
+    @Select("SELECT * FROM Free_POST_DB where post_category = 'love' ORDER BY post_date DESC")
+    List<FreeVO> getLove(String category);
+
+    @Select("SELECT * FROM Free_POST_DB where post_category = 'talk' ORDER BY post_date DESC")
+    List<FreeVO> getTalk(String category);
 }

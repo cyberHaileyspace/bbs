@@ -10,8 +10,12 @@
 <body>
 <div class="info_wrap" style="width: 100%">
     <div class="travel">
-        <div onclick="location.href='/main/tour'">観光掲示板</div>
-        <div>観光情報</div>
+        <div onclick="location.href='/main/tour'">観光掲示板   <img src="https://cdn-icons-png.flaticon.com/128/4559/4559106.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;"></div>
+        <div>観光情報   <img src="https://cdn-icons-png.flaticon.com/128/13471/13471961.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;"></div>
     </div>
     <div style="display: flex; flex-direction: column; align-items: center; width: 350px; height: 70px; background-color: #e0eae9; margin: 0 auto; padding: 20px 0; border-radius: 20px; margin-bottom: 80px">
         <h3 style="width: 80%; height: 50px; text-align: center; display: flex; align-items: center; justify-content: center; border-radius: 15px; margin: 0">

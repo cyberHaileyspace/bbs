@@ -15,11 +15,18 @@
 </head>
 <body>
 <div class="container-cm-post">
-    <div class="life-back" onclick="location.href='/main/toilet'">トイレット掲示板 ></div>
+    <div class="life-back" onclick="location.href='/main/toilet'">みんなのマップ ></div>
 
-    <div class="post-title"><span> ${post.post_title } </span></div>
+    <div class="post-title"><span><c:choose>
+    <c:when test="${post.post_category == 'office'}">[公共サービス]</c:when>
+    <c:when test="${post.post_category == 'hospital'}">[病院]</c:when>
+    <c:when test="${post.post_category == 'toilet'}">[トイレ]</c:when>
+    <c:when test="${post.post_category == 'etc'}">[その他]</c:when>
+    <c:otherwise>[未分類]</c:otherwise>
+</c:choose>
+${post.post_title}</span></div>
     <div class="post-info">
-        <div class="post-profile"><img alt="" src="/file/${user.user_image }"></div>
+        <div class="post-profile"><img alt="" src="file/${user.user_image }"></div>
         <div class="post-mini-wrapper">
             <div class="post-string">
                 <div class="post-name">${post.user_nickname }</div>
@@ -55,7 +62,7 @@
                 </c:choose>
                 <div class="post-like"><img src="https://cdn-icons-png.flaticon.com/512/833/833234.png"></div>
             </button>
-           <button>経路検索<div class="post-like"><img src="https://cdn-icons-png.flaticon.com/128/3466/3466335.png"></button>
+            <button>経路検索<div class="post-like"><img src="https://cdn-icons-png.flaticon.com/128/3466/3466335.png"></button>
             <c:if test="${login_nickname == post.user_nickname}">
                 <button onclick="deletePost(${post.post_id})">削除</button>
                 <button onclick="location.href='update/${post.post_id}'">修正</button>
@@ -173,7 +180,7 @@
 
                 if (data.length === 0) {
                     if (replyPage === 0) {
-                        replySection.innerHTML = "<p>コメントがありません。最初のコメントを残してください！</p>";
+                        replySection.innerHTML = "<p>コメントがありません。</p>";
                     }
                     document.getElementById("load-more-replies").style.display = "none";
                     return;

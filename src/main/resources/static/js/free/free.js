@@ -99,10 +99,17 @@ function renderPosts(posts) {
 
     $("#post-container").empty(); // 기존 게시글 제거
     let postHtml = "";
+    const categoryLabels = {
+        hobby: "趣味",
+        love: "恋バナ",
+        talk: "雑談", // 혹시 원본에 일본어도 혼합돼 있다면 예외로 추가
+    };
 
     posts.forEach(p => {
         const formattedDate = new Date(p.post_date).toISOString().split('T')[0];
         console.log(posts);
+        const categoryLabel = categoryLabels[p.post_category] || p.post_category;
+
         postHtml +=
             "<div class='item'>" +
             "<div class='post-life' onclick='goToPost(" + p.post_id + ")'>" +
@@ -115,7 +122,7 @@ function renderPosts(posts) {
             "<div class='info-date'>投稿日 : " + formattedDate + "</div>" +
             "</div>" +
             "</div>" +
-            "<div class='life-title'>" + p.post_title + "</div>" +
+            "<div class='life-title'>[" +　categoryLabel + "] " + p.post_title + "</div>" +
 
             "<div class='life-info'>" +
             "<div class='life_southWest'>" +

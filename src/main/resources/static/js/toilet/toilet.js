@@ -99,19 +99,27 @@ function renderPosts(posts) {
     $("#post-container").empty(); // 기존 게시글 제거
     let postHtml = '<div class="toilet-grid">';
 
+    // ✅ 카테고리 일본어 매핑
+    const categoryLabels = {
+        office: "公共サービス",
+        hospital: "病院",
+        toilet: "トイレ",
+        etc: "その他"
+    };
+
     posts.forEach(p => {
         const formattedDate = new Date(p.post_date).toISOString().split('T')[0];
-        const postData = encodeURIComponent(JSON.stringify(p));  // 안전하게 인코딩
+        const postData = encodeURIComponent(JSON.stringify(p));
+        const categoryLabel = categoryLabels[p.post_category] || "未分類";  // ✅ 영어 → 일본어
 
         postHtml += `
         <div class="toilet-item">
             <div class="toilet-card" data-post='${postData}'>
                 <div class="toilet-meta">
-                    <div class="toilet-id">掲示番号：${p.post_id}</div>
-                    <div class="toilet-category">カテゴリ：${p.post_category}</div>
+                    <div class="toilet-id">番号：${p.post_id}</div>
+                    <div class="toilet-category">[${categoryLabel}] ${p.post_title} </div>
                     <div class="toilet-region">地域：${p.post_menu}</div>
                 </div>
-                <div class="toilet-title">${p.post_title}</div>
                 <div class="toilet-body">
                     <div class="toilet-image">
                         ${p.post_image ? `<img src='img/post/${p.post_image}' alt=''>` : ""}
@@ -132,6 +140,7 @@ function renderPosts(posts) {
     return postHtml;
 }
 
+
 document.addEventListener("click", function (s) {
     const card = s.target.closest(".toilet-card");
     console.log("클릭된 카드:", card);  // 이거 찍히는지 꼭 확인해줘
@@ -150,8 +159,17 @@ document.addEventListener("click", function (s) {
 
 
 function openToiletModal(p) {
-    // 1️⃣ 먼저 기존 모달 제거
+    // 1️⃣ 기존 모달 제거
     closeToiletModal();
+
+    // ✅ 카테고리 일본어 매핑
+    const categoryLabels = {
+        office: "公共サービス",
+        hospital: "病院",
+        toilet: "トイレ",
+        etc: "その他"
+    };
+    const categoryLabel = categoryLabels[p.post_category] || "未分類";
 
     // 2️⃣ 모달 HTML 생성
     const formattedDate = new Date(p.post_date).toISOString().split('T')[0];
@@ -159,11 +177,13 @@ function openToiletModal(p) {
         <div class="toilet-modal-overlay" onclick="closeToiletModal()"></div>
         <div class="toilet-modal">
             <div><img alt="" src="file/${p.user_image}"></div>
-            <h2>${p.post_title}</h2>
+            <h2>[${categoryLabel}] ${p.post_title}</h2>
             <p class="toilet-modal-meta">${p.user_nickname} ・ ${formattedDate}</p>
             <div class="toilet-modal-content">${p.post_address}</div>
             <div class="toilet-modal-actions">
-                <button onclick="toggleLike(${p.post_id}, this)">❤️ いいね：${p.post_like}</button>
+                <button onclick="toggleLike(${p.post_id}, this)"><img src="https://cdn-icons-png.flaticon.com/512/833/833234.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;">️ いいね ${p.post_like}</button>
                 <button onclick="goToPost(${p.post_id})">▶ 詳しく見る</button>
             </div>
         </div>
@@ -186,7 +206,6 @@ function openToiletModal(p) {
         }
     }
 }
-
 
 
 function closeToiletModal() {
