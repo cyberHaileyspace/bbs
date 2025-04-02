@@ -27,11 +27,18 @@
 }</style>
 <body>
 <form id="toiletReg" action="/main/toilet" method="post" enctype="multipart/form-data">
+<<<<<<< HEAD
+    <input type="hidden" name="user_nickname" value="${user.user_nickname}" />
+
+    <div>
+        <div>カテゴリー（掲示板分類）</div>
+=======
     <div class="reg_dom">
     <input type="hidden" name="user_nickname" value="${user.user_nickname}" />
 
     <div class="reg_layout">
         <div>カテゴリー</div>
+>>>>>>> 508e866d92d678d1d5e45b104057ef6139382268
         <select name="post_category" id="post_marker_category">
             <option value="office">公共サービス</option>
             <option value="hospital">病院</option>
@@ -40,7 +47,11 @@
         </select>
     </div>
 
+<<<<<<< HEAD
+    <div>
+=======
     <div class="reg_layout">
+>>>>>>> 508e866d92d678d1d5e45b104057ef6139382268
         <div>地域</div>
         <select name="post_menu">
             <option value="ソウル">ソウル</option>
@@ -54,7 +65,11 @@
         </select>
     </div>
 
+<<<<<<< HEAD
+    <div>
+=======
     <div class="reg_layout">
+>>>>>>> 508e866d92d678d1d5e45b104057ef6139382268
         <div>タイトル</div>
         <textarea name="post_title" rows="3" cols="100" placeholder="タイトルを入力してください。" style="resize: none"></textarea>
     </div>
@@ -62,7 +77,7 @@
     <div class="reg_layout" style="position: relative;">
         <div id="map" style="width: 100%; height: 300px; border: 1px solid #ccc; border-radius: 10px;"></div>
         <button type="button" style="position: absolute; top: 10px; right: 10px; z-index: 300; display: flex; align-items: center"
-                class="location-btn" onclick="moveToMyLocation()">📍 現在位置</button>
+                class="location-btn" onclick="moveToMyLocation()">📍 現在地</button>
     </div>
 
     <input type="hidden" name="post_lat" id="post_lat" />

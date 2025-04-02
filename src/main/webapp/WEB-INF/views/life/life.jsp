@@ -14,11 +14,21 @@
 </head>
 <body>
 <div class="category">
-    <div><span class="menu" name="category" data-val="すべて">すべて</span></div>
-    <div><span class="menu" name="category" data-val="生活情報">生活情報</span></div>
-    <div><span class="menu" name="category" data-val="健康情報">健康情報</span></div>
-    <div><span class="menu" name="category" data-val="質問">質問</span></div>
-    <div><span class="menu" name="category" data-val="レビュー">レビュー</span></div>
+    <div><span class="menu" name="category" data-val="すべて">すべて</span><img src="https://cdn-icons-png.flaticon.com/128/4559/4559106.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;"></div>
+    <div><span class="menu" name="category" data-val="生活情報">生活情報</span><img src="https://cdn-icons-png.flaticon.com/128/4939/4939195.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;"></div>
+    <div><span class="menu" name="category" data-val="健康情報">健康情報</span><img src="https://cdn-icons-png.flaticon.com/128/7133/7133438.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;"></div>
+    <div><span class="menu" name="category" data-val="質問">質問</span><img src="https://cdn-icons-png.flaticon.com/128/2997/2997531.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;"></div>
+    <div><span class="menu" name="category" data-val="レビュー">レビュー</span><img src="https://cdn-icons-png.flaticon.com/128/2593/2593482.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;"></div>
 </div>
 <div class="sort">
     <div style="display: flex; justify-content: center">
@@ -26,7 +36,7 @@
     </div>
     <div>
         <div class="search-btn">
-            <input type="text" placeholder="検索内容を入力してください。" id="search-input">
+            <input type="text" placeholder="タイトルを入力してください。" id="search-input">
             <button id="search-btn"><img class="search-btn-img" alt=""
                                          src="https://cdn-icons-png.flaticon.com/256/25/25313.png"/> <span>検索</span>
             </button>

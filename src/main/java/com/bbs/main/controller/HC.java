@@ -18,8 +18,11 @@ public class HC {
 
     @Autowired
     private FreeService freeService;
+
     @Autowired
     private ToiletService toiletService;
+
+
 
     @GetMapping("/")
     public String home(Model model) {

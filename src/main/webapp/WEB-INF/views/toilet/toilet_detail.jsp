@@ -16,9 +16,16 @@
 </head>
 <body>
 <div class="container-cm-post">
-    <div class="life-back" onclick="location.href='/main/toilet'">トイレット掲示板 ></div>
+    <div class="life-back" onclick="location.href='/main/toilet'">みんなのマップ ></div>
 
-    <div class="post-title"><span> ${post.post_title } </span></div>
+    <div class="post-title"><span><c:choose>
+    <c:when test="${post.post_category == 'office'}">[公共サービス]</c:when>
+    <c:when test="${post.post_category == 'hospital'}">[病院]</c:when>
+    <c:when test="${post.post_category == 'toilet'}">[トイレ]</c:when>
+    <c:when test="${post.post_category == 'etc'}">[その他]</c:when>
+    <c:otherwise>[未分類]</c:otherwise>
+</c:choose>
+${post.post_title}</span></div>
     <div class="post-info">
         <div class="post-profile"><img src="${empty user.user_image ? '/img/free-icon-user-1144760.png' : '/file/'}${user.user_image}" style="width: 60px; height: 60px"></div>
         <div class="post-mini-wrapper">
@@ -56,7 +63,7 @@
                 </c:choose>
                 <div class="post-like"><img src="https://cdn-icons-png.flaticon.com/512/833/833234.png"></div>
             </button>
-            <button>経路検索<img src="https://cdn-icons-png.flaticon.com/128/3466/3466335.png"></button>
+            <button>経路検索<div class="post-like"><img src="https://cdn-icons-png.flaticon.com/128/3466/3466335.png"></button>
             <c:if test="${login_nickname == post.user_nickname}">
                 <button onclick="deletePost(${post.post_id})">削除</button>
                 <button onclick="location.href='update/${post.post_id}'">修正</button>
@@ -121,11 +128,28 @@
         infowindow.open(map, marker);  // 항상 표시
 
         // 👉 '経路検索' 버튼에 이벤트 추가
-        const routeBtn = document.querySelector(".post-button button:nth-child(2)");  // 두 번째 버튼 (経路検索)
+        const routeBtn = document.querySelector(".post-button button:nth-child(2)");
         if (routeBtn) {
             routeBtn.addEventListener("click", function () {
-                const link = "https://map.kakao.com/link/to/" + encodeURIComponent(address) + "," + lat + "," + lng;
-                window.open(link, "_blank");
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                        function (position) {
+                            const startLat = position.coords.latitude;
+                            const startLng = position.coords.longitude;
+                            const startName = "現在地";
+
+                            const link = "https://map.kakao.com/link/from/" + encodeURIComponent(startName) + "," + startLat + "," + startLng +
+                                "/to/" + encodeURIComponent(address) + "," + lat + "," + lng;
+
+                            window.open(link, "_blank");
+                        },
+                        function (error) {
+                            alert("現在地の取得に失敗しました。位置情報の使用を許可してください。");
+                        }
+                    );
+                } else {
+                    alert("このブラウザでは位置情報を利用できません。");
+                }
             });
         }
     });
@@ -174,7 +198,7 @@
 
                 if (data.length === 0) {
                     if (replyPage === 0) {
-                        replySection.innerHTML = "<p>コメントがありません。最初のコメントを残してください！</p>";
+                        replySection.innerHTML = "<p>コメントがありません。</p>";
                     }
                     document.getElementById("load-more-replies").style.display = "none";
                     return;

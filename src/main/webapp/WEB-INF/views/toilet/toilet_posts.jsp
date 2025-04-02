@@ -82,23 +82,18 @@
         </div>
     </div>
 
-    <!-- 지도 + 버튼 -->
-<div style="display: flex; justify-content: center">
-    <div id="map" style="    position: relative; /* ✅ 이거 추가 */
-            width: 94%;
-            height: 400px;
-            margin-bottom: 30px;
-            border-radius: 10px;
-            border: 1px solid #ccc;">  <button class="location-btn" onclick="showMyLocation()" style="display: flex; align-items: center"> <img src="https://cdn-icons-png.flaticon.com/128/7124/7124723.png" style="width: 20px;
-    height: 20px;
-    margin-right: 5px;">現在位置</button></div>
-</div>
+    <!-- 지도만 감싸는 flex -->
+    <div style="display: flex; justify-content: center;">
+        <div id="map" style="width: 94%; height: 400px; border: 1px solid #ccc; border-radius: 10px; position: relative;">
+            <button class="location-btn" onclick="showMyLocation()">現在地</button>
+        </div>
+    </div>
+
     <!-- 게시글 목록 -->
-    <div id="post-container"></div>
+    <div id="post-container" style="width: 94%; margin: 30px auto 0;"></div>
 
     <!-- 페이징 -->
-    <div id="pagination-container" style="display: flex; justify-content: center;"></div>
-
+    <div id="pagination-container" style="display: flex; justify-content: center; margin-top: 20px;"></div>
 </div>
 <script>
     function showMyLocation() {

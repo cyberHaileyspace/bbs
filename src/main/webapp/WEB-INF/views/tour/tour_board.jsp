@@ -18,9 +18,13 @@
 
 <div style="width: 100%">
     <div class="travel">
-        <div>観光掲示板</div>
+        <div>観光掲示板   <img src="https://cdn-icons-png.flaticon.com/128/4559/4559106.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;"></div>
         <div onclick="document.getElementById('defaultTourForm').submit()">
-            観光情報
+            観光情報   <img src="https://cdn-icons-png.flaticon.com/128/13471/13471961.png" style="width: 20px;
+    height: 20px;
+    margin-right: 5px;">
         </div>
     </div>
     <form id="defaultTourForm" action="/main/tourInfo/loc" method="get">
@@ -36,7 +40,7 @@
         </div>
         <div>
             <div class="search-btn">
-                <input type="text" placeholder="検索内容を入力してください。" id="search-input">
+                <input type="text" placeholder="タイトルを入力してください。" id="search-input">
                 <button id="search-btn"><img class="search-btn-img" alt=""
                                              src="https://cdn-icons-png.flaticon.com/256/25/25313.png"/>
                     <span>検索</span>

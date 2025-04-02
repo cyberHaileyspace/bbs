@@ -24,15 +24,15 @@
         <div>
 
             <select name="post_category">
-                <option value="生活情報">生活情報</option>
-                <option value="健康情報">健康情報</option>
-                <option value="質問">質問</option>
-                <option value="レビュー">レビュー</option>
+                <option value="all">すべて</option>
+                <option value="hobby">趣味</option>
+                <option value="love">恋バナ</option>
+                <option value="talk">雑談</option>
             </select>
+
         </div>
         <div>
-            <div>지역</div>
-
+            <div>地域</div>
             <select name="post_menu">
                 <option value="ソウル">ソウル</option>
                 <option value="京畿／仁川">京畿／仁川</option>
@@ -45,14 +45,12 @@
             </select>
         </div>
     </div>
-
     <div>
         <div>タイトル</div>
         <div><textarea name="post_title" rows="5" cols="100" style="resize: none;">${post.post_title}
         </textarea>
         </div>
     </div>
-
     <div>
         <div>内容</div>
         <div>
