@@ -57,6 +57,7 @@ public class Tour_boardC {
         String nickname = (user != null) ? user.getUser_nickname() : "";
         System.out.println(nickname);
         model.addAttribute("login_nickname", nickname);
+        model.addAttribute("user", user);
         model.addAttribute("post", tourService.detailPost(post_id));
         model.addAttribute("content", "tour/tour_detail.jsp");
         return "index";

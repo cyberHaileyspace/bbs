@@ -74,6 +74,7 @@ public class LifeC {
         UserVO user = (UserVO) session.getAttribute("user");
         String nickname = (user != null) ? user.getUser_nickname() : "";
         model.addAttribute("login_nickname", nickname);
+        model.addAttribute("user", user);
         model.addAttribute("post", lifeService.getPost(no));
         model.addAttribute("content", "life/life_detail.jsp");
         return "index";

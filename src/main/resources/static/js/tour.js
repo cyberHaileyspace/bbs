@@ -400,12 +400,15 @@
     // 댓글을 textarea로 변경
     commentDiv.innerHTML = `
           <div>
-          <span>作成者 : ${r_writer}</span> <br>
-          <span>作成日 : ${r_date}</span> <br>
+          <div class="reply_form">
+          <span>作成者 : ${r_writer}</span>
+          <span style="margin-left: auto">作成日 : ${r_date}</span>
+          </div>
           <textarea id="edit-text-${r_id}" class="edit-textarea">${originalContent}</textarea>
           </div>
-          <button onclick="saveEdit('${r_id}', '${r_writer}', '${r_date}', '${originalContent}')">修正完了</button>
-          <button onclick="cancelEdit()">修正キャンセル</button>
+          <div style="display: flex; gap: 15px">
+          <button onclick="saveEdit('${r_id}', '${r_writer}', '${r_date}', '${originalContent}')" class="reply_my_button">修正完了</button>
+          <button onclick="cancelEdit()" class="reply_my_button">キャンセル</button></div>
       `;
   }
 

@@ -12,6 +12,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.min.js"></script>
     <script type="text/javascript"
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=004383c9a684a2e2224afc37cca60d3c"></script>
+
 </head>
 <body>
 <div class="container-cm-post">
@@ -26,7 +27,7 @@
 </c:choose>
 ${post.post_title}</span></div>
     <div class="post-info">
-        <div class="post-profile"><img alt="" src="file/${user.user_image }"></div>
+        <div class="post-profile"><img src="${empty user.user_image ? '/img/free-icon-user-1144760.png' : '/file/'}${user.user_image}" style="width: 60px; height: 60px"></div>
         <div class="post-mini-wrapper">
             <div class="post-string">
                 <div class="post-name">${post.user_nickname }</div>
@@ -80,9 +81,9 @@ ${post.post_title}</span></div>
 
             <div class="comment-ta">
                 <textarea id="replyContent" placeholder="コメントを入力してください..." style="resize: none"></textarea>
+                <button id="commentButton" onclick="handleToiletReplySubmit('${user.user_nickname}')">コメント投稿</button>
             </div>
 
-            <button id="commentButton" onclick="handleToiletReplySubmit('${user.user_nickname}')">コメント投稿</button>
         </div>
         <div id="replyCountContainer"></div>
         <div>

@@ -27,10 +27,18 @@
 }</style>
 <body>
 <form id="toiletReg" action="/main/toilet" method="post" enctype="multipart/form-data">
+<<<<<<< HEAD
     <input type="hidden" name="user_nickname" value="${user.user_nickname}" />
 
     <div>
         <div>カテゴリー（掲示板分類）</div>
+=======
+    <div class="reg_dom">
+    <input type="hidden" name="user_nickname" value="${user.user_nickname}" />
+
+    <div class="reg_layout">
+        <div>カテゴリー</div>
+>>>>>>> 508e866d92d678d1d5e45b104057ef6139382268
         <select name="post_category" id="post_marker_category">
             <option value="office">公共サービス</option>
             <option value="hospital">病院</option>
@@ -39,7 +47,11 @@
         </select>
     </div>
 
+<<<<<<< HEAD
     <div>
+=======
+    <div class="reg_layout">
+>>>>>>> 508e866d92d678d1d5e45b104057ef6139382268
         <div>地域</div>
         <select name="post_menu">
             <option value="ソウル">ソウル</option>
@@ -53,34 +65,49 @@
         </select>
     </div>
 
+<<<<<<< HEAD
     <div>
+=======
+    <div class="reg_layout">
+>>>>>>> 508e866d92d678d1d5e45b104057ef6139382268
         <div>タイトル</div>
         <textarea name="post_title" rows="3" cols="100" placeholder="タイトルを入力してください。" style="resize: none"></textarea>
     </div>
 
-    <div style="position: relative;">
-        <div id="map" style="width: 60%; height: 300px; border: 1px solid #ccc; border-radius: 10px;"></div>
-        <button type="button" style="position: absolute; top: 10px; right: 560px; z-index: 300;"
-                class="location-btn" onclick="moveToMyLocation()">📍現在地</button>
+    <div class="reg_layout" style="position: relative;">
+        <div id="map" style="width: 100%; height: 300px; border: 1px solid #ccc; border-radius: 10px;"></div>
+        <button type="button" style="position: absolute; top: 10px; right: 10px; z-index: 300; display: flex; align-items: center"
+                class="location-btn" onclick="moveToMyLocation()">📍 現在地</button>
     </div>
 
     <input type="hidden" name="post_lat" id="post_lat" />
     <input type="hidden" name="post_lng" id="post_lng" />
+<div class="reg_layout">
+
 
     <div>住所</div>
     <input readonly placeholder="位置を選択してください。" name="post_address" id="post_address" />
-
+    </div>
+        <div class="reg_layout">
     <div>内容</div>
     <textarea name="post_context" id="writearea" rows="15" cols="100" placeholder="内容を入力してください。"></textarea>
-
+    </div>
+        <div class="reg_form">
     <div>
         <div>画像</div>
-        <input type="file" name="post_file" id="btnAtt" />
+        <input type="file" name="post_file" id="btnAtt" style="display: none" />
+
+        <!-- label을 버튼처럼 사용 -->
+        <label for="btnAtt" class="custom-file-label">
+            ファイルを添付
+        </label>
     </div>
 
-    <div>
-        <button class="reg-cancel" type="button" onclick="history.back()">取り消し</button>
+    <div class="reg_button">
+        <button class="reg-cancel" type="button" onclick="history.back()">キャンセル</button>
         <button class="reg-post" type="submit">投稿</button>
+    </div>
+    </div>
     </div>
 </form>
 

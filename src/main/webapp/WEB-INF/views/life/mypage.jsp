@@ -15,7 +15,7 @@
     <div class="mypage-container">
         <form id="profile" action="updatepfp" method="post" enctype="multipart/form-data">
             <div>
-                <img src="${empty user.user_image ? '/img/no-image.png' : '/file/'}${user.user_image}" style="width: 100px; height: 100px">
+                <img src="${empty user.user_image ? '/img/free-icon-user-1144760.png' : '/file/'}${user.user_image}" style="width: 100px; height: 100px">
             </div>
 
             <div style="display: flex; flex-direction: column">

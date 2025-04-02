@@ -25,7 +25,16 @@
         <c:otherwise>[未分類]</c:otherwise>
     </c:choose>${post.post_title } </span></div>
     <div class="post-info">
-        <div class="post-profile"><img alt="" src="file/${user.user_image }"></div>
+        <div class="post-profile">
+            <c:choose>
+                <c:when test="${empty user.user_image}">
+                    <img src="/img/free-icon-user-1144760.png" style="width:60px; height:60px;">
+                </c:when>
+                <c:otherwise>
+                    <img src="/file/${user.user_image}" style="width:60px; height:60px;">
+                </c:otherwise>
+            </c:choose>
+        </div>
         <div class="post-mini-wrapper">
             <div class="post-string">
                 <div class="post-name">${post.user_nickname }</div>
@@ -96,7 +105,7 @@
         <div id="replySection">
         </div>
         <!-- "댓글 5개 더보기" → "コメントを5件もっと見る" -->
-        <div><button id="load-more-replies" class="reply_my_button">コメントを5件もっと見る</button></div>
+        <div style="display: flex; justify-content: center; margin-top: 20px"><button id="load-more-replies" class="reply_my_button">コメントを5件もっと見る</button></div>
     </div>
 </div>
 

@@ -22,6 +22,8 @@ public class HC {
     @Autowired
     private ToiletService toiletService;
 
+
+
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("free", freeService.getposts());

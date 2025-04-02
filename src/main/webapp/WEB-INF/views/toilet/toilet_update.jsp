@@ -27,10 +27,11 @@
 </head>
 <body>
 <form id="updateForm" action="/main/toilet/update" method="post" enctype="multipart/form-data">
+    <div class="reg_dom">
     <input type="hidden" name="post_id" value="${post.post_id}">
     <input type="hidden" name="user_nickname" value="${user.user_nickname}">
 
-    <div>
+    <div class="reg_layout">
         <div>カテゴリー</div>
         <select name="post_category" id="post_category">
             <option value="office" <c:if test="${post.post_category == 'office'}">selected</c:if>>公共サービス</option>
@@ -40,7 +41,7 @@
         </select>
     </div>
 
-    <div>
+    <div class="reg_layout">
         <div>地域</div>
         <select name="post_menu">
             <option value="ソウル" <c:if test="${post.post_menu == 'ソウル'}">selected</c:if>>ソウル</option>
@@ -54,26 +55,28 @@
         </select>
     </div>
 
-    <div>
+    <div class="reg_layout">
         <div>タイトル</div>
-        <textarea name="post_title" rows="3" cols="100">${post.post_title}</textarea>
+        <textarea name="post_title" rows="3" cols="100" style="resize: none" placeholder="タイトルを入力してください。">${post.post_title}</textarea>
     </div>
 
-    <div style="position: relative;">
-        <div id="map" style="width: 60%; height: 300px; border: 1px solid #ccc; border-radius: 10px;"></div>
-        <button type="button" class="location-btn" style="position:absolute; top:10px; right:560px; z-index:300;"
-                onclick="moveToMyLocation()">📍現在地</button>
+    <div class="reg_layout" style="position: relative;">
+        <div id="map" style="width: 100%; height: 300px; border: 1px solid #ccc; border-radius: 10px;"></div>
+        <button type="button" class="location-btn" style="position:absolute; top:10px; right:10px; z-index:300;"
+                onclick="moveToMyLocation()">📍 現在地</button>
     </div>
 
     <input type="hidden" name="post_lat" id="post_lat" value="${post.post_lat}">
     <input type="hidden" name="post_lng" id="post_lng" value="${post.post_lng}">
-
+<div class="reg_layout">
     <div>住所</div>
     <input name="post_address" id="post_address" value="${post.post_address}" readonly>
-
+    </div>
+        <div class="reg_layout">
     <div>内容</div>
     <textarea name="post_context" id="writearea" rows="15" cols="100">${post.post_context}</textarea>
-
+    </div>
+    <div class="reg_form">
     <div>
         <div>現在の画像:
             <c:if test="${not empty post.post_image}">
@@ -81,12 +84,19 @@
                 <input type="hidden" name="existing_post_image" value="${post.post_image}">
             </c:if>
         </div>
-        <input type="file" name="post_file" id="btnAtt">
+        <input type="file" name="post_file" id="btnAtt" style="display: none">
+
+        <!-- label을 버튼처럼 사용 -->
+        <label for="btnAtt" class="custom-file-label">
+            ファイルを添付
+        </label>
     </div>
 
-    <div>
+    <div class="reg_button">
         <button type="button" onclick="history.back()">キャンセル</button>
-        <button type="submit">修正完了</button>
+        <button type="submit">修正</button>
+    </div>
+    </div>
     </div>
 </form>
 
