@@ -122,11 +122,11 @@ function renderPosts(posts) {
             "<div class='info-date'>投稿日 : " + formattedDate + "</div>" +
             "</div>" +
             "</div>" +
-            "<div class='life-title'>[" +　categoryLabel + "] " + p.post_title + "</div>" +
+            "<div class='life-title'>" + p.post_title + "</div>" +
 
             "<div class='life-info'>" +
             "<div class='life_southWest'>" +
-            "<div class='life-cate'>カテゴリー : " + p.post_category + "</div>" +
+            "<div class='life-cate'>カテゴリー : " + categoryLabel + "</div>" +
             "<div class='life-menu'>地域 : " + p.post_menu + "</div>" +
             "</div>" +
 

@@ -68,12 +68,21 @@ contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
             onclick="history.back()"
             style="
               background: none;
-              border: none;
               text-decoration: none;
-              color: black;
               font-size: large;
               cursor: pointer;
-              width: 230px;
+              text-align: center;
+              height: 40px;
+              width: 130px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              box-sizing: border-box;
+              border-radius: 50px;
+              border: 1px solid #323232;
+              background-color: #323232;
+              color: #ffffff;
+              font-weight: 700;
             "
           >
             リストに戻る

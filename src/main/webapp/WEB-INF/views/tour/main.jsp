@@ -43,7 +43,8 @@
                     <div class="main_board_header"><span class="main_board_header_title"
                                                          onclick="location.href='/main/news'"><img src="https://cdn-icons-png.flaticon.com/128/117/117965.png" style="width: 20px;
     height: 20px;
-    margin-right: 5px;">海外ニュース</span><span
+    margin-right: 5px;">海外ニュース<c:out value="${t.post_image}"/>
+</span><span
                             class="main_board_header_plus" onclick="location.href='/main/news'">もっと見る</span></div>
                     <div id="news-container"></div> <!-- 뉴스가 들어갈 공간 -->
                 </div>

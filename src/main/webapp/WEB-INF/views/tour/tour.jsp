@@ -22,6 +22,12 @@
             行きたい地域を選んでください</h3>
         <input type="text" class="location-input" style="width: 75%; border-radius: 5px; border: none" placeholder="クリックすると地域選択が表示されます。"/>
     </div>
+    <div style="display: flex; justify-content: center; align-items: center">
+        <img src="https://cdn-icons-png.flaticon.com/128/7813/7813703.png" style="width: 30px;
+    height: 30px;
+    margin-right: 5px;">
+        <h2>観光情報</h2>
+    </div>
     <!-- 대분류/소분류 영역 (이전 코드와 동일) -->
     <div class="location-wrap">
         <div class="panels place_scroll panel_2depth">

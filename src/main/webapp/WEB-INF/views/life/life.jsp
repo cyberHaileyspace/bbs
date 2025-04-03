@@ -31,7 +31,7 @@
     margin-right: 5px;"></div>
 </div>
 <div class="sort">
-    <div style="display: flex; justify-content: center">
+    <div style="display: flex; justify-content: center; align-items: center">
         <img src="https://cdn-icons-png.flaticon.com/128/4943/4943739.png" style="width: 30px;
     height: 30px;
     margin-right: 5px;">

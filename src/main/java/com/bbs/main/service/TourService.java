@@ -334,7 +334,7 @@ public class TourService {
             throw new IllegalArgumentException("해당 게시글이 존재하지 않습니다: ID=" + tourVO.getPost_id());
         }
 
-        String uploadFolder = "C:/Users/dutch/Documents/bbs/src/main/resources/static/img/upload";
+        String uploadFolder = "C:\\Users\\dutch\\Documents\\upload";
 
         if (post_file != null && !post_file.isEmpty()) {
             String originName = post_file.getOriginalFilename();
